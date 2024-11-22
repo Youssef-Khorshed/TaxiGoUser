@@ -1,0 +1,41 @@
+name: taxi_go_user_version
+description: "Taxi Go is Flutter App Was Created  By Craft Code Company"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  cupertino_icons: null
+  firebase_core:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg:
+  google_fonts:
+  intl: any
+  auto_size_text:
+
+dev_dependencies:
+  flutter_launcher_icons: null
+  flutter_lints: null
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/taxi_go_icon.png"
+  remove_alpha: true
+  adaptive_icon_background: "#1D1AD8"
+  adaptive_icon_foreground: "assets/icons/taxi_go_icon.png"
