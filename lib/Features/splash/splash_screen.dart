@@ -19,9 +19,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        body: SvgPicture.asset(AppImages.splashImage, fit: BoxFit.cover),
+        body: SvgPicture.asset(
+          AppImages.splashImage,
+          fit: BoxFit.cover,
+          width: width,
+          height: height,
+        ),
       ),
     );
   }
