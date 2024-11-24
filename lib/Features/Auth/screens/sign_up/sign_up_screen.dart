@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_bottom.dart';
@@ -77,7 +78,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 verticalSpace(20),
                 CustomAuthBottom(
                   bottomText: 'Sign Up',
-                  onPressed: _isChecked ? () {} : () {},
+                  onPressed: _isChecked
+                      ? () {
+                          Navigator.pushNamed(context, AppRoutes.otp);
+                        }
+                      : () {},
                 ),
                 verticalSpace(10),
                 Center(
