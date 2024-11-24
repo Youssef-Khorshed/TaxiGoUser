@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 
@@ -23,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        body: SvgPicture.asset(
+        body: Image.asset(
           AppImages.splashImage,
           fit: BoxFit.cover,
           width: width,
