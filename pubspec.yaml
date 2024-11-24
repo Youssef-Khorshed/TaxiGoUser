@@ -35,7 +35,7 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icons/taxi_go_icon.png"
+  image_path: "assets/icons/taxi_go_icon.jpg"
   remove_alpha: true
   adaptive_icon_background: "#1D1AD8"
-  adaptive_icon_foreground: "assets/icons/taxi_go_icon.png"
+  adaptive_icon_foreground: "assets/icons/taxi_go_icon.jpg"
