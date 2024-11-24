@@ -29,81 +29,79 @@ class _SignUpScreenState extends State<SignUpScreen> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: Row(children: [
-                    const Icon(
-                      FontAwesomeIcons.angleLeft,
-                      color: Colors.black,
-                      size: 25,
-                    ),
-                    horizontalSpace(5),
-                    AutoSizeText('Back', style: AppTextStyles.style20BlackW500)
-                  ]),
-                ),
-                verticalSpace(30),
-                AutoSizeText(
-                  'Create Account',
-                  style: AppTextStyles.style24WhiteW500
-                      .copyWith(color: Colors.black),
-                ),
-                verticalSpace(20),
-                const CustomAuthFormField(
-                  hintText: 'Name',
-                ),
-                verticalSpace(10),
-                const CustomAuthFormField(
-                  hintText: 'Email',
-                ),
-                verticalSpace(10),
-                const CustomPhoneFormField(),
-                verticalSpace(10),
-                CustomDropDownFormField(
-                  items: genders,
-                  name: 'Gender',
-                ),
-                verticalSpace(10),
-                CustomTermsCheckBox(
-                  isChecked: _isChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      _isChecked = value!;
-                    });
-                  },
-                ),
-                verticalSpace(20),
-                CustomAuthBottom(
-                  bottomText: 'Sign Up',
-                  onPressed: _isChecked
-                      ? () {
-                          Navigator.pushNamed(context, AppRoutes.otp);
-                        }
-                      : () {},
-                ),
-                verticalSpace(10),
-                Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'Already have an account ? ',
-                      style:
-                          AppTextStyles.style20BlackW500.copyWith(fontSize: 16),
-                      children: [
-                        TextSpan(
-                          text: 'Log in now',
-                          style: AppTextStyles.style16WhiteW500
-                              .copyWith(color: AppColors.blueColor),
-                          recognizer: TapGestureRecognizer()..onTap = () {},
-                        ),
-                      ],
-                    ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              InkWell(
+                onTap: () => Navigator.pop(context),
+                child: Row(children: [
+                  const Icon(
+                    FontAwesomeIcons.angleLeft,
+                    color: Colors.black,
+                    size: 25,
+                  ),
+                  horizontalSpace(5),
+                  AutoSizeText('Back', style: AppTextStyles.style20BlackW500)
+                ]),
+              ),
+              verticalSpace(30),
+              AutoSizeText(
+                'Create Account',
+                style: AppTextStyles.style24WhiteW500
+                    .copyWith(color: Colors.black),
+              ),
+              verticalSpace(20),
+              const CustomAuthFormField(
+                hintText: 'Name',
+              ),
+              verticalSpace(10),
+              const CustomAuthFormField(
+                hintText: 'Email',
+              ),
+              verticalSpace(10),
+              const CustomPhoneFormField(),
+              verticalSpace(10),
+              CustomDropDownFormField(
+                items: genders,
+                name: 'Gender',
+              ),
+              verticalSpace(10),
+              CustomTermsCheckBox(
+                isChecked: _isChecked,
+                onChanged: (value) {
+                  setState(() {
+                    _isChecked = value!;
+                  });
+                },
+              ),
+              const Spacer(),
+              CustomAuthBottom(
+                bottomText: 'Sign Up',
+                onPressed: _isChecked
+                    ? () {
+                        Navigator.pushNamed(context, AppRoutes.otp);
+                      }
+                    : () {},
+              ),
+              verticalSpace(10),
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Already have an account ? ',
+                    style:
+                        AppTextStyles.style20BlackW500.copyWith(fontSize: 16),
+                    children: [
+                      TextSpan(
+                        text: 'Log in now',
+                        style: AppTextStyles.style16WhiteW500
+                            .copyWith(color: AppColors.blueColor),
+                        recognizer: TapGestureRecognizer()..onTap = () {},
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

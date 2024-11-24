@@ -9,7 +9,6 @@ class CustomAuthFormField extends StatelessWidget {
     required this.hintText,
     this.obscureText = false,
   });
-
   final String hintText;
   final bool? obscureText;
   final Function(String)? onChanged;

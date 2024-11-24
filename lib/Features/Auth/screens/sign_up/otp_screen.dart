@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_bottom.dart';
-
 import '../../../../Core/Utils/Text/text_style.dart';
 
 class OtpScreen extends StatelessWidget {
@@ -82,7 +82,9 @@ class OtpScreen extends StatelessWidget {
               const Spacer(),
               CustomAuthBottom(
                 bottomText: 'Verify',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoutes.setPassword);
+                },
               ),
               verticalSpace(15)
             ],
