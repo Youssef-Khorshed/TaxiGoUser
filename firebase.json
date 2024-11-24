@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"taxi-go-app","appId":"1:36281369878:android:e21d8c2d6aca08de247c37","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"taxi-go-app","configurations":{"android":"1:36281369878:android:e21d8c2d6aca08de247c37","ios":"1:36281369878:ios:071605da6eb04f34247c37"}}}}}}
