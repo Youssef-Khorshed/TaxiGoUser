@@ -7,16 +7,18 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
+  auto_size_text: null
   cupertino_icons: null
-  firebase_core:
+  dropdown_button2: ^2.3.9
+  firebase_core: null
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_svg:
-  google_fonts:
+  flutter_svg: null
+  font_awesome_flutter: ^10.8.0
+  google_fonts: null
   intl: any
-  auto_size_text:
 
 dev_dependencies:
   flutter_launcher_icons: null

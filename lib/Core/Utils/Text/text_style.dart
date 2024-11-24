@@ -18,4 +18,12 @@ abstract class AppTextStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+
+  static TextStyle style20BlackW500 = TextStyle(
+    fontSize: 20,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
 }

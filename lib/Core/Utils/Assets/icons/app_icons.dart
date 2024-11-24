@@ -1,3 +1,3 @@
 class AppIcons {
-  // static const String iconName = '';
+  static const String iraqiFlagIcon = 'assets/icons/iraq_flag_icon.svg';
 }
