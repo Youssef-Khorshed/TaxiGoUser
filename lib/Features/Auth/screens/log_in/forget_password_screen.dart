@@ -6,6 +6,7 @@ import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_l
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_sms_message_box.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
+import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
@@ -38,7 +39,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             const Spacer(),
             CustomLogInBottoms(
               onPressed: () {
-                // Navigator.pushNamed(context, AppRoutes.otpForgetPasswordScreen);
+                Navigator.pushNamed(context, AppRoutes.forgetPasswordSendOtp);
               },
               text: "Continue",
             ),
