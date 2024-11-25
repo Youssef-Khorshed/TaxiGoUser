@@ -20,96 +20,85 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: AppColors.blueColor,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () =>
                 Navigator.of(context).pushNamed(AppRoutes.generalScreen),
-            icon: const Icon(Icons.arrow_back)),
+            icon: const Icon(Icons.arrow_back, color: Colors.white)),
         backgroundColor: AppColors.blueColor,
         title: Text(
           "Cancel Booking",
           style: AppTextStyles.style20WhiteW600,
         ),
         elevation: 0,
+        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            verticalSpace(size.width * 0.2),
-            Stack(
-              alignment: Alignment.topRight,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          verticalSpace(size.width * 0.2),
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Container(
+                width: size.width * 0.45,
+                height: size.width * 0.45,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              CircleAvatar(
+                radius: size.width * 0.06,
+                backgroundColor: Colors.red,
+                child: Icon(
+                  Icons.close,
+                  color: Colors.white,
+                  size: size.width * 0.06,
+                ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(size.width * 0.05),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: size.width * 0.45,
-                  height: size.width * 0.45,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
+                // Section Title
+                Text(
+                  "Why do you want to cancel?",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: size.height * 0.022,
                   ),
                 ),
-                CircleAvatar(
-                  radius: size.width * 0.06,
-                  backgroundColor: Colors.red,
-                  child: Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: size.width * 0.06,
-                  ),
-                ),
+                verticalSpace(size.height * 0.01),
+                // Radio Buttons for Reasons
+                _buildReasonOption(1, "I don't need this journey."),
+                _buildReasonOption(
+                    2, "I want to change the details of the journey."),
+                _buildReasonOption(
+                    3, "The driver took too long to be appointed."),
+                _buildReasonOption(4, "Other"),
+                verticalSpace(5),
+                AppButton(
+                  text: 'Send',
+                  height: size.height * 0.01,
+                  circlesize: 24,
+                  onPressed: () {},
+                )
               ],
             ),
-            verticalSpace(size.height * 0.1),
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                // Reason Selection Container
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(size.width * 0.05),
-                  // margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Section Title
-                      Text(
-                        "Why do you want to cancel?",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: size.height * 0.022,
-                        ),
-                      ),
-                      verticalSpace(size.height * 0.01),
-
-                      // Radio Buttons for Reasons
-                      _buildReasonOption(1, "I don't need this journey."),
-                      _buildReasonOption(
-                          2, "I want to change the details of the journey."),
-                      _buildReasonOption(
-                          3, "The driver took too long to be appointed."),
-                      _buildReasonOption(4, "Other"),
-                      verticalSpace(5),
-                      AppButton(
-                        text: 'Send',
-                        height: size.height * 0.01,
-                        circlesize: 24,
-                        onPressed: () {},
-                      )
-                    ],
-                  ),
-                ),
-                // Submit Button
-              ],
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
