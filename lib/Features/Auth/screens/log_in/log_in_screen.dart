@@ -41,12 +41,17 @@ class LogInScreen extends StatelessWidget {
                   obscureText: true,
                   hintText: "Enter Your Password",
                 ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: AutoSizeText(
-                    "Forget password ?",
-                    style: AppTextStyles.style16WhiteW500
-                        .copyWith(color: AppColors.redColor, fontSize: 14),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.forgetPassword);
+                  },
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: AutoSizeText(
+                      "Forget password ?",
+                      style: AppTextStyles.style16WhiteW500
+                          .copyWith(color: AppColors.redColor, fontSize: 14),
+                    ),
                   ),
                 ),
                 const Spacer(),

@@ -11,9 +11,25 @@ abstract class AppTextStyles {
     height: 0,
   );
 
+  static TextStyle style24BlackW500 = TextStyle(
+    fontSize: 24,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+
   static TextStyle style16WhiteW500 = TextStyle(
     fontSize: 16,
     color: AppColors.whiteColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+
+  static TextStyle style14BlackW500 = TextStyle(
+    fontSize: 14,
+    color: AppColors.blackColor,
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
