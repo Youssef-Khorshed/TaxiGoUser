@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 
@@ -25,7 +27,18 @@ class _GeneralScreenState extends State<GeneralScreen> {
     ),
     Scaffold(
       backgroundColor: Colors.pink,
+    ),
+    Scaffold(
+      backgroundColor: Colors.pink,
     )
+  ];
+  List<String> screensName = const [
+    "Home",
+    "Trip History",
+    "Trip Favourite",
+    "Trip Saved",
+    "Wallet",
+    "Profile"
   ];
   void onItemTap(int index) {
     setState(() {
@@ -57,6 +70,8 @@ class _GeneralScreenState extends State<GeneralScreen> {
                       onTap: () => Scaffold.of(context).openDrawer(),
                       child: SvgPicture.asset(AppIcons.menuIcon));
                 }),
+                AutoSizeText(screensName[selctedIndex],
+                    style: AppTextStyles.style24WhiteW500),
                 const CircleAvatar(
                   radius: 18,
                   backgroundImage: AssetImage(AppIcons.appIcon),

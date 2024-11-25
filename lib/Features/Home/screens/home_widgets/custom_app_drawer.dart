@@ -23,7 +23,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      width: width * 0.5,
+      width: width * 0.7,
       decoration: const BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.only(
