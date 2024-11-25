@@ -42,38 +42,33 @@ class BankAccountCardWidget extends StatelessWidget {
                     "BANK ACCOUNT & CARDS",
                     style: AppTextStyles.style16BlackW600,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.edit,
-                    size: screenWidth * 0.06,
-                    color: Colors.blue,
+                    size: 25,
+                    color: AppColors.blueColor,
                   ),
                 ],
               ),
               verticalSpace(screenHeight * 0.02),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.account_balance,
-                    color: Colors.blue,
-                    size: screenWidth * 0.1,
+                    color: AppColors.blueColor,
+                    size: 40,
                   ),
-                  verticalSpace(screenWidth * 0.03),
+                  horizontalSpace(screenWidth * 0.03),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AutoSizeText(
                         "STATE BANK OF iq",
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.045,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: AppTextStyles.style16BlackW600,
                       ),
                       AutoSizeText(
                         "Primary account",
-                        style: TextStyle(
-                          fontSize: screenWidth * 0.04,
-                          color: Colors.grey,
-                        ),
+                        style: AppTextStyles.style16DarkgrayW500,
                       ),
                       verticalSpace(screenHeight * 0.01),
                       AutoSizeText(
@@ -111,12 +106,9 @@ class BankAccountCardWidget extends StatelessWidget {
                           color: AppColors.grayColor,
                         ),
                         verticalSpace(screenWidth * 0.02),
-                        Text(
+                        AutoSizeText(
                           "ADD BANK ACCOUNT",
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.045,
-                            color: AppColors.grayColor,
-                          ),
+                          style: AppTextStyles.style16GrayW500,
                         ),
                       ],
                     ),
