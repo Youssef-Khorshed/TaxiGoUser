@@ -5,6 +5,7 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});
@@ -23,6 +24,10 @@ class _GeneralScreenState extends State<GeneralScreen> {
     Scaffold(
       backgroundColor: Colors.green,
     ),
+    Scaffold(
+      backgroundColor: Colors.pink,
+    ),
+    WalletScreen(),
     Scaffold(
       backgroundColor: Colors.pink,
     )
