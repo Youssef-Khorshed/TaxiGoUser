@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
+import 'package:taxi_go_user_version/Features/Auth/screens/log_in/set_new_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_email_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
@@ -17,11 +18,11 @@ class AppRoutes {
   static const String signUp = '/signUp';
   static const String otp = '/otp';
   static const String setPassword = '/setPassword';
+  static const String setNewPassword = '/setNewPassword';
   static const String setProfile = '/setProfile';
   static const String logIn = '/logIn';
   static const String forgetPassword = '/forgetPassword';
   static const String forgetPasswordSendOtp = '/forgetPasswordSendOtp';
-
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
 
@@ -85,6 +86,12 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return const ForgetPasswordSendOtpScreen();
+          },
+        );
+      case setNewPassword:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const SetNewPasswordScreen();
           },
         );
       default:
