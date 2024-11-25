@@ -52,8 +52,8 @@ class LogInScreen extends StatelessWidget {
                 const Spacer(),
                 CustomLogInBottoms(
                   onPressed: () {
-                    // Navigator.pushNamed(
-                    //     context, AppRoutes.verificationScreen);
+                    Navigator.pushNamed(
+                        context, AppRoutes.verificationPhoneAndPassword);
                   },
                   text: "Log In",
                 ),

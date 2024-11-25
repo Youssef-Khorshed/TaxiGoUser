@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 
 import '../../../../../Core/Utils/Text/text_style.dart';
@@ -28,7 +27,7 @@ class _CustomLogInFormFieldState extends State<CustomLogInFormField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
         controller: widget.controller,
         obscureText: widget.isPassword && isPasswordHidden,
