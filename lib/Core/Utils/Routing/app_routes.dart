@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
@@ -12,6 +13,7 @@ class AppRoutes {
   static const String signUp = '/signUp';
   static const String otp = '/otp';
   static const String setPassword = '/setPassword';
+  static const String setProfile = '/setProfile';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -43,6 +45,12 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return const SetPasswordScreen();
+          },
+        );
+      case setProfile:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return CreateProfileScreen();
           },
         );
       default:
