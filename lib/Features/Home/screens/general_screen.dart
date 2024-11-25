@@ -34,13 +34,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
       backgroundColor: Colors.pink,
     )
   ];
-
   List<String> screensName = const [
     "Home",
-    "History",
-    "Favourite",
-    "Profile",
-    "Settings"
+    "Trip History",
+    "Trip Favourite",
+    "Trip Saved",
+    "Wallet",
+    "Profile"
   ];
   void onItemTap(int index) {
     setState(() {

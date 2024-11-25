@@ -8,10 +8,11 @@ import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widget
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/paymentMethodListCard.dart';
 
 class PaymentScreen extends StatelessWidget {
+  const PaymentScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -26,11 +27,8 @@ class PaymentScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.05,
-          vertical: size.height * 0.02,
-        ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -39,17 +37,18 @@ class PaymentScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Icon(Icons.location_pin, color: Colors.red),
                     Container(
-                      height: size.height * 0.06,
+                      height: 60,
                       width: 1,
                       color: Colors.grey,
                     ),
                     const Icon(Icons.location_pin, color: Colors.blue),
                   ],
                 ),
-                verticalSpace(size.width * 0.03),
+                verticalSpace(10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,8 +120,9 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ],
             ),
+            verticalSpace(10),
             const PaymentMethodList(),
-
+            const Spacer(),
             AppButton(
                 text: 'Confirm',
                 height: size.height * 0.01,

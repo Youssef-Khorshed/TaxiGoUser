@@ -21,46 +21,44 @@ class WalletScreen extends StatelessWidget {
         decoration: BoxDecoration(
             color: AppColors.whiteColor,
             borderRadius: BorderRadius.circular(20)),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Card(
-                elevation: 3,
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(screenWidth * 0.05),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(screenWidth * 0.03),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AutoSizeText("Available Balance",
-                          style: AppTextStyles.style16DarkgrayW500),
-                      SizedBox(height: screenHeight * 0.01),
-                      AutoSizeText(
-                        "5623 \$",
-                        style: AppTextStyles.style24BlackW500,
-                      ),
-                    ],
-                  ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Card(
+              elevation: 3,
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(screenWidth * 0.05),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(screenWidth * 0.03),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AutoSizeText("Available Balance",
+                        style: AppTextStyles.style16DarkgrayW500),
+                    SizedBox(height: screenHeight * 0.01),
+                    AutoSizeText(
+                      "5623 \$",
+                      style: AppTextStyles.style24BlackW500,
+                    ),
+                  ],
                 ),
               ),
-              verticalSpace(screenHeight * 0.01),
-              const BankAccountCardWidget(),
-              verticalSpace(screenHeight / 15),
-              AppButton(
-                text: 'Add Money',
-                height: screenHeight * 0.01,
-                circlesize: 24,
-                onPressed: () {
-                  showWalletSheet(context);
-                },
-              )
-            ],
-          ),
+            ),
+            verticalSpace(screenHeight * 0.01),
+            const BankAccountCardWidget(),
+            const Spacer(),
+            AppButton(
+              text: 'Add Money',
+              height: screenHeight * 0.01,
+              circlesize: 24,
+              onPressed: () {
+                showWalletSheet(context);
+              },
+            )
+          ],
         ),
       ),
     );

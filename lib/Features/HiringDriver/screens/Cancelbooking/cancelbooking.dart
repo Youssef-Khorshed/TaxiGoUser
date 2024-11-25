@@ -69,7 +69,6 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                 // Reason Selection Container
                 Container(
                   width: double.infinity,
-                  height: size.height * 0.6,
                   padding: EdgeInsets.all(size.width * 0.05),
                   // margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
                   decoration: BoxDecoration(
