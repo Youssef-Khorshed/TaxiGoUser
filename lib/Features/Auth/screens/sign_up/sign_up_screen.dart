@@ -32,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              InkWell(
+              GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Row(children: [
                   const Icon(
@@ -95,7 +95,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: 'Log in now',
                         style: AppTextStyles.style16WhiteW500
                             .copyWith(color: AppColors.blueColor),
-                        recognizer: TapGestureRecognizer()..onTap = () {},
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, AppRoutes.logIn);
+                          },
                       ),
                     ],
                   ),

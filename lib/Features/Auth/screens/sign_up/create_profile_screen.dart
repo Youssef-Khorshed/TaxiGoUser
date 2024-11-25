@@ -22,7 +22,7 @@ class CreateProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
           child: Column(
             children: [
-              InkWell(
+              GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Row(children: [
                   const Icon(

@@ -63,7 +63,9 @@ class WelcomeScreen extends StatelessWidget {
                   verticalSpace(10),
                   CustomSplashBottom(
                     buttontext: 'Log In',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.logIn);
+                    },
                     textcolor: AppColors.whiteColor,
                     buttonColor: AppColors.transparentColor,
                   ),
