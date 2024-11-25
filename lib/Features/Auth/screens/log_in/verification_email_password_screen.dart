@@ -39,7 +39,7 @@ class VerificationPhoneAndPasswordScreen extends StatelessWidget {
                 const Spacer(),
                 CustomLogInBottoms(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.otp);
+                    Navigator.pushNamed(context, AppRoutes.generalScreen);
                   },
                   text: "Send OTP",
                 ),

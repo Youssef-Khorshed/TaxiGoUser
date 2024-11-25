@@ -8,6 +8,7 @@ import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profil
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 
 import '../../../Features/Splash/screens/splash_screen.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
   static const String logIn = '/logIn';
   static const String forgetPassword = '/forgetPassword';
   static const String forgetPasswordSendOtp = '/forgetPasswordSendOtp';
+  static const String generalScreen = '/generalscreen';
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
 
@@ -92,6 +94,12 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return const SetNewPasswordScreen();
+          },
+        );
+      case generalScreen:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const GeneralScreen();
           },
         );
       default:
