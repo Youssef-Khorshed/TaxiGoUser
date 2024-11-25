@@ -35,11 +35,13 @@ class LogInScreen extends StatelessWidget {
                   isPassword: false,
                   obscureText: false,
                   hintText: "Phone Number",
+                  labelText: "Phone Number",
                 ),
                 const CustomLogInFormField(
                   isPassword: true,
                   obscureText: true,
                   hintText: "Enter Your Password",
+                  labelText: "Password",
                 ),
                 InkWell(
                   onTap: () {

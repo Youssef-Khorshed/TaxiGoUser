@@ -7,6 +7,8 @@ import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_a
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_bottoms.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_form_field.dart';
 
+import '../../../../Core/Utils/Routing/app_routes.dart';
+
 class VerificationPhoneAndPasswordScreen extends StatelessWidget {
   const VerificationPhoneAndPasswordScreen({super.key});
 
@@ -36,7 +38,9 @@ class VerificationPhoneAndPasswordScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 CustomLogInBottoms(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.otp);
+                  },
                   text: "Send OTP",
                 ),
               ],
