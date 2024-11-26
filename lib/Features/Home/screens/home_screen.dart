@@ -1,7 +1,11 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_bottom.dart';
+
+import '../../../Core/Utils/Routing/app_routes.dart';
+import 'home_widgets/custom_address_buttom_sheet.dart';
+import 'home_widgets/custom_enable_location_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -28,10 +32,12 @@ class HomeScreen extends StatelessWidget {
               right: 15,
               left: 15,
               child: CustomAppBottom(
-                bottomColor: AppColors.whiteColor,
-                onPressed: () {},
-                text: 'Where are you Go ?',
-                textColor: AppColors.blackColor,
+                bottomColor: AppColors.blueColor,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, AppRoutes.mapScreen);
+                },
+                text: 'Where to?',
+                textColor: AppColors.whiteColor,
                 hasIcon: true,
               ),
             )

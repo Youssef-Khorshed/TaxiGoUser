@@ -15,6 +15,8 @@ import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 
+
+import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
 
 class AppRoutes {
@@ -35,6 +37,8 @@ class AppRoutes {
   static const String wallet = '/wallet';
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
+  static const String mapScreen = '/MapScreen';
+
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -114,14 +118,14 @@ class AppRoutes {
       case payment:
         return CupertinoPageRoute(
           builder: (context) {
-            return PaymentScreen();
+            return const PaymentScreen();
           },
         );
 
       case rate:
         return CupertinoPageRoute(
           builder: (context) {
-            return RateScreen();
+            return const RateScreen();
           },
         );
 
@@ -135,7 +139,13 @@ class AppRoutes {
       case wallet:
         return CupertinoPageRoute(
           builder: (context) {
-            return WalletScreen();
+            return const WalletScreen();
+          },
+        );
+        case mapScreen:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return  MapScreen();
           },
         );
 

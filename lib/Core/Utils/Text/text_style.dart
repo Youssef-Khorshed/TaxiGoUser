@@ -66,6 +66,13 @@ abstract class AppTextStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+    static TextStyle style18BlueBold = TextStyle(
+    fontSize: 18,
+    color: AppColors.blueColor,
+    fontWeight: FontWeight.bold,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
 
   static TextStyle style16WhiteW500 = TextStyle(
     fontSize: 16,
