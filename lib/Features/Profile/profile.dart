@@ -68,9 +68,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: double.infinity,
             padding: EdgeInsets.all(size.width * 0.05),
             // margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
+            decoration: const BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

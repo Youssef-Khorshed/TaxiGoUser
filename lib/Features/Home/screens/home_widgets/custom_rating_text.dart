@@ -24,7 +24,7 @@ class CustomRatingText extends StatelessWidget {
                 "4.5",
                 style: AppTextStyles.style16GrayW500,
               ),
-              Icon(
+              const Icon(
                 Icons.star,
                 color: AppColors.amberColor,
                 size: 16,

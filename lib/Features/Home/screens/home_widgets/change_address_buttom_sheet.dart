@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import 'custom_app_bottom.dart';
@@ -37,25 +38,21 @@ class ChangeAddressButtomSheet extends StatelessWidget {
             'Change address',
             style: AppTextStyles.style18BlueBold,
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 15),
-            child: Divider(
-              color: AppColors.grayColor,
-              height: .7,
-            ),
-          ),
-          const CustomChangeAddressText(
-            title: "Office",
-            subtitle: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-            iconColor: AppColors.blueColor,
-            distance: "",
-          ),
+          verticalSpace(15),
           const CustomChangeAddressText(
             title: "Current location",
             subtitle: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
             iconColor: AppColors.redColor,
             distance: "",
           ),
+          verticalSpace(10),
+          const CustomChangeAddressText(
+            title: "Office",
+            subtitle: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
+            iconColor: AppColors.blueColor,
+            distance: "",
+          ),
+          verticalSpace(15),
           Row(
             children: [
               CustomAppBottom(

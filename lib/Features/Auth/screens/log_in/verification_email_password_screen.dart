@@ -14,7 +14,6 @@ class VerificationPhoneAndPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool islogin = false;
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(

@@ -17,15 +17,19 @@ class CustomChangeAddressText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      padding: const EdgeInsets.only(left: 20.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.location_on_rounded,
-            color: iconColor,
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: Icon(
+              Icons.location_on_rounded,
+              color: iconColor,
+            ),
           ),
-          horizontalSpace(20),
+          horizontalSpace(5),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

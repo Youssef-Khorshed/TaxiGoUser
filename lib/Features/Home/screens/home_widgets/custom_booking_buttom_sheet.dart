@@ -27,8 +27,8 @@ class CustomBookingButtomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-            padding:const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               border: Border.all(
@@ -42,9 +42,9 @@ class CustomBookingButtomSheet extends StatelessWidget {
               children: [
                 const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CircleAvatar(
+                      radius: 30,
                       backgroundColor: AppColors.grayColor,
                       child: Icon(
                         Icons.person_sharp,
@@ -52,6 +52,7 @@ class CustomBookingButtomSheet extends StatelessWidget {
                       ),
                     ),
                     CustomRatingText(),
+                    Spacer(),
                     CustomCarDiscription()
                   ],
                 ),

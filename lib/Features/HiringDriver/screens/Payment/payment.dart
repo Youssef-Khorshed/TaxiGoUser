@@ -42,7 +42,7 @@ class PaymentScreen extends StatelessWidget {
                   children: [
                     const Icon(Icons.location_pin, color: Colors.red),
                     Container(
-                      height: size.height * 0.06,
+                      height: 60,
                       width: 1,
                       color: Colors.grey,
                     ),
@@ -121,7 +121,9 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ],
             ),
+            verticalSpace(20),
             const PaymentMethodList(),
+            verticalSpace(20),
 
             AppButton(
                 text: 'Confirm',

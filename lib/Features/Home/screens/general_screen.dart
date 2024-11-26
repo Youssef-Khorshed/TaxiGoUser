@@ -11,7 +11,6 @@ import 'package:taxi_go_user_version/Features/History/Screens/myhistory.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.dart';
-import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 
@@ -31,19 +30,15 @@ class _GeneralScreenState extends State<GeneralScreen> {
     const FavouriteScreen(),
     const SavedScreen(),
     const WalletScreen(),
-    //  const ProfileScreen(),
-    ChatScreen(),
   ];
 
   // Corrected screen names to match the number of screens
   List<String> screensName = const [
     "Home",
-    "",
-    "Favourite",
-    "Saved",
+    "Trip History",
+    "Trip Favourite",
+    "Trip Saved",
     "Wallet",
-    // "Profile",
-    "Chat",
   ];
   void onItemTap(int index) {
     setState(() {

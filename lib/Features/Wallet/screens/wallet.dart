@@ -4,7 +4,7 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_widgets/custom_bankAccountCard_wallet.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_widgets/custom_bank_Account_Card_wallet.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_widgets/cutom_sheet_wallet.dart';
 
 class WalletScreen extends StatelessWidget {
