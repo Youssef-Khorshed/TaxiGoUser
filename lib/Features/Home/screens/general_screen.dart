@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
@@ -30,7 +31,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
     const FavouriteScreen(),
     const SavedScreen(),
     const WalletScreen(),
-    const ProfileScreen(),
+    //  const ProfileScreen(),
     ChatScreen(),
   ];
 
@@ -41,7 +42,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
     "Favourite",
     "Saved",
     "Wallet",
-    "Profile",
+    // "Profile",
     "Chat",
   ];
   void onItemTap(int index) {
@@ -76,9 +77,14 @@ class _GeneralScreenState extends State<GeneralScreen> {
                 }),
                 AutoSizeText(screensName[selctedIndex],
                     style: AppTextStyles.style24WhiteW500),
-                const CircleAvatar(
-                  radius: 18,
-                  backgroundImage: AssetImage(AppIcons.appIcon),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.profile);
+                  },
+                  child: const CircleAvatar(
+                    radius: 18,
+                    backgroundImage: AssetImage(AppIcons.appIcon),
+                  ),
                 )
               ],
             ),

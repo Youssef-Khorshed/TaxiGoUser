@@ -29,12 +29,12 @@ class HomeScreen extends StatelessWidget {
               right: 15,
               left: 15,
               child: CustomAppBottom(
-                bottomColor: AppColors.blueColor,
+                bottomColor: AppColors.whiteColor2,
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, AppRoutes.mapScreen);
                 },
-                text: 'Where to?',
-                textColor: AppColors.whiteColor,
+                text: 'Where You Go ?',
+                textColor: AppColors.blackColor,
                 hasIcon: true,
               ),
             )

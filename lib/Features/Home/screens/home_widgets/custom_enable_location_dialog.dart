@@ -55,13 +55,13 @@ class EnableLocationDialog extends StatelessWidget {
             style: AppTextStyles.style16WhiteW500,
           ),
         ),
-        TextButton(
-          onPressed: onSkipPressed,
-          child: Text(
-            'Skip for now',
-            style: AppTextStyles.style12GrayW400,
-          ),
-        ),
+        // TextButton(
+        //   onPressed: onSkipPressed,
+        //   child: Text(
+        //     'Skip for now',
+        //     style: AppTextStyles.style12GrayW400,
+        //   ),
+        // ),
       ],
     );
   }

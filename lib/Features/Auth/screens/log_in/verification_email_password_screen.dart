@@ -14,6 +14,7 @@ class VerificationPhoneAndPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool islogin = false;
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
@@ -39,7 +40,10 @@ class VerificationPhoneAndPasswordScreen extends StatelessWidget {
                 const Spacer(),
                 CustomLogInBottoms(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.generalScreen);
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.generalScreen,
+                    );
                   },
                   text: "Send OTP",
                 ),

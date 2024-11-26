@@ -45,15 +45,15 @@ class ChangeAddressButtomSheet extends StatelessWidget {
             ),
           ),
           const CustomChangeAddressText(
-            title: "Current location",
-            subtitle: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
-            iconColor: AppColors.redColor,
-            distance: "",
-          ),
-          const CustomChangeAddressText(
             title: "Office",
             subtitle: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
             iconColor: AppColors.blueColor,
+            distance: "",
+          ),
+          const CustomChangeAddressText(
+            title: "Current location",
+            subtitle: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
+            iconColor: AppColors.redColor,
             distance: "",
           ),
           Row(
