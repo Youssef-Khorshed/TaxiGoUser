@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../../Core/Utils/Assets/images/app_images.dart';
 import '../../../Core/Utils/Colors/app_colors.dart';
-import '../../Auth/screens/auth_widgets/custom_auth_app_bar.dart';
 import '../../Home/screens/home_widgets/custom_address_buttom_sheet.dart';
 import '../../Home/screens/home_widgets/custom_app_bottom.dart';
 import '../../Home/screens/home_widgets/custom_enable_location_dialog.dart';
@@ -45,8 +43,8 @@ class MapScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      backgroundColor: AppColors.transparentColor.withValues(
-                        alpha: 200,
+                      backgroundColor: AppColors.transparentColor.withAlpha(
+                        200,
                       ),
                     ),
                   ),

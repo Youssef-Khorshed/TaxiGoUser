@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_bottom.dart';
-
 import '../../../Core/Utils/Routing/app_routes.dart';
-import 'home_widgets/custom_address_buttom_sheet.dart';
-import 'home_widgets/custom_enable_location_dialog.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
