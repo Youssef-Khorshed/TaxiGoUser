@@ -5,8 +5,13 @@ import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Features/Chat/chat.dart';
+import 'package:taxi_go_user_version/Features/History/Screens/myhistory.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
+import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.dart';
+import 'package:taxi_go_user_version/Features/Profile/profile.dart';
+import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 
 class GeneralScreen extends StatefulWidget {
@@ -18,29 +23,26 @@ class GeneralScreen extends StatefulWidget {
 
 class _GeneralScreenState extends State<GeneralScreen> {
   int selctedIndex = 0;
-  List<Widget> screens = const [
-    HomeScreen(),
-    Scaffold(
-      backgroundColor: Colors.orange,
-    ),
-    Scaffold(
-      backgroundColor: Colors.green,
-    ),
-    Scaffold(
-      backgroundColor: Colors.pink,
-    ),
-    WalletScreen(),
-    Scaffold(
-      backgroundColor: Colors.pink,
-    )
+  // Updated list with the correct number of screens
+  List<Widget> screens = [
+    const HomeScreen(),
+    const HistoryScreen(),
+    const FavouriteScreen(),
+    const SavedScreen(),
+    const WalletScreen(),
+    const ProfileScreen(),
+    ChatScreen(),
   ];
+
+  // Corrected screen names to match the number of screens
   List<String> screensName = const [
     "Home",
-    "Trip History",
-    "Trip Favourite",
-    "Trip Saved",
+    "",
+    "Favourite",
+    "Saved",
     "Wallet",
-    "Profile"
+    "Profile",
+    "Chat",
   ];
   void onItemTap(int index) {
     setState(() {

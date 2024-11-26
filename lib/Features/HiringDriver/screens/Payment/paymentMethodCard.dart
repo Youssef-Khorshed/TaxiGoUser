@@ -36,8 +36,8 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
       },
       child: Container(
         width: size.width * 0.7,
-        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        // margin: EdgeInsets.symmetric(vertical: size.height * 0.01),
+        padding: EdgeInsets.all(size.width * 0.03),
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
           border: Border.all(

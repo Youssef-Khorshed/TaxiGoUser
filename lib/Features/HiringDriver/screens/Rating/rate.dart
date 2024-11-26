@@ -7,36 +7,37 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_buildrowdetail_hiring.dart';
 
 class RateScreen extends StatelessWidget {
-  const RateScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
-        backgroundColor: AppColors.blueColor,
-        appBar: AppBar(
-          title: // Page Title
-              AutoSizeText("Rate Your Trip",
-                  style: AppTextStyles.style20WhiteW600),
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: AppColors.blueColor,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
+      backgroundColor: AppColors.blueColor,
+      appBar: AppBar(
+        title: // Page Title
+            const AutoSizeText(
+          "Rate Your Trip",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-          child: Column(
-            children: [
-              verticalSpace(20),
-              Expanded(
-                child: Container(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: AppColors.blueColor,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: size.height * 0.03),
+
+            // User Profile and Rating Section
+            Stack(
+              children: [
+                Container(
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                  height: size.height,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
@@ -44,7 +45,26 @@ class RateScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      verticalSpace(30),
+                      // Profile Image and Name
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size.width * 0.1),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            radius: size.height * 0.04,
+                          ),
+                          title: AutoSizeText("Ben Stokes",
+                              style: AppTextStyles.style24BlackW500),
+                          subtitle: AutoSizeText(
+                            "⭐ 4.9",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: size.height * 0.014,
+                            ),
+                          ),
+                        ),
+                      ),
+                      verticalSpace(size.height * 0.001),
                       // Rating Stars
                       AutoSizeText(
                         "How is your trip?",
@@ -79,34 +99,30 @@ class RateScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      verticalSpace(20),
+                      verticalSpace(size.height * 0.01),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                            'Trip Details :',
-                            style: AppTextStyles.style18BlackW500,
+                            'Trip Detail',
+                            style: AppTextStyles.style16BlackW600,
                           ),
-                          verticalSpace(10),
                           // Location section
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   const Icon(Icons.location_pin,
                                       color: Colors.red),
                                   Container(
-                                    height: 60,
-                                    width: 1,
-                                    color: Colors.grey,
+                                    height: size.height * 0.06,
                                   ),
                                   const Icon(Icons.location_pin,
                                       color: Colors.blue),
                                 ],
                               ),
-                              verticalSpace(10),
+                              verticalSpace(size.width * 0.01),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,12 +159,12 @@ class RateScreen extends StatelessWidget {
                             ],
                           ),
 
-                          verticalSpace(30),
+                          verticalSpace(size.height * 0.001),
                           AutoSizeText(
-                            'Payment Detail :',
-                            style: AppTextStyles.style18BlackW500,
+                            'Payment Detail',
+                            style: AppTextStyles.style16BlackW600,
                           ),
-                          verticalSpace(10),
+                          verticalSpace(size.height * 0.001),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -163,7 +179,7 @@ class RateScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          verticalSpace(30),
+                          verticalSpace(size.height * 0.002),
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
@@ -187,9 +203,11 @@ class RateScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ));
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

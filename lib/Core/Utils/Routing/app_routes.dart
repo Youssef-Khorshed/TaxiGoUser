@@ -8,13 +8,17 @@ import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profil
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
+import 'package:taxi_go_user_version/Features/Chat/chat.dart';
+import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Rating/rate.dart';
+import 'package:taxi_go_user_version/Features/History/Screens/myhistory.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
+import 'package:taxi_go_user_version/Features/Profile/profile.dart';
+import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
-
 
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
@@ -38,7 +42,11 @@ class AppRoutes {
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
   static const String mapScreen = '/MapScreen';
-
+  static const String history = '/history';
+  static const String tripFavourite = '/tripFavourite';
+  static const String tripSaved = '/tripSaved';
+  static const String chat = '/chat';
+  static const String profile = '/profile';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -118,14 +126,14 @@ class AppRoutes {
       case payment:
         return CupertinoPageRoute(
           builder: (context) {
-            return const PaymentScreen();
+            return PaymentScreen();
           },
         );
 
       case rate:
         return CupertinoPageRoute(
           builder: (context) {
-            return const RateScreen();
+            return RateScreen();
           },
         );
 
@@ -142,10 +150,43 @@ class AppRoutes {
             return const WalletScreen();
           },
         );
-        case mapScreen:
+      case mapScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            return  MapScreen();
+            return MapScreen();
+          },
+        );
+
+      case chat:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return ChatScreen();
+          },
+        );
+
+      case profile:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const ProfileScreen();
+          },
+        );
+      case tripFavourite:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const FavouriteScreen();
+          },
+        );
+      case tripSaved:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const SavedScreen();
+          },
+        );
+
+      case history:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const HistoryScreen();
           },
         );
 

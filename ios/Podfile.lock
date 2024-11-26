@@ -11,6 +11,17 @@ PODS:
   - FirebaseCoreInternal (11.4.2):
     - "GoogleUtilities/NSData+zlib (~> 8.0)"
   - Flutter (1.0.0)
+  - Google-Maps-iOS-Utils (6.0.0):
+    - GoogleMaps (~> 9.0)
+  - google_maps_flutter_ios (0.0.1):
+    - Flutter
+    - Google-Maps-iOS-Utils (< 7.0, >= 5.0)
+    - GoogleMaps (< 10.0, >= 8.4)
+  - GoogleMaps (9.1.1):
+    - GoogleMaps/Maps (= 9.1.1)
+  - GoogleMaps/Base (9.1.1)
+  - GoogleMaps/Maps (9.1.1):
+    - GoogleMaps/Base
   - GoogleUtilities/Environment (8.0.2):
     - GoogleUtilities/Privacy
   - GoogleUtilities/Logger (8.0.2):
@@ -26,6 +37,7 @@ PODS:
 DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
 
 SPEC REPOS:
@@ -33,6 +45,8 @@ SPEC REPOS:
     - Firebase
     - FirebaseCore
     - FirebaseCoreInternal
+    - Google-Maps-iOS-Utils
+    - GoogleMaps
     - GoogleUtilities
 
 EXTERNAL SOURCES:
@@ -40,6 +54,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  google_maps_flutter_ios:
+    :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
@@ -49,9 +65,12 @@ SPEC CHECKSUMS:
   FirebaseCore: e0510f1523bc0eb21653cac00792e1e2bd6f1771
   FirebaseCoreInternal: 35731192cab10797b88411be84940d2beb33a238
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  Google-Maps-iOS-Utils: cfe6a0239c7ca634b7e001ad059a6707143dc8dc
+  google_maps_flutter_ios: e31555a04d1986ab130f2b9f24b6cdc861acc6d3
+  GoogleMaps: 80ea184ed6bf44139f383a8b0e248ba3ec1cc8c9
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
 
-PODFILE CHECKSUM: 351dbda8241c6ae667acbc7bc0353a0d9978d7f1
+PODFILE CHECKSUM: 33a6d1d1667710f79b4363f64bfb26819a55d0d2
 
 COCOAPODS: 1.15.2
