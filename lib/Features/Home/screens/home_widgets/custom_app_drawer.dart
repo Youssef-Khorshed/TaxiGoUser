@@ -120,19 +120,20 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                   selected: widget.selectedIndex == 4,
                   onTap: () => widget.onItemTap(4),
                 ),
-                ListTile(
-                  leading: const Icon(
-                    FontAwesomeIcons.user,
-                    color: AppColors.blueColor,
-                  ),
-                  title: Text(
-                    'Profile',
-                    style: AppTextStyles.style20BlackW500
-                        .copyWith(color: AppColors.blueColor),
-                  ),
-                  selected: widget.selectedIndex == 5,
-                  onTap: () => widget.onItemTap(5),
-                ),
+                // ListTile(
+                //   leading: const Icon(
+                //     FontAwesomeIcons.user,
+                //     color: AppColors.blueColor,
+                //   ),
+                //   title: Text(
+                //     'Profile',
+                //     style: AppTextStyles.style20BlackW500
+                //         .copyWith(color: AppColors.blueColor),
+                //   ),
+                //   selected: widget.selectedIndex == 5,
+                //   onTap: () => widget.onItemTap(5),
+                // ),
+
                 ListTile(
                   leading: const Icon(
                     Icons.logout,

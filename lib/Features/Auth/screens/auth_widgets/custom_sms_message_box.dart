@@ -32,13 +32,12 @@ class CustomSmsMessageBox extends StatelessWidget {
                   Radius.circular(60),
                 ),
               ),
-              child: SizedBox(
+              child: const SizedBox(
                 height: 20,
                 width: 20,
-                child: SvgPicture.asset(
-                  '',
-                  // AppIcons.vectorIcon,
-                  fit: BoxFit.scaleDown,
+                child: Icon(
+                  Icons.message,
+                  color: AppColors.blueColor,
                 ),
               ),
             ),
