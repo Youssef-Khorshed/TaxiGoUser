@@ -33,7 +33,6 @@ class RateScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: size.height * 0.03),
-
             // User Profile and Rating Section
             Stack(
               children: [
@@ -47,32 +46,12 @@ class RateScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Profile Image and Name
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: size.width * 0.1),
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            radius: size.height * 0.04,
-                          ),
-                          title: AutoSizeText("Ben Stokes",
-                              style: AppTextStyles.style24BlackW500),
-                          subtitle: AutoSizeText(
-                            "⭐ 4.9",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: size.height * 0.014,
-                            ),
-                          ),
-                        ),
-                      ),
-                      verticalSpace(size.height * 0.001),
                       // Rating Stars
                       AutoSizeText(
                         "How is your trip?",
                         style: AppTextStyles.style18BlackW600,
                       ),
-                      verticalSpace(size.height * 0.001),
+                      verticalSpace(size.height * 0.02),
                       RatingBar.builder(
                         initialRating: 4,
                         minRating: 1,
@@ -82,12 +61,12 @@ class RateScreen extends StatelessWidget {
                         itemPadding:
                             const EdgeInsets.symmetric(horizontal: 4.0),
                         itemBuilder: (context, _) => const Icon(
-                          Icons.star,
+                          Icons.star_rounded,
                           color: Colors.amber,
                         ),
                         onRatingUpdate: (rating) {},
                       ),
-                      verticalSpace(size.height * 0.01),
+                      verticalSpace(size.height * 0.05),
                       // Feedback Box
                       TextField(
                         maxLines: 3,
@@ -101,7 +80,7 @@ class RateScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      verticalSpace(size.height * 0.01),
+                      verticalSpace(size.height * 0.03),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -161,12 +140,12 @@ class RateScreen extends StatelessWidget {
                             ],
                           ),
 
-                          verticalSpace(size.height * 0.001),
+                          verticalSpace(size.height * 0.005),
                           AutoSizeText(
                             'Payment Detail',
                             style: AppTextStyles.style16BlackW600,
                           ),
-                          verticalSpace(size.height * 0.001),
+                          verticalSpace(size.height * 0.005),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -181,7 +160,9 @@ class RateScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          verticalSpace(size.height * 0.002),
+                          verticalSpace(size.shortestSide >= 600
+                              ? size.height * 0.2
+                              : size.height * 0.02),
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
