@@ -44,7 +44,7 @@ class MapScreen extends StatelessWidget {
                         ),
                       ),
                       backgroundColor: AppColors.transparentColor.withAlpha(
-                        200,
+                        100,
                       ),
                     ),
                   ),
