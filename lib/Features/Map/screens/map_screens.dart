@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import '../../../Core/Utils/Assets/images/app_images.dart';
 import '../../../Core/Utils/Colors/app_colors.dart';
 import '../../Home/screens/home_widgets/custom_address_buttom_sheet.dart';
@@ -37,7 +38,8 @@ class MapScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 3.0),
                         child: IconButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pushReplacementNamed(
+                                context, AppRoutes.generalScreen);
                           },
                           icon: const Icon(
                             Icons.arrow_back_ios,

@@ -39,9 +39,10 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          verticalSpace(size.height * 0.1),
+          verticalSpace(20),
           Stack(
             alignment: Alignment.topRight,
+            clipBehavior: Clip.none,
             children: [
               Container(
                 width: size.width * 0.3,
@@ -52,10 +53,10 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                 ),
               ),
               const Positioned(
-                top: 60,
-                right: 10,
+                top: 70,
+                right: -5,
                 child: CircleAvatar(
-                  radius: 30,
+                  radius: 20,
                   backgroundColor: Colors.red,
                   child: Icon(
                     Icons.close,

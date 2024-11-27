@@ -18,7 +18,6 @@ class MessageInputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: Container(
@@ -50,7 +49,10 @@ class MessageInputBar extends StatelessWidget {
                   fillColor: AppColors.whiteColor,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 15),
                   suffixIcon: GestureDetector(
-                    child: const Icon(Icons.send),
+                    child: const Icon(
+                      Icons.send,
+                      color: AppColors.blueColor,
+                    ),
                     onTap: () {
                       if (messageController.text.trim().isNotEmpty) {
                         onSendText(messageController.text.trim());

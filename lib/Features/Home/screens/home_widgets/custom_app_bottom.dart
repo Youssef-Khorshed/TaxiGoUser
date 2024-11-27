@@ -7,17 +7,18 @@ class CustomAppBottom extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final Color bottomColor;
-   Color?  iconColor;
+  Color? iconColor;
 
   final Color textColor;
   final bool hasIcon;
-   CustomAppBottom({
+  CustomAppBottom({
     super.key,
     required this.onPressed,
     required this.text,
     required this.bottomColor,
     required this.hasIcon,
-    required this.textColor,  this.iconColor,
+    required this.textColor,
+    this.iconColor,
   });
 
   @override

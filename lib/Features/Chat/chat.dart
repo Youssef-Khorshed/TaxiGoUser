@@ -23,6 +23,17 @@ class ChatScreen extends StatelessWidget {
           style: AppTextStyles.style20WhiteW600,
         ),
         backgroundColor: AppColors.blueColor,
+        centerTitle: true,
+        elevation: 0,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            color: AppColors.whiteColor,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
@@ -35,7 +46,7 @@ class ChatScreen extends StatelessWidget {
                   children: [
                     // Your Chat Messages
                     UserMessage(
-                      message: "Where is your location?",
+                      message: "Where is your location ?",
                       isSentByUser: false,
                       widthFactor: screenWidth * 0.7,
                     ),

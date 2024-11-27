@@ -44,9 +44,10 @@ class UserMessage extends StatelessWidget {
         child: AutoSizeText(message,
             maxLines: 2,
             style: isSentByUser
-                ? AppTextStyles.style16BlackW600
-                    .copyWith(color: AppColors.whiteColor)
-                : AppTextStyles.style20WhiteW600),
+                ? AppTextStyles.style14BlackW500
+                    .copyWith(color: AppColors.blackColor)
+                : AppTextStyles.style14BlackW500
+                    .copyWith(color: AppColors.whiteColor)),
       ),
     );
   }

@@ -118,23 +118,26 @@ class CustomConfirmBooking extends StatelessWidget {
           ],
         ),
         verticalSpace(10),
-        Row(
-          children: [
-            CustomAppBottom(
-                onPressed: () {},
-                text: "Back",
-                bottomColor: AppColors.whiteColor,
-                hasIcon: false,
-                textColor: AppColors.redColor),
-            CustomAppBottom(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                text: "Confirm",
-                bottomColor: AppColors.blueColor,
-                hasIcon: false,
-                textColor: AppColors.whiteColor),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+          child: Row(
+            children: [
+              CustomAppBottom(
+                  onPressed: () {},
+                  text: "Back",
+                  bottomColor: AppColors.whiteColor,
+                  hasIcon: false,
+                  textColor: AppColors.redColor),
+              CustomAppBottom(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  text: "Confirm",
+                  bottomColor: AppColors.blueColor,
+                  hasIcon: false,
+                  textColor: AppColors.whiteColor),
+            ],
+          ),
         )
       ],
     );

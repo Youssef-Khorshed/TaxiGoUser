@@ -63,8 +63,7 @@ class LocationMessage extends StatelessWidget {
       child: AutoSizeText(
         message,
         maxLines: 1,
-        style: AppTextStyles.style18BlackW500
-            .copyWith(color: AppColors.whiteColor),
+        style: AppTextStyles.style14BlackW500,
       ),
     );
   }

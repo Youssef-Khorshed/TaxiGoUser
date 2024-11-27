@@ -84,7 +84,6 @@ class _GeneralScreenState extends State<GeneralScreen> {
               ],
             ),
           ),
-          verticalSpace(20),
           Expanded(child: screens[selctedIndex])
         ],
       ),

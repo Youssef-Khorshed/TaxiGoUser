@@ -12,27 +12,31 @@ class RateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: AppColors.blueColor,
       appBar: AppBar(
-        title: // Page Title
-            const AutoSizeText(
-          "Rate Your Trip",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+          title: // Page Title
+              const AutoSizeText(
+            "Rate Your Trip",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: AppColors.blueColor,
-      ),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: AppColors.blueColor,
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ))),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: size.height * 0.03),
+            verticalSpace(10),
             // User Profile and Rating Section
             Stack(
               children: [
@@ -46,12 +50,13 @@ class RateScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      verticalSpace(10),
                       // Rating Stars
                       AutoSizeText(
-                        "How is your trip?",
+                        "How is your trip ?",
                         style: AppTextStyles.style18BlackW600,
                       ),
-                      verticalSpace(size.height * 0.02),
+                      verticalSpace(5),
                       RatingBar.builder(
                         initialRating: 4,
                         minRating: 1,
@@ -66,7 +71,7 @@ class RateScreen extends StatelessWidget {
                         ),
                         onRatingUpdate: (rating) {},
                       ),
-                      verticalSpace(size.height * 0.05),
+                      verticalSpace(10),
                       // Feedback Box
                       TextField(
                         maxLines: 3,
@@ -80,14 +85,15 @@ class RateScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      verticalSpace(size.height * 0.03),
+                      verticalSpace(10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           AutoSizeText(
-                            'Trip Detail',
+                            'Trip Detail :',
                             style: AppTextStyles.style16BlackW600,
                           ),
+                          verticalSpace(10),
                           // Location section
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +145,6 @@ class RateScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-
                           verticalSpace(size.height * 0.005),
                           AutoSizeText(
                             'Payment Detail',
@@ -160,9 +165,7 @@ class RateScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          verticalSpace(size.shortestSide >= 600
-                              ? size.height * 0.2
-                              : size.height * 0.02),
+                          verticalSpace(15),
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
