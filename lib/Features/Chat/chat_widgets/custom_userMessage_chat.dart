@@ -46,7 +46,7 @@ class UserMessage extends StatelessWidget {
             style: isSentByUser
                 ? AppTextStyles.style16BlackW600
                     .copyWith(color: AppColors.whiteColor)
-                : AppTextStyles.style16BlackW600),
+                : AppTextStyles.style20WhiteW600),
       ),
     );
   }

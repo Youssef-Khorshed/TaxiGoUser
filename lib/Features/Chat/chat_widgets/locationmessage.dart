@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -47,7 +48,7 @@ class LocationMessage extends StatelessWidget {
 
   BoxDecoration _messageBoxDecoration() {
     return const BoxDecoration(
-      color: AppColors.blueColor,
+      color: AppColors.grayColor,
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(16),
         topLeft: Radius.circular(16),
@@ -71,16 +72,23 @@ class LocationMessage extends StatelessWidget {
   Widget _buildMap() {
     return Expanded(
       flex: 10,
-      child: GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(latitude, longitude),
-          zoom: 14,
-        ),
-        markers: _buildMarkers(),
-        zoomControlsEnabled: false,
-        scrollGesturesEnabled: false,
-        rotateGesturesEnabled: false,
+      child: Image.asset(
+        AppImages.mapTest,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: double.infinity,
       ),
+
+      // GoogleMap(
+      //   initialCameraPosition: CameraPosition(
+      //     target: LatLng(latitude, longitude),
+      //     zoom: 14,
+      //   ),
+      //   markers: _buildMarkers(),
+      //   zoomControlsEnabled: false,
+      //   scrollGesturesEnabled: false,
+      //   rotateGesturesEnabled: false,
+      // ),
     );
   }
 
