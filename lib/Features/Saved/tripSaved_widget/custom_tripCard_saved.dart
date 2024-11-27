@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/History/history_widgets/custom_buildTripDetails_history.dart';
+import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
 class SavedCard extends StatelessWidget {
   final String from;

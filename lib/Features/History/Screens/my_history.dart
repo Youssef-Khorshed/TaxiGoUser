@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/History/history_widgets/custom_detailsFilterDropdown.dart';
-import 'package:taxi_go_user_version/Features/History/history_widgets/custom_tripCard_history.dart';
+import 'package:taxi_go_user_version/Features/History/history_widgets/custom_details_filter_dropdown.dart';
+import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});

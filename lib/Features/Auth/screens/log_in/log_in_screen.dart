@@ -60,7 +60,7 @@ class LogInScreen extends StatelessWidget {
                 CustomLogInBottoms(
                   onPressed: () {
                     Navigator.pushReplacementNamed(
-                        context, AppRoutes.generalScreen);
+                        context, AppRoutes.loginOtpScreen);
                   },
                   text: "Log In",
                 ),

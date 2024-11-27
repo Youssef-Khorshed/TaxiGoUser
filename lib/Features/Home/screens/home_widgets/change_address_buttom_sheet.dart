@@ -56,7 +56,9 @@ class ChangeAddressButtomSheet extends StatelessWidget {
           Row(
             children: [
               CustomAppBottom(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   text: "Back",
                   bottomColor: AppColors.whiteColor,
                   hasIcon: false,

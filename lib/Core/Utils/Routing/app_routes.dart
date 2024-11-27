@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
+import 'package:taxi_go_user_version/Features/Auth/screens/log_in/login_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/set_new_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_email_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
@@ -13,13 +14,12 @@ import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.da
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Rating/rate.dart';
-import 'package:taxi_go_user_version/Features/History/Screens/myhistory.dart';
+import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
-
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
 
@@ -47,6 +47,7 @@ class AppRoutes {
   static const String tripSaved = '/tripSaved';
   static const String chat = '/chat';
   static const String profile = '/profile';
+  static const String loginOtpScreen = '/loginOtpScreen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -133,7 +134,7 @@ class AppRoutes {
       case rate:
         return CupertinoPageRoute(
           builder: (context) {
-            return RateScreen();
+            return const RateScreen();
           },
         );
 
@@ -187,6 +188,12 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return const HistoryScreen();
+          },
+        );
+      case loginOtpScreen:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const LoginOtpScreen();
           },
         );
 

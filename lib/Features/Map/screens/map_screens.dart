@@ -45,9 +45,6 @@ class MapScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      //backgroundColor: AppColors.transparentColor.withAlpha(
-                      //  100,
-                      //),
                     ),
                   ),
                 ]),
@@ -59,6 +56,7 @@ class MapScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     CustomAppBottom(
+                      iconColor: AppColors.whiteColor,
                       bottomColor: AppColors.blueColor,
                       onPressed: () {
                         showDialog(

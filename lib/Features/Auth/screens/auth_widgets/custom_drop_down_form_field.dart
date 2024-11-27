@@ -12,8 +12,8 @@ class CustomDropDownFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.4,
       child: DropdownButton2(
         underline: Container(
           color: Colors.transparent,
@@ -25,12 +25,14 @@ class CustomDropDownFormField extends StatelessWidget {
               borderRadius: BorderRadius.circular(10)),
         ),
         dropdownStyleData: DropdownStyleData(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-            useSafeArea: true),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          useSafeArea: true,
+          width: MediaQuery.of(context).size.width * 0.4,
+        ),
         hint: AutoSizeText(
           name,
-          style: AppTextStyles.style16WhiteW500
-              .copyWith(color: AppColors.grayColor, fontSize: 14),
+          style: AppTextStyles.style14BlackW500,
+          textAlign: TextAlign.center,
         ),
         items: items
             .map((gender) =>
