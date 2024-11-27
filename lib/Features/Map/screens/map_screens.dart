@@ -26,32 +26,34 @@ class MapScreen extends StatelessWidget {
                   ),
                   Positioned(
                     top: 60,
-                    right: 300,
-                    left: 0,
+                    //  right: 300,
+                    left: 20,
                     child: CircleAvatar(
+                      radius: 20,
+                      backgroundColor: AppColors.transparentColor.withAlpha(
+                        100,
+                      ),
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 20, left: 10, right: 5),
+                        padding: const EdgeInsets.only(left: 3.0),
                         child: IconButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          iconSize: 25,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back_ios,
                             color: AppColors.whiteColor,
                           ),
                         ),
                       ),
-                      backgroundColor: AppColors.transparentColor.withAlpha(
-                        100,
-                      ),
+                      //backgroundColor: AppColors.transparentColor.withAlpha(
+                      //  100,
+                      //),
                     ),
                   ),
                 ]),
               ),
               Positioned(
-                bottom: 10,
+                bottom: 30,
                 right: 15,
                 left: 15,
                 child: Row(
@@ -85,7 +87,7 @@ class MapScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      text: 'Your Location',
+                      text: 'Select Your Location',
                       textColor: AppColors.whiteColor,
                       hasIcon: true,
                     ),

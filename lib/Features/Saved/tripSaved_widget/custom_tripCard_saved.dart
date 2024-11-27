@@ -46,7 +46,7 @@ class SavedCard extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               children: [
                 CircleAvatar(
-                  radius: 14,
+                  radius: 17,
                   backgroundColor: AppColors.redColor.withOpacity(0.1),
                 ),
                 IconButton(

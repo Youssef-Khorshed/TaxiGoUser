@@ -24,49 +24,51 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
         leading: IconButton(
             onPressed: () =>
                 Navigator.of(context).pushNamed(AppRoutes.generalScreen),
-            icon: const Icon(Icons.arrow_back)),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColors.whiteColor,
+            )),
         backgroundColor: AppColors.blueColor,
         title: Text(
           "Cancel Booking",
           style: AppTextStyles.style20WhiteW600,
         ),
         elevation: 0,
+        centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            verticalSpace(size.height * 0.1),
-            Stack(
-              alignment: Alignment.topRight,
-              children: [
-                Container(
-                  width: size.width * 0.3,
-                  height: size.height * 0.3,
-                  decoration: const BoxDecoration(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          verticalSpace(size.height * 0.1),
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Container(
+                width: size.width * 0.3,
+                height: size.height * 0.3,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const Positioned(
+                top: 60,
+                right: 10,
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.red,
+                  child: Icon(
+                    Icons.close,
                     color: Colors.white,
-                    shape: BoxShape.circle,
+                    size: 30,
                   ),
                 ),
-                const Positioned(
-                  top: 60,
-                  right: 10,
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.red,
-                    child: Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            verticalSpace(size.height * 0.1),
-            const CustomCancelbodyCancel()
-          ],
-        ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          const CustomCancelbodyCancel()
+        ],
       ),
     );
   }

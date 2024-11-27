@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import '../../../../../Core/Utils/Colors/app_colors.dart';
 
@@ -32,13 +31,12 @@ class CustomSmsMessageBox extends StatelessWidget {
                   Radius.circular(60),
                 ),
               ),
-              child: SizedBox(
+              child: const SizedBox(
                 height: 20,
                 width: 20,
-                child: SvgPicture.asset(
-                  '',
-                  // AppIcons.vectorIcon,
-                  fit: BoxFit.scaleDown,
+                child: Icon(
+                  Icons.message,
+                  color: AppColors.blueColor,
                 ),
               ),
             ),

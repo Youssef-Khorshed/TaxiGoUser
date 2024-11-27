@@ -20,16 +20,12 @@ class HistoryScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
                 children: [
-                  AutoSizeText(
-                    'History',
-                    style: AppTextStyles.style24BlackW500,
-                  ),
-                  const Spacer(),
-                  const CustomDetailsfilterdropdown(),
+                  Spacer(),
+                  CustomDetailsfilterdropdown(),
                 ],
               ),
             ),

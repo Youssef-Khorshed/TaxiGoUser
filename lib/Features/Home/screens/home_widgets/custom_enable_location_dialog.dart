@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
@@ -28,16 +30,18 @@ class EnableLocationDialog extends StatelessWidget {
               size: 30,
             ),
           ),
+          verticalSpace(10),
           Text(
             'Enable your location',
             style: AppTextStyles.style18BlackW600,
             textAlign: TextAlign.center,
           ),
+          Text(
+            'Choose your location to start finding requests around you',
+            style: AppTextStyles.style14GrayW500,
+            textAlign: TextAlign.center,
+          )
         ],
-      ),
-      content: const Text(
-        'Choose your location to start finding requests around you.',
-        textAlign: TextAlign.center,
       ),
       actionsOverflowAlignment: OverflowBarAlignment.center,
       actions: [
@@ -55,13 +59,13 @@ class EnableLocationDialog extends StatelessWidget {
             style: AppTextStyles.style16WhiteW500,
           ),
         ),
-        TextButton(
-          onPressed: onSkipPressed,
-          child: Text(
-            'Skip for now',
-            style: AppTextStyles.style12GrayW400,
-          ),
-        ),
+        // TextButton(
+        //   onPressed: onSkipPressed,
+        //   child: Text(
+        //     'Skip for now',
+        //     style: AppTextStyles.style12GrayW400,
+        //   ),
+        // ),
       ],
     );
   }

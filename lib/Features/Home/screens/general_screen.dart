@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
@@ -10,7 +11,6 @@ import 'package:taxi_go_user_version/Features/History/Screens/myhistory.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.dart';
-import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 
@@ -30,19 +30,15 @@ class _GeneralScreenState extends State<GeneralScreen> {
     const FavouriteScreen(),
     const SavedScreen(),
     const WalletScreen(),
-    const ProfileScreen(),
-    ChatScreen(),
   ];
 
   // Corrected screen names to match the number of screens
   List<String> screensName = const [
     "Home",
-    "",
-    "Favourite",
-    "Saved",
+    "Trip History",
+    "Trip Favourite",
+    "Trip Saved",
     "Wallet",
-    "Profile",
-    "Chat",
   ];
   void onItemTap(int index) {
     setState(() {
@@ -76,9 +72,14 @@ class _GeneralScreenState extends State<GeneralScreen> {
                 }),
                 AutoSizeText(screensName[selctedIndex],
                     style: AppTextStyles.style24WhiteW500),
-                const CircleAvatar(
-                  radius: 18,
-                  backgroundImage: AssetImage(AppIcons.appIcon),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.profile);
+                  },
+                  child: const CircleAvatar(
+                    radius: 18,
+                    backgroundImage: AssetImage(AppIcons.appIcon),
+                  ),
                 )
               ],
             ),

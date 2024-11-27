@@ -6,7 +6,6 @@ import 'package:taxi_go_user_version/Features/Chat/chat_widgets/locationmessage.
 
 class ChatScreen extends StatelessWidget {
   final TextEditingController _messageController = TextEditingController();
-
   ChatScreen({super.key});
 
   @override
@@ -14,7 +13,6 @@ class ChatScreen extends StatelessWidget {
     // Screen dimensions
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
       child: Container(

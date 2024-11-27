@@ -153,7 +153,7 @@ class AppRoutes {
       case mapScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            return MapScreen();
+            return const MapScreen();
           },
         );
 
