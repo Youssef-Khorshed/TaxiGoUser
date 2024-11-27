@@ -35,17 +35,23 @@ class FavouriteCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: const Row(
             children: [
-              Expanded(child: CustomBuildTripDetails()),
+              Expanded(
+                  child: CustomBuildTripDetails(
+                hasIcon: true,
+              )),
             ],
           ),
         ),
         const Positioned(
           top: 5,
-          right: 20,
-          child: Icon(
-            size: 30,
-            Icons.star_rate_rounded,
-            color: AppColors.yellowColor,
+          right: 1,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              size: 30,
+              Icons.star_rate_rounded,
+              color: AppColors.yellowColor,
+            ),
           ),
         )
       ],
