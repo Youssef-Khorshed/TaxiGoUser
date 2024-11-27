@@ -32,7 +32,9 @@ class _CustomRawProfileState extends State<CustomRawProfile> {
         const Spacer(),
         AutoSizeText(
           widget.content,
-          style: AppTextStyles.style24DarkgrayW500,
+          style: MediaQuery.of(context).size.shortestSide >= 600
+              ? AppTextStyles.style24DarkgrayW500
+              : AppTextStyles.style16DarkgrayW500,
         ),
         IconButton(
             onPressed: () {
