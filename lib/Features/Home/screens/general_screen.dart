@@ -14,6 +14,7 @@ import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.da
 import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 
+import '../../Auth/screens/log_in/log_in_screen.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});

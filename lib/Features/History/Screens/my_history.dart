@@ -18,19 +18,8 @@ class HistoryScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
-            // const Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 10.0),
-            //   child: Row(
-            //     children: [
-            //       Spacer(),
-            //       CustomDetailsfilterdropdown(),
-            //     ],
-            //   ),
-            // ),
             const CustomDetailsfilterdropdown(),
-
             verticalSpace(16),
-
             Expanded(
               child: ListView(
                 children: const [
