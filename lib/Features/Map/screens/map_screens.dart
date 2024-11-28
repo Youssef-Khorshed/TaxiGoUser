@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import '../../../Core/Utils/Assets/images/app_images.dart';
 import '../../../Core/Utils/Colors/app_colors.dart';
+import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../Home/screens/home_widgets/custom_address_buttom_sheet.dart';
-import '../../Home/screens/home_widgets/custom_app_bottom.dart';
 import '../../Home/screens/home_widgets/custom_enable_location_dialog.dart';
 
 class MapScreen extends StatelessWidget {
@@ -55,43 +55,59 @@ class MapScreen extends StatelessWidget {
                 bottom: 30,
                 right: 15,
                 left: 15,
-                child: Row(
-                  children: [
-                    CustomAppBottom(
-                      iconColor: AppColors.whiteColor,
-                      bottomColor: AppColors.blueColor,
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: true,
-                          builder: (context) => EnableLocationDialog(
-                            onUseMyLocationPressed: () {
-                              Navigator.of(context).pop();
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(16.0),
-                                    topRight: Radius.circular(16.0),
-                                  ),
-                                ),
-                                builder: (context) {
-                                  return const AddressBottomSheet();
+                child: SizedBox(
+                  height: 54,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CustomAppBottom(
+                          borderCornerRadius: 54,
+
+                          iconColor: AppColors.whiteColor,
+                          borderColor: AppColors.blueColor,
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (context) => EnableLocationDialog(
+                                onUseMyLocationPressed: () {
+                                  Navigator.of(context).pop();
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(16.0),
+                                        topRight: Radius.circular(16.0),
+                                      ),
+                                    ),
+                                    builder: (context) {
+                                      return const AddressBottomSheet();
+                                    },
+                                  );
                                 },
-                              );
-                            },
-                            onSkipPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        );
-                      },
-                      text: 'Select Your Location',
-                      textColor: AppColors.whiteColor,
-                      hasIcon: true,
-                    ),
-                  ],
+                                onSkipPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            );
+                          },
+                          buttonText: 'Select Your Location',
+                          textColor: AppColors.whiteColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Container(height: 50,width: 50,
+                        decoration: const BoxDecoration(
+                            color: AppColors.whiteColor,
+                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                        child:                 const Icon(  Icons.my_location_outlined,size: 30,),
+                        ),
+                      ),
+
+                    ],
+                  ),
                 ),
               ),
             ])));

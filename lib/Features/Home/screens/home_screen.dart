@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_bottom.dart';
 import '../../../Core/Utils/Routing/app_routes.dart';
+import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -30,13 +30,14 @@ class HomeScreen extends StatelessWidget {
               left: 15,
               child: CustomAppBottom(
                 iconColor: AppColors.blackColor,
-                bottomColor: AppColors.whiteColor2,
+                buttonColor: AppColors.whiteColor2,
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, AppRoutes.mapScreen);
                 },
-                text: 'Where You Go ?',
+                buttonText: 'Where You Go ?',
                 textColor: AppColors.blackColor,
                 hasIcon: true,
+                borderCornerRadius:200 ,
               ),
             )
           ],

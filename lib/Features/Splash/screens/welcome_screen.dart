@@ -7,6 +7,8 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/splash_widgets/custom_splash_bottom.dart';
 
+import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -52,22 +54,22 @@ class WelcomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 20),
               child: Column(
                 children: [
-                  CustomSplashBottom(
-                    buttontext: 'Create an account',
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.signUp);
-                    },
-                    textcolor: AppColors.blueColor,
-                    buttonColor: AppColors.whiteColor,
+                  CustomAppBottom(
+
+                    textColor: AppColors.blueColor,
+                    buttonColor: AppColors.whiteColor, buttonText: 'Create an account', onPressed: () {
+
+                    Navigator.pushNamed(context, AppRoutes.signUp);
+
+                  },
                   ),
                   verticalSpace(10),
-                  CustomSplashBottom(
-                    buttontext: 'Log In',
-                    onTap: () {
+                  CustomAppBottom(
+                    onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.logIn);
                     },
-                    textcolor: AppColors.whiteColor,
-                    buttonColor: AppColors.transparentColor,
+                    textColor: AppColors.whiteColor,
+                    buttonColor: AppColors.transparentColor, buttonText: 'Log In',
                   ),
                 ],
               ),

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_forget_password_input_otp_field.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_bottoms.dart';
 import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class ForgetPasswordSendOtpScreen extends StatelessWidget {
   const ForgetPasswordSendOtpScreen({super.key});
@@ -56,11 +56,11 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              CustomLogInBottoms(
+              CustomAppBottom(
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.setNewPassword);
                 },
-                text: " Verify",
+                buttonText: " Verify",
               ),
             ],
           ),

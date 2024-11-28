@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
-import 'custom_app_bottom.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'custom_booking_buttom_sheet.dart';
 import 'custom_change_address_text.dart';
 
@@ -59,10 +59,9 @@ class ChangeAddressButtomSheet extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  text: "Back",
-                  bottomColor: AppColors.whiteColor,
+                  borderColor: AppColors.whiteColor,
                   hasIcon: false,
-                  textColor: AppColors.redColor),
+                  textColor: AppColors.redColor, buttonText: 'Back',),
               CustomAppBottom(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -80,8 +79,8 @@ class ChangeAddressButtomSheet extends StatelessWidget {
                       },
                     );
                   },
-                  text: "Done",
-                  bottomColor: AppColors.blueColor,
+                  buttonText: "Done",
+                  borderColor: AppColors.blueColor,
                   hasIcon: false,
                   textColor: AppColors.whiteColor),
             ],

@@ -1,12 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_car_discription.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_confirm_booking.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_rating_text.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class CustomBookingButtomSheet extends StatelessWidget {
   const CustomBookingButtomSheet({super.key});
@@ -82,8 +82,8 @@ class CustomBookingButtomSheet extends StatelessWidget {
                     },
                   );
                 },
-                text: "Booking Now",
-                bottomColor: AppColors.blueColor,
+                buttonText: "Booking Now",
+                buttonColor: AppColors.blueColor,
                 hasIcon: false,
                 textColor: AppColors.whiteColor),
           )

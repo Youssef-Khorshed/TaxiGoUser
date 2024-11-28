@@ -4,7 +4,7 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
-import 'custom_app_bottom.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'custom_change_address_text.dart';
 import 'custom_rating_text.dart';
 
@@ -124,16 +124,16 @@ class CustomConfirmBooking extends StatelessWidget {
             children: [
               CustomAppBottom(
                   onPressed: () {},
-                  text: "Back",
-                  bottomColor: AppColors.whiteColor,
+                  buttonText: "Back",
+                  buttonColor: AppColors.whiteColor,
                   hasIcon: false,
                   textColor: AppColors.redColor),
               CustomAppBottom(
                   onPressed: () {
                     Navigator.of(context).pushNamed(AppRoutes.payment);
                   },
-                  text: "Confirm",
-                  bottomColor: AppColors.blueColor,
+                  buttonText: "Confirm",
+                  buttonColor: AppColors.blueColor,
                   hasIcon: false,
                   textColor: AppColors.whiteColor),
             ],

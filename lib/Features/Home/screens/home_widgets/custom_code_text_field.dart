@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../../Auth/screens/auth_widgets/custom_auth_form_field.dart';
-import 'custom_app_bottom.dart';
 
 class CodeTextField extends StatelessWidget {
   const CodeTextField({super.key});
@@ -27,8 +27,8 @@ class CodeTextField extends StatelessWidget {
             ),
             child: CustomAppBottom(
               onPressed: () {},
-              text: "Use Code",
-              bottomColor: AppColors.blueColor,
+              buttonText: "Use Code",
+              buttonColor: AppColors.blueColor,
               hasIcon: false,
               textColor: AppColors.whiteColor,
             ),

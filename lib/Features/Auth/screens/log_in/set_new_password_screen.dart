@@ -4,8 +4,9 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_bottoms.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_form_field.dart';
+
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class SetNewPasswordScreen extends StatelessWidget {
   const SetNewPasswordScreen({super.key});
@@ -40,12 +41,12 @@ class SetNewPasswordScreen extends StatelessWidget {
                   hintText: "Confirm Password",
                 ),
                 const Spacer(),
-                CustomLogInBottoms(
+                CustomAppBottom(
                   onPressed: () {
                     Navigator.pushReplacementNamed(
                         context, AppRoutes.generalScreen);
                   },
-                  text: "Save",
+                  buttonText: "Save",
                 ),
               ],
             )),

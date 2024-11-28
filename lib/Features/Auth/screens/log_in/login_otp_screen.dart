@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_bottom.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
@@ -80,8 +80,8 @@ class LoginOtpScreen extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              CustomAuthBottom(
-                bottomText: 'Verify',
+              CustomAppBottom(
+                buttonText: 'Verify',
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.generalScreen);
                 },

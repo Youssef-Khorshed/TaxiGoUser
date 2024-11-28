@@ -2,12 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_bottoms.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_sms_message_box.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
@@ -37,11 +37,11 @@ class ForgetPasswordScreen extends StatelessWidget {
             verticalSpace(15),
             const CustomSmsMessageBox(),
             const Spacer(),
-            CustomLogInBottoms(
+            CustomAppBottom(
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.forgetPasswordSendOtp);
               },
-              text: "Continue",
+              buttonText: "Continue",
             ),
           ],
         ),

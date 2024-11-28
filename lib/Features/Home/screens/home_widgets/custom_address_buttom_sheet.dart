@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'change_address_buttom_sheet.dart';
-import 'custom_app_bottom.dart';
 import 'custom_select_address_text_form_field.dart';
 
 class AddressBottomSheet extends StatelessWidget {
@@ -54,9 +54,9 @@ class AddressBottomSheet extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: CustomAppBottom(
-              bottomColor: AppColors.blueColor,
+              buttonColor: AppColors.blueColor,
               textColor: AppColors.whiteColor,
-              text: 'Continue',
+              buttonText: 'Continue',
               onPressed: () {
                 Navigator.of(context).pop();
                 showModalBottomSheet(

@@ -6,11 +6,12 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_bottom.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_form_field.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_drop_down_form_field.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_phone_form_field.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_terms_check_box.dart';
+
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -64,6 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 verticalSpace(10),
                 CustomDropDownFormField(
                   items: genders,
+                  nameTextStyle: AppTextStyles.style14BlackW500,
                   name: 'Gender',
                 ),
                 verticalSpace(10),
@@ -76,8 +78,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                 ),
                 verticalSpace(MediaQuery.of(context).size.height / 4),
-                CustomAuthBottom(
-                  bottomText: 'Sign Up',
+                CustomAppBottom(
+                  buttonText: 'Sign Up',
                   onPressed: _isChecked
                       ? () {
                           Navigator.pushNamed(context, AppRoutes.otp);

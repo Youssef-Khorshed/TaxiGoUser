@@ -4,10 +4,10 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_bottoms.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_form_field.dart';
 
 import '../../../../Core/Utils/Routing/app_routes.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class VerificationPhoneAndPasswordScreen extends StatelessWidget {
   const VerificationPhoneAndPasswordScreen({super.key});
@@ -37,14 +37,14 @@ class VerificationPhoneAndPasswordScreen extends StatelessWidget {
                   hintText: "Please Enter Your Phone Number",
                 ),
                 const Spacer(),
-                CustomLogInBottoms(
+                CustomAppBottom(
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
                       AppRoutes.generalScreen,
                     );
                   },
-                  text: "Send OTP",
+                  buttonText: "Send OTP",
                 ),
               ],
             ),

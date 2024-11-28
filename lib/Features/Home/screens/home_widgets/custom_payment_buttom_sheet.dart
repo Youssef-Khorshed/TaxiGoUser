@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_bottom.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../../HiringDriver/screens/Payment/paymentMethodListCard.dart';
 import 'custom_code_text_field.dart';
 
@@ -48,14 +48,14 @@ class PaymentButtomSheet extends StatelessWidget {
           const AutoSizeText(
             "If You have promo code you can get a Discount",
           ),
-          CodeTextField(),
+          const CodeTextField(),
           const PaymentMethodList(),
           Row(
             children: [
               CustomAppBottom(
                   onPressed: () {},
-                  text: "back",
-                  bottomColor: AppColors.whiteColor,
+                  buttonText: "back",
+                  buttonColor: AppColors.whiteColor,
                   hasIcon: false,
                   textColor: AppColors.redColor),
               CustomAppBottom(
@@ -75,8 +75,8 @@ class PaymentButtomSheet extends StatelessWidget {
                       },
                     );
                   },
-                  text: "done",
-                  bottomColor: AppColors.blueColor,
+                  buttonText: "done",
+                  buttonColor: AppColors.blueColor,
                   hasIcon: false,
                   textColor: AppColors.whiteColor),
             ],

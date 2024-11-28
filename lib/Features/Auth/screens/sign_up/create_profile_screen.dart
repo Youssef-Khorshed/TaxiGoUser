@@ -5,8 +5,8 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_form_field.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_drop_down_form_field.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_phone_form_field.dart';
 import '../auth_widgets/custom_set_profile_bottoms.dart';
 
@@ -83,7 +83,7 @@ class CreateProfileScreen extends StatelessWidget {
                       text: "Cancel",
                       backgroundColor: AppColors.whiteColor,
                       textColor: AppColors.blackColor,
-                      borderColor: AppColors.grayColor,
+                      borderColor: AppColors.blueColor,
                       onPressed: () {},
                     ),
                   ),
