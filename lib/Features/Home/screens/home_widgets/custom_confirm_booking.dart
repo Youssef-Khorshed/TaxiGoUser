@@ -130,7 +130,7 @@ class CustomConfirmBooking extends StatelessWidget {
                   textColor: AppColors.redColor),
               CustomAppBottom(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pushNamed(AppRoutes.payment);
                   },
                   text: "Confirm",
                   bottomColor: AppColors.blueColor,

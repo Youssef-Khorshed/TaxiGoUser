@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
@@ -130,8 +131,9 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.redColor),
                   ),
-                  selected: widget.selectedIndex == 6,
-                  onTap: () => widget.onItemTap(6),
+                  selected: widget.selectedIndex == 5,
+                  onTap: () => Navigator.pushReplacementNamed(
+                      context, AppRoutes.welcome),
                 ),
               ],
             ),

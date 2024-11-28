@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-
 import '../../../../Core/Utils/Colors/app_colors.dart';
 
 class CustomAuthAppBar extends StatelessWidget {

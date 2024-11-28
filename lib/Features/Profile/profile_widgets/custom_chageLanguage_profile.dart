@@ -23,6 +23,12 @@ class _CustomChagelanguageProfileState
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
+        AutoSizeText(
+          _isEnglish ? 'Language' : 'اللغة',
+          key: ValueKey<bool>(_isEnglish),
+          style: AppTextStyles.style24BlackW500,
+        ),
+        const Spacer(),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           transitionBuilder: (Widget child, Animation<double> animation) {
@@ -34,7 +40,6 @@ class _CustomChagelanguageProfileState
             style: AppTextStyles.style24BlackW500,
           ),
         ),
-        const Spacer(),
         Switch(
           value: _isEnglish,
           onChanged: (value) {
