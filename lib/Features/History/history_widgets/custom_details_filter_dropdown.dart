@@ -26,15 +26,9 @@ class _CustomDetailsfilterdropdownState
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.5,
-        child: CustomDropDownFormField(
-          items: dateFilters,
-          name: selectedFilter ?? ' This Month',
-        ),
-      ),
+    return CustomDropDownFormField(
+      items: dateFilters,
+      name: selectedFilter ?? 'Today',
     );
   }
 }

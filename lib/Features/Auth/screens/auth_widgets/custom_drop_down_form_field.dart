@@ -13,31 +13,33 @@ class CustomDropDownFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.4,
-        child: DropdownButton2(
-          underline: Container(
-            color: Colors.transparent,
-          ),
-          isExpanded: true,
-          buttonStyleData: ButtonStyleData(
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
-                borderRadius: BorderRadius.circular(10)),
-          ),
-          dropdownStyleData: DropdownStyleData(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-            useSafeArea: true,
-            width: MediaQuery.of(context).size.width * 0.4,
-          ),
-          hint: AutoSizeText(
-            name,
-            style: AppTextStyles.style14BlackW500
-                .copyWith(color: AppColors.whiteColor),
-          ),
-          items: items
-              .map((name) => DropdownMenuItem(value: name, child: Text(name)))
-              .toList(),
-          onChanged: (value) {},
-        ));
+      width: MediaQuery.of(context).size.width * 0.4,
+      child: DropdownButton2(
+        underline: Container(
+          color: Colors.transparent,
+        ),
+        isExpanded: true,
+        buttonStyleData: ButtonStyleData(
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 1),
+              borderRadius: BorderRadius.circular(10)),
+        ),
+        dropdownStyleData: DropdownStyleData(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          useSafeArea: true,
+          width: MediaQuery.of(context).size.width * 0.4,
+        ),
+        hint: AutoSizeText(
+          name,
+          style: AppTextStyles.style14BlackW500,
+          textAlign: TextAlign.center,
+        ),
+        items: items
+            .map((gender) =>
+                DropdownMenuItem(value: gender, child: Text(gender)))
+            .toList(),
+        onChanged: (value) {},
+      ),
+    );
   }
 }
