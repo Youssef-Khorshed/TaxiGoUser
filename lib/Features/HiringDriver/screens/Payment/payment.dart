@@ -8,6 +8,8 @@ import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widget
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/paymentMethodListCard.dart';
 
 class PaymentScreen extends StatelessWidget {
+  const PaymentScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

@@ -30,7 +30,7 @@ class _CustomDetailsfilterdropdownState
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.5,
         child: CustomDropDownFormField(
           items: dateFilters,

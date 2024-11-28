@@ -9,11 +9,11 @@ class MessageInputBar extends StatelessWidget {
   final VoidCallback onSendLocation;
 
   const MessageInputBar({
-    Key? key,
+    super.key,
     required this.messageController,
     required this.onSendText,
     required this.onSendLocation,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

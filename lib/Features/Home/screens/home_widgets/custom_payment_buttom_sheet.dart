@@ -48,7 +48,7 @@ class PaymentButtomSheet extends StatelessWidget {
           const AutoSizeText(
             "If You have promo code you can get a Discount",
           ),
-          CodeTextField(),
+          const CodeTextField(),
           const PaymentMethodList(),
           Row(
             children: [
