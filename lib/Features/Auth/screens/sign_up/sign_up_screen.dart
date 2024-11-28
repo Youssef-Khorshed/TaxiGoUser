@@ -6,9 +6,9 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_bottom.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_form_field.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_drop_down_form_field.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_phone_form_field.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_terms_check_box.dart';
 
@@ -64,6 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 verticalSpace(10),
                 CustomDropDownFormField(
                   items: genders,
+                  nameTextStyle: AppTextStyles.style14BlackW500,
                   name: 'Gender',
                 ),
                 verticalSpace(10),
