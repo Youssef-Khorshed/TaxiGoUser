@@ -29,6 +29,7 @@ class _CustomDetailsfilterdropdownState
   Widget build(BuildContext context) {
     return CustomDropDownFormField(
       items: dateFilters,
+      iconEnabledColor: AppColors.whiteColor,
       bordercolor: AppColors.transparentColor,
       nameTextStyle: AppTextStyles.style16WhiteW500,
       gradient: const LinearGradient(

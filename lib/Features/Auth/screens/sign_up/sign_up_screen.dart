@@ -25,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -76,7 +77,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     });
                   },
                 ),
-                verticalSpace(MediaQuery.of(context).size.height / 4),
+                verticalSpace(size.shortestSide >= 600
+                    ? size.height / 2
+                    : size.height / 7),
                 CustomAuthBottom(
                   bottomText: 'Sign Up',
                   onPressed: _isChecked
