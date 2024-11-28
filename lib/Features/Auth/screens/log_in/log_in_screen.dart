@@ -8,8 +8,18 @@ import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_a
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_bottoms.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_form_field.dart';
 
-class LogInScreen extends StatelessWidget {
+import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
+
+class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
+
+  @override
+  State<LogInScreen> createState() => _LogInScreenState();
+}
+
+class _LogInScreenState extends State<LogInScreen> {
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +41,18 @@ class LogInScreen extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
                 verticalSpace(15),
-                const CustomLogInFormField(
+                 CustomAppFormField(
                   isPassword: false,
                   obscureText: false,
-                  hintText: "Phone Number",
-                  labelText: "Phone Number",
+                  hintText: "Enter Your Phone Number",
+                  controller: phoneController,
+                  isPhone: true,
                 ),
-                const CustomLogInFormField(
+                 CustomAppFormField(
                   isPassword: true,
                   obscureText: true,
                   hintText: "Enter Your Password",
-                  labelText: "Password",
+                  controller: passwordController,
                 ),
                 InkWell(
                   onTap: () {

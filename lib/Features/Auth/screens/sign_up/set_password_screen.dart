@@ -5,7 +5,7 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_bottom.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_set_password_form_field.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 
 class SetPasswordScreen extends StatefulWidget {
   const SetPasswordScreen({super.key});
@@ -16,8 +16,8 @@ class SetPasswordScreen extends StatefulWidget {
 }
 
 class _SetPasswordScreenState extends State<SetPasswordScreen> {
-  bool _isPasswordVisible = false;
-  bool _isConfirmPasswordVisible = false;
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,24 +47,18 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                     .copyWith(color: Colors.black),
               ),
               verticalSpace(15),
-              CustomSetPasswordFormField(
-                lableText: 'Enter your password',
-                obscureText: !_isPasswordVisible,
-                onVisibilityChanged: () {
-                  setState(() {
-                    _isPasswordVisible = !_isPasswordVisible;
-                  });
-                },
+              CustomAppFormField(
+                isPassword: true,
+                obscureText: true,
+                hintText: "Enter Your Password",
+                controller: passwordController,
               ),
               verticalSpace(10),
-              CustomSetPasswordFormField(
-                lableText: 'Confirm your password',
-                obscureText: !_isConfirmPasswordVisible,
-                onVisibilityChanged: () {
-                  setState(() {
-                    _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                  });
-                },
+              CustomAppFormField(
+                isPassword: true,
+                obscureText: true,
+                hintText: "Enter Your Password",
+                controller: confirmPasswordController,
               ),
               verticalSpace(10),
               const Spacer(),

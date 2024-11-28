@@ -4,7 +4,7 @@ import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_passwor
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/login_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/set_new_password_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_email_password_screen.dart';
+import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_phone_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';

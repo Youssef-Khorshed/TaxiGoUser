@@ -8,12 +8,25 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_form_field.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_drop_down_form_field.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_phone_form_field.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 import '../auth_widgets/custom_set_profile_bottoms.dart';
 
-class CreateProfileScreen extends StatelessWidget {
-  final List<String> city = ['Cairo', 'Giza', 'Alexandria', 'Other'];
-  final List<String> district = ['Other'];
+class CreateProfileScreen extends StatefulWidget {
   CreateProfileScreen({super.key});
+
+  @override
+  State<CreateProfileScreen> createState() => _CreateProfileScreenState();
+}
+
+class _CreateProfileScreenState extends State<CreateProfileScreen> {
+  final List<String> city = ['Cairo', 'Giza', 'Alexandria', 'Other'];
+
+  final List<String> district = ['Other'];
+  
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final streetNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +71,37 @@ class CreateProfileScreen extends StatelessWidget {
                 ],
               ),
               verticalSpace(30),
-              const CustomAuthFormField(hintText: 'Full Name'),
+              CustomAppFormField(
+                isPassword: false,
+                obscureText: false,
+                hintText: "Enter Your Name",
+                controller: nameController,
+                isPhone: true,
+              ),
               verticalSpace(10),
-              const CustomPhoneFormField(),
+              CustomAppFormField(
+                isPassword: false,
+                obscureText: false,
+                hintText: "Enter Your Phone Number",
+                controller: phoneController,
+                isPhone: true,
+              ),
               verticalSpace(10),
-              const CustomAuthFormField(hintText: 'Email'),
+              CustomAppFormField(
+                isPassword: false,
+                obscureText: false,
+                hintText: "Enter Your Email",
+                controller: emailController,
+                isPhone: true,
+              ),
               verticalSpace(10),
-              const CustomAuthFormField(hintText: 'Street'),
+              CustomAppFormField(
+                isPassword: false,
+                obscureText: false,
+                hintText: "Enter Your street",
+                controller: streetNameController,
+                isPhone: true,
+              ),
               verticalSpace(10),
               CustomDropDownFormField(
                 items: city,
