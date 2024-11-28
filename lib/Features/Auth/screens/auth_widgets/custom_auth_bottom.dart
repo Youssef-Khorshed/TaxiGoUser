@@ -16,7 +16,7 @@ class CustomAuthBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: GestureDetector(
+      child: InkWell(
         onTap: onPressed,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

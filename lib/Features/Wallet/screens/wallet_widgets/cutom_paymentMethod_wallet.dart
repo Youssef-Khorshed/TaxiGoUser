@@ -33,7 +33,8 @@ class PaymentMethodWidget extends StatelessWidget {
             height: 10,
             circlesize: 24,
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.payment);
+              Navigator.pop(context);
+              //   Navigator.of(context).pushNamed(AppRoutes.payment);
             },
           )
         ],

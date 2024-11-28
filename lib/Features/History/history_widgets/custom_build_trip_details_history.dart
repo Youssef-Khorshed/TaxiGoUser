@@ -6,7 +6,8 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_driver_details_history.dart';
 
 class CustomBuildTripDetails extends StatelessWidget {
-  const CustomBuildTripDetails({super.key});
+  final bool hasIcon;
+  const CustomBuildTripDetails({super.key, required this.hasIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,8 @@ class CustomBuildTripDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+            padding: EdgeInsets.only(
+                top: hasIcon ? 50 : 10, bottom: 5, right: 10, left: 10),
             color: AppColors.whiteColor2,
             child: Row(
               children: [
@@ -40,7 +42,7 @@ class CustomBuildTripDetails extends StatelessWidget {
                     ),
                     Container(
                       width: 1,
-                      height: 10,
+                      height: 23,
                       color: Colors.grey,
                     ),
                     const Icon(Icons.location_pin, color: Colors.red),
@@ -64,6 +66,7 @@ class CustomBuildTripDetails extends StatelessWidget {
                           ),
                         ],
                       ),
+                      verticalSpace(10),
                       Row(
                         children: [
                           AutoSizeText(

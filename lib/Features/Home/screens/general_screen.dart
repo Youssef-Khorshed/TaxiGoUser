@@ -6,12 +6,15 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+
+import '../../Auth/screens/log_in/log_in_screen.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});
@@ -29,6 +32,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
     const FavouriteScreen(),
     const SavedScreen(),
     const WalletScreen(),
+    const LogInScreen(),
   ];
 
   // Corrected screen names to match the number of screens
@@ -38,6 +42,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
     "Trip Favourite",
     "Trip Saved",
     "Wallet",
+    "Logout",
   ];
   void onItemTap(int index) {
     setState(() {
@@ -83,7 +88,6 @@ class _GeneralScreenState extends State<GeneralScreen> {
               ],
             ),
           ),
-          verticalSpace(20),
           Expanded(child: screens[selctedIndex])
         ],
       ),

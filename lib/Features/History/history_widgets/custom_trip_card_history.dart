@@ -35,7 +35,10 @@ class TripCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: const Row(
             children: [
-              Expanded(child: CustomBuildTripDetails()),
+              Expanded(
+                  child: CustomBuildTripDetails(
+                hasIcon: false,
+              )),
             ],
           ),
         ),

@@ -35,13 +35,16 @@ class SavedCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: const Row(
             children: [
-              Expanded(child: CustomBuildTripDetails()),
+              Expanded(
+                  child: CustomBuildTripDetails(
+                hasIcon: true,
+              )),
             ],
           ),
         ),
         Positioned(
-            top: -5,
-            right: 20,
+            top: 1,
+            right: 5,
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [

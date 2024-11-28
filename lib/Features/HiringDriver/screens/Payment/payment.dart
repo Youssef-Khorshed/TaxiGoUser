@@ -123,10 +123,8 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ],
             ),
-            verticalSpace(20),
+            verticalSpace(10),
             const PaymentMethodList(),
-            verticalSpace(20),
-
             AppButton(
                 text: 'Confirm',
                 height: size.height * 0.01,

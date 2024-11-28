@@ -26,16 +26,19 @@ class _CustomCancelbodyCancelState extends State<CustomCancelbodyCancel> {
           width: double.infinity,
           padding: EdgeInsets.all(size.width * 0.05),
           // margin: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Section Title
               Text(
-                "Why do you want to cancel?",
+                "Why do you want to cancel ?",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: size.height * 0.022,
@@ -80,7 +83,7 @@ class _CustomCancelbodyCancelState extends State<CustomCancelbodyCancel> {
       ),
       title: AutoSizeText(
         title,
-        style: AppTextStyles.style24DarkgrayW500,
+        style: AppTextStyles.style16BlackW600,
       ),
     );
   }
