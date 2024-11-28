@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
+// ignore: must_be_immutable
 class CustomAppBottom extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
