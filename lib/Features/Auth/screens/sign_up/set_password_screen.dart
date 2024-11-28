@@ -17,8 +17,8 @@ class SetPasswordScreen extends StatefulWidget {
 }
 
 class _SetPasswordScreenState extends State<SetPasswordScreen> {
-  bool _isPasswordVisible = false;
-  bool _isConfirmPasswordVisible = false;
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,24 +48,18 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                     .copyWith(color: Colors.black),
               ),
               verticalSpace(15),
-              CustomSetPasswordFormField(
-                lableText: 'Enter your password',
-                obscureText: !_isPasswordVisible,
-                onVisibilityChanged: () {
-                  setState(() {
-                    _isPasswordVisible = !_isPasswordVisible;
-                  });
-                },
+              CustomAppFormField(
+                isPassword: true,
+                obscureText: true,
+                hintText: "Enter Your Password",
+                controller: passwordController,
               ),
               verticalSpace(10),
-              CustomSetPasswordFormField(
-                lableText: 'Confirm your password',
-                obscureText: !_isConfirmPasswordVisible,
-                onVisibilityChanged: () {
-                  setState(() {
-                    _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                  });
-                },
+              CustomAppFormField(
+                isPassword: true,
+                obscureText: true,
+                hintText: "Enter Your Password",
+                controller: confirmPasswordController,
               ),
               verticalSpace(10),
               const Spacer(),

@@ -9,6 +9,7 @@ class CustomDropDownFormField extends StatefulWidget {
   final String name;
   final Color? backgroundcolor;
   final Color bordercolor;
+  final Color? iconEnabledColor;
   final Gradient? gradient;
   final TextStyle? nameTextStyle;
   const CustomDropDownFormField(
@@ -16,6 +17,7 @@ class CustomDropDownFormField extends StatefulWidget {
       required this.items,
       required this.name,
       this.gradient,
+      this.iconEnabledColor,
       this.nameTextStyle,
       this.bordercolor = AppColors.blackColor,
       this.backgroundcolor});
@@ -31,10 +33,11 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.4,
+      // width: MediaQuery.of(context).size.width * 0.4,
       child: DropdownButton2(
         underline: const SizedBox(),
         isExpanded: true,
+        iconStyleData: IconStyleData(iconEnabledColor: widget.iconEnabledColor),
         buttonStyleData: ButtonStyleData(
           decoration: BoxDecoration(
               gradient: widget.gradient,

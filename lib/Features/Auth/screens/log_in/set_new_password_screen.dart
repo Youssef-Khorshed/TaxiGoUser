@@ -4,13 +4,21 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
+import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_bottoms.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_form_field.dart';
 
-import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 
-class SetNewPasswordScreen extends StatelessWidget {
+class SetNewPasswordScreen extends StatefulWidget {
   const SetNewPasswordScreen({super.key});
 
+  @override
+  State<SetNewPasswordScreen> createState() => _SetNewPasswordScreenState();
+}
+
+class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,15 +38,17 @@ class SetNewPasswordScreen extends StatelessWidget {
                   textAlign: TextAlign.left,
                 ),
                 verticalSpace(10),
-                const CustomLogInFormField(
+                 CustomAppFormField(
                   isPassword: true,
                   obscureText: true,
                   hintText: "Enter Your New Password",
+                  controller: passwordController,
                 ),
-                const CustomLogInFormField(
+                 CustomAppFormField(
                   isPassword: true,
                   obscureText: true,
                   hintText: "Confirm Password",
+                  controller: confirmPasswordController,
                 ),
                 const Spacer(),
                 CustomAppBottom(

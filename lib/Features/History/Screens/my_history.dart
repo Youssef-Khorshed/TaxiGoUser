@@ -18,6 +18,7 @@ class HistoryScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
+            const CustomDetailsfilterdropdown(),
             const Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -25,6 +26,7 @@ class HistoryScreen extends StatelessWidget {
               ],
             ),
             verticalSpace(16),
+
             Expanded(
               child: ListView(
                 children: const [

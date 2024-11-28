@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
+
+import '../../Auth/screens/auth_widgets/custom_drop_down_form_field.dart';
 
 class CustomDetailsfilterdropdown extends StatefulWidget {
   const CustomDetailsfilterdropdown({super.key});
@@ -29,6 +28,7 @@ class _CustomDetailsfilterdropdownState
   Widget build(BuildContext context) {
     return CustomDropDownFormField(
       items: dateFilters,
+      iconEnabledColor: AppColors.whiteColor,
       bordercolor: AppColors.transparentColor,
       nameTextStyle: AppTextStyles.style16WhiteW500,
       gradient: const LinearGradient(
