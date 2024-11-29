@@ -13,6 +13,7 @@ class ChangeAddressButtomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       decoration: const BoxDecoration(
         color: AppColors.ligterBlueColor,
@@ -56,12 +57,14 @@ class ChangeAddressButtomSheet extends StatelessWidget {
           Row(
             children: [
               CustomAppBottom(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  borderColor: AppColors.whiteColor,
-                  hasIcon: false,
-                  textColor: AppColors.redColor, buttonText: 'Back',),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                borderColor: AppColors.whiteColor,
+                hasIcon: false,
+                textColor: AppColors.redColor,
+                buttonText: 'Back',
+              ),
               CustomAppBottom(
                   onPressed: () {
                     Navigator.of(context).pop();

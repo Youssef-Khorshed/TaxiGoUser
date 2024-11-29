@@ -46,25 +46,26 @@ class _LogInScreenState extends State<LogInScreen> {
                   controller: phoneController,
                   isPhone: true,
                 ),
-                CustomAppFormField(
-                  isPassword: true,
-                  obscureText: true,
-                  hintText: "Enter Your Password",
-                  controller: passwordController,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.forgetPassword);
-                  },
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: AutoSizeText(
-                      "Forget password ?",
-                      style: AppTextStyles.style16WhiteW500
-                          .copyWith(color: AppColors.redColor, fontSize: 14),
-                    ),
-                  ),
-                ),
+                verticalSpace(10),
+                // CustomAppFormField(
+                //   isPassword: true,
+                //   obscureText: true,
+                //   hintText: "Enter Your Password",
+                //   controller: passwordController,
+                // ),
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.pushNamed(context, AppRoutes.forgetPassword);
+                //   },
+                //   child: Align(
+                //     alignment: Alignment.bottomRight,
+                //     child: AutoSizeText(
+                //       "Forget password ?",
+                //       style: AppTextStyles.style16WhiteW500
+                //           .copyWith(color: AppColors.redColor, fontSize: 14),
+                //     ),
+                //   ),
+                // ),
                 const Spacer(),
                 CustomAppBottom(
                   onPressed: () {
