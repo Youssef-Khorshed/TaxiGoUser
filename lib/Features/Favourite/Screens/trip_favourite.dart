@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-
 import '../trip_favourite_widget/custom_trip_card_favourite.dart';
 
 class FavouriteScreen extends StatelessWidget {
