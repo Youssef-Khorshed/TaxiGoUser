@@ -1,5 +1,5 @@
 name: taxi_go_user_version
-description: "Taxi Go is Flutter App Was Created  By Craft Code Company"
+description: "Taxi Go is Flutter App Was Created By Craft Code Company"
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -12,7 +12,6 @@ dependencies:
   device_preview: ^1.2.0
   dropdown_button2: ^2.3.9
   firebase_core: null
-  device_preview: 
   flutter:
     sdk: flutter
   flutter_localizations:
