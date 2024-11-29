@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_widgets/cutom_paymentMethod_wallet.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_widgets/cutom_payment_method_wallet.dart';
 
 void showWalletSheet(BuildContext context) {
   // final screenWidth = MediaQuery.of(context).size.width;

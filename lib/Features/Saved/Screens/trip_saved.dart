@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/custom_tripCard_saved.dart';
+import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/custom_trip_card_saved.dart';
 
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});

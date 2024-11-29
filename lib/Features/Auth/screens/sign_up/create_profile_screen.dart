@@ -6,13 +6,11 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_form_field.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_phone_form_field.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 import '../auth_widgets/custom_set_profile_bottoms.dart';
 
 class CreateProfileScreen extends StatefulWidget {
-  CreateProfileScreen({super.key});
+  const CreateProfileScreen({super.key});
 
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
@@ -22,7 +20,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   final List<String> city = ['Cairo', 'Giza', 'Alexandria', 'Other'];
 
   final List<String> district = ['Other'];
-  
+
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final emailController = TextEditingController();

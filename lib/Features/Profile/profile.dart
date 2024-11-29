@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_chageLanguage_profile.dart';
+import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_chage_language_profile.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_raw_profile.dart';
 
 class ProfileScreen extends StatefulWidget {

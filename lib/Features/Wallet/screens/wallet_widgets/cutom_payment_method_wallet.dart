@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_widgets/cutom_MethodCard_wallet.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_widgets/cutom_method_card_wallet.dart';
 
 class PaymentMethodWidget extends StatelessWidget {
   const PaymentMethodWidget({super.key});

@@ -6,8 +6,6 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_form_field.dart';
-
 import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -41,14 +39,14 @@ class _LogInScreenState extends State<LogInScreen> {
                   textAlign: TextAlign.left,
                 ),
                 verticalSpace(15),
-                 CustomAppFormField(
+                CustomAppFormField(
                   isPassword: false,
                   obscureText: false,
                   hintText: "Enter Your Phone Number",
                   controller: phoneController,
                   isPhone: true,
                 ),
-                 CustomAppFormField(
+                CustomAppFormField(
                   isPassword: true,
                   obscureText: true,
                   hintText: "Enter Your Password",
@@ -73,7 +71,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     Navigator.pushReplacementNamed(
                         context, AppRoutes.loginOtpScreen);
                   },
-                 buttonText: 'Log In',
+                  buttonText: 'Log In',
                 ),
                 verticalSpace(10),
                 InkWell(

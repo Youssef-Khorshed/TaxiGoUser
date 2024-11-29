@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_bottomSheet_profile.dart';
+import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_bottom_sheet_profile.dart';
 
 // ignore: must_be_immutable
 class CustomRawProfile extends StatefulWidget {
@@ -39,7 +39,7 @@ class _CustomRawProfileState extends State<CustomRawProfile> {
         IconButton(
             onPressed: () {
               widget.title == 'Language'
-                  ? CustomProfileBottomsheet(context)
+                  ? customProfileBottomsheet(context)
                   : null;
             },
             color: AppColors.darkgrayColor,
