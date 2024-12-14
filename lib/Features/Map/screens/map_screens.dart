@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-import '../../../Core/Utils/Assets/images/app_images.dart';
+import 'package:taxi_go_user_version/Features/Map/map_widget/custom_map.dart';
 import '../../../Core/Utils/Colors/app_colors.dart';
 import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../Home/screens/home_widgets/custom_address_buttom_sheet.dart';
@@ -19,12 +20,7 @@ class MapScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Stack(children: [
-                  Image.asset(
-                    AppImages.mapTest,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                  ),
+                  const CustomMap(),
                   Positioned(
                     top: 60,
                     //  right: 300,
@@ -62,7 +58,6 @@ class MapScreen extends StatelessWidget {
                       Expanded(
                         child: CustomAppBottom(
                           borderCornerRadius: 54,
-
                           iconColor: AppColors.whiteColor,
                           borderColor: AppColors.blueColor,
                           onPressed: () {
@@ -98,18 +93,29 @@ class MapScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 16),
-                        child: Container(height: 50,width: 50,
-                        decoration: const BoxDecoration(
-                            color: AppColors.whiteColor,
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
-                        child:                 const Icon(  Icons.my_location_outlined,size: 30,),
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          decoration: const BoxDecoration(
+                              color: AppColors.whiteColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: const Icon(
+                            Icons.my_location_outlined,
+                            size: 30,
+                          ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
               ),
             ])));
   }
+// zoom Levlel
+// world -> 0 - 3
+// country  -> 4 - 6
+// city     -> 10 - 12
+// street   -> 13 - 17
+// building -> 18 - 20
 }

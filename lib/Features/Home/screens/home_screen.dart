@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import '../../../Core/Utils/Routing/app_routes.dart';
 import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
@@ -16,14 +16,12 @@ class HomeScreen extends StatelessWidget {
         child: Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                AppImages.mapTest,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(20),
+                child: const GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                      target: LatLng(37.42796133580664, -122.085749655962),
+                      zoom: 14),
+                )),
             Positioned(
               bottom: 10,
               right: 15,

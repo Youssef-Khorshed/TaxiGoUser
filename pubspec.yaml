@@ -9,7 +9,6 @@ environment:
 dependencies:
   auto_size_text: null
   cupertino_icons: null
-  device_preview: ^1.2.0
   dropdown_button2: ^2.3.9
   firebase_core: null
   device_preview: 
@@ -38,6 +37,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/mapstyle/night.json
 
 flutter_launcher_icons:
   android: true
