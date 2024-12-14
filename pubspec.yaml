@@ -14,9 +14,11 @@ dependencies:
   firebase_core: null
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
   flutter_localizations:
     sdk: flutter
   flutter_rating_bar: ^4.0.1
+  flutter_screenutil: ^5.9.3
   flutter_svg: null
   font_awesome_flutter: ^10.8.0
   google_fonts: null
