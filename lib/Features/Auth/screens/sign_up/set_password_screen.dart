@@ -7,6 +7,7 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_set_password_form_field.dart';
 
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 
 class SetPasswordScreen extends StatefulWidget {
   const SetPasswordScreen({super.key});

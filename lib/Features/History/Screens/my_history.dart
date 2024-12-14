@@ -4,6 +4,8 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_details_filter_dropdown.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 
+import '../../../Core/Utils/Text/text_style.dart';
+
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
@@ -18,15 +20,16 @@ class HistoryScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
-            const CustomDetailsfilterdropdown(),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            Row(
               children: [
-                CustomDetailsfilterdropdown(),
+                Expanded(
+                    child: Text("History",
+                        style: AppTextStyles.style20WhiteW600
+                            .copyWith(color: AppColors.blackColor))),
+                Expanded(child: const CustomDetailsfilterdropdown()),
               ],
             ),
             verticalSpace(16),
-
             Expanded(
               child: ListView(
                 children: const [
