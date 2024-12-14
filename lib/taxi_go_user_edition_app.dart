@@ -12,31 +12,30 @@ class TaxiGoUserEditionApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  LayoutBuilder(
-        builder: (context, constraints) => ScreenUtilInit(
-            designSize: constraints.maxWidth >= 600
-                ? const Size(200, 912)
-                : constraints.maxWidth < 390
+    return LayoutBuilder(
+      builder: (context, constraints) => ScreenUtilInit(
+        designSize: constraints.maxWidth >= 600
+            ? const Size(200, 912)
+            : constraints.maxWidth < 390
                 ? const Size(490, 912)
                 : const Size(390, 844),
-            ensureScreenSize: true,
-            minTextAdapt: true,
-            builder: (context, child) => BlocProvider(
+        ensureScreenSize: true,
+        minTextAdapt: true,
+        builder: (context, child) => BlocProvider(
             create: (context) => LocalCubit(),
-    child: BlocBuilder<LocalCubit, LocalState>(
-    builder: (context, state) {
-    return MaterialApp(
-      locale: LocalCubit.get(context).localization,
-      builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.splash,
-      onGenerateRoute: AppRoutes.generateRoute,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-    );
-  })
-            ),
-        ),
+            child:
+                BlocBuilder<LocalCubit, LocalState>(builder: (context, state) {
+              return MaterialApp(
+                locale: LocalCubit.get(context).localization,
+                builder: DevicePreview.appBuilder,
+                debugShowCheckedModeBanner: false,
+                initialRoute: AppRoutes.splash,
+                onGenerateRoute: AppRoutes.generateRoute,
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+              );
+            })),
+      ),
     );
   }
 }

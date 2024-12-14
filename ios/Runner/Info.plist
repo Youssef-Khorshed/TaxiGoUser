@@ -10,6 +10,11 @@
 	<string>Taxi Go</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+	<string>This key is required to explain why your app needs access to the location when the app is in use (e.g., when the app is open and running in the foreground).</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This permission is necessary when your app needs access to location services both when the app is in the foreground and when it is in the background.</string>
+	
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

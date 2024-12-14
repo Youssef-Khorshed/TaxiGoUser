@@ -4,8 +4,6 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_log_in_form_field.dart';
-
 import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
@@ -14,11 +12,14 @@ class VerificationPhoneAndPasswordScreen extends StatefulWidget {
   const VerificationPhoneAndPasswordScreen({super.key});
 
   @override
-  State<VerificationPhoneAndPasswordScreen> createState() => _VerificationPhoneAndPasswordScreenState();
+  State<VerificationPhoneAndPasswordScreen> createState() =>
+      _VerificationPhoneAndPasswordScreenState();
 }
 
-class _VerificationPhoneAndPasswordScreenState extends State<VerificationPhoneAndPasswordScreen> {
-  final TextEditingController verificationPhoneController = TextEditingController();
+class _VerificationPhoneAndPasswordScreenState
+    extends State<VerificationPhoneAndPasswordScreen> {
+  final TextEditingController verificationPhoneController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +40,11 @@ class _VerificationPhoneAndPasswordScreenState extends State<VerificationPhoneAn
                   ),
                 ),
                 verticalSpace(15),
-                 CustomAppFormField(
+                CustomAppFormField(
                   isPassword: false,
                   obscureText: false,
                   hintText: "Please Enter Your Phone Number",
-                  controller:verificationPhoneController ,
+                  controller: verificationPhoneController,
                   isPhone: true,
                 ),
                 const Spacer(),
