@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import '../../../HiringDriver/screens/Payment/paymentMethodListCard.dart';
+import '../../../HiringDriver/screens/Payment/payment_method_list_card.dart';
 import 'custom_code_text_field.dart';
 
 class PaymentButtomSheet extends StatelessWidget {

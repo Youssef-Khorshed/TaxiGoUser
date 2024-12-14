@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/Favourite/tripFavourite_widget/custom_tripCard_favourite.dart';
+import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/custom_trip_card_saved.dart';
 
-class FavouriteScreen extends StatelessWidget {
-  const FavouriteScreen({super.key});
+class SavedScreen extends StatelessWidget {
+  const SavedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class FavouriteScreen extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: const [
-                  FavouriteCard(
+                  SavedCard(
                     from: 'State Park',
                     to: 'Home',
                     timeFrom: '7:34 AM',
@@ -28,7 +28,7 @@ class FavouriteScreen extends StatelessWidget {
                     rating: 4.9,
                     price: '\$9.00',
                   ),
-                  FavouriteCard(
+                  SavedCard(
                     from: 'Home',
                     to: 'Office',
                     timeFrom: '6:30 AM',
@@ -37,7 +37,7 @@ class FavouriteScreen extends StatelessWidget {
                     rating: 4.9,
                     price: '\$9.00',
                   ),
-                  FavouriteCard(
+                  SavedCard(
                     from: 'OM University',
                     to: 'Home',
                     timeFrom: '11:24 AM',

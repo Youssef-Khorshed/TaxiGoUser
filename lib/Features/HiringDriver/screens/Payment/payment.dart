@@ -5,7 +5,7 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_buildrowdetail_hiring.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/paymentMethodListCard.dart';
+import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment_method_list_card.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});

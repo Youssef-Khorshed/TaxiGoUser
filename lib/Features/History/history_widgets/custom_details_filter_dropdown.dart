@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../Core/Utils/Colors/app_colors.dart';
-import '../../../Core/Utils/Text/text_style.dart';
-import '../../../Core/Utils/app_custom_widgets/custom_drop_down.dart';
-
+import '../../Auth/screens/auth_widgets/custom_drop_down_form_field.dart';
 
 class CustomDetailsfilterdropdown extends StatefulWidget {
   const CustomDetailsfilterdropdown({super.key});

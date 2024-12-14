@@ -32,38 +32,35 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // width: MediaQuery.of(context).size.width * 0.4,
-      child: DropdownButton2(
-        underline: const SizedBox(),
-        isExpanded: true,
-        iconStyleData: IconStyleData(iconEnabledColor: widget.iconEnabledColor),
-        buttonStyleData: ButtonStyleData(
-          decoration: BoxDecoration(
-              gradient: widget.gradient,
-              color: widget.backgroundcolor,
-              border: Border.all(color: widget.bordercolor, width: 1),
-              borderRadius: BorderRadius.circular(10)),
-        ),
-        dropdownStyleData: DropdownStyleData(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-          useSafeArea: true,
-        ),
-        hint: AutoSizeText(
-          selectedValue ?? widget.name,
-          style: widget.nameTextStyle,
-          textAlign: TextAlign.center,
-        ),
-        items: widget.items
-            .map((gender) =>
-                DropdownMenuItem(value: gender, child: AutoSizeText(gender)))
-            .toList(),
-        onChanged: (value) {
-          setState(() {
-            selectedValue = value;
-          });
-        },
+    return DropdownButton2(
+      underline: const SizedBox(),
+      isExpanded: true,
+      iconStyleData: IconStyleData(iconEnabledColor: widget.iconEnabledColor),
+      buttonStyleData: ButtonStyleData(
+        decoration: BoxDecoration(
+            gradient: widget.gradient,
+            color: widget.backgroundcolor,
+            border: Border.all(color: widget.bordercolor, width: 1),
+            borderRadius: BorderRadius.circular(10)),
       ),
+      dropdownStyleData: DropdownStyleData(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+        useSafeArea: true,
+      ),
+      hint: AutoSizeText(
+        selectedValue ?? widget.name,
+        style: widget.nameTextStyle,
+        textAlign: TextAlign.center,
+      ),
+      items: widget.items
+          .map((gender) =>
+              DropdownMenuItem(value: gender, child: AutoSizeText(gender)))
+          .toList(),
+      onChanged: (value) {
+        setState(() {
+          selectedValue = value;
+        });
+      },
     );
   }
 }
