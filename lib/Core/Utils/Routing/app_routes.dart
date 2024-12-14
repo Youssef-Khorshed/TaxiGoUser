@@ -10,14 +10,14 @@ import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.da
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
-import 'package:taxi_go_user_version/Features/Favourite/Screens/tripFavourite.dart';
+import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Rating/rate.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
-import 'package:taxi_go_user_version/Features/Saved/Screens/tripSaved.dart';
+import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 import '../../../Features/Map/screens/map_screens.dart';
@@ -84,7 +84,7 @@ class AppRoutes {
       case setProfile:
         return CupertinoPageRoute(
           builder: (context) {
-            return CreateProfileScreen();
+            return const CreateProfileScreen();
           },
         );
       case logIn:
@@ -127,7 +127,7 @@ class AppRoutes {
       case payment:
         return CupertinoPageRoute(
           builder: (context) {
-            return PaymentScreen();
+            return const PaymentScreen();
           },
         );
 

@@ -86,9 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     });
                   },
                 ),
-                verticalSpace(size.shortestSide >= 600
-                    ? size.height / 2
-                    : size.height / 7),
+                verticalSpace(20),
                 CustomAppBottom(
                   buttonText: 'Sign Up',
                   onPressed: _isChecked

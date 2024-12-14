@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/paymentMethodCard.dart';
+import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment_method_card.dart';
 
 class PaymentMethodList extends StatefulWidget {
   const PaymentMethodList({super.key});

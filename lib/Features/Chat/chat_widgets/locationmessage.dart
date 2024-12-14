@@ -91,7 +91,7 @@ class LocationMessage extends StatelessWidget {
     );
   }
 
-  Set<Marker> _buildMarkers() {
+  Set<Marker> buildMarkers() {
     return {
       Marker(
         markerId: const MarkerId("shared_location"),

@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
-void CustomProfileBottomsheet(BuildContext context) {
+void customProfileBottomsheet(BuildContext context) {
   showBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
@@ -34,7 +36,7 @@ void CustomProfileBottomsheet(BuildContext context) {
           GestureDetector(
             onTap: () {
               // Handle tap on Arabic option
-              print('Arabic selected');
+              log('Arabic selected');
               Navigator.pop(context); // Close bottom sheet after selection
             },
             child: Padding(

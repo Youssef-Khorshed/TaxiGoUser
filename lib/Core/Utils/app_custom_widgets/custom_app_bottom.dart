@@ -51,9 +51,7 @@ class CustomAppBottom extends StatelessWidget {
                           )
                         : const SizedBox.shrink()
                     : const SizedBox.shrink(),
-                verticalSpace(
-                  20,
-                ),
+                verticalSpace(20),
                 Center(
                   child: AutoSizeText(
                     buttonText ?? "",
