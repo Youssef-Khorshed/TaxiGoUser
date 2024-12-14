@@ -26,7 +26,7 @@ class TaxiGoUserEditionApp extends StatelessWidget {
     child: BlocBuilder<LocalCubit, LocalState>(
     builder: (context, state) {
     return MaterialApp(
-      locale: DevicePreview.locale(context),
+      locale: LocalCubit.get(context).localization,
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.splash,
