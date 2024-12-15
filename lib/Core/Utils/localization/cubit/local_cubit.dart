@@ -9,7 +9,7 @@ class LocalCubit extends Cubit<LocalState> {
   LocalCubit() : super(LocalInitial(const Locale('en')));
   static LocalCubit get(context) => BlocProvider.of(context);
   LocalizationThemeState localizationThemeState = LocalizationThemeState.en;
-  Locale localization = const Locale("en");
+  Locale localization = const Locale("ar");
 
   void changeLocale() {
     emit(LocaleLoading());
