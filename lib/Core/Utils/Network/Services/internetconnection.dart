@@ -5,7 +5,6 @@ abstract class InternetConnectivity {
   Future<bool> get isConnected;
   Stream<List<ConnectivityResult>> get onConnectivityChanged;
 }
-
 class MobileConnectivity implements InternetConnectivity {
   Connectivity connectivity;
   MobileConnectivity({required this.connectivity});
