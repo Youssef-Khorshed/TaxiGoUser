@@ -1,0 +1,2 @@
+F:/code craft/taxi_go_user_version/android/app/.cxx/Debug/3r4i556u/armeabi-v7a/CMakeFiles/edit_cache.dir
+F:/code craft/taxi_go_user_version/android/app/.cxx/Debug/3r4i556u/armeabi-v7a/CMakeFiles/rebuild_cache.dir
