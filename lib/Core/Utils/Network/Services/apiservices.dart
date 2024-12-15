@@ -1,15 +1,17 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
+import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
+import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 
-class DioFactory {
+class ApiService {
   InternetConnectivity internetConnectivity;
-  DioFactory({required this.internetConnectivity});
+  ApiService({required this.internetConnectivity});
   static Dio? _dio;
-  // Singleton Dio instance
-  getDio() {
+  getDio(context) {
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -21,7 +23,12 @@ class DioFactory {
         ..options.receiveTimeout = timeOut;
 
       // Add default headers and interceptors
-      _addDioHeaders();
+
+      String language = LocalCubit.get(context).localizationThemeState ==
+              LocalizationThemeState.ar
+          ? "ar"
+          : "en";
+      _addDioHeaders(language: language);
       _addDioInterceptor();
     }
 
@@ -29,12 +36,12 @@ class DioFactory {
   }
 
   // Function to set default headers
-  static void _addDioHeaders({String? token, String language = 'en'}) {
+  static void _addDioHeaders({String? token, String language = 'ar'}) {
     _dio?.options.headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': token ??
-          '', //'Bearer your_token_here', // You can add a token dynamically if needed
+      'Authorization':
+          'Bearer Token $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -52,15 +59,14 @@ class DioFactory {
   }
 
   // Function to make GET requests
-  Future<T> getRequest<T>(
-    String url, {
-    Map<String, dynamic>? queryParameters,
-  }) async {
+  Future<T> getRequest<T>(String url,
+      {Map<String, dynamic>? queryParameters,
+      required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       final response =
-          await getDio().get(url, queryParameters: queryParameters);
+          await getDio(context).get(url, queryParameters: queryParameters);
       if (response.statusCode != null) {
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200 || response.statusCode == 201) {
           return response.data;
         } else {
           throw ServerException(
@@ -75,9 +81,10 @@ class DioFactory {
   }
 
   // Function to make POST requests
-  Future<T> postRequest<T>(String url, {dynamic body}) async {
+  Future<T> postRequest<T>(String url,
+      {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio().post(url, data: body);
+      final response = await getDio(context).post(url, data: body);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
@@ -94,9 +101,10 @@ class DioFactory {
   }
 
   // Function to make PUT requests
-  Future<T> putRequest<T>(String url, {dynamic body}) async {
+  Future<T> putRequest<T>(String url,
+      {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio().put(
+      final response = await getDio(context).put(
         url,
         data: json.encode(body), // Send the body as JSON
       );
@@ -117,9 +125,10 @@ class DioFactory {
   }
 
   // Function to make DELETE requests
-  Future<T> deleteRequest<T>(String url) async {
+  Future<T> deleteRequest<T>(String url,
+      {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio().delete(url);
+      final response = await getDio(context).delete(url);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
