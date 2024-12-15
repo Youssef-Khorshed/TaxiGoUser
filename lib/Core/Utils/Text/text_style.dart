@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 
 abstract class AppTextStyles {
+
   static TextStyle style28BlackW400 = TextStyle(
     fontSize: 28,
     color: AppColors.blackColor,
