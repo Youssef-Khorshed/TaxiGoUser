@@ -2,16 +2,18 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
-import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
-import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
+
+import '../../enums/localization.dart';
+import '../../localization/cubit/local_cubit.dart';
+import '../Error/exception.dart';
+import 'internetconnection.dart';
 
 class ApiService {
   InternetConnectivity internetConnectivity;
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
+  // Singleton Dio instance
   getDio(context) async {
     Duration timeOut = const Duration(seconds: 30);
 
@@ -26,11 +28,12 @@ class ApiService {
       // Add default headers and interceptors
 
       String language = LocalCubit.get(context).localizationThemeState ==
-              LocalizationThemeState.ar
+          LocalizationThemeState.ar
           ? "ar"
           : "en";
-var token=await      SecureToken.getToken();
-      _addDioHeaders(language: language,token:token );
+      var token=await      SecureToken.getToken();
+
+      _addDioHeaders(language: language,token: token);
       _addDioInterceptor();
     }
 
@@ -43,7 +46,7 @@ var token=await      SecureToken.getToken();
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer Token $token', //'Bearer your_token_here', // You can add a token dynamically if needed
+      'Bearer Token $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -63,16 +66,17 @@ var token=await      SecureToken.getToken();
   // Function to make GET requests
   Future<T> getRequest<T>(String url,
       {Map<String, dynamic>? queryParameters,
-      required BuildContext context}) async {
+        required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
+      getDio(context);
       final response =
-          await getDio(context).get(url, queryParameters: queryParameters);
+      await _dio!.get(url, queryParameters: queryParameters);
       if (response.statusCode != null) {
-        if (response.statusCode == 200 || response.statusCode == 201) {
+        if (response.statusCode == 200) {
           return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }
@@ -86,13 +90,15 @@ var token=await      SecureToken.getToken();
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio(context).post(url, data: body);
+      getDio(context);
+
+      final response = await _dio!.post(url, data: body);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }
@@ -106,17 +112,19 @@ var token=await      SecureToken.getToken();
   Future<T> putRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio(context).put(
+      getDio(context);
+
+      final response = await _dio!.put(
         url,
         data: json.encode(body), // Send the body as JSON
       );
 
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
-          return response;
+          return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }
@@ -130,13 +138,14 @@ var token=await      SecureToken.getToken();
   Future<T> deleteRequest<T>(String url,
       {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      final response = await getDio(context).delete(url);
+      getDio(context);
+      final response = await _dio!.delete(url);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
         } else {
           throw ServerException(
-            message: response,
+            message: response.toString(),
           );
         }
       }
