@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
 import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
 import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 
@@ -11,7 +12,7 @@ class ApiService {
   InternetConnectivity internetConnectivity;
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
-  getDio(context) {
+  getDio(context) async {
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -28,7 +29,8 @@ class ApiService {
               LocalizationThemeState.ar
           ? "ar"
           : "en";
-      _addDioHeaders(language: language);
+var token=await      SecureToken.getToken();
+      _addDioHeaders(language: language,token:token );
       _addDioInterceptor();
     }
 
