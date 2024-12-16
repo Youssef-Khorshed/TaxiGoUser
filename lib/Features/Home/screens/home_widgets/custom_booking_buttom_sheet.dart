@@ -7,6 +7,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_r
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomBookingButtomSheet extends StatelessWidget {
   const CustomBookingButtomSheet({super.key});
@@ -66,26 +67,27 @@ class CustomBookingButtomSheet extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: CustomAppBottom(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16.0),
-                        topRight: Radius.circular(16.0),
-                      ),
+              onPressed: () {
+                Navigator.of(context).pop();
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16.0),
+                      topRight: Radius.circular(16.0),
                     ),
-                    builder: (context) {
-                      return const CustomConfirmBooking();
-                    },
-                  );
-                },
-                buttonText: "Booking Now",
-                buttonColor: AppColors.blueColor,
-                hasIcon: false,
-                textColor: AppColors.whiteColor),
+                  ),
+                  builder: (context) {
+                    return const CustomConfirmBooking();
+                  },
+                );
+              },
+              buttonText: AppLocalizations.of(context)!.confirm,
+              buttonColor: AppColors.blueColor,
+              hasIcon: false,
+              textColor: AppColors.whiteColor,
+            ),
           )
         ],
       ),

@@ -6,6 +6,7 @@ import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'custom_booking_buttom_sheet.dart';
 import 'custom_change_address_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangeAddressButtomSheet extends StatelessWidget {
   const ChangeAddressButtomSheet({super.key});
@@ -36,12 +37,12 @@ class ChangeAddressButtomSheet extends StatelessWidget {
             ),
           ),
           AutoSizeText(
-            'Change address',
+            AppLocalizations.of(context)!.change_address,
             style: AppTextStyles.style18BlueBold,
           ),
           verticalSpace(15),
-          const CustomChangeAddressText(
-            title: "Current location",
+          CustomChangeAddressText(
+            title: AppLocalizations.of(context)!.current_location,
             subtitle: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
             iconColor: AppColors.redColor,
             distance: "",
@@ -63,7 +64,7 @@ class ChangeAddressButtomSheet extends StatelessWidget {
                 borderColor: AppColors.whiteColor,
                 hasIcon: false,
                 textColor: AppColors.redColor,
-                buttonText: 'Back',
+                buttonText: AppLocalizations.of(context)!.back,
               ),
               CustomAppBottom(
                   onPressed: () {
@@ -82,7 +83,7 @@ class ChangeAddressButtomSheet extends StatelessWidget {
                       },
                     );
                   },
-                  buttonText: "Done",
+                  buttonText: AppLocalizations.of(context)!.done,
                   borderColor: AppColors.blueColor,
                   hasIcon: false,
                   textColor: AppColors.whiteColor),

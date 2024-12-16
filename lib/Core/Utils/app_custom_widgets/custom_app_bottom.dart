@@ -43,10 +43,14 @@ class CustomAppBottom extends StatelessWidget {
               children: [
                 hasIcon != null
                     ? hasIcon!
-                        ? Icon(
-                            Icons.my_location_outlined,
-                            size: 20,
-                            color: iconColor,
+                        ? Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(
+                              Icons.my_location_outlined,
+                              size: 20,
+                              color: iconColor,
+                            ),
                           )
                         : const SizedBox.shrink()
                     : const SizedBox.shrink(),

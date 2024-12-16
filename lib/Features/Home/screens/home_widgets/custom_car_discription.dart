@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomCarDiscription extends StatelessWidget {
   const CustomCarDiscription({super.key});
@@ -18,7 +19,7 @@ class CustomCarDiscription extends StatelessWidget {
           size: 35,
         ),
         AutoSizeText(
-          "Car | Description",
+          "${AppLocalizations.of(context)!.car} | ${AppLocalizations.of(context)!.description}",
           style: AppTextStyles.style14GrayW500,
         )
       ],

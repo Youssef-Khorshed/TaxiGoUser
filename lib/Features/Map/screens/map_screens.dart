@@ -6,6 +6,7 @@ import '../../../Core/Utils/Colors/app_colors.dart';
 import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../Home/screens/home_widgets/custom_address_buttom_sheet.dart';
 import '../../Home/screens/home_widgets/custom_enable_location_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({super.key});
@@ -87,7 +88,8 @@ class MapScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          buttonText: 'Select Your Location',
+                          buttonText: AppLocalizations.of(context)!
+                              .select_your_location,
                           textColor: AppColors.whiteColor,
                         ),
                       ),

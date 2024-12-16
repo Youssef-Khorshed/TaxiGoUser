@@ -7,6 +7,7 @@ import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'custom_change_address_text.dart';
 import 'custom_rating_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomConfirmBooking extends StatelessWidget {
   const CustomConfirmBooking({super.key});
@@ -71,8 +72,8 @@ class CustomConfirmBooking extends StatelessWidget {
           ),
         ),
         verticalSpace(15),
-        const CustomChangeAddressText(
-          title: "Current location",
+        CustomChangeAddressText(
+          title: AppLocalizations.of(context)!.current_location,
           subtitle: "2972 Westheimer Rd. Santa Ana, Illinois 85486",
           iconColor: AppColors.redColor,
           distance: "",
@@ -92,12 +93,12 @@ class CustomConfirmBooking extends StatelessWidget {
             Column(
               children: [
                 AutoSizeText(
-                  "Distance",
+                  AppLocalizations.of(context)!.distance,
                   style: AppTextStyles.style16BlackW600,
                 ),
                 verticalSpace(2),
                 AutoSizeText(
-                  "50 Km",
+                  "50 ${AppLocalizations.of(context)!.km}",
                   style: AppTextStyles.style14BlackW500,
                 ),
               ],
@@ -105,12 +106,12 @@ class CustomConfirmBooking extends StatelessWidget {
             Column(
               children: [
                 AutoSizeText(
-                  "Time",
+                  AppLocalizations.of(context)!.time,
                   style: AppTextStyles.style16BlackW600,
                 ),
                 verticalSpace(2),
                 AutoSizeText(
-                  "10 min",
+                  "10 ${AppLocalizations.of(context)!.min}",
                   style: AppTextStyles.style14BlackW500,
                 ),
               ],
@@ -124,7 +125,7 @@ class CustomConfirmBooking extends StatelessWidget {
             children: [
               CustomAppBottom(
                   onPressed: () {},
-                  buttonText: "Back",
+                  buttonText: AppLocalizations.of(context)!.back,
                   buttonColor: AppColors.whiteColor,
                   hasIcon: false,
                   textColor: AppColors.redColor),
@@ -132,13 +133,14 @@ class CustomConfirmBooking extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pushNamed(AppRoutes.payment);
                   },
-                  buttonText: "Confirm",
+                  buttonText: AppLocalizations.of(context)!.confirm,
                   buttonColor: AppColors.blueColor,
                   hasIcon: false,
                   textColor: AppColors.whiteColor),
             ],
           ),
-        )
+        ),
+        verticalSpace(15),
       ],
     );
   }

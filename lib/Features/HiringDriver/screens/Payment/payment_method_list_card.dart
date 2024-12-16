@@ -15,11 +15,6 @@ class _PaymentMethodListState extends State<PaymentMethodList> {
   // Sample data for the payment methods
   final List<Map<String, String>> paymentMethods = [
     {
-      'title': '**** **** **** 8970',
-      'subtitle': 'Expires: 12/26',
-      'image': 'assets/images/zaincash.png'
-    },
-    {
       'title': 'My Wallet ',
       'subtitle': 'Online payments',
       'image': 'assets/images/paymentimg2.png'
@@ -41,12 +36,15 @@ class _PaymentMethodListState extends State<PaymentMethodList> {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: paymentMethods.length,
       itemBuilder: (context, index) {
-        return PaymentMethodCard(
-          image: Image.asset(paymentMethods[index]['image']!),
-          title: paymentMethods[index]['title']!,
-          subtitle: paymentMethods[index]['subtitle']!,
-          isSelected: _selectedIndex == index,
-          onSelected: (isSelected) => _handleSelection(index, isSelected),
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: PaymentMethodCard(
+            image: Image.asset(paymentMethods[index]['image']!),
+            title: paymentMethods[index]['title']!,
+            subtitle: paymentMethods[index]['subtitle']!,
+            isSelected: _selectedIndex == index,
+            onSelected: (isSelected) => _handleSelection(index, isSelected),
+          ),
         );
       },
     );

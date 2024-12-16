@@ -5,6 +5,7 @@ import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'change_address_buttom_sheet.dart';
 import 'custom_select_address_text_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddressBottomSheet extends StatelessWidget {
   const AddressBottomSheet({super.key});
@@ -35,18 +36,18 @@ class AddressBottomSheet extends StatelessWidget {
             ),
           ),
           AutoSizeText(
-            'Select address',
+            AppLocalizations.of(context)!.select_address,
             style: AppTextStyles.style18BlueBold,
           ),
-          const SelectAddressTextFormField(
-            labelText: "From",
+          SelectAddressTextFormField(
+            labelText: AppLocalizations.of(context)!.from,
             icon: Icon(Icons.location_searching_outlined),
             suffixIcon:
                 Icon(Icons.my_location_sharp, color: AppColors.redColor),
             isFrom: true,
           ),
-          const SelectAddressTextFormField(
-            labelText: "To",
+          SelectAddressTextFormField(
+            labelText: AppLocalizations.of(context)!.to,
             icon: Icon(
               Icons.location_on_outlined,
             ),
@@ -56,7 +57,7 @@ class AddressBottomSheet extends StatelessWidget {
             child: CustomAppBottom(
               buttonColor: AppColors.blueColor,
               textColor: AppColors.whiteColor,
-              buttonText: 'Continue',
+              buttonText: AppLocalizations.of(context)!.go,
               onPressed: () {
                 Navigator.of(context).pop();
                 showModalBottomSheet(

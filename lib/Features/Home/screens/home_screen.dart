@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import '../../../Core/Utils/Routing/app_routes.dart';
 import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,10 +33,10 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, AppRoutes.mapScreen);
                 },
-                buttonText: 'Where You Go ?',
+                buttonText: AppLocalizations.of(context)!.where_are_you_going,
                 textColor: AppColors.blackColor,
                 hasIcon: true,
-                borderCornerRadius:200 ,
+                borderCornerRadius: 200,
               ),
             )
           ],

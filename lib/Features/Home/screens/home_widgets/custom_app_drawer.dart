@@ -7,6 +7,7 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomAppDrawer extends StatefulWidget {
   final int selectedIndex;
@@ -62,7 +63,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Home',
+                    AppLocalizations.of(context)!.home,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -75,7 +76,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Trip History',
+                    AppLocalizations.of(context)!.trips_history,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -88,7 +89,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Trip Favorite',
+                    AppLocalizations.of(context)!.trip_favorites,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -101,7 +102,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Trip Saved',
+                    AppLocalizations.of(context)!.saved_Trips,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -114,7 +115,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Wallet',
+                    AppLocalizations.of(context)!.wallet,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -127,7 +128,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.redColor,
                   ),
                   title: Text(
-                    'Logout',
+                    AppLocalizations.of(context)!.log_out,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.redColor),
                   ),

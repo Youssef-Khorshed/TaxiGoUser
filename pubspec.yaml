@@ -56,3 +56,11 @@ flutter_launcher_icons:
   remove_alpha: true
   adaptive_icon_background: "#1D1AD8"
   adaptive_icon_foreground: "assets/icons/taxi_go_icon.jpg"
+fonts:
+  - family: Cairo
+    fonts:
+      - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
+
+  - family: Amiri
+    fonts:
+      - asset: assets/fonts/Amiri.ttf

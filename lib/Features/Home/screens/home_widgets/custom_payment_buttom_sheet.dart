@@ -6,6 +6,7 @@ import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../../HiringDriver/screens/Payment/payment_method_list_card.dart';
 import 'custom_code_text_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PaymentButtomSheet extends StatelessWidget {
   const PaymentButtomSheet({super.key});
@@ -35,7 +36,7 @@ class PaymentButtomSheet extends StatelessWidget {
             ),
           ),
           AutoSizeText(
-            'Change Address',
+            AppLocalizations.of(context)!.change_address,
             style: AppTextStyles.style18BlueBold,
           ),
           const Padding(
@@ -45,8 +46,9 @@ class PaymentButtomSheet extends StatelessWidget {
               height: .7,
             ),
           ),
-          const AutoSizeText(
-            "If You have promo code you can get a Discount",
+          AutoSizeText(
+            AppLocalizations.of(context)!
+                .if_you_have_promo_code_you_can_get_a__discount,
           ),
           const CodeTextField(),
           const PaymentMethodList(),
@@ -54,7 +56,7 @@ class PaymentButtomSheet extends StatelessWidget {
             children: [
               CustomAppBottom(
                   onPressed: () {},
-                  buttonText: "back",
+                  buttonText: AppLocalizations.of(context)!.back,
                   buttonColor: AppColors.whiteColor,
                   hasIcon: false,
                   textColor: AppColors.redColor),
@@ -75,7 +77,7 @@ class PaymentButtomSheet extends StatelessWidget {
                       },
                     );
                   },
-                  buttonText: "done",
+                  buttonText: AppLocalizations.of(context)!.done,
                   buttonColor: AppColors.blueColor,
                   hasIcon: false,
                   textColor: AppColors.whiteColor),
