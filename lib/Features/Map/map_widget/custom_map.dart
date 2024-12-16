@@ -13,7 +13,7 @@ class _CustomMapState extends State<CustomMap> {
   late String mapStyle;
   @override
   void initState() {
-    initalStyle();
+    // initalStyle();
     super.initState();
   }
 

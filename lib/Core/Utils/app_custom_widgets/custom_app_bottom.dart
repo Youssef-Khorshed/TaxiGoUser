@@ -26,8 +26,7 @@ class CustomAppBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
+    return Expanded(
       child: InkWell(
         onTap: onPressed,
         child: Padding(
