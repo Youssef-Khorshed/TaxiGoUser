@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SelectAddressTextFormField extends StatelessWidget {
   final String labelText;
@@ -11,14 +11,14 @@ class SelectAddressTextFormField extends StatelessWidget {
       required this.labelText,
       required this.icon,
       this.isFrom = false,
-       this.suffixIcon});
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 12,
+      padding: EdgeInsets.symmetric(
+        horizontal: 8.w,
+        vertical: 12.h,
       ),
       child: TextFormField(
         decoration: InputDecoration(
@@ -26,7 +26,7 @@ class SelectAddressTextFormField extends StatelessWidget {
           prefixIcon: icon,
           labelText: labelText,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0.r),
           ),
         ),
       ),

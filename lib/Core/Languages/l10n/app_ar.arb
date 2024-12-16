@@ -41,8 +41,14 @@
     "i_want_to_change_details": "أريد تغيير تفاصيل هذه الرحلة.",
     "driver_took_too_long": "السائق استغرق وقتًا طويلًا لتحديد الرحلة.",
     "other": "آخر",
-    "send": "إرسال","cancel_booking": "الغاء الرحله",
-    "if_you_have_promo_code_you_can_get_a__discount": "اذا كان لديك كود خصم يمكنك الحصول على خصم"
+    "send":"إرسال","cancel_booking": "الغاء الرحله",
+    "if_you_have_promo_code_you_can_get_a_discount": "اذا كان لديك كود خصم يمكنك الحصول على خصم",
+    "rate_your_trip":"قيم رحلتك",
+    "how_is_your_trip":"كيف هي رحلتك؟",
+    "write_your_feedback":"اكتب تعليقك",
+    "submit":"حفظ",
+    "my_wallet":"محفظتي",
+    "online_payment":"الدفع عبر الانترنت"
 
 
 

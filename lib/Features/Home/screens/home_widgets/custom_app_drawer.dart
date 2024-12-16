@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
@@ -43,8 +44,8 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const CircleAvatar(
-                      radius: 40,
+                    CircleAvatar(
+                      radius: 40.r,
                       backgroundImage: AssetImage(AppIcons.appIcon),
                     ),
                     verticalSpace(10),

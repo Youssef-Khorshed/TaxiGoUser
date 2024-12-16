@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
@@ -11,8 +12,8 @@ class CodeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 5,
+      padding: EdgeInsets.symmetric(
+        horizontal: 5.h,
       ),
       child: Row(
         children: [
@@ -23,8 +24,8 @@ class CodeTextField extends StatelessWidget {
                 hintText: AppLocalizations.of(context)!.write_a_code,
               )),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
+            padding: EdgeInsets.symmetric(
+              vertical: 10.h,
             ),
             child: CustomAppBottom(
               onPressed: () {},

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
@@ -13,10 +14,10 @@ class CustomCarDiscription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Icon(
+        Icon(
           Icons.car_repair,
           color: AppColors.darkgrayColor,
-          size: 35,
+          size: 35.r,
         ),
         AutoSizeText(
           "${AppLocalizations.of(context)!.car} | ${AppLocalizations.of(context)!.description}",

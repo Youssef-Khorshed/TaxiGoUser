@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -65,7 +66,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
         children: [
           verticalSpace(10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -80,8 +81,8 @@ class _GeneralScreenState extends State<GeneralScreen> {
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.profile);
                   },
-                  child: const CircleAvatar(
-                    radius: 18,
+                  child: CircleAvatar(
+                    radius: 18.r,
                     backgroundImage: AssetImage(AppIcons.appIcon),
                   ),
                 )

@@ -42,6 +42,12 @@
     "driver_took_too_long": "The driver took too long to be appointed.",
     "other": "Other",
     "send": "Send","cancel_booking": "Cancel Booking",
-    "if_you_have_promo_code_you_can_get_a__discount": "If you have a promo code you can get a discount."
+    "if_you_have_promo_code_you_can_get_a_discount": "If you have a promo code you can get a discount.",
+    "rate_your_trip":"Rate your trip",
+    "how_is_your_trip":"How is your trip?",
+    "write_your_feedback":"Write your feedback",
+    "submit":"Submit",
+    "my_wallet":"My Wallet",
+    "online_payment":"Online Payment"
 
 }

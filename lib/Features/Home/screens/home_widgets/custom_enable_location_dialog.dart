@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
@@ -21,16 +22,16 @@ class EnableLocationDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       title: Column(
         children: [
-          const CircleAvatar(
-            radius: 30,
+          CircleAvatar(
+            radius: 30.w,
             backgroundColor: AppColors.blueColor,
             child: Icon(
               Icons.location_on,
               color: AppColors.whiteColor,
-              size: 30,
+              size: 30.r,
             ),
           ),
-          verticalSpace(10),
+          verticalSpace(10.h),
           Text(
             AppLocalizations.of(context)!.enable_location,
             style: AppTextStyles.style18BlackW600,
@@ -49,9 +50,9 @@ class EnableLocationDialog extends StatelessWidget {
           onPressed: onUseMyLocationPressed,
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.blueColor,
-            minimumSize: const Size(double.infinity, 48),
+            minimumSize: Size(double.infinity, 48.h),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(8.0.r),
             ),
           ),
           child: Text(
