@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -13,6 +14,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_a
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});
@@ -34,14 +36,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
   ];
 
   // Corrected screen names to match the number of screens
-  List<String> screensName = const [
-    "Home",
-    "Trip History",
-    "Trip Favourite",
-    "Trip Saved",
-    "Wallet",
-    "Logout",
-  ];
+
   void onItemTap(int index) {
     setState(() {
       selctedIndex = index;
@@ -51,6 +46,14 @@ class _GeneralScreenState extends State<GeneralScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> screensName = [
+      AppLocalizations.of(context)!.home,
+      "Trip History",
+      "Trip Favourite",
+      "Trip Saved",
+      "Wallet",
+      "Logout",
+    ];
     return SafeArea(
         child: Scaffold(
       backgroundColor: AppColors.blueColor,
@@ -63,7 +66,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
         children: [
           verticalSpace(10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -78,8 +81,8 @@ class _GeneralScreenState extends State<GeneralScreen> {
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.profile);
                   },
-                  child: const CircleAvatar(
-                    radius: 18,
+                  child: CircleAvatar(
+                    radius: 18.r,
                     backgroundImage: AssetImage(AppIcons.appIcon),
                   ),
                 )

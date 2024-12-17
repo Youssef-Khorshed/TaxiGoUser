@@ -9,7 +9,7 @@ part 'local_state.dart';
 class LocalCubit extends Cubit<LocalState> {
   LocalCubit() : super(LocalInitial(const Locale('ar')));
   static LocalCubit get(context) => BlocProvider.of(context);
-  LocalizationThemeState localizationThemeState = LocalizationThemeState.en;
+  LocalizationThemeState localizationThemeState = LocalizationThemeState.ar;
   Locale localization = const Locale("ar");
 
   Connectivity connectivity = Connectivity();

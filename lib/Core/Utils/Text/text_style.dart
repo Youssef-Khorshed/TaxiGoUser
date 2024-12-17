@@ -22,7 +22,7 @@ abstract class AppTextStyles {
     fontSize: 24,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: "Amiri",
     height: 0,
   );
 

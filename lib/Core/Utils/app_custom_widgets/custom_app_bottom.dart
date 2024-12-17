@@ -26,8 +26,7 @@ class CustomAppBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
+    return Expanded(
       child: InkWell(
         onTap: onPressed,
         child: Padding(
@@ -44,10 +43,14 @@ class CustomAppBottom extends StatelessWidget {
               children: [
                 hasIcon != null
                     ? hasIcon!
-                        ? Icon(
-                            Icons.my_location_outlined,
-                            size: 20,
-                            color: iconColor,
+                        ? Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(
+                              Icons.my_location_outlined,
+                              size: 20,
+                              color: iconColor,
+                            ),
                           )
                         : const SizedBox.shrink()
                     : const SizedBox.shrink(),
