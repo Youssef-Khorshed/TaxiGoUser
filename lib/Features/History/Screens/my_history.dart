@@ -4,8 +4,6 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_details_filter_dropdown.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 
-import '../../../Core/Utils/Text/text_style.dart';
-
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 

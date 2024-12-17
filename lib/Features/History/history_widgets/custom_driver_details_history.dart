@@ -2,16 +2,17 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomDriverdetailsHistory extends StatelessWidget {
   const CustomDriverdetailsHistory({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _buildDriverDetails();
+    return _buildDriverDetails(context);
   }
 
-  Widget _buildDriverDetails() {
+  Widget _buildDriverDetails(BuildContext context) {
     return ListTile(
       leading: const CircleAvatar(
         backgroundColor: AppColors.grayColor,
@@ -32,15 +33,15 @@ class CustomDriverdetailsHistory extends StatelessWidget {
           ),
         ],
       ),
-      trailing: _buildPrice(),
+      trailing: _buildPrice(context),
     );
   }
 
-  Widget _buildPrice() {
+  Widget _buildPrice(BuildContext context) {
     return Column(
       children: [
         AutoSizeText(
-          'Price',
+          AppLocalizations.of(context)!.price,
           style: AppTextStyles.style14DarkgrayW500,
         ),
         AutoSizeText(
