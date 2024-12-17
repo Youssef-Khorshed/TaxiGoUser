@@ -15,7 +15,6 @@ class MapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<MapsCubit>();
     return Scaffold(
         body: Stack(children: [
       ClipRRect(
@@ -68,7 +67,7 @@ class MapScreen extends StatelessWidget {
                       builder: (context) => EnableLocationDialog(
                         onUseMyLocationPressed: () {
                           Navigator.of(context).pop();
-                          cubit.getUserLocation(title: 'origin');
+                          // cubit.getUserLocation(title: 'origin');
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
@@ -79,9 +78,7 @@ class MapScreen extends StatelessWidget {
                               ),
                             ),
                             builder: (context) {
-                              return AddressBottomSheet(
-                                mapsCubit: cubit,
-                              );
+                              return AddressBottomSheet();
                             },
                           );
                         },

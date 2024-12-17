@@ -3,24 +3,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_getplaceaddress.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_searchlist.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_showAddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import 'change_address_buttom_sheet.dart';
 import 'custom_select_address_text_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class AddressBottomSheet extends StatelessWidget {
-  MapsCubit mapsCubit;
-  AddressBottomSheet({super.key, required this.mapsCubit});
+// ignore: must_be_immutable
+class AddressBottomSheet extends StatefulWidget {
+  AddressBottomSheet({
+    super.key,
+  });
+
+  @override
+  State<AddressBottomSheet> createState() => _AddressBottomSheetState();
+}
+
+class _AddressBottomSheetState extends State<AddressBottomSheet> {
+  TextEditingController sourceController = TextEditingController();
+
+  TextEditingController destinationController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final mapsCubit = context.read<MapsCubit>();
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.0.r),
       decoration: BoxDecoration(
-        color: AppColors.ligterBlueColor,
+        color: AppColors.whiteColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16.0.r),
           topRight: Radius.circular(16.0.r),
@@ -44,18 +63,27 @@ class AddressBottomSheet extends StatelessWidget {
             style: AppTextStyles.style18BlueBold,
           ),
           SelectAddressTextFormField(
-            labelText: AppLocalizations.of(context)!.from,
-            icon: const Icon(Icons.location_searching_outlined),
-            suffixIcon:
-                const Icon(Icons.my_location_sharp, color: AppColors.redColor),
-            isFrom: true,
+            textStyle: AppTextStyles.style16DarkgrayW500,
+            hinttextStyle: AppTextStyles.style16DarkgrayW500,
+            onChanged: (value) {},
+            controller: sourceController,
+            hint: AppLocalizations.of(context)!.from,
+            prefixicon: const Icon(Icons.location_searching_outlined),
+            suffixicon: IconButton(
+                onPressed: () async {
+                  await mapsCubit.getUserLocation(title: 'title');
+                  final address = await getAddressFromLatLng(
+                      mapsCubit.orginPosition!.lat!,
+                      mapsCubit.orginPosition!.lat!);
+                  sourceController.text = address;
+                  setState(() {});
+                },
+                icon: const Icon(Icons.my_location_sharp,
+                    color: AppColors.redColor)),
           ),
-          SelectAddressTextFormField(
-            labelText: AppLocalizations.of(context)!.to,
-            icon: const Icon(
-              Icons.location_on_outlined,
-            ),
-          ),
+          verticalSpace(20.h),
+          CustomSearchlist(),
+          verticalSpace(20.h),
           SizedBox(
             width: double.infinity,
             child: CustomAppBottom(
@@ -63,20 +91,9 @@ class AddressBottomSheet extends StatelessWidget {
               textColor: AppColors.whiteColor,
               buttonText: AppLocalizations.of(context)!.go,
               onPressed: () {
+                // ignore: use_build_context_synchronously
                 Navigator.of(context).pop();
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.0.r),
-                      topRight: Radius.circular(16.0.r),
-                    ),
-                  ),
-                  builder: (context) {
-                    return const ChangeAddressButtomSheet();
-                  },
-                );
+                showAddressBottomSheet(context);
               },
               hasIcon: false,
             ),

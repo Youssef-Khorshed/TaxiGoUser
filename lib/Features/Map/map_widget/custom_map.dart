@@ -35,13 +35,14 @@ class _CustomMapState extends State<CustomMap> {
             //         //     placeId: 'ChIJ8aukkz5NtokRLAHB24Ym9dc',
             //         //     sessionToken: 'sessionToken',
             //         //     context: context);
-            //         // context
-            //         //     .read<MapsCubit>()
-            //         //     .getUserLocation(title: 'origin');
-            //         // .emitPlaceSuggestions(
-            //         //     searchQuery: 'alex',
-            //         //     sessionToken: 'sessionToken',
-            //         //     context: context);
+            //         context
+            //             .read<MapsCubit>()
+            //             //      .getUserLocation(title: 'origin');
+            //             .emitPlaceSuggestions(
+            //                 searchQuery: 'alex',
+            //                 sessionToken: 'sessionToken',
+            //                 context: context);
+
             //       },
             //       child: Text('data'),
             //     ))
@@ -73,7 +74,6 @@ class _CustomMapState extends State<CustomMap> {
 
   @override
   void dispose() {
-    context.read<MapsCubit>().mapController.dispose();
     super.dispose();
   }
 }

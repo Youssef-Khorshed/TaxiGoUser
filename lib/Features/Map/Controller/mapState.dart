@@ -26,6 +26,8 @@ class PlacesLoaded extends MapsState {
 
 class CancelRideLoading extends MapsState {}
 
+class ConvertToAddressSuccess extends MapsState {}
+
 class CancelRideFail extends MapsState {}
 
 class CancelRideSuccess extends MapsState {}

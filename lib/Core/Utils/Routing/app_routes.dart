@@ -17,15 +17,12 @@ import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payme
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Rating/rate.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart'
-    as get_it;
 
 class AppRoutes {
   static const String splash = '/';
@@ -158,10 +155,7 @@ class AppRoutes {
       case mapScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            return BlocProvider(
-              create: (context) => get_it.getIt<MapsCubit>(),
-              child: const MapScreen(),
-            );
+            return const MapScreen();
           },
         );
 

@@ -10,6 +10,7 @@ import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/prediction.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:geocoding/geocoding.dart';
 
 class MapsCubit extends Cubit<MapsState> {
   final MapRepo mapsRepository;
@@ -22,6 +23,7 @@ class MapsCubit extends Cubit<MapsState> {
   late CameraPosition placeCameraPosition;
   LocationPosition? orginPosition;
   late LocationPosition destinationostion;
+  Timer? _debounce;
   LocationService locationService = LocationService();
   late String destinationInfo;
 
@@ -33,7 +35,7 @@ class MapsCubit extends Cubit<MapsState> {
   MapsCubit({required this.mapsRepository}) : super(MapsInitial());
 
   /// get user location
-  getUserLocation({required String title}) async {
+  Future<void> getUserLocation({required String title}) async {
     final userLocation = await locationService.getuserLocation();
     orginPosition = LocationPosition(
       lat: userLocation.latitude,
@@ -52,6 +54,10 @@ class MapsCubit extends Cubit<MapsState> {
   /// start updating user location
   getUserUpdatedLocation({required String title}) async {
     await locationService.updateUserLocation((LocationData userlocation) {
+      orginPosition = LocationPosition(
+        lat: userlocation.latitude,
+        lng: userlocation.longitude,
+      );
       emit(UpdateOriginLocatoin());
       buildmarker(
         title: title,
@@ -71,25 +77,27 @@ class MapsCubit extends Cubit<MapsState> {
   }
 
   /// get place suggestions
-  Future<void> emitPlaceSuggestions(
-      {required String searchQuery,
-      required String sessionToken,
-      required BuildContext context}) async {
+  Future<void> emitPlaceSuggestions({
+    required String searchQuery,
+    required String sessionToken,
+    required BuildContext context,
+  }) async {
+    _debounce?.cancel();
     emit(PlacesLoading());
-
-    Timer(const Duration(seconds: 2), () async {
-      emit(PlacesLoading());
-      predictions.clear();
+    _debounce = Timer(const Duration(milliseconds: 500), () async {
       final response = await mapsRepository.fetchSuggestions(
-          context: context,
-          searchQuery: searchQuery,
-          sessionToken: sessionToken);
-      response
-          .fold((onError) => emit(PlacesFailLoaded(message: onError.message)),
-              (onSuccess) {
-        predictions = onSuccess.predictions!;
-        emit(PlacesLoaded(predictions));
-      });
+        context: context,
+        searchQuery: searchQuery,
+        sessionToken: sessionToken,
+      );
+      response.fold(
+        (error) => emit(PlacesFailLoaded(message: error.message)),
+        (onSuccess) {
+          predictions.clear();
+          predictions.addAll(onSuccess.predictions ?? []);
+          emit(PlacesLoaded(predictions));
+        },
+      );
     });
   }
 

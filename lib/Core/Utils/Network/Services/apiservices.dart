@@ -22,17 +22,16 @@ class ApiService {
       _dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
-
-      // Add default headers and interceptors
-
-      String language = LocalCubit.get(context).localizationThemeState ==
-              LocalizationThemeState.ar
-          ? "ar"
-          : "en";
-      var token = await SecureToken.getToken();
-      _addDioHeaders(language: language, token: token);
       _addDioInterceptor();
     }
+    // Add default headers and interceptors
+
+    String language = LocalCubit.get(context).localizationThemeState ==
+            LocalizationThemeState.ar
+        ? "ar"
+        : "en";
+    var token = await SecureToken.getToken();
+    _addDioHeaders(language: language, token: token);
 
     return _dio!;
   }
@@ -43,7 +42,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer Token $token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
