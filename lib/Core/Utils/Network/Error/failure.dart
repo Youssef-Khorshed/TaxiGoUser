@@ -34,7 +34,7 @@ class ServerFailure extends Failure {
   }
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (response['error']['message'] != null) {
-      return ServerFailure(message: response['error']['message']);
+      return ServerFailure(message: response['error']);
     } else {
       switch (statusCode) {
         case 200 || 201:

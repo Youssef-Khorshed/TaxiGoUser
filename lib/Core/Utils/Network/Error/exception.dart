@@ -19,6 +19,7 @@ class NoInternetException implements Exception {
   final String message;
   NoInternetException({required this.message});
 }
+
 class ServiceException implements Exception {
   final String message;
   ServiceException({required this.message});

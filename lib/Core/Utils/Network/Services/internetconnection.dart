@@ -2,9 +2,12 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 abstract class InternetConnectivity {
+  InternetConnectivity({required InternetConnectivity});
+
   Future<bool> get isConnected;
   Stream<List<ConnectivityResult>> get onConnectivityChanged;
 }
+
 class MobileConnectivity implements InternetConnectivity {
   Connectivity connectivity;
   MobileConnectivity({required this.connectivity});

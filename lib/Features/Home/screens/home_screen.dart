@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                 buttonText: 'Where You Go ?',
                 textColor: AppColors.blackColor,
                 hasIcon: true,
-                borderCornerRadius:200 ,
+                borderCornerRadius: 200,
               ),
             )
           ],

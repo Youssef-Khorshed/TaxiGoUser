@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
@@ -16,12 +17,15 @@ import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payme
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Rating/rate.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/dependencyInjection.dart'
+    as db;
 
 class AppRoutes {
   static const String splash = '/';
@@ -154,7 +158,10 @@ class AppRoutes {
       case mapScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            return const MapScreen();
+            return BlocProvider(
+              create: (context) => db.sl<MapsCubit>(),
+              child: const MapScreen(),
+            );
           },
         );
 

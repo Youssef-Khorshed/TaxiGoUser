@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class SelectAddressTextFormField extends StatelessWidget {
   final String labelText;
   final Widget? icon, suffixIcon;
@@ -11,7 +10,7 @@ class SelectAddressTextFormField extends StatelessWidget {
       required this.labelText,
       required this.icon,
       this.isFrom = false,
-       this.suffixIcon});
+      this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {
