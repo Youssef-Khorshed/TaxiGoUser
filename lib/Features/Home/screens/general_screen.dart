@@ -49,7 +49,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
       "Home",
       AppLocalizations.of(context)!.trip_history,
       AppLocalizations.of(context)!.trip_favorite,
-      AppLocalizations.of(context)!.trip_favorite,
+      AppLocalizations.of(context)!.trip_saved,
       "Wallet",
       "Logout",
     ];

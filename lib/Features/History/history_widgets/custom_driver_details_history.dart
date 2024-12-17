@@ -46,7 +46,7 @@ class CustomDriverdetailsHistory extends StatelessWidget {
           style: AppTextStyles.style14DarkgrayW500,
         ),
         AutoSizeText(
-          '\$ 9.30',
+          'IQD 9.30',
           style: AppTextStyles.style14BlackW500,
         ),
       ],

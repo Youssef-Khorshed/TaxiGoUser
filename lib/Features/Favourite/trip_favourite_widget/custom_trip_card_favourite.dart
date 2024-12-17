@@ -42,12 +42,12 @@ class FavouriteCard extends StatelessWidget {
             ],
           ),
         ),
-        const Positioned(
+        Positioned(
           top: 5,
           right: 1,
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(
+          child: IconButton(
+            onPressed: () {},
+            icon: const Icon(
               size: 30,
               Icons.star_rate_rounded,
               color: AppColors.yellowColor,

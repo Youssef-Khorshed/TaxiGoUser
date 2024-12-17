@@ -70,7 +70,7 @@ class CustomBuildTripDetails extends StatelessWidget {
                           ),
                         ],
                       ),
-                      verticalSpace(10.h),
+                      verticalSpace(10),
                       Row(
                         children: [
                           AutoSizeText(
@@ -84,6 +84,7 @@ class CustomBuildTripDetails extends StatelessWidget {
                           ),
                         ],
                       ),
+                      verticalSpace(5),
                     ],
                   ),
                 ),
