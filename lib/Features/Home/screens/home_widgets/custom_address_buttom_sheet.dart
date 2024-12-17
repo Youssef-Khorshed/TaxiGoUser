@@ -14,7 +14,7 @@ class AddressBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(16.0.r),
       decoration: BoxDecoration(
         color: AppColors.ligterBlueColor,

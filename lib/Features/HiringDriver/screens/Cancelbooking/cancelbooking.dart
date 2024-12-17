@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cnacelBooking_widget/custom_cancelbody_cancel.dart';
 
@@ -41,12 +42,14 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(),
-          CircleAvatar(
-            radius: 50.r,
-            backgroundImage: AssetImage(AppIcons.appIcon),
+          Expanded(
+            child: Center(
+              child: CircleAvatar(
+                radius: 100.r,
+                backgroundImage: AssetImage(AppIcons.appIcon),
+              ),
+            ),
           ),
-          const Spacer(),
           const CustomCancelbodyCancel()
         ],
       ),

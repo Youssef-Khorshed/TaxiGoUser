@@ -21,7 +21,8 @@ class MapScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Stack(children: [
-                  const CustomMap(),
+                  // const CustomMap(),
+                  Container(),
                   Positioned(
                     top: 60,
                     //  right: 300,
