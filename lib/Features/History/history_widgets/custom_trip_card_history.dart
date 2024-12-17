@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
@@ -32,7 +33,7 @@ class TripCard extends StatelessWidget {
           shadowColor: AppColors.blackColor,
           color: AppColors.whiteColor,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
           child: Column(
             children: [
               Container(

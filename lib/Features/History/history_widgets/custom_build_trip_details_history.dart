@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -20,7 +21,10 @@ class CustomBuildTripDetails extends StatelessWidget {
       children: [
         Container(
             padding: EdgeInsets.only(
-                top: hasIcon ? 50 : 10, bottom: 5, right: 10, left: 10),
+                top: hasIcon ? 50.h : 10.h,
+                bottom: 5.h,
+                right: 10.w,
+                left: 10.w),
             color: AppColors.whiteColor2,
             child: Row(
               children: [
@@ -66,7 +70,7 @@ class CustomBuildTripDetails extends StatelessWidget {
                           ),
                         ],
                       ),
-                      verticalSpace(10),
+                      verticalSpace(10.h),
                       Row(
                         children: [
                           AutoSizeText(

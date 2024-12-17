@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_details_filter_dropdown.dart';
@@ -10,12 +11,12 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
         decoration: BoxDecoration(
             color: AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(20)),
+            borderRadius: BorderRadius.circular(20.r)),
         child: Column(
           children: [
             const Row(
@@ -23,7 +24,7 @@ class HistoryScreen extends StatelessWidget {
                 Expanded(child: CustomDetailsfilterdropdown()),
               ],
             ),
-            verticalSpace(16),
+            verticalSpace(16.h),
             Expanded(
               child: ListView(
                 children: const [
