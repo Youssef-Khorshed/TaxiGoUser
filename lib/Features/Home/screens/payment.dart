@@ -1,18 +1,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/location_details.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_buildrowdetail_hiring.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment_method_list_card.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/trip_details.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/location_details.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});

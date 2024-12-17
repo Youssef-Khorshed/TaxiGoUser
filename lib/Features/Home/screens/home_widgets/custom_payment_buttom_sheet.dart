@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payment_method_list_card.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import '../../../HiringDriver/screens/Payment/payment_method_list_card.dart';
 import 'custom_code_text_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

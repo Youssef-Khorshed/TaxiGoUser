@@ -7,6 +7,7 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_buildrowdetail_hiring.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/location_details.dart';
 
 class RateScreen extends StatelessWidget {
   const RateScreen({super.key});
@@ -74,6 +75,10 @@ class RateScreen extends StatelessWidget {
                       ),
                       verticalSpace(10.h),
                       // Feedback Box
+                      AutoSizeText(
+                        '${AppLocalizations.of(context)!.write_your_feedback} :',
+                        style: AppTextStyles.style16BlackW600,
+                      ),
                       TextField(
                         maxLines: 3,
                         decoration: InputDecoration(
@@ -91,63 +96,9 @@ class RateScreen extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AutoSizeText(
-                            '${AppLocalizations.of(context)!.write_your_feedback} :',
-                            style: AppTextStyles.style16BlackW600,
-                          ),
-                          verticalSpace(10.h),
                           // Location section
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  const Icon(Icons.location_pin,
-                                      color: Colors.red),
-                                  Container(
-                                    height: size.height * 0.06,
-                                  ),
-                                  const Icon(Icons.location_pin,
-                                      color: Colors.blue),
-                                ],
-                              ),
-                              verticalSpace(size.width * 0.01),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    AutoSizeText(
-                                      AppLocalizations.of(context)!
-                                          .current_location,
-                                      style: AppTextStyles.style16DarkgrayW500,
-                                    ),
-                                    AutoSizeText(
-                                      '2972 Westheimer Rd. Santa Ana, Illinois 85486',
-                                      style: AppTextStyles.style14GrayW500,
-                                    ),
-                                    verticalSpace(size.height * 0.02),
-                                    AutoSizeText(
-                                      'Office',
-                                      style: AppTextStyles.style16DarkgrayW500,
-                                    ),
-                                    Row(
-                                      children: [
-                                        AutoSizeText(
-                                          '1901 Thornridge Cir. Shiloh, Hawaii 81063',
-                                          style: AppTextStyles.style14GrayW500,
-                                        ),
-                                        const Spacer(),
-                                        AutoSizeText(
-                                          '1.1km',
-                                          style: AppTextStyles.style14GrayW500,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                          SizedBox(child: LocationDetails()),
+
                           verticalSpace(size.height * 0.005),
                           AutoSizeText(
                             AppLocalizations.of(context)!.payment_details,
