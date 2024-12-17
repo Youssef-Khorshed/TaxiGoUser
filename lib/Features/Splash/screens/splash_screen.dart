@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   navigateToHome() {
     Future.delayed(const Duration(seconds: 5), () {
       // ignore: use_build_context_synchronously
-      Navigator.pushReplacementNamed(context, AppRoutes.generalScreen);
+      Navigator.pushReplacementNamed(context, AppRoutes.chat);
     });
   }
 }

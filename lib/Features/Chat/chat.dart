@@ -1,10 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Chat/chat_widgets/custom_message_input_bar_chat.dart';
-import 'package:taxi_go_user_version/Features/Chat/chat_widgets/custom_user_message_chat.dart';
-import 'package:taxi_go_user_version/Features/Chat/chat_widgets/locationmessage.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimation.dart';
+import 'model_view/chat_widgets/custom_message_input_bar_chat.dart';
+import 'model_view/chat_widgets/custom_user_message_chat.dart';
+import 'model_view/chat_widgets/locationmessage.dart';
 
 class ChatScreen extends StatelessWidget {
   final TextEditingController _messageController = TextEditingController();
@@ -18,64 +19,103 @@ class ChatScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: AutoSizeText(
-          'Chat Screen',
-          style: AppTextStyles.style20WhiteW600,
-        ),
-        backgroundColor: AppColors.blueColor,
-        centerTitle: true,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Icon(
-            Icons.arrow_back,
-            color: AppColors.whiteColor,
+        backgroundColor:            Colors.white,
+
+        title:             Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(0.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: AppColors.blackColor,
+                ),
+              ),
+              SizedBox(width: 5.w), // Add spacing
+
+              Container(
+                width: 40.w,
+                height: 40.h,
+                decoration: const BoxDecoration(
+                  color: Color(0xff969696),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      "https://firebasestorage.googleapis.com/v0/b/alexu-a9210.appspot.com/o/Vector%20(1).png?alt=media&token=e4d896a0-ec30-4944-b798-8ce0845d0bdb",
+                    ),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              SizedBox(width: 10.w), // Add spacing
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "captain_name",
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "Active Now",
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
+
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            // Wrap the ListView in an Expanded or SingleChildScrollView
+            // Custom App Bar
+
+            // Chat Messages
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // Your Chat Messages
+                    // Chat Messages (Sample Messages)
                     UserMessage(
-                      message: "Where is your location ?",
+                      message: "Where is your location?",
                       isSentByUser: false,
-                      widthFactor: screenWidth * 0.7,
+                      widthFactor: screenWidth * 0.9,
+                    ),
+                    UserMessage(
+                      message: "I am here!",
+                      isSentByUser: true,
+                      widthFactor: screenWidth * 0.9,
                     ),
                     LocationMessage(
                       latitude: 25.276987,
                       longitude: 55.296249,
                       widthFactor: screenWidth * 0.7,
                       heightFactor: screenHeight * 0.2,
-                      message: "It's my location now",
+                      message: "This is my location now.",
                       isSentByUser: true,
                     ),
-                    // You can add more messages here
                   ],
                 ),
               ),
             ),
 
-            // The Message Input Bar
+            // Message Input Bar
             MessageInputBar(
-              messageController: _messageController,
-              onSendText: (message) {
-                // Handle text message send
-                debugPrint("Text Message: $message");
-                _messageController.clear();
-              },
-              onSendLocation: () {
-                // Handle location message send
-                debugPrint("Send Location");
-              },
+
             ),
           ],
         ),
