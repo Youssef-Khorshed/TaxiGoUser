@@ -13,10 +13,11 @@ import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_scree
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Rating/rate.dart';
+
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/rate.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
