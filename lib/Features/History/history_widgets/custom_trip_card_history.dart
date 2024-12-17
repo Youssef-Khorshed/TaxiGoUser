@@ -33,12 +33,30 @@ class TripCard extends StatelessWidget {
           color: AppColors.whiteColor,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          child: const Row(
+          child: Column(
             children: [
-              Expanded(
-                  child: CustomBuildTripDetails(
+              Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.whiteColor2,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.star,
+                        color: AppColors.amberColor,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.bookmark))
+                  ],
+                ),
+              ),
+              const CustomBuildTripDetails(
                 hasIcon: false,
-              )),
+              ),
             ],
           ),
         ),
