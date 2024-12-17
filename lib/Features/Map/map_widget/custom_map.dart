@@ -12,7 +12,6 @@ class CustomMap extends StatefulWidget {
 }
 
 class _CustomMapState extends State<CustomMap> {
-  late GoogleMapController mapcontroller;
   // late String mapStyle;
   @override
   void initState() {
@@ -23,35 +22,44 @@ class _CustomMapState extends State<CustomMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        buildMap(),
-        Positioned(
-            top: 50,
-            child: BlocBuilder<MapsCubit, MapsState>(
-              builder: (context, state) {
-                return ElevatedButton(
-                  onPressed: () {
-                    context.read<MapsCubit>().emitPlaceSuggestions(
-                        searchQuery: 'alex',
-                        sessionToken: 'sessionToken',
-                        context: context);
-                  },
-                  child: Text('data'),
-                );
-              },
-            ))
-      ],
+    return BlocBuilder<MapsCubit, MapsState>(
+      builder: (context, state) {
+        return Stack(
+          children: [
+            buildMap(),
+            // Positioned(
+            //     top: 50,
+            //     child: ElevatedButton(
+            //       onPressed: () {
+            //         // context.read<MapsCubit>().emitPlaceLocation(
+            //         //     placeId: 'ChIJ8aukkz5NtokRLAHB24Ym9dc',
+            //         //     sessionToken: 'sessionToken',
+            //         //     context: context);
+            //         // context
+            //         //     .read<MapsCubit>()
+            //         //     .getUserLocation(title: 'origin');
+            //         // .emitPlaceSuggestions(
+            //         //     searchQuery: 'alex',
+            //         //     sessionToken: 'sessionToken',
+            //         //     context: context);
+            //       },
+            //       child: Text('data'),
+            //     ))
+          ],
+        );
+      },
     );
   }
 
   GoogleMap buildMap() {
     return GoogleMap(
+      markers: context.read<MapsCubit>().markers,
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
       // style: mapStyle, // to control theme (Dark/Light)
       onMapCreated: (controller) {
-        mapcontroller = controller;
+        context.read<MapsCubit>().mapController = controller;
+        setState(() {});
       },
       initialCameraPosition: const CameraPosition(
           target: LatLng(33.40302561069593, 44.498105563683005), zoom: 8),
@@ -65,7 +73,7 @@ class _CustomMapState extends State<CustomMap> {
 
   @override
   void dispose() {
-    mapcontroller.dispose();
+    context.read<MapsCubit>().mapController.dispose();
     super.dispose();
   }
 }

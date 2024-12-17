@@ -14,7 +14,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 class MapsCubit extends Cubit<MapsState> {
   final MapRepo mapsRepository;
   // for map intialization
-  final Completer<GoogleMapController> mapController = Completer();
+  late GoogleMapController mapController;
 
   // for origin & destination
   late Marker orignMarker;
@@ -51,8 +51,7 @@ class MapsCubit extends Cubit<MapsState> {
 
   /// start updating user location
   getUserUpdatedLocation({required String title}) async {
-    return await locationService
-        .updateUserLocation((LocationData userlocation) {
+    await locationService.updateUserLocation((LocationData userlocation) {
       emit(UpdateOriginLocatoin());
       buildmarker(
         title: title,
@@ -138,7 +137,7 @@ class MapsCubit extends Cubit<MapsState> {
       tilt: 0.0,
       zoom: 13,
     );
-    final GoogleMapController controller = await mapController.future;
+    final GoogleMapController controller = mapController;
     controller
         .animateCamera(CameraUpdate.newCameraPosition(placeCameraPosition));
 

@@ -20,9 +20,10 @@ class HomeScreen extends StatelessWidget {
             ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: const GoogleMap(
+                  myLocationButtonEnabled: false,
                   initialCameraPosition: CameraPosition(
-                      target: LatLng(37.42796133580664, -122.085749655962),
-                      zoom: 14),
+                      target: LatLng(33.40302561069593, 44.498105563683005),
+                      zoom: 8),
                 )),
             Positioned(
               bottom: 10.h,

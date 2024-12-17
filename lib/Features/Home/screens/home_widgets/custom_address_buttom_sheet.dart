@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'change_address_buttom_sheet.dart';
@@ -9,7 +11,8 @@ import 'custom_select_address_text_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddressBottomSheet extends StatelessWidget {
-  const AddressBottomSheet({super.key});
+  MapsCubit mapsCubit;
+  AddressBottomSheet({super.key, required this.mapsCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +45,14 @@ class AddressBottomSheet extends StatelessWidget {
           ),
           SelectAddressTextFormField(
             labelText: AppLocalizations.of(context)!.from,
-            icon: Icon(Icons.location_searching_outlined),
+            icon: const Icon(Icons.location_searching_outlined),
             suffixIcon:
-                Icon(Icons.my_location_sharp, color: AppColors.redColor),
+                const Icon(Icons.my_location_sharp, color: AppColors.redColor),
             isFrom: true,
           ),
           SelectAddressTextFormField(
             labelText: AppLocalizations.of(context)!.to,
-            icon: Icon(
+            icon: const Icon(
               Icons.location_on_outlined,
             ),
           ),

@@ -64,7 +64,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          verticalSpace(10),
+          verticalSpace(10.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
             child: Row(

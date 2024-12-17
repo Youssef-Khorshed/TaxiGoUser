@@ -25,7 +25,7 @@ class Maprepoimp extends MapRepo {
               searchQuery: searchQuery, sessionToken: sessionToken),
           context: context);
 
-      return Right(res.map((e) => SearchPlace.fromJson(e)));
+      return Right(SearchPlace.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
@@ -43,7 +43,7 @@ class Maprepoimp extends MapRepo {
       final res = await apiService.getRequest(
           context: context,
           Constants.placeDetails(placeId: placeId, sessionToken: sessionToken));
-      return Right(res.map((e) => PlaceDetails.fromJson(e)));
+      return Right(PlaceDetails.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
@@ -58,7 +58,7 @@ class Maprepoimp extends MapRepo {
     try {
       final res = await apiService.getRequest(
           context: context, Constants.cancelRideRequest);
-      return Right(res.map((e) => CancelRideRequest.fromJson(e)));
+      return Right(CalculateAverage.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
@@ -73,7 +73,7 @@ class Maprepoimp extends MapRepo {
     try {
       final res = await apiService.postRequest(
           context: context, Constants.cancelRideRequest);
-      return Right(res.map((e) => PlaceDetails.fromJson(e)));
+      return Right(CancelRideRequest.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
@@ -123,7 +123,7 @@ class Maprepoimp extends MapRepo {
               lngTo: lngTo,
               tripType: tripType,
               paymentMethod: paymentMethod));
-      return Right(res.map((e) => RideRequest.fromJson(e)));
+      return Right(RideRequest.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {

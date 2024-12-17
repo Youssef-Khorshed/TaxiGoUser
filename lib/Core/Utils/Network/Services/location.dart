@@ -37,7 +37,7 @@ class LocationService {
       void Function(LocationData)? onDatachange) async {
     await checkAndrequestLocationService();
     await checkAndrequestLocationPermission();
-    location.changeSettings(distanceFilter: 2);
+    location.changeSettings(distanceFilter: 2, interval: 5000);
     location.onLocationChanged.listen(onDatachange);
   }
 

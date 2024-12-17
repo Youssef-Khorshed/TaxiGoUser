@@ -24,8 +24,8 @@ import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/dependencyInjection.dart'
-    as db;
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart'
+    as get_it;
 
 class AppRoutes {
   static const String splash = '/';
@@ -159,7 +159,7 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return BlocProvider(
-              create: (context) => db.sl<MapsCubit>(),
+              create: (context) => get_it.getIt<MapsCubit>(),
               child: const MapScreen(),
             );
           },
