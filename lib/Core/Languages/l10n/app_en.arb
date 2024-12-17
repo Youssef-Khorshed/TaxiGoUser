@@ -6,6 +6,8 @@
     "last_7_days":"Last 7 days",
     "last_30_days":"Last 30 days",
     "this_month":"This month",
-    "price":"price"
+    "price":"price",
+        "trip_favorite":"Trip Favorite",
+    "trip_saved":"Trip Saved"
 
 }

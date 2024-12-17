@@ -48,8 +48,8 @@ class _GeneralScreenState extends State<GeneralScreen> {
     List<String> screensName = [
       "Home",
       AppLocalizations.of(context)!.trip_history,
-      "Trip Favourite",
-      "Trip Saved",
+      AppLocalizations.of(context)!.trip_favorite,
+      AppLocalizations.of(context)!.trip_favorite,
       "Wallet",
       "Logout",
     ];

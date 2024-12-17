@@ -89,7 +89,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Trip Favorite',
+                    AppLocalizations.of(context)!.trip_favorite,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -102,7 +102,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Trip Saved',
+                    AppLocalizations.of(context)!.trip_saved,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
