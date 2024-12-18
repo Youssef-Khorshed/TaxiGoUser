@@ -49,6 +49,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/mapstyle/night.json
+    - assets/lottie/
 
 flutter_launcher_icons:
   android: true
