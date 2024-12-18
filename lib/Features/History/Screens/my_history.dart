@@ -14,6 +14,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HistoryViewModel, HistoryStates>(
+      bloc: HistoryViewModel.get(context)..getHistoryData(context),
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),

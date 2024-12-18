@@ -11,7 +11,7 @@ class HistoryViewModel extends Cubit<HistoryStates> {
   HistoryRepo favoriteRepo;
 
   static HistoryViewModel get(context) => BlocProvider.of(context);
-  getFavouriteDate(BuildContext context) async {
+  getHistoryData(BuildContext context) async {
     emit(HistoryLoadingStates());
     var either = await favoriteRepo.getData(context);
     either.fold(
