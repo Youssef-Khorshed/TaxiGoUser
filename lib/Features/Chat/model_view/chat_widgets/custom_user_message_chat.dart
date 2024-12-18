@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
@@ -22,7 +23,7 @@ class UserMessage extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
         padding: const EdgeInsets.all(10),
-        constraints: BoxConstraints(maxWidth: widthFactor, maxHeight: 80),
+        constraints: BoxConstraints(maxWidth: widthFactor, maxHeight: 80.h),
         decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
@@ -33,14 +34,14 @@ class UserMessage extends StatelessWidget {
             ],
             color: isSentByUser ?  AppColors.blueColor: AppColors.whiteColor,
             borderRadius: isSentByUser
-                ? const BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16))
-                : const BorderRadius.only(
-                    bottomRight: Radius.circular(16),
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16))),
+                ? BorderRadius.only(
+                    bottomLeft: Radius.circular(16.sp),
+                    topLeft: Radius.circular(16.sp),
+                    topRight: Radius.circular(16.sp))
+                :  BorderRadius.only(
+                    bottomRight: Radius.circular(16.sp),
+                    topLeft: Radius.circular(16.sp),
+                    topRight: Radius.circular(16.sp))),
         child: AutoSizeText(message,
             maxLines: 100,
             style: isSentByUser

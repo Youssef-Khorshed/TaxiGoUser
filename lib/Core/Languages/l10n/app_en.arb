@@ -1,3 +1,8 @@
 {
-    "log_in":"Log In"
+    "log_in":"Log In",
+    "typeamessage": "Type a message",
+    "activeNow": "Active Now",
+    "sharelocation": "Share Location"
+
+
 }

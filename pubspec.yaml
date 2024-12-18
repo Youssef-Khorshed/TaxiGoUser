@@ -36,8 +36,6 @@ dependencies:
   pusher_channels_flutter: ^2.4.0
   image_picker: ^1.1.2
   file_picker: ^8.1.6
-  audioplayers: ^6.1.0
-  record: ^5.2.0
 dev_dependencies:
   flutter_launcher_icons: null
   flutter_lints: null

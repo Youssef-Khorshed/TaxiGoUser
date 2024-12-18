@@ -1,5 +1,7 @@
 import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
+
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 
 class PusherConfig {
   late PusherChannelsFlutter _pusher;
@@ -24,8 +26,8 @@ class PusherConfig {
         onDecryptionFailure: onDecryptionFailure,
         onMemberAdded: onMemberAdded,
         onMemberRemoved: onMemberRemoved,
-        // authEndpoint: "${ApiEndPoints.baseUrlPusher}/broadcasting/auth",
-        // onAuthorizer: onAuthorizer,
+        authEndpoint: "${ApiEndPoints.baseUrlPusher}/broadcasting/auth",
+        onAuthorizer: onAuthorizer,
       );
 
       try {
@@ -86,35 +88,35 @@ class PusherConfig {
     log("onSubscriptionCount: $channelName subscriptionCount: $subscriptionCount");
   }
 
-// dynamic onAuthorizer(
-//     String channelName, String socketId, dynamic options) async {
-//   log(socketId.toString());
-//   // ignore: prefer_typing_uninitialized_variables
-//   var json;
-//   try {
-//     var authUrl = Constants.baseUrl.pusherAuthBaseUrl;
-//     log('socket_id=' + socketId + '&channel_name=' + channelName);
-//     UserData userData = await StorageHelper.getUserData();
-//     var result = await http.post(
-//       Uri.parse(authUrl),
-//       headers: {
-//         'Content-Type': 'application/x-www-form-urlencoded',
-//         'Authorization': 'Bearer ${userData.token}',
-//       },
-//       body: 'socket_id=' + socketId + '&channel_name=' + channelName,
-//     );
-//     log("result: " + result.body.toString());
-//     try {
-//       json = jsonDecode(result.body);
-//     } catch (e) {
-//       return {};
-//     }
-//
-//     log(json.toString());
-//
-//     return json;
-//   } catch (e) {
-//     log("Error :" + e.toString());
-//   }
-// }
+dynamic onAuthorizer(
+    String channelName, String socketId, dynamic options) async {
+  log(socketId.toString());
+  // ignore: prefer_typing_uninitialized_variables
+  var json;
+  try {
+    var authUrl = Constants.baseUrl.pusherAuthBaseUrl;
+    log('socket_id=' + socketId + '&channel_name=' + channelName);
+    UserData userData = await StorageHelper.getUserData();
+    var result = await http.post(
+      Uri.parse(authUrl),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer ${userData.token}',
+      },
+      body: 'socket_id=' + socketId + '&channel_name=' + channelName,
+    );
+    log("result: " + result.body.toString());
+    try {
+      json = jsonDecode(result.body);
+    } catch (e) {
+      return {};
+    }
+
+    log(json.toString());
+
+    return json;
+  } catch (e) {
+    log("Error :" + e.toString());
+  }
+}
 }

@@ -1,14 +1,13 @@
 import 'dart:io';
 
-class Chatrepo{
-
- //  static Future<dynamic> getChatDetails(
- //      {required int? firstUser, required int? secondUser});
- // static sendMessage(
- //      {File? file,
- //        String? content,
- //        required int roomId,
- //        required int? userId,
- //        String type = "TEXT"});
-
+abstract class Chatrepo {
+  Future<dynamic> getChatDetails(
+      {required int? firstUser, required int? secondUser});
+  Future<void> sendMessage({
+    File? file,
+    String? content,
+    required int roomId,
+    required int? userId,
+    String type,
+  });
 }

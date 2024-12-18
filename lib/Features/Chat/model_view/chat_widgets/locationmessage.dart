@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -29,7 +30,7 @@ class LocationMessage extends StatelessWidget {
     return Align(
       alignment: isSentByUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 5),
+        margin: EdgeInsets.symmetric(vertical: 5.sp),
         padding: const EdgeInsets.all(10),
         constraints:
             BoxConstraints(maxWidth: widthFactor, maxHeight: heightFactor),
@@ -37,9 +38,9 @@ class LocationMessage extends StatelessWidget {
         BoxDecoration(
           color: AppColors.blueColor,
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(16),
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
+            bottomLeft: Radius.circular(10.sp),
+            topLeft: Radius.circular(10.sp),
+            topRight: Radius.circular(10.sp),
           ),
         ),
         child: Column(
@@ -55,7 +56,7 @@ class LocationMessage extends StatelessWidget {
                 ),
               ),
             ),
-            verticalSpace(5),
+            verticalSpace(5.h),
         Expanded(
           flex: 10,
           child: Image.asset(

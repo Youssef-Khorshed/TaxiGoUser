@@ -1,72 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 class MessageInputBar extends StatelessWidget {
-  const MessageInputBar({Key? key}) : super(key: key);
-
+  const MessageInputBar({super.key});
   @override
   Widget build(BuildContext context) {
     final TextEditingController messageController = TextEditingController();
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 10,
+                offset: Offset(0, 4),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(30.sp),
+            color: Colors.white,
+          ),
+          child: Row(
+            children: [
 
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey, // Gray shadow
-              blurRadius: 10,
-              offset: Offset(0, 4),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(30), // Rounded corners
-          color: Colors.white, // Background color
-        ),
-        child: Row(
-          children: [
-            // Text Field
-            Expanded(
-              child: TextField(
-                controller: messageController,
-                decoration: InputDecoration(
-                  hintText: "Type a message",
-                  hintStyle: const TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  border: InputBorder.none, // No border
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 15), // Internal padding
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    if (messageController.text.trim().isNotEmpty) {
+                      print("Send: ${messageController.text.trim()}");
+                    }
+                  },
+                  child: Image.asset(AppIcons.send),
                 ),
               ),
-            ),
-
-            // Send Icon Button
-            Padding(
-              padding: const EdgeInsets.all(.0),
-              child: GestureDetector(
-                onTap: () {
-                  if (messageController.text.trim().isNotEmpty) {
-                    print("Send: ${messageController.text.trim()}");
-                  }
-                },
-                child: Icon(Icons.send, color: Colors.blue),
+      Expanded(
+                child: TextField(
+                  controller: messageController,
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)!.typeamessage,
+                    hintStyle: AppTextStyles.sendmessgeformW500,
+                    border: InputBorder.none,
+                    contentPadding:  EdgeInsets.symmetric(
+                      horizontal: 15.sp,
+                      vertical: 10.sp,
+                    ),
+                  ),
+                ),
               ),
-            ),
-
-            // Microphone Icon Button
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GestureDetector(
-                onTap: () {
-                  print("Mic Pressed");
-                },
-                child: Icon(Icons.mic, color: Colors.black),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
