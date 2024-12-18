@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
+import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
 
 import 'apiservices.dart';
 import 'cach_helper.dart';
@@ -14,7 +15,8 @@ Future<void> setup() async {
 
   getIt.registerSingleton<ApiService>(
       ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
-
+  getIt.registerSingleton<HistoryRepoImpl>(
+      HistoryRepoImpl(apiService: getIt.get<ApiService>()));
 
   //getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(getIt.get<ApiService>()));
 }

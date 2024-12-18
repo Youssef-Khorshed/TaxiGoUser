@@ -5,12 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_states.dart';
 import 'package:taxi_go_user_version/Features/History/data/repo/history_repo.dart';
 
-class FavouriteViewModel extends Cubit<HistoryStates> {
-  FavouriteViewModel({required this.favoriteRepo})
+class HistoryViewModel extends Cubit<HistoryStates> {
+  HistoryViewModel({required this.favoriteRepo})
       : super(HistoryLoadingStates());
   HistoryRepo favoriteRepo;
 
-  static FavouriteViewModel get(context) => BlocProvider.of(context);
+  static HistoryViewModel get(context) => BlocProvider.of(context);
   getFavouriteDate(BuildContext context) async {
     emit(HistoryLoadingStates());
     var either = await favoriteRepo.getData(context);
