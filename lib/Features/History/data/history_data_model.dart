@@ -1,7 +1,7 @@
 class HistoryDataModel {
   bool? success;
   String? message;
-  List<Data>? data;
+  List<HistoryData>? data;
 
   HistoryDataModel({this.success, this.message, this.data});
 
@@ -9,15 +9,15 @@ class HistoryDataModel {
     success = json['success'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <HistoryData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(HistoryData.fromJson(v));
       });
     }
   }
 }
 
-class Data {
+class HistoryData {
   int? id;
   int? customerId;
   String? addressFrom;
@@ -34,9 +34,9 @@ class Data {
   String? status;
   String? createdAt;
   String? updatedAt;
-  List<Ride>? ride;
+  List<HistoryRide>? ride;
 
-  Data(
+  HistoryData(
       {this.id,
       this.customerId,
       this.addressFrom,
@@ -55,7 +55,7 @@ class Data {
       this.updatedAt,
       this.ride});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  HistoryData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     customerId = json['customer_id'];
     addressFrom = json['address_from'];
@@ -73,15 +73,15 @@ class Data {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['ride'] != null) {
-      ride = <Ride>[];
+      ride = <HistoryRide>[];
       json['ride'].forEach((v) {
-        ride!.add(Ride.fromJson(v));
+        ride!.add(HistoryRide.fromJson(v));
       });
     }
   }
 }
 
-class Ride {
+class HistoryRide {
   int? id;
   int? rideRequestId;
   int? captainId;
@@ -101,7 +101,7 @@ class Ride {
   String? createdAt;
   String? updatedAt;
 
-  Ride(
+  HistoryRide(
       {this.id,
       this.rideRequestId,
       this.captainId,
@@ -121,7 +121,7 @@ class Ride {
       this.createdAt,
       this.updatedAt});
 
-  Ride.fromJson(Map<String, dynamic> json) {
+  HistoryRide.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     rideRequestId = json['ride_request_id'];
     captainId = json['captain_id'];

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_states.dart';
@@ -15,11 +13,9 @@ class HistoryViewModel extends Cubit<HistoryStates> {
     var either = await historyRepo.getData(context);
     either.fold(
       (historyFailure) {
-        log('favouriteFailure ============================ ${historyFailure.message}');
         emit(HistoryFailureStates(errMessage: historyFailure.message));
       },
       (historyResponse) {
-        log('favourite data =============================================== ${historyResponse.message}');
         emit(HistorySuccessStates(historyDataModel: historyResponse));
       },
     );

@@ -9,7 +9,7 @@ class TripCard extends StatelessWidget {
   final String timeFrom;
   final String timeTo;
   final String driverName;
-  final double rating;
+  final String rating;
   final String price;
 
   const TripCard({
@@ -55,8 +55,15 @@ class TripCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const CustomBuildTripDetails(
+              CustomBuildTripDetails(
                 hasIcon: false,
+                from: from,
+                to: to,
+                timeFrom: timeFrom,
+                timeTo: timeTo,
+                price: price,
+                driverName: driverName,
+                rating: rating,
               ),
             ],
           ),

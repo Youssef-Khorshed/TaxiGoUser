@@ -37,6 +37,13 @@ class SavedCard extends StatelessWidget {
             children: [
               Expanded(
                   child: CustomBuildTripDetails(
+                from: '',
+                to: '',
+                timeFrom: '',
+                timeTo: '',
+                driverName: '',
+                rating: '',
+                price: '',
                 hasIcon: true,
               )),
             ],

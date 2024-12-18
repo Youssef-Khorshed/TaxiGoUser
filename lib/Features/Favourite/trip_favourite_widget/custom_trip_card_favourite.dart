@@ -38,6 +38,13 @@ class FavouriteCard extends StatelessWidget {
               Expanded(
                   child: CustomBuildTripDetails(
                 hasIcon: true,
+                from: '',
+                to: '',
+                timeFrom: '',
+                timeTo: '',
+                driverName: '',
+                rating: '',
+                price: '',
               )),
             ],
           ),

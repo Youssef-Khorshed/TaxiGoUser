@@ -6,7 +6,10 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomDriverdetailsHistory extends StatelessWidget {
-  const CustomDriverdetailsHistory({super.key});
+  const CustomDriverdetailsHistory(
+      {super.key, required this.rate, required this.price});
+  final String rate;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class CustomDriverdetailsHistory extends StatelessWidget {
         children: [
           const Icon(Icons.star, size: 16, color: AppColors.amberColor),
           AutoSizeText(
-            '4.9',
+            rate,
             style: AppTextStyles.style14GrayW500,
             maxLines: 1,
           ),
@@ -46,7 +49,7 @@ class CustomDriverdetailsHistory extends StatelessWidget {
           style: AppTextStyles.style14DarkgrayW500,
         ),
         AutoSizeText(
-          'IQD 9.30',
+          price,
           style: AppTextStyles.style14BlackW500,
         ),
       ],

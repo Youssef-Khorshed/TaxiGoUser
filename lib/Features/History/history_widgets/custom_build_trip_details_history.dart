@@ -8,7 +8,24 @@ import 'package:taxi_go_user_version/Features/History/history_widgets/custom_dri
 
 class CustomBuildTripDetails extends StatelessWidget {
   final bool hasIcon;
-  const CustomBuildTripDetails({super.key, required this.hasIcon});
+  final String from;
+  final String to;
+  final String timeFrom;
+  final String timeTo;
+  final String driverName;
+  final String rating;
+  final String price;
+
+  const CustomBuildTripDetails(
+      {super.key,
+      required this.hasIcon,
+      required this.from,
+      required this.to,
+      required this.timeFrom,
+      required this.timeTo,
+      required this.driverName,
+      required this.rating,
+      required this.price});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +77,7 @@ class CustomBuildTripDetails extends StatelessWidget {
                       Row(
                         children: [
                           AutoSizeText(
-                            'State Park',
+                            from,
                             style: AppTextStyles.style18BlackW600,
                           ),
                           const Spacer(),
@@ -74,7 +91,7 @@ class CustomBuildTripDetails extends StatelessWidget {
                       Row(
                         children: [
                           AutoSizeText(
-                            'Home',
+                            to,
                             style: AppTextStyles.style18BlackW600,
                           ),
                           const Spacer(),
@@ -95,7 +112,10 @@ class CustomBuildTripDetails extends StatelessWidget {
           height: 1,
           color: AppColors.darkgrayColor,
         ),
-        const CustomDriverdetailsHistory(),
+        CustomDriverdetailsHistory(
+          rate: rating,
+          price: price,
+        ),
       ],
     );
   }
