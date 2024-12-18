@@ -4,9 +4,9 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 
 class VerificationPhoneAndPasswordScreen extends StatefulWidget {
   const VerificationPhoneAndPasswordScreen({super.key});
@@ -40,12 +40,12 @@ class _VerificationPhoneAndPasswordScreenState
                   ),
                 ),
                 verticalSpace(15),
-                CustomAppFormField(
+                CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
                   hintText: "Please Enter Your Phone Number",
                   controller: verificationPhoneController,
-                  isPhone: true,
+                  keyboardType: TextInputType.number,
                 ),
                 const Spacer(),
                 CustomAppBottom(

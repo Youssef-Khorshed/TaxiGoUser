@@ -11,7 +11,11 @@ dependencies:
   cupertino_icons: null
   device_preview: ^1.2.0
   dropdown_button2: ^2.3.9
+  shared_preferences:
   firebase_core: null
+  bloc:
+  uuid:
+  flutter_google_maps_webservices:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -37,6 +41,8 @@ dependencies:
   flutter_polyline_points: ^2.1.0
   dartz: ^0.10.1
   flutter_secure_storage: ^9.2.2
+  geocode: ^1.0.3
+  fluttertoast: ^8.2.10
 
 dev_dependencies:
   flutter_launcher_icons: null

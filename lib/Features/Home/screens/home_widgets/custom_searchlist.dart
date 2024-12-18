@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_getplaceaddress.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_select_address_text_form_field.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:uuid/uuid.dart';
 
 class CustomSearchlist extends StatefulWidget {
-  CustomSearchlist({super.key});
+  const CustomSearchlist({super.key});
 
   @override
   State<CustomSearchlist> createState() => _CustomSearchlistState();
@@ -26,7 +26,7 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
     final mapsCubit = context.read<MapsCubit>();
     return Column(
       children: [
-        SelectAddressTextFormField(
+        CustomTextFormFiled(
           suffixicon: destinationController.text.isNotEmpty
               ? IconButton(
                   onPressed: () {
@@ -36,7 +36,7 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
                   icon: const Icon(Icons.close),
                 )
               : null,
-          hint: AppLocalizations.of(context)!.to,
+          hintText: AppLocalizations.of(context)!.to,
           focusNode: _focusNode,
           hinttextStyle: AppTextStyles.style16DarkgrayW500,
           onChanged: (value) {
@@ -56,7 +56,7 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
         ),
         BlocBuilder<MapsCubit, MapsState>(
           builder: (context, state) {
-            return Container(
+            return SizedBox(
               height: 100.h,
               child: ListView.builder(
                 shrinkWrap: true,
@@ -65,16 +65,29 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
                   return ListTile(
                     title: Text(mapsCubit.predictions[index].description!),
                     onTap: () async {
-                      await mapsCubit.emitPlaceLocation(
-                          placeId: mapsCubit.predictions[index].placeId!,
+                      if (mounted) {
+                        final destination = mapsCubit.predictions[index];
+                        mapsCubit.predictions.clear();
+                        await mapsCubit.emitPlaceLocation(
+                            placeId: destination.placeId!,
+                            sessionToken: const Uuid().v4(),
+                            context: context);
+                        await mapsCubit.emitPlaceAddress(
+                          isorigin: false,
+                          placeLatLng: LatLng(
+                            mapsCubit.destinationostion.lat!,
+                            mapsCubit.destinationostion.lng!,
+                          ),
                           sessionToken: const Uuid().v4(),
-                          context: context);
-                      final address = await getAddressFromLatLng(
-                          mapsCubit.destinationostion.lat!,
-                          mapsCubit.destinationostion.lat!);
-                      destinationController.text = address;
-                      mapsCubit.predictions.clear();
-                      setState(() {});
+                          // ignore: use_build_context_synchronously
+                          context: context,
+                        );
+
+                        destinationController.text =
+                            mapsCubit.destinationAddress.formattedAddress!;
+
+                        setState(() {});
+                      }
                     },
                   );
                 },

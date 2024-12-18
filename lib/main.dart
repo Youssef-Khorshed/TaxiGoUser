@@ -15,7 +15,6 @@ void main() async {
   await getIt<CacheHelper>().cacheInit();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-
   );
   SecureToken.addToken(AppConstants.kTokenValue);
   runApp(DevicePreview(

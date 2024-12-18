@@ -1,20 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/custom_map.dart';
-
+import 'package:uuid/uuid.dart';
 import '../../../Core/Utils/Colors/app_colors.dart';
 import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import '../../Home/screens/home_widgets/custom_address_buttom_sheet.dart';
+import '../../Home/screens/home_widgets/custom_Addaddress_sheet.dart';
 import '../../Home/screens/home_widgets/custom_enable_location_dialog.dart';
 
-class MapScreen extends StatelessWidget {
+class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
   @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  @override
   Widget build(BuildContext context) {
+    final mapcubit = context.read<MapsCubit>();
     return Scaffold(
         body: Stack(children: [
       ClipRRect(
@@ -65,22 +74,31 @@ class MapScreen extends StatelessWidget {
                       context: context,
                       barrierDismissible: true,
                       builder: (context) => EnableLocationDialog(
-                        onUseMyLocationPressed: () {
-                          Navigator.of(context).pop();
-                          // cubit.getUserLocation(title: 'origin');
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(16.0),
-                                topRight: Radius.circular(16.0),
-                              ),
-                            ),
-                            builder: (context) {
-                              return AddressBottomSheet();
-                            },
-                          );
+                        onUseMyLocationPressed: () async {
+                          if (mounted) {
+                            await mapcubit.getUserLocation(title: 'origin');
+                            mapcubit.polyLines.clear();
+                            if (mapcubit.state is OpenLoacationFailed) {
+                            } else {
+                              await mapcubit.emitPlaceAddress(
+                                isorigin: true,
+                                placeLatLng: LatLng(
+                                  mapcubit.orginPosition!.lat!,
+                                  mapcubit.orginPosition!.lng!,
+                                ),
+                                sessionToken: const Uuid().v4(),
+                                context: context,
+                              );
+                              Navigator.of(context).pop();
+
+                              customBottomSheet(
+                                  context: context,
+                                  widget: AddressBottomSheet(
+                                    originTitle: mapcubit
+                                        .originAddress.formattedAddress!,
+                                  ));
+                            }
+                          }
                         },
                         onSkipPressed: () {
                           Navigator.of(context).pop();
@@ -101,10 +119,14 @@ class MapScreen extends StatelessWidget {
                   decoration: const BoxDecoration(
                       color: AppColors.whiteColor,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: const Icon(
-                    Icons.my_location_outlined,
-                    size: 30,
-                  ),
+                  child: IconButton(
+                      onPressed: () {
+                        //  showAddressBottomSheet(context);
+                      },
+                      icon: const Icon(
+                        Icons.my_location_outlined,
+                        size: 30,
+                      )),
                 ),
               ),
             ],
@@ -113,10 +135,4 @@ class MapScreen extends StatelessWidget {
       ),
     ]));
   }
-// zoom Levlel
-// world -> 0 - 3
-// country  -> 4 - 6
-// city     -> 10 - 12
-// street   -> 13 - 17
-// building -> 18 - 20
 }

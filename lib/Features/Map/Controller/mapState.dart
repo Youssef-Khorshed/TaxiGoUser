@@ -1,4 +1,5 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/prediction.dart';
 
@@ -18,10 +19,22 @@ class UpdateDestinationLocatoin extends MapsState {}
 
 class PlacesLoading extends MapsState {}
 
+class OpenLoacationFailed extends MapsState {}
+
 class PlacesLoaded extends MapsState {
   final List<Prediction> places;
 
   PlacesLoaded(this.places);
+}
+
+class DrawPolyinesLoading extends MapsState {}
+
+class DrawPolyinesSuccess extends MapsState {}
+
+class DrawPolyinesFailure extends MapsState {
+  String message;
+
+  DrawPolyinesFailure({required this.message});
 }
 
 class CancelRideLoading extends MapsState {}
@@ -40,7 +53,10 @@ class CalculatePriceSuccess extends MapsState {}
 
 class CheckPromocodeSuccess extends MapsState {}
 
-class CheckPromocodeFail extends MapsState {}
+class CheckPromocodeFail extends MapsState {
+  String message;
+  CheckPromocodeFail({required this.message});
+}
 
 class CheckPromocodeLoading extends MapsState {}
 
@@ -64,4 +80,22 @@ class GetSearchedPlace extends MapsState {
 class DirectionsLoaded extends MapsState {
   Set<Polyline> polylines;
   DirectionsLoaded(this.polylines);
+}
+
+class LegsLoaded extends MapsState {
+  Leg leg;
+  LegsLoaded({required this.leg});
+}
+
+class PlaceDirectionsLading extends MapsState {}
+
+class GetAddressLoading extends MapsState {}
+
+class GetAddressSuccess extends MapsState {}
+
+class PlaceAddressLoading extends MapsState {}
+
+class GetAddressFail extends MapsState {
+  String message;
+  GetAddressFail({required this.message});
 }

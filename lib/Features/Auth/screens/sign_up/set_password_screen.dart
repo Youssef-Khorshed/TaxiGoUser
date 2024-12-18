@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_form_field.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 class SetPasswordScreen extends StatefulWidget {
@@ -47,18 +47,22 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
                     .copyWith(color: Colors.black),
               ),
               verticalSpace(15),
-              CustomAppFormField(
+              CustomTextFormFiled(
                 isPassword: true,
                 obscureText: true,
                 hintText: "Enter Your Password",
                 controller: passwordController,
+                textStyle: AppTextStyles.style12DarkgrayW400,
+                hinttextStyle: AppTextStyles.style12DarkgrayW400,
               ),
               verticalSpace(10),
-              CustomAppFormField(
+              CustomTextFormFiled(
                 isPassword: true,
                 obscureText: true,
                 hintText: "Enter Your Password",
                 controller: confirmPasswordController,
+                textStyle: AppTextStyles.style12DarkgrayW400,
+                hinttextStyle: AppTextStyles.style12DarkgrayW400,
               ),
               verticalSpace(10),
               const Spacer(),

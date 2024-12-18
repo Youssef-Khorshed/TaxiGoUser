@@ -46,7 +46,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                   children: [
                     CircleAvatar(
                       radius: 40.r,
-                      backgroundImage: AssetImage(AppIcons.appIcon),
+                      backgroundImage: const AssetImage(AppIcons.appIcon),
                     ),
                     verticalSpace(10),
                     AutoSizeText(

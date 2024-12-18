@@ -1,16 +1,19 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/result.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/prediction.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:geocoding/geocoding.dart';
 
 class MapsCubit extends Cubit<MapsState> {
   final MapRepo mapsRepository;
@@ -18,6 +21,9 @@ class MapsCubit extends Cubit<MapsState> {
   late GoogleMapController mapController;
 
   // for origin & destination
+  GeocodeResult originAddress = GeocodeResult();
+  GeocodeResult destinationAddress = GeocodeResult();
+  Leg distanceTime = Leg();
   late Marker orignMarker;
   late Marker destinationMarker;
   late CameraPosition placeCameraPosition;
@@ -36,19 +42,25 @@ class MapsCubit extends Cubit<MapsState> {
 
   /// get user location
   Future<void> getUserLocation({required String title}) async {
-    final userLocation = await locationService.getuserLocation();
-    orginPosition = LocationPosition(
-      lat: userLocation.latitude,
-      lng: userLocation.longitude,
-    );
-    emit(UpdateOriginLocatoin());
-    buildmarker(
-      title: title,
-      destinationInfo: title,
-      postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
-    );
-    updatePlaceCameraPosition(
-        place: LatLng(userLocation.latitude!, userLocation.longitude!));
+    try {
+      emit(PlaceAddressLoading());
+      final userLocation = await locationService.getuserLocation();
+      orginPosition = LocationPosition(
+        lat: userLocation.latitude,
+        lng: userLocation.longitude,
+      );
+      emit(UpdateOriginLocatoin());
+      buildmarker(
+        title: title,
+        destinationInfo: title,
+        postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
+      );
+      updatePlaceCameraPosition(
+          place: LatLng(userLocation.latitude!, userLocation.longitude!));
+    } on PermissionException catch (error) {
+      Fluttertoast.showToast(msg: error.message);
+      emit(OpenLoacationFailed());
+    }
   }
 
   /// start updating user location
@@ -64,8 +76,13 @@ class MapsCubit extends Cubit<MapsState> {
         destinationInfo: title,
         postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
       );
+
       updatePlaceCameraPosition(
-          place: LatLng(userlocation.latitude!, userlocation.longitude!));
+        place: LatLng(
+          userlocation.latitude!,
+          userlocation.longitude!,
+        ),
+      );
     });
   }
 
@@ -101,6 +118,25 @@ class MapsCubit extends Cubit<MapsState> {
     });
   }
 
+  /// get place Address form Loaction
+  Future<void> emitPlaceAddress({
+    required LatLng placeLatLng,
+    required String sessionToken,
+    required bool isorigin,
+    required BuildContext context,
+  }) async {
+    emit(PlaceAddressLoading());
+    final res = await mapsRepository.getPlaceAddress(
+        placeLatLng: placeLatLng, sessionToken: sessionToken, context: context);
+    res.fold((error) => emit(GetAddressFail(message: error.message)),
+        (onsuccess) {
+      isorigin
+          ? originAddress = onsuccess.results![0]
+          : destinationAddress = onsuccess.results![0];
+      emit(GetAddressSuccess());
+    });
+  }
+
   /// get place details location
   Future<void> emitPlaceLocation(
       {required String placeId,
@@ -116,35 +152,71 @@ class MapsCubit extends Cubit<MapsState> {
   }
 
   /// get place directions between origin and destination
-  Future<void> emitPlaceDirections(LatLng origin, LatLng destination) async {
-    PolylinePoints polylinePoints = PolylinePoints();
-    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      googleApiKey: Constants.mapToken,
-      request: PolylineRequest(
-        origin: PointLatLng(orginPosition!.lat!, orginPosition!.lng!),
-        destination:
-            PointLatLng(destinationostion.lat!, destinationostion.lng!),
-        mode: TravelMode.driving,
-      ),
-    );
-    polyLines.clear();
-    polyLines.add(Polyline(
-      polylineId: const PolylineId('route'),
-      points:
-          result.points.map((e) => LatLng(e.latitude, e.longitude)).toList(),
-    ));
+  Future<void> emitPlaceDirections({
+    required LatLng origin,
+    required LatLng destination,
+    required String sessionToken,
+    required BuildContext context,
+  }) async {
+    final response = await mapsRepository.getDrirection(
+        origin: origin,
+        destination: destination,
+        sessionToken: sessionToken,
+        context: context);
+    response.fold((onError) {}, (onSuccess) {
+      distanceTime = onSuccess.routes!.first.legs!.first;
+      emit(LegsLoaded(leg: distanceTime));
+      buildmarker(
+        title: 'des',
+        destinationInfo: 'des',
+        postion: LatLng(destination.latitude, destination.longitude),
+      );
+      updatePlaceCameraPosition(place: destination, zoom: 10);
+      drawPolyline(origin: origin, destination: destination);
+      emit(DirectionsLoaded(polyLines));
+    });
+  }
 
-    emit(DirectionsLoaded(polyLines));
+  /// Draw polyline between origin and destination
+  void drawPolyline({
+    required LatLng origin,
+    required LatLng destination,
+  }) async {
+    try {
+      emit(DrawPolyinesLoading());
+      PolylinePoints polylinePoints = PolylinePoints();
+      PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+        googleApiKey: Constants.mapToken,
+        request: PolylineRequest(
+          origin: PointLatLng(orginPosition!.lat!, orginPosition!.lng!),
+          destination:
+              PointLatLng(destinationostion.lat!, destinationostion.lng!),
+          mode: TravelMode.driving,
+        ),
+      );
+      polyLines.clear();
+      polyLines.add(Polyline(
+        width: 5,
+        polylineId: const PolylineId('route'),
+        points:
+            result.points.map((e) => LatLng(e.latitude, e.longitude)).toList(),
+      ));
+      emit(DrawPolyinesSuccess());
+    } catch (e) {
+      emit(DrawPolyinesFailure(message: e.toString()));
+    }
   }
 
   /// update place camera position for a place
-  void updatePlaceCameraPosition({required LatLng place}) async {
+  void updatePlaceCameraPosition(
+      {required LatLng place, double zoom = 13}) async {
     placeCameraPosition = CameraPosition(
       bearing: 0.0,
       target: LatLng(place.latitude, place.longitude),
       tilt: 0.0,
-      zoom: 13,
+      zoom: zoom,
     );
+
     final GoogleMapController controller = mapController;
     controller
         .animateCamera(CameraUpdate.newCameraPosition(placeCameraPosition));
@@ -175,7 +247,7 @@ class MapsCubit extends Cubit<MapsState> {
   }
 
   /// add ride request
-  void riderequest({
+  Future<void> riderequest({
     required BuildContext context,
     required String addressFrom,
     required String latFrom,
@@ -208,15 +280,30 @@ class MapsCubit extends Cubit<MapsState> {
     emit(CheckPromocodeLoading());
     final response =
         await mapsRepository.checkPromocode(context: context, code: code);
-    response.fold((onError) => emit(CheckPromocodeFail()),
+    response.fold(
+        (onError) => emit(CheckPromocodeFail(message: onError.message)),
         (onSuccess) => emit(CheckPromocodeSuccess()));
   }
 
   /// calculate price for ride from source to destination
-  void calculatePrice({required BuildContext context}) async {
+  Future<void> calculatePrice(
+      {required BuildContext context,
+      required int time,
+      required String distance,
+      required int triptype,
+      required LatLng origin,
+      required LatLng destination}) async {
     emit(CalculatePriceLoading());
-    final response = await mapsRepository.calculatePrice(context: context);
-    response.fold((onError) => emit(CalculatePriceFail()),
-        (onSuccess) => emit(CalculatePriceSuccess()));
+    final response = await mapsRepository.calculatePrice(
+        context: context,
+        time: time,
+        distance: distance,
+        triptype: triptype,
+        origin: origin,
+        destination: destination);
+
+    response.fold((onError) => emit(CalculatePriceFail()), (onSuccess) {
+      emit(CalculatePriceSuccess());
+    });
   }
 }

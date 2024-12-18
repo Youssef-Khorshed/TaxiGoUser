@@ -26,7 +26,7 @@ class CustomErroranimation extends StatelessWidget {
             Lottie.asset(AppLottie.errorFailure,
                 fit: BoxFit.cover, height: 300.h, width: 300.w),
             verticalSpace(10.h),
-            Text('An error occurred'),
+            const Text('An error occurred'),
           ],
         ),
       ),

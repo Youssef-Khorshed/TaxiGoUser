@@ -55,6 +55,7 @@ class _CustomMapState extends State<CustomMap> {
   GoogleMap buildMap() {
     return GoogleMap(
       markers: context.read<MapsCubit>().markers,
+      polylines: context.read<MapsCubit>().polyLines,
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
       // style: mapStyle, // to control theme (Dark/Light)

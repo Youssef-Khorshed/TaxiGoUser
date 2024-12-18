@@ -83,7 +83,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
                   },
                   child: CircleAvatar(
                     radius: 18.r,
-                    backgroundImage: AssetImage(AppIcons.appIcon),
+                    backgroundImage: const AssetImage(AppIcons.appIcon),
                   ),
                 )
               ],

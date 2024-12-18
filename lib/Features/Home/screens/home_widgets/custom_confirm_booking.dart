@@ -34,7 +34,7 @@ class CustomConfirmBooking extends StatelessWidget {
                     CircleAvatar(
                       radius: 30.r,
                       backgroundColor: AppColors.grayColor,
-                      child: Icon(
+                      child: const Icon(
                         Icons.person_sharp,
                         color: AppColors.darkgrayColor,
                       ),

@@ -7,24 +7,24 @@ class LocationService {
   Location location = Location();
 
   Future<void> checkAndrequestLocationService() async {
-    final bool _isServiceEnabled = !await location.serviceEnabled();
-    if (!_isServiceEnabled) {
+    final bool isServiceEnabled0 = !await location.serviceEnabled();
+    if (!isServiceEnabled0) {
       final isServiceEnabled = await location.requestService();
       if (!isServiceEnabled) {
-        throw ServiceException(message: "Service not enabled");
+        throw PermissionException(message: "Service not enabled");
       }
     }
   }
 
   Future<void> checkAndrequestLocationPermission() async {
-    final _hasPermission = await location.hasPermission();
-    if (_hasPermission == PermissionStatus.deniedForever) {
+    final hasPermission = await location.hasPermission();
+    if (hasPermission == PermissionStatus.deniedForever) {
       throw PermissionException(message: "Permission not denied forever");
     }
-    if (_hasPermission == PermissionStatus.denied) {
-      final _hasPermissionAfterRequest = await location.requestPermission();
+    if (hasPermission == PermissionStatus.denied) {
+      final hasPermissionAfterRequest = await location.requestPermission();
 
-      if (_hasPermissionAfterRequest != PermissionStatus.granted) {
+      if (hasPermissionAfterRequest != PermissionStatus.granted) {
         debugPrint("service denied");
 
         throw PermissionException(message: "Permission not granted");
@@ -48,8 +48,8 @@ class LocationService {
       final x = await location.getLocation();
       debugPrint('action done $x');
       return x;
-    } catch (e) {
-      return LocationData.fromMap({'latitude': 0.0, 'longitude': 0.0});
+    } on PermissionException catch (e) {
+      throw PermissionException(message: e.message);
     }
   }
 }

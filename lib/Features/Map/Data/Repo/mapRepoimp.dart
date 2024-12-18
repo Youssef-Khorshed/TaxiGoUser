@@ -1,11 +1,15 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/calculateAverageModel/calculateAverage.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/directions.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/geocode_adress.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/place_details.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/search.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/rideRequestModel/cancel/cancelRideRequest.dart';
@@ -52,17 +56,34 @@ class Maprepoimp extends MapRepo {
   }
 
   @override
-  Future<Either<Failure, CalculateAverage>> calculatePrice({
-    required BuildContext context,
-  }) async {
+  Future<Either<Failure, CalculateAverage>> calculatePrice(
+      {required BuildContext context,
+      required int time,
+      required String distance,
+      required int triptype,
+      required LatLng origin,
+      required LatLng destination}) async {
     try {
       final res = await apiService.getRequest(
-          context: context, Constants.cancelRideRequest);
+          context: context,
+          Constants.calculatePrice,
+          queryParameters: Constants.calculatePriceBody(
+            latFrom: origin.latitude.toString(),
+            lngFrom: origin.longitude.toString(),
+            latTo: destination.latitude.toString(),
+            lngTo: destination.longitude.toString(),
+            tripType: triptype,
+            durationMinutes: time,
+          ));
       return Right(CalculateAverage.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message.toString()));
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
+    } on UnExpectedException catch (e) {
+      return Left(UnExpectedFailure(message: e.message));
     }
   }
 
@@ -124,6 +145,45 @@ class Maprepoimp extends MapRepo {
               tripType: tripType,
               paymentMethod: paymentMethod));
       return Right(RideRequest.fromJson(res));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Directions>> getDrirection(
+      {required LatLng origin,
+      required LatLng destination,
+      required String sessionToken,
+      required BuildContext context}) async {
+    try {
+      final res = await apiService.getRequest(
+          context: context,
+          Constants.directions(
+              origin: origin,
+              destination: destination,
+              sessionToken: sessionToken));
+      return Right(Directions.fromJson(res));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, GeocodeAdress>> getPlaceAddress(
+      {required LatLng placeLatLng,
+      required String sessionToken,
+      required BuildContext context}) async {
+    try {
+      final res = await apiService.getRequest(
+          context: context,
+          Constants.geolcatorAddress(
+              sessionToken: sessionToken, placeLatLng: placeLatLng));
+      return Right(GeocodeAdress.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {

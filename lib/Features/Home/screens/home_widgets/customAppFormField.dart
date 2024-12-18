@@ -2,54 +2,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 // ignore: must_be_immutable
-class SelectAddressTextFormField extends StatefulWidget {
+class CustomTextFormFiled extends StatefulWidget {
   TextEditingController controller;
   TextInputType keyboardType;
-  String hint;
+  String hintText;
   Color backgorundColor;
   Color bordercolor;
   Color errorbordercolor;
   Color focusedbordercolor;
   int borderRadius;
   int maxlines;
-  TextStyle textStyle;
-  TextStyle hinttextStyle;
+  TextStyle? textStyle;
+  TextStyle? hinttextStyle;
   Widget? suffixicon;
   Widget? prefixicon;
-  bool obscuretext;
+  bool obscureText;
   bool enabledborder;
-  bool ispassword;
+  bool isPassword;
   FocusNode? focusNode;
   String? Function(String?)? validator;
   void Function(String?)? onSaved;
   void Function()? onTap;
   void Function(String)? onChanged;
 
-  SelectAddressTextFormField({
+  CustomTextFormFiled({
     super.key,
     required this.controller,
     this.keyboardType = TextInputType.text,
     this.focusNode,
-    required this.hint,
+    required this.hintText,
     this.backgorundColor = AppColors.whiteColor,
     this.bordercolor = AppColors.blueColor,
     this.errorbordercolor = AppColors.redColor,
     this.focusedbordercolor = AppColors.blueColor2,
     this.borderRadius = 12,
     this.maxlines = 1,
-    required this.textStyle,
-    required this.hinttextStyle,
+    this.textStyle,
+    this.hinttextStyle,
     this.suffixicon,
     this.prefixicon,
-    this.obscuretext = false,
+    this.obscureText = false,
     this.enabledborder = true,
     this.validator,
     this.onSaved,
     this.onTap,
     this.onChanged,
-    this.ispassword = false,
+    this.isPassword = false,
   });
 
   @override
@@ -57,13 +58,13 @@ class SelectAddressTextFormField extends StatefulWidget {
   _CustomTextfieldState createState() => _CustomTextfieldState();
 }
 
-class _CustomTextfieldState extends State<SelectAddressTextFormField> {
+class _CustomTextfieldState extends State<CustomTextFormFiled> {
   late bool _obscureText;
 
   @override
   void initState() {
     super.initState();
-    _obscureText = widget.obscuretext;
+    _obscureText = widget.obscureText;
   }
 
   void _toggleObscureText() {
@@ -78,7 +79,7 @@ class _CustomTextfieldState extends State<SelectAddressTextFormField> {
       focusNode: widget.focusNode,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
-      style: widget.textStyle,
+      style: widget.textStyle ?? AppTextStyles.style16DarkgrayW500,
       obscureText: _obscureText,
       onChanged: widget.onChanged,
       onTap: widget.onTap,
@@ -86,9 +87,9 @@ class _CustomTextfieldState extends State<SelectAddressTextFormField> {
       onSaved: widget.onSaved,
       maxLines: widget.maxlines,
       decoration: InputDecoration(
-        hintText: widget.hint,
+        hintText: widget.hintText,
         prefixIcon: widget.prefixicon,
-        suffixIcon: widget.ispassword
+        suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
@@ -97,7 +98,7 @@ class _CustomTextfieldState extends State<SelectAddressTextFormField> {
                 onPressed: _toggleObscureText,
               )
             : widget.suffixicon,
-        hintStyle: widget.hinttextStyle,
+        hintStyle: widget.hinttextStyle ?? AppTextStyles.style16DarkgrayW500,
         filled: true,
         fillColor: widget.backgorundColor,
         enabled: widget.enabledborder,

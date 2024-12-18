@@ -1,7 +1,11 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/calculateAverageModel/calculateAverage.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/directions.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/geocode_adress.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/place_details.dart';
 import 'package:dartz/dartz.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/search.dart';
@@ -19,9 +23,13 @@ abstract class MapRepo {
     required String sessionToken,
     required BuildContext context,
   });
-  Future<Either<Failure, CalculateAverage>> calculatePrice({
-    required BuildContext context,
-  });
+  Future<Either<Failure, CalculateAverage>> calculatePrice(
+      {required BuildContext context,
+      required int time,
+      required String distance,
+      required int triptype,
+      required LatLng origin,
+      required LatLng destination});
   Future<Either<Failure, RideRequest>> rideRequest({
     required BuildContext context,
     required String addressFrom,
@@ -41,7 +49,15 @@ abstract class MapRepo {
   Future<Either<Failure, CancelRideRequest>> canelRideRequest({
     required BuildContext context,
   });
-  // Future<void> getactiveRide();
-  // Future<void> cancelRide();
-  // Future<void> rateCaptin();
+  Future<Either<Failure, GeocodeAdress>> getPlaceAddress({
+    required LatLng placeLatLng,
+    required String sessionToken,
+    required BuildContext context,
+  });
+  Future<Either<Failure, Directions>> getDrirection({
+    required LatLng origin,
+    required LatLng destination,
+    required String sessionToken,
+    required BuildContext context,
+  });
 }
