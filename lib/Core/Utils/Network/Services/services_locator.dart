@@ -15,6 +15,5 @@ Future<void> setup() async {
   getIt.registerSingleton<ApiService>(
       ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
 
-
   //getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(getIt.get<ApiService>()));
 }

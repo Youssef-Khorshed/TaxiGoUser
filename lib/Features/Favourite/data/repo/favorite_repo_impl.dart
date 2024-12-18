@@ -4,10 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
+import 'package:taxi_go_user_version/Core/app_constants.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/favorite_data_model.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo.dart';
 
-class FavoriteRepoImpl extends FavoriteRepo {
+class FavoriteRepoImpl extends FavouriteRepo {
   ApiService apiService;
   FavoriteRepoImpl({required this.apiService});
 
@@ -16,7 +17,10 @@ class FavoriteRepoImpl extends FavoriteRepo {
       BuildContext context) async {
     Response response = await apiService.getRequest(
         Constants.baseUrl + Constants.historyEndPoint,
-        context: context);
+        context: context,
+        queryParameters: {
+          'token': AppConstants.kTokenValue,
+        });
 
     try {
       FavoriteDataModel favoriteDataModel =
