@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 class TripDetailsMap extends StatelessWidget {
@@ -24,14 +25,18 @@ class TripDetailsMap extends StatelessWidget {
         address,
         style: AppTextStyles.style12DarkgrayW400,
       ),
-      leading: Column(
-        children: [
-          SvgPicture.asset(
-            icon,
-            width: 25.w,
-          ),
-        ],
+      leading: Icon(
+        Icons.location_city,
+        color: AppColors.redColor,
       ),
+      // Column(
+      //   children: [
+      //     SvgPicture.asset(
+      //       icon,
+      //       width: 25.w,
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
