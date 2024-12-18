@@ -1,15 +1,19 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_buildrowdetail_hiring.dart';
+import 'package:taxi_go_user_version/Core/app_constants.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimation.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/location_details.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payments_details.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -20,89 +24,87 @@ class PaymentScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.whiteColor,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pushNamed(AppRoutes.cancelbooing);
-          },
-        ),
-        title: AutoSizeText(
-          AppLocalizations.of(context)!.payment,
-          style: AppTextStyles.style18BlackW500,
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.05,
-          vertical: size.height * 0.02,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(child: LocationDetails()),
+      body: PaymentsDetailsBlockBuilder(),
+    );
+  }
+}
 
-            verticalSpace(size.height * 0.03),
+class PaymentsDetailsBlockBuilder extends StatelessWidget {
+  const PaymentsDetailsBlockBuilder({
+    super.key,
+  });
 
-            // Payment Details
-            AutoSizeText(
-              AppLocalizations.of(context)!.payment_details,
-              style: AppTextStyles.style16BlackW600,
-            ),
-            verticalSpace(size.height * 0.01),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.payment_method,
-                      style: AppTextStyles.style14DarkgrayW500,
-                    ),
-                    Spacer(),
-                    Row(children: [
-                      Text(
-                        AppLocalizations.of(context)!.cash,
-                        style: AppTextStyles.style14DarkgrayW500,
-                      ),
-                      horizontalSpace(5.w),
-                      Image.asset(AppImages.cash, height: size.height * 0.02),
-                    ]),
-                  ],
-                ),
-                Buildrowdetail(
-                    label: AppLocalizations.of(context)!.distance,
-                    value: '\$200'),
-                Buildrowdetail(
-                    label: AppLocalizations.of(context)!.time, value: '\$20'),
-                Buildrowdetail(
-                    label: AppLocalizations.of(context)!.promo_code,
-                    value: '\$20'),
-                Buildrowdetail(
-                  label: AppLocalizations.of(context)!.total,
-                  value: '\$220',
-                  isBold: true,
-                ),
-              ],
-            ),
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RideCompleteDetailsCubit, RideCompleteDetailsState>(
+      builder: (context, state) {
+        final cubit = context.read<RideCompleteDetailsCubit>();
+        if (state is RideCompleteDetailsInitial) {
+          cubit.getRideCompleteDetails(context);
+        }
+        print("Current state: $state");
+        return state is RideCompleteDetailsLoading
+            ? CustomLoading()
+            : state is RideCompleteDetailsFailure
+                ? CustomErroranimation(
+                    errormessage: state.message,
+                    lottie: AppConstants.CatError,
+                  )
+                : state is RideCompleteDetailsSuccess
+                    ? ListView(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.05),
+                        children: [
+                          verticalSpace(50),
+                          Center(
+                            child: AutoSizeText(
+                              AppLocalizations.of(context)!.payment,
+                              style: AppTextStyles.style18BlackW500,
+                            ),
+                          ),
+                          verticalSpace(10),
+                          Divider(color: AppColors.grayColor, height: .7.h),
+                          TripeCompleteDate(
+                            rideCompleteDetailsModel:
+                                state.rideCompleteDetailsModel,
+                          ),
+                          verticalSpace(250),
+                          AppButton(
+                            text: AppLocalizations.of(context)!.confirm,
+                            height: MediaQuery.of(context).size.height * 0.01,
+                            circlesize: 8,
+                            onPressed: () {
+                              Navigator.of(context).pushNamed(AppRoutes.rate);
+                            },
+                          ),
+                        ],
+                      )
+                    : Container();
+      },
+    );
+  }
+}
 
-            verticalSpace(size.height * 0.25),
-
-            // Payment Method Section
-
-            // const PaymentMethodList(),
-            AppButton(
-                text: AppLocalizations.of(context)!.confirm,
-                height: size.height * 0.01,
-                circlesize: 8,
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.rate);
-                })
-          ],
-        ),
-      ),
+class TripeCompleteDate extends StatelessWidget {
+  const TripeCompleteDate({
+    super.key,
+    required this.rideCompleteDetailsModel,
+  });
+  final RideCompleteDetailsModel rideCompleteDetailsModel;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // LocationDetails(
+        //   rideDetails: rideCompleteDetailsModel,
+        // ),
+        verticalSpace(30),
+        PaymentsDetails(
+            rideDetails: rideCompleteDetailsModel,
+            size: MediaQuery.of(context).size),
+      ],
     );
   }
 }

@@ -49,7 +49,9 @@
     "submit":"حفظ",
     "my_wallet":"محفظتي",
     "online_payment":"الدفع عبر الانترنت",
-    "payment_method":"طريقة الدفع"
+    "payment_method":"طريقة الدفع",
+    "currency":"دينار عراقي",
+    "noPromoCode": "لا يوجد"
 
 
 

@@ -8,8 +8,9 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_terms_check_box.dart';
-import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
+
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -28,7 +29,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: Padding(

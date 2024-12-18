@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-import 'package:taxi_go_user_version/Features/Map/map_widget/custom_map.dart';
 
 import '../../../Core/Utils/Colors/app_colors.dart';
 import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';

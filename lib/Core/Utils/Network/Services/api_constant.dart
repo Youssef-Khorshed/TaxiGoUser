@@ -3,6 +3,10 @@ class Constants {
   static const String userToken =
       '31|Kmu10EvtFiRiyrsufe3dy2z7q5ECODM9pqhECxtP7f2800da';
   static const String mapToken = 'AIzaSyCI1Xh53omwfYyDPXsovvHwjMgyvamPtow';
+  static const String completeRide =
+      'https://go-taxi.codecraft1.com/api/customer/rides/get-last';
+  static const String rateTripe =
+      'https://go-taxi.codecraft1.com/api/customer/rides/rate';
 
   /// Routes
 

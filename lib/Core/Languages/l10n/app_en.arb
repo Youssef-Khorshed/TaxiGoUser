@@ -48,6 +48,8 @@
     "write_your_feedback":"Write your feedback",
     "submit":"Submit",
     "my_wallet":"My Wallet",
-    "online_payment":"Online Payment", "payment_method":"Payment Method"
+    "online_payment":"Online Payment", "payment_method":"Payment Method",
+    "currency":"IQD",
+    "noPromoCode": "No Promo Code"
 
 }

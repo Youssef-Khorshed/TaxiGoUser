@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/dependencyInjection.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/rate_cubit/rete_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo/ride_complete.dart';
+import 'package:taxi_go_user_version/Features/Home/data/repos/tare_repo/rate_repo.dart';
 
 import 'Core/Utils/localization/cubit/local_cubit.dart';
 
@@ -21,10 +26,21 @@ class TaxiGoUserEditionApp extends StatelessWidget {
                 : const Size(390, 844),
         ensureScreenSize: true,
         minTextAdapt: true,
-        builder: (context, child) => BlocProvider(
-            create: (context) => LocalCubit()..isConnection(),
-            child:
-                BlocBuilder<LocalCubit, LocalState>(builder: (context, state) {
+        builder: (context, child) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => LocalCubit()..isConnection(),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  RideCompleteDetailsCubit(sl<RideCompleteRepo>()),
+            ),
+            BlocProvider(
+              create: (context) => RateCubit(sl<RateRepo>()),
+            ),
+          ],
+          child: BlocBuilder<LocalCubit, LocalState>(
+            builder: (context, state) {
               return MaterialApp(
                 locale: LocalCubit.get(context).localization,
                 builder: DevicePreview.appBuilder,
@@ -34,7 +50,9 @@ class TaxiGoUserEditionApp extends StatelessWidget {
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
               );
-            })),
+            },
+          ),
+        ),
       ),
     );
   }

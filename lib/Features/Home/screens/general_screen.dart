@@ -48,11 +48,11 @@ class _GeneralScreenState extends State<GeneralScreen> {
   Widget build(BuildContext context) {
     List<String> screensName = [
       AppLocalizations.of(context)!.home,
-      "Trip History",
-      "Trip Favourite",
-      "Trip Saved",
-      "Wallet",
-      "Logout",
+      AppLocalizations.of(context)!.trips_history,
+      AppLocalizations.of(context)!.trip_favorites,
+      AppLocalizations.of(context)!.saved_Trips,
+      AppLocalizations.of(context)!.wallet,
+      AppLocalizations.of(context)!.log_out,
     ];
     return SafeArea(
         child: Scaffold(
