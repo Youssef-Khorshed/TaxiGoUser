@@ -92,7 +92,7 @@ class Ride {
   String? timePrice;
   Null discount;
   String? total;
-  Null rate;
+  String? rate;
   String? paid;
   Null remainningCustomer;
   Null remainningCaptain;

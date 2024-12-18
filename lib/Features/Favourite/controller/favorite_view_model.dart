@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_states.dart';
@@ -14,9 +16,11 @@ class FavouriteViewModel extends Cubit<FavouriteStates> {
     var either = await favoriteRepo.getData(context);
     either.fold(
       (favouriteFailure) {
+        log('favouriteFailure ============================ $favouriteFailure');
         emit(FavoriteFailureStates(errMessage: favouriteFailure.message));
       },
       (favouriteResponse) {
+        log('favourite data =============================================== $favouriteResponse');
         emit(FavoriteSuccessStates(favoriteDataModel: favouriteResponse));
       },
     );
