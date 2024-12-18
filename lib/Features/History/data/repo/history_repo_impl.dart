@@ -12,12 +12,12 @@ class HistoryRepoImpl extends HistoryRepo {
   HistoryRepoImpl({required this.apiService});
 
   @override
-  Future<Either<Failure, HistoryDataModel>> getData(
-      BuildContext context) async {
+  Future<Either<Failure, HistoryDataModel>> getData(BuildContext context,
+      {String? tripHistory}) async {
     var response = await apiService.getRequest(
-      Constants.baseUrl + Constants.historyEndPoint,
-      context: context,
-    );
+        Constants.baseUrl + Constants.historyEndPoint,
+        context: context,
+        queryParameters: {"filter": tripHistory});
 
     try {
       HistoryDataModel historyDataModel = HistoryDataModel.fromJson(response);

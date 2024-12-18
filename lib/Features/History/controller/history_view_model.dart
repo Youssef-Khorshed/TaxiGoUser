@@ -8,9 +8,9 @@ class HistoryViewModel extends Cubit<HistoryStates> {
   HistoryRepo historyRepo;
 
   static HistoryViewModel get(context) => BlocProvider.of(context);
-  getHistoryData(BuildContext context) async {
+  getHistoryData(BuildContext context, {String? tripHistory}) async {
     emit(HistoryLoadingStates());
-    var either = await historyRepo.getData(context);
+    var either = await historyRepo.getData(context, tripHistory: tripHistory);
     either.fold(
       (historyFailure) {
         emit(HistoryFailureStates(errMessage: historyFailure.message));
