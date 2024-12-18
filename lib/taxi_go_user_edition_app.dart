@@ -31,7 +31,8 @@ class TaxiGoUserEditionApp extends StatelessWidget {
               ),
               BlocProvider(
                   create: (context) => HistoryViewModel(
-                      favoriteRepo: getIt.get<HistoryRepoImpl>()))
+                      historyRepo: getIt.get<HistoryRepoImpl>())
+                    ..getHistoryData(context))
             ],
             child:
                 BlocBuilder<LocalCubit, LocalState>(builder: (context, state) {

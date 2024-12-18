@@ -28,9 +28,9 @@ class Data {
   String? lngTo;
   int? tripType;
   String? paymentMethod;
-  Null salePercentage;
-  Null promocode;
-  Null promocodeId;
+  dynamic salePercentage;
+  dynamic promocode;
+  dynamic promocodeId;
   String? status;
   String? createdAt;
   String? updatedAt;
@@ -90,12 +90,12 @@ class Ride {
   double? time;
   String? distancePrice;
   String? timePrice;
-  Null discount;
+  dynamic discount;
   String? total;
   String? rate;
   String? paid;
-  Null remainningCustomer;
-  Null remainningCaptain;
+  String? remainningCustomer;
+  String? remainningCaptain;
   String? pickupTime;
   String? arivalTime;
   String? createdAt;

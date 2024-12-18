@@ -6,21 +6,20 @@ import 'package:taxi_go_user_version/Features/History/controller/history_states.
 import 'package:taxi_go_user_version/Features/History/data/repo/history_repo.dart';
 
 class HistoryViewModel extends Cubit<HistoryStates> {
-  HistoryViewModel({required this.favoriteRepo})
-      : super(HistoryLoadingStates());
-  HistoryRepo favoriteRepo;
+  HistoryViewModel({required this.historyRepo}) : super(HistoryLoadingStates());
+  HistoryRepo historyRepo;
 
   static HistoryViewModel get(context) => BlocProvider.of(context);
   getHistoryData(BuildContext context) async {
     emit(HistoryLoadingStates());
-    var either = await favoriteRepo.getData(context);
+    var either = await historyRepo.getData(context);
     either.fold(
       (historyFailure) {
-        log('favouriteFailure ============================ $historyFailure');
+        log('favouriteFailure ============================ ${historyFailure.message}');
         emit(HistoryFailureStates(errMessage: historyFailure.message));
       },
       (historyResponse) {
-        log('favourite data =============================================== $historyResponse');
+        log('favourite data =============================================== ${historyResponse.message}');
         emit(HistorySuccessStates(historyDataModel: historyResponse));
       },
     );
