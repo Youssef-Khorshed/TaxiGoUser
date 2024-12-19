@@ -46,12 +46,13 @@ class TripCard extends StatelessWidget {
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(
-                        Icons.star,
+                        Icons.star_border_outlined,
                         color: AppColors.amberColor,
                       ),
                     ),
                     IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.bookmark))
+                        onPressed: () {},
+                        icon: const Icon(Icons.bookmark_add_outlined))
                   ],
                 ),
               ),

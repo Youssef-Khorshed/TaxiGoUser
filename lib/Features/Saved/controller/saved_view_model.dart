@@ -8,12 +8,12 @@ class SavedViewModel extends Cubit<SavedStates> {
   final SavedRepo savedRepo;
 
   static SavedViewModel get(context) => BlocProvider.of(context);
-  getHistoryData(BuildContext context, {String? tripHistory}) async {
+  getSavedData(BuildContext context, {String? tripHistory}) async {
     emit(SavedLoadingStates());
     var either = await savedRepo.getAllSavedData(context);
     either.fold(
-      (historyFailure) {
-        emit(SavedFailureStates(errMessage: historyFailure.message));
+      (savedFailure) {
+        emit(SavedFailureStates(errMessage: savedFailure.message));
       },
       (savedResponse) {
         emit(SavedSuccessStates(savedDataModel: savedResponse));
