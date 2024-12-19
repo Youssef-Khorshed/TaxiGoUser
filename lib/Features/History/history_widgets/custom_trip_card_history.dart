@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
-import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 
 class TripCard extends StatelessWidget {
   final String from;

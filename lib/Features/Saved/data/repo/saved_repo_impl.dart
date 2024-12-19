@@ -10,6 +10,7 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dar
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/save_trip_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
+import 'package:taxi_go_user_version/Features/Saved/data/un_save_model.dart';
 
 class SavedRepoImpl extends SavedRepo {
   final ApiService apiService;
@@ -46,9 +47,27 @@ class SavedRepoImpl extends SavedRepo {
         });
     try {
       SaveTripModel saveTripModel = SaveTripModel.fromJson(response);
-      log('saveTripModel');
 
       return Right(saveTripModel);
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(InternetConnectionFailure(message: e.message.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UnSaveModel>> unSaveTrip(
+      BuildContext context, String tripId) async {
+    var response = await apiService.postRequest(
+      Constants.baseUrl + Constants.unSaveTripEndPoint + tripId,
+      context: context,
+    );
+    try {
+      UnSaveModel unSaveModel = UnSaveModel.fromJson(response);
+      log('saveTripModel');
+
+      return Right(unSaveModel);
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
