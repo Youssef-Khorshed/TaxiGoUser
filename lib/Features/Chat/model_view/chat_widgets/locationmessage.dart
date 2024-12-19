@@ -13,7 +13,7 @@ class LocationMessage extends StatelessWidget {
   final double widthFactor;
   final double heightFactor;
   final String message;
-  final bool isSentByUser;
+  final String usertype;
 
   const LocationMessage({
     super.key,
@@ -22,13 +22,13 @@ class LocationMessage extends StatelessWidget {
     required this.widthFactor,
     required this.heightFactor,
     required this.message,
-    required this.isSentByUser,
+    required this.usertype,
   });
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: isSentByUser ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: usertype=="captain" ?   Alignment.centerLeft:Alignment.centerRight ,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 5.sp),
         padding: const EdgeInsets.all(10),
@@ -36,8 +36,14 @@ class LocationMessage extends StatelessWidget {
             BoxConstraints(maxWidth: widthFactor, maxHeight: heightFactor),
         decoration:
         BoxDecoration(
-          color: AppColors.blueColor,
-          borderRadius: BorderRadius.only(
+          color:usertype=="captain" ?  AppColors.whiteColor : AppColors.blueColor,
+          borderRadius:usertype=="captain" ?BorderRadius.only(
+              bottomLeft: Radius.circular(0.sp),
+              bottomRight: Radius.circular(10.sp),
+              topLeft: Radius.circular(10.sp),
+              topRight: Radius.circular(10.sp))
+              :
+          BorderRadius.only(
             bottomLeft: Radius.circular(10.sp),
             topLeft: Radius.circular(10.sp),
             topRight: Radius.circular(10.sp),
@@ -50,9 +56,9 @@ class LocationMessage extends StatelessWidget {
               flex: 2,
               child: AutoSizeText(
                 message,
-                maxLines: 1,
+                maxLines: 3,
                 style: AppTextStyles.style14BlackW500.copyWith(
-                  color: AppColors.whiteColor
+                  color:usertype=="captain" ?  AppColors.blackColor : AppColors.whiteColor
                 ),
               ),
             ),

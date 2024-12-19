@@ -1,92 +1,80 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/locationmessage.dart';
+import '../../Core/Utils/Network/Services/services_locator.dart';
+import 'data/model/message_data.dart';
 import 'model_view/chat_widgets/custom_message_input_bar_chat.dart';
 import 'model_view/chat_widgets/custom_user_message_chat.dart';
-import 'model_view/chat_widgets/locationmessage.dart';
 
 import 'model_view/chat_widgets/share_location.dart';
 import 'model_view/chat_widgets/user_name_container.dart';
-
-class ChatScreen extends StatelessWidget {
+import 'model_view/manger/chat/chat_cubit.dart';
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
-
-  // late PusherConfig pusherConfig;
-  // initilizeRoom(roomID) async {
-  //   pusherConfig = PusherConfig();
-  //
-  //   pusherConfig.initPusher(
-  //     onEvent,
-  //     roomId: roomID,
-  //   );
-  // }
-  // void onEvent(PusherEvent event) {
-  //   log("event came: " + event.data.toString());
-  //   try {
-  //     log(event.eventName.toString());
-  //     if (event.eventName == r"App\Events\PushChatMessageEvent") {
-  //       log("here");
-  //       Message? message;
-  //       message = Message.fromJson(jsonDecode(event.data)["data"]);
-  //
-  //       chatDetailsModel!.messages!.add(message);
-  //     }
-
-
-  //   } catch (e) {
-  //     log(e.toString());
-  //   }
-  // }
-  ChatScreen({super.key});
+  final List<Message> messages = [];
+  final int currentUser = 2;
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const UserNameContainer(),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
+    return BlocProvider(
+      create: (context) => getIt<ChatCubit>()..getChatdata(context),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const UserNameContainer(),
+        ),
+        body: BlocBuilder<ChatCubit, ChatState>(
+          builder: (context, state) {
+            if (state is ChatLoad) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is Chatsuccful) {
+              final messages = state.messages;
+
+                return Column(
                   children: [
                     const ShareLocation(),
-                    verticalSpace(20.h),
-                    UserMessage(
-                      message: "Where is your location?",
-                      isSentByUser: false,
-                      widthFactor: screenWidth * 0.9,
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: messages.length,
+                        itemBuilder: (context, index) {
+                          final message = messages[index];
+
+                          if (message.messageType == "location") {
+                            return LocationMessage(
+                              latitude: double.parse(message.lat as String ),
+                              longitude: double.parse(message.lng as String),
+                              widthFactor: screenWidth * 0.7,
+                              heightFactor: screenHeight * 0.2,
+                              usertype: message.senderType,
+                              message: message.message ?? "",
+                            );
+                          }
+
+                          return UserMessage(
+                            message: message.message ?? "",
+                            userType: message.senderType,
+                            widthFactor: screenWidth * 0.9,
+                          );
+                        },
+                      ),
                     ),
-                    UserMessage(
-                      message: "I am here!",
-                      isSentByUser: true,
-                      widthFactor: screenWidth * 0.9,
-                    ),
-                    LocationMessage(
-                      latitude: 25.276987,
-                      longitude: 55.296249,
-                      widthFactor: screenWidth * 0.7,
-                      heightFactor: screenHeight * 0.2,
-                      message: "This is my location now.",
-                      isSentByUser: true,
-                    ),
-                    UserMessage(
-                      message: "سلام عليكم",
-                      isSentByUser: false,
-                      widthFactor: screenWidth * 0.9,
-                    ),
+                    const MessageInputBar(),
                   ],
-                ),
-              ),
-            ),
-            const MessageInputBar(),
-          ],
-        ),
+                );
+            }
+            else {
+              return const Center(
+                child: Text("No messages yet"),
+              );
+            }
+          }),
       ),
     );
   }

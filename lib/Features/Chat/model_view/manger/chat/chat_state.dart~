@@ -10,7 +10,7 @@ class ChatLoad extends ChatState{
 
 }
 
-class Chatsuccful extends ChatState{
+class Chatsu  ccful extends ChatState{
   final List<Message> messages;
 
   Chatsuccful(this.messages);

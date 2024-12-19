@@ -17,7 +17,7 @@ class Chatrepoimp implements Chatrepo {
       Constants.rooms,
       context: context,
     );
-    return response;
+    return response; // Ensure you return the parsed JSON response
   }
 
   @override

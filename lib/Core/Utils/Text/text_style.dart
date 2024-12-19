@@ -174,4 +174,10 @@ static TextStyle taxidrivername= TextStyle(
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+  static TextStyle sharelocation=TextStyle(
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+  );
 }

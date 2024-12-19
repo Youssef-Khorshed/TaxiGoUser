@@ -20,7 +20,8 @@ Future<void> setup() async {
   getIt.registerSingleton<Chatrepo>(Chatrepoimp(getIt.get<ApiService>()));
 
   getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
-
+  getIt.registerSingleton<ApiService>(
+      ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
 
 
 }

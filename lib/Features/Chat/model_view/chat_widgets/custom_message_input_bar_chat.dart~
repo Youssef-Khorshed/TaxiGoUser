@@ -21,7 +21,7 @@ class MessageInputBar extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Padding(
-          padding: EdgeInsets.all(15.sp),
+          padding: const EdgeInsets.all(15.0),
           child: Container(
             decoration: BoxDecoration(
               boxShadow: const [
@@ -39,7 +39,7 @@ class MessageInputBar extends StatelessWidget {
                 BlocBuilder<ChatCubit, ChatState>(
                   builder: (context, state) {
                     return Padding(
-                      padding:  EdgeInsets.all(10.sp),
+                      padding: const EdgeInsets.all(10.0),
                       child: GestureDetector(
                         onTap: () {
                           String messageText = messageController.text.trim();

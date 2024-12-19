@@ -1,13 +1,14 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+
 abstract class Chatrepo {
-  Future<dynamic> getChatDetails(
-      {required int? firstUser, required int? secondUser});
+  Future<dynamic> getChatDetails({    required BuildContext context});
   Future<void> sendMessage({
-    File? file,
-    String? content,
-    required int roomId,
-    required int? userId,
-    String type,
+
+   String? message,
+    required Map data,
+    required   String type,
+    required BuildContext context
   });
 }

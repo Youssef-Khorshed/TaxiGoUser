@@ -1,4 +1,5 @@
 import 'dart:nativewrappers/_internal/vm/lib/developer.dart';
+
 import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
 class PusherConfig {
@@ -9,7 +10,7 @@ class PusherConfig {
   String SECRET = "147de9c9578c94d8b576";
   String API_CLUSTER = "mt1";
 
-  Future<void> initPusher(onEvent, {channelName = "private-.ride", rideid}) async {
+  Future<void> initPusher(onEvent, {channelName = ".ride", rideid}) async {
     _pusher = PusherChannelsFlutter.getInstance();
 
     try {
