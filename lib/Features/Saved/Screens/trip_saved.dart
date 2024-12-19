@@ -36,6 +36,7 @@ class SavedScreen extends StatelessWidget {
                       itemCount: savedData.length,
                       itemBuilder: (context, index) {
                         return TripCard(
+                          savedicon: Icons.bookmark,
                           rating: savedData[index].ride!.rate!,
                           driverName: '',
                           from: 'state',
@@ -45,7 +46,9 @@ class SavedScreen extends StatelessWidget {
                           timeTo: '',
                           onStarPressed: () {},
                           onSavedPressed: () {
-                            SavedViewModel.get(context).unSaveTrip(context, 4);
+                            SavedViewModel.get(context)
+                                .unSaveTrip(context, savedData[index].id!);
+                            SavedViewModel.get(context).getSavedData(context);
                           },
                         );
                       },

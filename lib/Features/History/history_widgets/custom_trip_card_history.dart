@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
+// ignore: must_be_immutable
 class TripCard extends StatelessWidget {
   final String from;
   final String to;
@@ -13,9 +14,13 @@ class TripCard extends StatelessWidget {
   final String price;
   final void Function() onStarPressed;
   final void Function() onSavedPressed;
+  IconData? savedicon;
+  IconData? favicon;
 
-  const TripCard({
+  TripCard({
     super.key,
+    this.favicon,
+    this.savedicon,
     required this.onStarPressed,
     required this.from,
     required this.to,
@@ -49,14 +54,17 @@ class TripCard extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: onStarPressed,
-                      icon: const Icon(
-                        Icons.star_border_outlined,
+                      icon: Icon(
+                        favicon ?? Icons.star_border_outlined,
                         color: AppColors.amberColor,
                       ),
                     ),
                     IconButton(
                         onPressed: onSavedPressed,
-                        icon: const Icon(Icons.bookmark_add_outlined))
+                        icon: Icon(
+                          savedicon ?? Icons.bookmark_add_outlined,
+                          color: AppColors.blueColor,
+                        ))
                   ],
                 ),
               ),
