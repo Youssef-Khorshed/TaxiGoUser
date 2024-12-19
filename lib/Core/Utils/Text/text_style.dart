@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 
@@ -145,6 +146,13 @@ abstract class AppTextStyles {
     height: 0,
   );
 
+  static TextStyle style12WhiteW500 = TextStyle(
+    fontSize: 12.sp,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w500,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
   static TextStyle style12GrayW400 = TextStyle(
     fontSize: 12,
     color: AppColors.grayColor,

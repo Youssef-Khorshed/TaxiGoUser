@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocode/geocode.dart';
-
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 // ignore: must_be_immutable
@@ -53,7 +52,7 @@ class BuildAddressRow extends StatelessWidget {
     );
   }
 
-  Future<String> formatAddress(
+  Future<List<String>> formatAddress(
       {required double latitude, required double longitude}) async {
     final address = await GeoCode()
         .reverseGeocoding(latitude: latitude, longitude: longitude);
@@ -82,6 +81,13 @@ class BuildAddressRow extends StatelessWidget {
       }
     }
 
-    return '$streetNumber $streetAddress, $city, $region $postalCode $countryName';
+    return [
+      streetNumber,
+      streetAddress,
+      city,
+      region,
+      postalCode,
+      countryName,
+    ];
   }
 }

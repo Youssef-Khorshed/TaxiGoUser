@@ -38,7 +38,6 @@ class HomeScreen extends StatelessWidget {
                 },
                 buttonText: AppLocalizations.of(context)!.where_are_you_going,
                 textColor: AppColors.blackColor,
-                hasIcon: true,
                 borderCornerRadius: 200.r,
               ),
             )

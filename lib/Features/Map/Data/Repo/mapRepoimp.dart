@@ -7,6 +7,7 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.da
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/calculateAverageModel/calculateAverage.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/directions.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/geocode_adress.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/place_details.dart';
@@ -181,6 +182,20 @@ class Maprepoimp extends MapRepo {
           Constants.geolcatorAddress(
               sessionToken: sessionToken, placeLatLng: placeLatLng));
       return Right(GeocodeAdress.fromJson(res));
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, GetActiveRide>> getActiveRide(
+      {required BuildContext context}) async {
+    try {
+      final res = await apiService.getRequest(
+          context: context, Constants.getactiveRide);
+      return Right(GetActiveRide.fromJson(res));
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {

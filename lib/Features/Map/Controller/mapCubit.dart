@@ -66,23 +66,30 @@ class MapsCubit extends Cubit<MapsState> {
   /// start updating user location
   getUserUpdatedLocation({required String title}) async {
     await locationService.updateUserLocation((LocationData userlocation) {
-      orginPosition = LocationPosition(
-        lat: userlocation.latitude,
-        lng: userlocation.longitude,
-      );
-      emit(UpdateOriginLocatoin());
-      buildmarker(
-        title: title,
-        destinationInfo: title,
-        postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
-      );
+      try {
+        emit(PlaceAddressLoading());
+        debugPrint(userlocation.toString());
+        orginPosition = LocationPosition(
+          lat: userlocation.latitude,
+          lng: userlocation.longitude,
+        );
+        emit(UpdateOriginLocatoin());
+        buildmarker(
+          title: title,
+          destinationInfo: title,
+          postion: LatLng(orginPosition!.lat!, orginPosition!.lng!),
+        );
 
-      updatePlaceCameraPosition(
-        place: LatLng(
-          userlocation.latitude!,
-          userlocation.longitude!,
-        ),
-      );
+        updatePlaceCameraPosition(
+          place: LatLng(
+            userlocation.latitude!,
+            userlocation.longitude!,
+          ),
+        );
+      } on PermissionException catch (error) {
+        Fluttertoast.showToast(msg: error.message);
+        emit(OpenLoacationFailed());
+      }
     });
   }
 
@@ -307,4 +314,23 @@ class MapsCubit extends Cubit<MapsState> {
       emit(CalculatePriceSuccess());
     });
   }
+
+  Future<void> getRideRequest({required BuildContext context}) async {
+    emit(GetActiveRideRequestLoading());
+    final response = await mapsRepository.getActiveRide(context: context);
+    response.fold(
+        (onError) => emit(GetActiveRideRequestFail(message: onError.message)),
+        (onSuccess) {
+      emit(GetActiveRideRequestSuccess());
+    });
+  }
 }
+
+class GetActiveRideRequestSuccess extends MapsState {}
+
+class GetActiveRideRequestFail extends MapsState {
+  final String message;
+  GetActiveRideRequestFail({required this.message});
+}
+
+class GetActiveRideRequestLoading extends MapsState {}

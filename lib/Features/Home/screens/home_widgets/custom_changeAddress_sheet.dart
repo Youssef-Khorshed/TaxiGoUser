@@ -63,23 +63,19 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
           CustomRidetypeselector(
             onRideTypeSelected: (index) {
               _selectedtriptype = index;
-              // debugPrint(_selectedtriptype.toString());
               setState(() {});
             },
           ),
           verticalSpace(20.h),
           Custom_changeAddress_buttons_sheet(
-              widget: widget, selectedtriptype: _selectedtriptype)
+              originTitle: widget.originTitle,
+              destinationTitle: widget.destinationTitle,
+              distance: widget.distance,
+              time: widget.time,
+              widget: widget,
+              selectedtriptype: _selectedtriptype)
         ],
       ),
     );
   }
-}
-
-int convertToMinutes(String timeString) {
-  RegExp regExp = RegExp(r'(?:(\d+)\s*hours?\s*)?(?:(\d+)\s*mins?)?');
-  var match = regExp.firstMatch(timeString);
-  int hours = match?.group(1) != null ? int.parse(match!.group(1)!) : 0;
-  int minutes = match?.group(2) != null ? int.parse(match!.group(2)!) : 0;
-  return hours * 60 + minutes;
 }

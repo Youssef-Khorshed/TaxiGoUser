@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/calculateAverageModel/calculateAverage.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/directions.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/geocode_adress.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/place_details.dart';
@@ -58,6 +59,10 @@ abstract class MapRepo {
     required LatLng origin,
     required LatLng destination,
     required String sessionToken,
+    required BuildContext context,
+  });
+
+  Future<Either<Failure, GetActiveRide>> getActiveRide({
     required BuildContext context,
   });
 }

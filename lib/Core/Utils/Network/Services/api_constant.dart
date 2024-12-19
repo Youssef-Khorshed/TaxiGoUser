@@ -7,7 +7,6 @@ class Constants {
   static const String mapToken = 'AIzaSyBprQ0bW-2_lCUfB2uhAk1GY0dUS9A8fxA';
 
   /// Routes
-
   static String searchplace(
           {required String searchQuery,
           required String sessionToken,
@@ -82,7 +81,7 @@ class Constants {
   static Map<String, dynamic> checkPromocodeBody({required String code}) => {
         "code": code //"SAVE10"//"SUMMER2024"
       };
-  static const String getactiveRide = '/customer/rides/active';
+  static const String getactiveRide = '$baseUrl/customer/rides/active';
   static const String cancelRide = '/customer/rides/cancel';
   static String rateCaptin({required String rate}) =>
       '/customer/rides/rate?rate=$rate';
