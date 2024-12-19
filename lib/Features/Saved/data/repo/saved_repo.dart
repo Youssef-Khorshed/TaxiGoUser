@@ -10,5 +10,5 @@ abstract class SavedRepo {
   Future<Either<Failure, SaveTripModel>> saveTrip(
       BuildContext context, int rideId);
   Future<Either<Failure, UnSaveModel>> unSaveTrip(
-      BuildContext context, String tripId);
+      BuildContext context, int tripId);
 }

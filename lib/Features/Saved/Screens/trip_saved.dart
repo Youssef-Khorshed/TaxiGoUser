@@ -19,7 +19,7 @@ class SavedScreen extends StatelessWidget {
             child: Text(state.errMessage),
           );
         }
-        if (state is SavedSuccessStates || state is SaveTripSuccessStates) {
+        if (state is SavedSuccessStates || state is UnSaveTripSuccessStates) {
           List<SavedData> savedData = SavedViewModel.get(context).savedDataList;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
@@ -45,7 +45,7 @@ class SavedScreen extends StatelessWidget {
                           timeTo: '',
                           onStarPressed: () {},
                           onSavedPressed: () {
-                            SavedViewModel.get(context).saveTrip(context, 3);
+                            SavedViewModel.get(context).unSaveTrip(context, 4);
                           },
                         );
                       },

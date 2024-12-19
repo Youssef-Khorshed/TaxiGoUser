@@ -36,4 +36,17 @@ class SavedViewModel extends Cubit<SavedStates> {
       },
     );
   }
+
+  unSaveTrip(BuildContext context, int tripId) async {
+    emit(SavedLoadingStates());
+    var either = await savedRepo.unSaveTrip(context, tripId);
+    either.fold(
+      (unSavedFailure) {
+        emit(UnSaveTripFailureStates(errMessage: unSavedFailure.message));
+      },
+      (unSavedResponse) {
+        emit(UnSaveTripSuccessStates(unSaveModel: unSavedResponse));
+      },
+    );
+  }
 }

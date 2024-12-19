@@ -58,9 +58,9 @@ class SavedRepoImpl extends SavedRepo {
 
   @override
   Future<Either<Failure, UnSaveModel>> unSaveTrip(
-      BuildContext context, String tripId) async {
-    var response = await apiService.postRequest(
-      Constants.baseUrl + Constants.unSaveTripEndPoint + tripId,
+      BuildContext context, int tripId) async {
+    var response = await apiService.deleteRequest(
+      '${Constants.baseUrl}${Constants.unSaveTripEndPoint}$tripId',
       context: context,
     );
     try {
