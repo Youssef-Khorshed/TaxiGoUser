@@ -4,5 +4,6 @@ class Constants {
   static const String postName = '';
   static const String historyEndPoint = '/customer/rides/history';
   static const String savedEndPoint = '/customer/saved';
+  static const String saveTripEndPoint = '/customer/saved/store';
   static const kModelFont = 'Medel';
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
+import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 
 class TripCard extends StatelessWidget {
   final String from;
@@ -11,9 +12,12 @@ class TripCard extends StatelessWidget {
   final String driverName;
   final String rating;
   final String price;
+  final void Function() onStarPressed;
+  final void Function() onSavedPressed;
 
   const TripCard({
     super.key,
+    required this.onStarPressed,
     required this.from,
     required this.to,
     required this.timeFrom,
@@ -21,6 +25,7 @@ class TripCard extends StatelessWidget {
     required this.driverName,
     required this.rating,
     required this.price,
+    required this.onSavedPressed,
   });
 
   @override
@@ -44,14 +49,14 @@ class TripCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: onStarPressed,
                       icon: const Icon(
                         Icons.star_border_outlined,
                         color: AppColors.amberColor,
                       ),
                     ),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: onSavedPressed,
                         icon: const Icon(Icons.bookmark_add_outlined))
                   ],
                 ),

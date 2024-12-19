@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
@@ -36,21 +39,20 @@ class SavedRepoImpl extends SavedRepo {
   Future<Either<Failure, SaveTripModel>> saveTrip(
       BuildContext context, int rideId) async {
     var response = await apiService.postRequest(
-        Constants.baseUrl + Constants.savedEndPoint,
+        Constants.baseUrl + Constants.saveTripEndPoint,
         context: context,
         body: {
           "ride_id": rideId,
         });
     try {
       SaveTripModel saveTripModel = SaveTripModel.fromJson(response);
+      log('saveTripModel');
 
       return Right(saveTripModel);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      } else {
-        return Left(ServerFailure(message: e.toString()));
-      }
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(InternetConnectionFailure(message: e.message.toString()));
     }
   }
 }

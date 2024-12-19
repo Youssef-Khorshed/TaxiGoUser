@@ -19,8 +19,8 @@ class SavedScreen extends StatelessWidget {
             child: Text(state.errMessage),
           );
         }
-        if (state is SavedSuccessStates) {
-          List<SavedData> savedData = state.savedDataModel.data!;
+        if (state is SavedSuccessStates || state is SaveTripSuccessStates) {
+          List<SavedData> savedData = SavedViewModel.get(context).savedDataList;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
             child: Container(
@@ -43,6 +43,10 @@ class SavedScreen extends StatelessWidget {
                           price: savedData[index].ride!.total!,
                           timeFrom: '',
                           timeTo: '',
+                          onStarPressed: () {},
+                          onSavedPressed: () {
+                            SavedViewModel.get(context).saveTrip(context, 3);
+                          },
                         );
                       },
                     ),

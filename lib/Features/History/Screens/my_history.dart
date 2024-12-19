@@ -46,6 +46,8 @@ class HistoryScreen extends StatelessWidget {
                           price: historyData[index].ride![0].total!,
                           timeFrom: '',
                           timeTo: '',
+                          onStarPressed: () {},
+                          onSavedPressed: () {},
                         );
                       },
                     ),

@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_states.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo.dart';
+import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 
 class SavedViewModel extends Cubit<SavedStates> {
   SavedViewModel({required this.savedRepo}) : super(SavedLoadingStates());
   final SavedRepo savedRepo;
+  List<SavedData> savedDataList = [];
 
   static SavedViewModel get(context) => BlocProvider.of(context);
   getSavedData(BuildContext context, {String? tripHistory}) async {
@@ -16,6 +20,7 @@ class SavedViewModel extends Cubit<SavedStates> {
         emit(SavedFailureStates(errMessage: savedFailure.message));
       },
       (savedResponse) {
+        savedDataList = savedResponse.data!;
         emit(SavedSuccessStates(savedDataModel: savedResponse));
       },
     );
@@ -29,6 +34,7 @@ class SavedViewModel extends Cubit<SavedStates> {
         emit(SaveTripFailureStates(errMessage: savedFailure.message));
       },
       (savedResponse) {
+        log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddv $savedResponse');
         emit(SaveTripSuccessStates(saveTripModel: savedResponse));
       },
     );
