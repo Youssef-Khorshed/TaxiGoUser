@@ -158,6 +158,7 @@ class MapsCubit extends Cubit<MapsState> {
     required String sessionToken,
     required BuildContext context,
   }) async {
+    emit(PlaceDirectionsLading());
     final response = await mapsRepository.getDrirection(
         origin: origin,
         destination: destination,

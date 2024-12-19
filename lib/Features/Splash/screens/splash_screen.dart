@@ -18,23 +18,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: Scaffold(
-        body: Image.asset(
-          AppImages.splashImage,
-          fit: BoxFit.cover,
-          width: width,
-          height: height,
-        ),
+    return Scaffold(
+      body: Image.asset(
+        AppImages.splashImage,
+        fit: BoxFit.fill,
+        width: double.infinity,
       ),
     );
   }
 
   navigateToHome() {
     Future.delayed(const Duration(seconds: 5), () {
-      // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, AppRoutes.generalScreen);
     });
   }

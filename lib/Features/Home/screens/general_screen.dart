@@ -54,44 +54,45 @@ class _GeneralScreenState extends State<GeneralScreen> {
       "Wallet",
       "Logout",
     ];
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.blueColor,
       drawer: CustomAppDrawer(
         onItemTap: (index) => onItemTap(index),
         selectedIndex: selctedIndex,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          verticalSpace(10.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Builder(builder: (context) {
-                  return InkWell(
-                      onTap: () => Scaffold.of(context).openDrawer(),
-                      child: SvgPicture.asset(AppIcons.menuIcon));
-                }),
-                AutoSizeText(screensName[selctedIndex],
-                    style: AppTextStyles.style24WhiteW500),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.profile);
-                  },
-                  child: CircleAvatar(
-                    radius: 18.r,
-                    backgroundImage: const AssetImage(AppIcons.appIcon),
-                  ),
-                )
-              ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            verticalSpace(10.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Builder(builder: (context) {
+                    return InkWell(
+                        onTap: () => Scaffold.of(context).openDrawer(),
+                        child: SvgPicture.asset(AppIcons.menuIcon));
+                  }),
+                  AutoSizeText(screensName[selctedIndex],
+                      style: AppTextStyles.style24WhiteW500),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.profile);
+                    },
+                    child: CircleAvatar(
+                      radius: 18.r,
+                      backgroundImage: const AssetImage(AppIcons.appIcon),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Expanded(child: screens[selctedIndex])
-        ],
+            Expanded(child: screens[selctedIndex])
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

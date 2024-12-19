@@ -48,7 +48,7 @@ class EnableLocationDialog extends StatelessWidget {
               ),
               Text(
                 AppLocalizations.of(context)!.chose_your_location_to_start,
-                style: AppTextStyles.style14GrayW500,
+                style: AppTextStyles.style14DarkgrayW500,
                 textAlign: TextAlign.center,
               )
             ],

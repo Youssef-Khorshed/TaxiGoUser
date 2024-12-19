@@ -18,12 +18,13 @@ class HomeScreen extends StatelessWidget {
         child: Stack(
           children: [
             ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: const GoogleMap(
+                borderRadius: BorderRadius.circular(20.r),
+                child: GoogleMap(
+                  padding: EdgeInsets.only(bottom: 40.h, left: 100.w),
                   myLocationButtonEnabled: false,
-                  initialCameraPosition: CameraPosition(
+                  initialCameraPosition: const CameraPosition(
                       target: LatLng(33.40302561069593, 44.498105563683005),
-                      zoom: 8),
+                      zoom: 7.5),
                 )),
             Positioned(
               bottom: 10.h,

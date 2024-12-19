@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
@@ -80,8 +79,6 @@ class Maprepoimp extends MapRepo {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message.toString()));
-    } on DioException catch (e) {
-      return Left(ServerFailure.fromDioError(e));
     } on UnExpectedException catch (e) {
       return Left(UnExpectedFailure(message: e.message));
     }
@@ -98,7 +95,7 @@ class Maprepoimp extends MapRepo {
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
+      return Left(ServerFailure(message: e.message));
     }
   }
 

@@ -12,10 +12,10 @@ class CustomMap extends StatefulWidget {
 }
 
 class _CustomMapState extends State<CustomMap> {
-  // late String mapStyle;
+  String? mapStyle;
   @override
   void initState() {
-    // initalStyle();
+    initalStyle();
 
     super.initState();
   }
@@ -27,25 +27,6 @@ class _CustomMapState extends State<CustomMap> {
         return Stack(
           children: [
             buildMap(),
-            // Positioned(
-            //     top: 50,
-            //     child: ElevatedButton(
-            //       onPressed: () {
-            //         // context.read<MapsCubit>().emitPlaceLocation(
-            //         //     placeId: 'ChIJ8aukkz5NtokRLAHB24Ym9dc',
-            //         //     sessionToken: 'sessionToken',
-            //         //     context: context);
-            //         context
-            //             .read<MapsCubit>()
-            //             //      .getUserLocation(title: 'origin');
-            //             .emitPlaceSuggestions(
-            //                 searchQuery: 'alex',
-            //                 sessionToken: 'sessionToken',
-            //                 context: context);
-
-            //       },
-            //       child: Text('data'),
-            //     ))
           ],
         );
       },
@@ -54,6 +35,7 @@ class _CustomMapState extends State<CustomMap> {
 
   GoogleMap buildMap() {
     return GoogleMap(
+      padding: const EdgeInsets.only(bottom: 50, left: 100),
       markers: context.read<MapsCubit>().markers,
       polylines: context.read<MapsCubit>().polyLines,
       zoomControlsEnabled: false,
@@ -68,10 +50,10 @@ class _CustomMapState extends State<CustomMap> {
     );
   }
 
-  // void initalStyle() async {
-  //   mapStyle = await DefaultAssetBundle.of(context)
-  //       .loadString("assets/mapstyle/night.json");
-  // }
+  void initalStyle() async {
+    mapStyle = await DefaultAssetBundle.of(context)
+        .loadString("assets/mapstyle/night.json");
+  }
 
   @override
   void dispose() {

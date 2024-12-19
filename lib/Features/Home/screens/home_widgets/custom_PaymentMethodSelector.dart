@@ -40,7 +40,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
       listener: (context, state) {
         if (state is CheckPromocodeFail) {
           Fluttertoast.showToast(
-              msg: 'Promocode is not valid',
+              msg: state.message,
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIosWeb: 1,

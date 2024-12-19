@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -79,8 +78,7 @@ class ApiService {
             return response.data;
           } else {
             throw ServerException(
-              message: ServerFailure.fromResponse(response.statusCode, response)
-                  .message,
+              message: ServerFailure.fromResponse(response),
             );
           }
         }
@@ -88,8 +86,8 @@ class ApiService {
         throw NoInternetException(message: 'No internet Connection');
       }
       throw UnExpectedException(message: 'Un Expected error occurs');
-    } on DioException catch (e) {
-      throw ServerException(message: ServerFailure.fromDioError(e).message);
+    } on DioException catch (dioError) {
+      throw ServerException(message: ServerFailure.fromDioError(dioError));
     }
   }
 

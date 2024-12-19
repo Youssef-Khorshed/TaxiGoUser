@@ -1,7 +1,7 @@
 class CalculateAverageData {
   double? distance;
   double? distancePrice;
-  dynamic? timePrice;
+  dynamic timePrice;
   int? startingPrice;
   double? finalPrice;
 
@@ -17,7 +17,7 @@ class CalculateAverageData {
       CalculateAverageData(
         distance: (json['distance'] as num?)?.toDouble(),
         distancePrice: (json['distance_price'] as num?)?.toDouble(),
-        timePrice: json['time_price'] as dynamic?,
+        timePrice: json['time_price'] as dynamic,
         startingPrice: json['starting_price'] as int?,
         finalPrice: (json['final_price'] as num?)?.toDouble(),
       );
