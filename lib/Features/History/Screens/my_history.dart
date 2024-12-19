@@ -17,8 +17,9 @@ class HistoryScreen extends StatelessWidget {
     return BlocBuilder<HistoryViewModel, HistoryStates>(
       bloc: HistoryViewModel.get(context)..getHistoryData(context),
       builder: (context, state) {
-        if (state is HistorySuccessStates) {
-          List<HistoryData> historyData = state.historyDataModel.data!;
+        if (state is HistorySuccessStates || state is SaveTripSuccessStates) {
+          List<HistoryData> historyData =
+              HistoryViewModel.get(context).historyData;
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
             child: Container(
@@ -36,7 +37,7 @@ class HistoryScreen extends StatelessWidget {
                   verticalSpace(16.h),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: state.historyDataModel.data!.length,
+                      itemCount: historyData.length,
                       itemBuilder: (context, index) {
                         return TripCard(
                           rating: historyData[index].ride![0].rate ?? '',
