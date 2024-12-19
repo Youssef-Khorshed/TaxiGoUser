@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
+// ignore: must_be_immutable
 class TripCard extends StatelessWidget {
   final String from;
   final String to;
@@ -11,9 +12,16 @@ class TripCard extends StatelessWidget {
   final String driverName;
   final String rating;
   final String price;
+  final void Function() onStarPressed;
+  final void Function() onSavedPressed;
+  IconData? savedicon;
+  IconData? favicon;
 
-  const TripCard({
+  TripCard({
     super.key,
+    this.favicon,
+    this.savedicon,
+    required this.onStarPressed,
     required this.from,
     required this.to,
     required this.timeFrom,
@@ -21,6 +29,7 @@ class TripCard extends StatelessWidget {
     required this.driverName,
     required this.rating,
     required this.price,
+    required this.onSavedPressed,
   });
 
   @override
@@ -44,14 +53,18 @@ class TripCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.star,
+                      onPressed: onStarPressed,
+                      icon: Icon(
+                        favicon ?? Icons.star_border_outlined,
                         color: AppColors.amberColor,
                       ),
                     ),
                     IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.bookmark))
+                        onPressed: onSavedPressed,
+                        icon: Icon(
+                          savedicon ?? Icons.bookmark_add_outlined,
+                          color: AppColors.blueColor,
+                        ))
                   ],
                 ),
               ),
