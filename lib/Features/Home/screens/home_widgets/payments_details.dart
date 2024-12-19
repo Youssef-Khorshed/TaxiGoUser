@@ -62,7 +62,7 @@ class PaymentsDetails extends StatelessWidget {
             Buildrowdetail(
               label: AppLocalizations.of(context)!.total,
               value:
-                  '${rideDetails.ride!.total} ${AppLocalizations.of(context)!.currency} ',
+                  '${rideDetails.ride!.paid} ${AppLocalizations.of(context)!.currency} ',
               isBold: true,
             ),
           ],

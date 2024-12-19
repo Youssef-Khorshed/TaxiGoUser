@@ -26,10 +26,15 @@ class TripDetailsMap extends StatelessWidget {
           style: AppTextStyles.style12DarkgrayW400,
         ),
         leading: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              icon,
-              width: 25.w,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .02,
+              width: MediaQuery.of(context).size.width * .05,
+              child: SvgPicture.asset(
+                icon,
+              ),
             ),
           ],
         ),

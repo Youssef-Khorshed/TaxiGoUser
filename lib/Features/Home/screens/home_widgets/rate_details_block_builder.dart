@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
@@ -10,8 +11,7 @@ import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimat
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/rate_cubit/rete_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/tripe_complete_date.dart';
 
 class RateDetailsBlockBuilder extends StatelessWidget {
   const RateDetailsBlockBuilder({

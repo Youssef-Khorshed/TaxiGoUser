@@ -12,8 +12,7 @@ import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimat
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
-import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payments_details.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/tripe_complete_date.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -70,7 +69,8 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                             rideCompleteDetailsModel:
                                 state.rideCompleteDetailsModel,
                           ),
-                          verticalSpace(250),
+                          verticalSpace(
+                              MediaQuery.of(context).size.height * .15),
                           AppButton(
                             text: AppLocalizations.of(context)!.confirm,
                             height: MediaQuery.of(context).size.height * 0.01,
@@ -83,28 +83,6 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                       )
                     : Container();
       },
-    );
-  }
-}
-
-class TripeCompleteDate extends StatelessWidget {
-  const TripeCompleteDate({
-    super.key,
-    required this.rideCompleteDetailsModel,
-  });
-  final RideCompleteDetailsModel rideCompleteDetailsModel;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // LocationDetails(
-        //   rideDetails: rideCompleteDetailsModel,
-        // ),
-        verticalSpace(30),
-        PaymentsDetails(
-            rideDetails: rideCompleteDetailsModel,
-            size: MediaQuery.of(context).size),
-      ],
     );
   }
 }

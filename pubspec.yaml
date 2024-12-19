@@ -39,6 +39,8 @@ dependencies:
   timeline_tile: ^2.0.0
   geocoding: ^3.0.0
   permission_handler: ^11.3.1
+  geocode: ^1.0.3
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_launcher_icons: null
