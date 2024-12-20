@@ -17,7 +17,8 @@ class HistoryScreen extends StatelessWidget {
     return BlocBuilder<HistoryViewModel, HistoryStates>(
       bloc: HistoryViewModel.get(context)..getHistoryData(context),
       builder: (context, state) {
-        if (state is HistorySuccessStates || state is SaveTripSuccessStates) {
+        if (state is HistorySuccessStates ||
+            state is AddToSaveToFavSuccessStates) {
           List<HistoryData> historyData =
               HistoryViewModel.get(context).historyData;
           return Padding(
@@ -47,7 +48,12 @@ class HistoryScreen extends StatelessWidget {
                           price: historyData[index].ride![0].total ?? '',
                           timeFrom: '',
                           timeTo: '',
-                          onStarPressed: () {},
+                          onStarPressed: () {
+                            HistoryViewModel.get(context).addToFavTrip(
+                                context, historyData[index].ride![0].id!);
+                            HistoryViewModel.get(context)
+                                .getHistoryData(context);
+                          },
                           onSavedPressed: () {
                             HistoryViewModel.get(context).saveTrip(
                                 context, historyData[index].ride![0].id!);

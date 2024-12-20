@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -30,6 +31,7 @@ class CustomDriverdetailsHistory extends StatelessWidget {
       subtitle: Row(
         children: [
           const Icon(Icons.star, size: 16, color: AppColors.amberColor),
+          horizontalSpace(3),
           AutoSizeText(
             rate,
             style: AppTextStyles.style14GrayW500,
@@ -48,8 +50,9 @@ class CustomDriverdetailsHistory extends StatelessWidget {
           AppLocalizations.of(context)!.price,
           style: AppTextStyles.style14DarkgrayW500,
         ),
+        verticalSpace(3),
         AutoSizeText(
-          price,
+          ' $price ${AppLocalizations.of(context)!.iqd}',
           style: AppTextStyles.style14BlackW500,
         ),
       ],

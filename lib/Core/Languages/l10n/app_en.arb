@@ -10,7 +10,8 @@
     "price":"price",
         "trip_favorite":"Trip Favorite",
     "trip_saved":"Trip Saved",
-    "km": "km"
+    "km": "km",
+    "iqd": "IQD"
 
 
 }

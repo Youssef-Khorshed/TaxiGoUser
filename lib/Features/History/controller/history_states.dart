@@ -15,14 +15,14 @@ class HistorySuccessStates extends HistoryStates {
   HistorySuccessStates({required this.historyDataModel});
 }
 
-class SaveTripLoadingStates extends HistoryStates {}
+class AddToSaveToFavTripLoadingStates extends HistoryStates {}
 
-class SaveTripFailureStates extends HistoryStates {
+class AddToSaveToFavFailureStates extends HistoryStates {
   final String errMessage;
-  SaveTripFailureStates({required this.errMessage});
+  AddToSaveToFavFailureStates({required this.errMessage});
 }
 
-class SaveTripSuccessStates extends HistoryStates {
-  final SaveTripModel saveTripModel;
-  SaveTripSuccessStates({required this.saveTripModel});
+class AddToSaveToFavSuccessStates extends HistoryStates {
+  final AddToSaveToFavTripModel favAndsaveTripModel;
+  AddToSaveToFavSuccessStates({required this.favAndsaveTripModel});
 }
