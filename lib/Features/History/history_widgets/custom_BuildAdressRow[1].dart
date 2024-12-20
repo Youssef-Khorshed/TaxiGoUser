@@ -5,6 +5,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/trip_details%5B1%5D.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BuildAddressRow extends StatelessWidget {
   BuildAddressRow({
@@ -87,8 +88,7 @@ class BuildAddressRow extends StatelessWidget {
             ],
           ),
           trailing: Text(
-            "${rideDetails.ride![0].distance}",
-            //  ${AppLocalizations.of(context)!.km},
+            '${rideDetails.ride![0].distance} ${AppLocalizations.of(context)!.km}',
             style: TextStyle(fontSize: 15.sp),
           ),
         );

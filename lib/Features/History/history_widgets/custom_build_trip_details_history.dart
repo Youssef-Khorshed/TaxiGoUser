@@ -6,14 +6,12 @@ import 'package:taxi_go_user_version/Features/History/history_widgets/custom_Bui
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_driver_details_history.dart';
 
 class CustomBuildTripDetails extends StatelessWidget {
-  final bool hasIcon;
   final String rating;
   final String price;
   final HistoryData historyData;
 
   const CustomBuildTripDetails(
       {super.key,
-      required this.hasIcon,
       required this.rating,
       required this.price,
       required this.historyData});
@@ -28,8 +26,7 @@ class CustomBuildTripDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.only(
-              top: hasIcon ? 50.h : 10.h, bottom: 5.h, right: 10.w, left: 10.w),
+          padding: EdgeInsets.only(bottom: 5.h, right: 10.w, left: 10.w),
           color: AppColors.whiteColor2,
           child: BuildAddressRow(
             rideDetails: historyData,

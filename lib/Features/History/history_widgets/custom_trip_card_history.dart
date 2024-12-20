@@ -37,50 +37,43 @@ class TripCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topRight,
-      children: [
-        Card(
-          elevation: 2,
-          shadowColor: AppColors.blackColor,
-          color: AppColors.whiteColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.whiteColor2,
+    return Card(
+      elevation: 8,
+      shadowColor: AppColors.grayColor,
+      color: AppColors.whiteColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+      child: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: AppColors.whiteColor2,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: onStarPressed,
+                  icon: Icon(
+                    favicon ?? Icons.star_border_outlined,
+                    color: AppColors.amberColor,
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: onStarPressed,
-                      icon: Icon(
-                        favicon ?? Icons.star_border_outlined,
-                        color: AppColors.amberColor,
-                      ),
-                    ),
-                    IconButton(
-                        onPressed: onSavedPressed,
-                        icon: Icon(
-                          savedicon ?? Icons.bookmark_add_outlined,
-                          color: AppColors.blueColor,
-                        ))
-                  ],
-                ),
-              ),
-              CustomBuildTripDetails(
-                hasIcon: false,
-                price: price,
-                rating: rating,
-                historyData: historyData,
-              ),
-            ],
+                IconButton(
+                    onPressed: onSavedPressed,
+                    icon: Icon(
+                      savedicon ?? Icons.bookmark_add_outlined,
+                      color: AppColors.blueColor,
+                    ))
+              ],
+            ),
           ),
-        ),
-      ],
+          CustomBuildTripDetails(
+            price: price,
+            rating: rating,
+            historyData: historyData,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -9,6 +9,8 @@
     "this_month":"This month",
     "price":"price",
         "trip_favorite":"Trip Favorite",
-    "trip_saved":"Trip Saved"
+    "trip_saved":"Trip Saved",
+    "km": "km"
+
 
 }
