@@ -1,40 +1,87 @@
-import 'package:geocoding/geocoding.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geocode/geocode.dart';
 
-Future<String> getAddressFromLatLng(
-    double latitude, double longitude, String addressType) async {
-  try {
-    // الحصول على قائمة العناوين بناءً على الإحداثيات
-    List<Placemark> placeMarks =
-        await placemarkFromCoordinates(latitude, longitude);
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
-    // استخراج أول عنوان
-    Placemark place = placeMarks[0];
+// ignore: must_be_immutable
+class BuildAddressRowYouef extends StatelessWidget {
+  Icon icon;
+  String title;
+  String subtitle;
+  bool? traling;
+  String? distance;
+  String? time;
+  BuildAddressRowYouef({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.traling,
+    this.distance,
+    this.time,
+  });
 
-    // التحقق من نوع العنوان المطلوب
-    switch (addressType) {
-      case AddressConstants.street:
-        return "${place.street}";
-      case AddressConstants.country:
-        return "${place.country}";
-      case AddressConstants.locality:
-        return "${place.locality}";
-      case AddressConstants.administrativeArea:
-        return "${place.administrativeArea}";
-      case AddressConstants.fullAddress:
-        return "${place.street}, ${place.locality}, ${place.administrativeArea}, ${place.country}";
-      default:
-        return "Invalid address type";
-    }
-  } catch (e) {
-    return "Error: $e";
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        traling ?? true
+            ? Row(
+                children: [
+                  Text(distance!, style: AppTextStyles.style12DarkgrayW400),
+                ],
+              )
+            : const SizedBox(),
+        const Spacer(),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(title,
+                textAlign: TextAlign.start,
+                style: AppTextStyles.style16BlackW600),
+            SizedBox(
+                height: 20.h,
+                width: 270.w,
+                child: Text(subtitle,
+                    textAlign: TextAlign.end,
+                    style: AppTextStyles.style14GrayW500)),
+          ],
+        ),
+        icon
+      ],
+    );
   }
-}
 
-// تعريف ثابتات العناوين
-class AddressConstants {
-  static const String fullAddress = "fullAddress";
-  static const String street = "street";
-  static const String locality = "locality";
-  static const String administrativeArea = "administrativeArea";
-  static const String country = "country";
+  Future<String> formatAddress(
+      {required double latitude, required double longitude}) async {
+    final address = await GeoCode()
+        .reverseGeocoding(latitude: latitude, longitude: longitude);
+
+    List<String> parts = address.toString().split(',');
+    String streetNumber = '';
+    String streetAddress = '';
+    String city = '';
+    String region = '';
+    String postalCode = '';
+    String countryName = '';
+
+    for (var part in parts) {
+      if (part.contains('streetNumber=')) {
+        streetNumber = part.split('=')[1].trim();
+      } else if (part.contains('streetAddress=')) {
+        streetAddress = part.split('=')[1].trim();
+      } else if (part.contains('city=')) {
+        city = part.split('=')[1].trim();
+      } else if (part.contains('region=')) {
+        region = part.split('=')[1].trim();
+      } else if (part.contains('postal=')) {
+        postalCode = part.split('=')[1].trim();
+      } else if (part.contains('countryName=')) {
+        countryName = part.split('=')[1].trim();
+      }
+    }
+
+    return '$streetNumber $streetAddress, $city, $region $postalCode $countryName';
+  }
 }

@@ -50,9 +50,14 @@ class RateTripeWidget extends StatelessWidget {
               ),
               verticalSpace(10.h),
               // Feedback Box
-              AutoSizeText(
-                '${AppLocalizations.of(context)!.write_your_feedback} :',
-                style: AppTextStyles.style16BlackW600,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  AutoSizeText(
+                    '${AppLocalizations.of(context)!.write_your_feedback} ',
+                    style: AppTextStyles.style16BlackW600,
+                  ),
+                ],
               ),
               FeedbackField(
                 feedBackController: cubit.feedBackController,

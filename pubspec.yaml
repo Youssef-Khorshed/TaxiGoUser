@@ -36,9 +36,7 @@ dependencies:
   flutter_polyline_points: ^2.1.0
   dartz: ^0.10.1
   flutter_secure_storage: ^9.2.2
-  timeline_tile: ^2.0.0
-  geocoding: ^3.0.0
-  permission_handler: ^11.3.1
+  fluttertoast: ^8.2.10
   geocode: ^1.0.3
   shimmer: ^3.0.0
 

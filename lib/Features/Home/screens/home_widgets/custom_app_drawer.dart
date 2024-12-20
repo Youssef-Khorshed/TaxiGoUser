@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
@@ -46,7 +45,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                   children: [
                     CircleAvatar(
                       radius: 40.r,
-                      backgroundImage: AssetImage(AppIcons.appIcon),
+                      backgroundImage: const AssetImage(AppIcons.appIcon),
                     ),
                     verticalSpace(10),
                     AutoSizeText(

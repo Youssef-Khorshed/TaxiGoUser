@@ -7,7 +7,7 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 
 // ignore: must_be_immutable
 class CustomErrorconnectionlost extends StatelessWidget {
-  CustomErrorconnectionlost({
+  const CustomErrorconnectionlost({
     super.key,
   });
 

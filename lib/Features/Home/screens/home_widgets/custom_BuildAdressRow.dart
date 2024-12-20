@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/trip_details.dart';
 
@@ -39,21 +42,13 @@ class BuildAddressRow extends StatelessWidget {
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: TripDetailsMap(
-                    address: " ",
-                    location: " ",
-                    icon: AppIcons.iconsMapRed,
-                  ),
+                  child: simmerWidget(context),
                 ),
                 SizedBox(height: 10),
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: TripDetailsMap(
-                    address: " ",
-                    location: " ",
-                    icon: AppIcons.iconsMapBlue,
-                  ),
+                  child: simmerWidget(context),
                 ),
               ],
             ),
@@ -141,4 +136,41 @@ class BuildAddressRow extends StatelessWidget {
       'city': _getCity(address.city ?? ''),
     };
   }
+}
+
+Widget simmerWidget(context) {
+  return Column(
+    children: [
+      ListTile(
+        title: Container(
+          height: 15.h,
+          width: 20.w,
+          decoration: BoxDecoration(
+              color: AppColors.grayColor,
+              borderRadius: BorderRadius.circular(12.r)),
+        ),
+        subtitle: Container(
+          height: 15.h,
+          width: 50.w,
+          decoration: BoxDecoration(
+              color: AppColors.grayColor,
+              borderRadius: BorderRadius.circular(12.r)),
+        ),
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .02,
+              width: MediaQuery.of(context).size.width * .05,
+              child: SvgPicture.asset(
+                AppIcons.iconsMapBlue,
+              ),
+            ),
+          ],
+        ),
+      ),
+      horizontalSpace(5),
+    ],
+  );
 }

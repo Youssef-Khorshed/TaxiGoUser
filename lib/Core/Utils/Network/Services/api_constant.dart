@@ -1,8 +1,10 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
   static const String userToken =
       '31|Kmu10EvtFiRiyrsufe3dy2z7q5ECODM9pqhECxtP7f2800da';
-  static const String mapToken = 'AIzaSyCI1Xh53omwfYyDPXsovvHwjMgyvamPtow';
+  static const String mapToken = 'AIzaSyBprQ0bW-2_lCUfB2uhAk1GY0dUS9A8fxA';
   static const String completeRide =
       'https://go-taxi.codecraft1.com/api/customer/rides/get-last';
   static const String rateTripe =
@@ -22,7 +24,20 @@ class Constants {
   }) =>
       'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&fields=geometry&sessiontoken=$sessionToken&key=$mapToken';
 
-  static const String calculatePrice = '/customer/calculate-price';
+  static String geolcatorAddress({
+    required LatLng placeLatLng,
+    required String sessionToken,
+  }) =>
+      'https://maps.googleapis.com/maps/api/geocode/json?latlng=${placeLatLng.latitude},${placeLatLng.longitude}&key=$mapToken&sessiontoken=$sessionToken';
+
+  static String directions({
+    required LatLng origin,
+    required LatLng destination,
+    required String sessionToken,
+  }) =>
+      'https://maps.googleapis.com/maps/api/directions/json?origin=${origin.latitude},${origin.longitude}&destination=${destination.latitude},${destination.longitude}&key=$mapToken&sessiontoken=$sessionToken';
+
+  static const String calculatePrice = '$baseUrl/customer/calculate-price';
   static Map<String, dynamic> calculatePriceBody({
     required String latFrom,
     required String lngFrom,
@@ -40,7 +55,7 @@ class Constants {
         "duration_minutes": durationMinutes
       };
 
-  static const String rideRequest = '/customer/ride-requests';
+  static const String rideRequest = '$baseUrl/customer/ride-requests';
 
   static Map<String, dynamic> rideRequestBody({
     required String addressFrom,
@@ -65,8 +80,9 @@ class Constants {
         "promocode": promocode
       };
 
-  static const String cancelRideRequest = '/customer/ride-requests/cancel';
-  static const String checkPromocode = '/customer/promocode/check';
+  static const String cancelRideRequest =
+      '$baseUrl/customer/ride-requests/cancel';
+  static const String checkPromocode = '$baseUrl/customer/promocode/check';
   static Map<String, dynamic> checkPromocodeBody({required String code}) => {
         "code": code //"SAVE10"//"SUMMER2024"
       };

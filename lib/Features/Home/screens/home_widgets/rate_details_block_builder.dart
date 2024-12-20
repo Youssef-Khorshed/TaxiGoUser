@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/lottie/lottie.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/app_constants.dart';
@@ -11,6 +15,8 @@ import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimat
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/rate_cubit/rete_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_snack_bar.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/rate_btn.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/tripe_complete_date.dart';
 
 class RateDetailsBlockBuilder extends StatelessWidget {
@@ -32,13 +38,13 @@ class RateDetailsBlockBuilder extends StatelessWidget {
             if (state is RideCompleteDetailsInitial) {
               cubit.getRideCompleteDetails(context);
             }
-            print("Current state: $state");
+            log("Current state: $state");
             return state is RideCompleteDetailsLoading
                 ? CustomLoading()
                 : state is RideCompleteDetailsFailure
                     ? CustomErroranimation(
                         errormessage: state.message,
-                        lottie: AppConstants.CatError,
+                        lottie: AppLottie.catError,
                       )
                     : state is RideCompleteDetailsSuccess
                         ? TripeCompleteDate(
@@ -52,26 +58,70 @@ class RateDetailsBlockBuilder extends StatelessWidget {
         verticalSpace(15.h),
         SizedBox(
           width: double.infinity,
-          child: BlocBuilder<RateCubit, RateState>(
+          child: BlocConsumer<RateCubit, RateState>(
+            listener: (context, state) => () {
+              if (state is RateError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "يجب أن يكون حقل rate على الأقل 1.",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            },
             builder: (context, state) {
               final rateCubit = context.read<RateCubit>();
 
-              return ElevatedButton(
-                onPressed: () {
+              return RateButton(
+                onValidRateWithFeedback: () {
                   rateCubit.confirmRate(context,
                       rateCubit.feedBackController.text, rateCubit.rate);
+                  Navigator.pushReplacementNamed(
+                      context, AppRoutes.generalScreen);
+                  CustomSnackBar(
+                    textStyle: AppTextStyles.style16WhiteW500,
+                    message:
+                        AppLocalizations.of(context)!.thank_you_for_your_review,
+                    backgroundColor: AppColors.lightGreen,
+                  ).show(context);
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.blueColor,
-                  padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: AutoSizeText(
-                  AppLocalizations.of(context)!.submit,
-                  style: AppTextStyles.style16WhiteW500,
-                ),
+                onValidRateWithoutFeedback: () {
+                  rateCubit.confirmRate(context,
+                      rateCubit.feedBackController.text, rateCubit.rate);
+                  Future.delayed(const Duration(seconds: 1), () {
+                    CustomSnackBar(
+                      textStyle: AppTextStyles.style16WhiteW500,
+                      message: AppLocalizations.of(context)!
+                          .thank_you_for_your_review,
+                      backgroundColor: AppColors.grayColor,
+                    ).show(context);
+                  }).then(
+                    (_) => Navigator.pushReplacementNamed(
+                      context,
+                      AppRoutes.generalScreen,
+                    ),
+                  );
+                },
+                onInvalidRateWithFeedback: () {
+                  CustomSnackBar(
+                    textStyle: AppTextStyles.style16WhiteW500,
+                    message: AppLocalizations.of(context)!.please_rate_the_trip,
+                    backgroundColor: AppColors.lightGreen,
+                  ).show(context);
+                },
+                onInvalidRateWithoutFeedback: () {
+                  Navigator.pushReplacementNamed(
+                      context, AppRoutes.generalScreen);
+                },
+                buttonText: AppLocalizations.of(context)!.submit,
+                feedbackController: rateCubit.feedBackController,
+                rate: rateCubit.rate,
+                backgroundColor: AppColors.blueColor,
+                textStyle: AppTextStyles.style16WhiteW500,
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
               );
             },
           ),

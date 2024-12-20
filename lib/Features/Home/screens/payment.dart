@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/lottie/lottie.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
@@ -47,7 +48,7 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
             : state is RideCompleteDetailsFailure
                 ? CustomErroranimation(
                     errormessage: state.message,
-                    lottie: AppConstants.CatError,
+                    lottie: AppLottie.catError,
                   )
                 : state is RideCompleteDetailsSuccess
                     ? ListView(

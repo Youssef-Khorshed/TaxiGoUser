@@ -11,11 +11,11 @@
     "cash":"النقدية",
     "confirm":"تأكيد",
     "home":"الرئيسية",
-    "where_are_you_going":"أين تريد الذهاب؟",
+    "where_are_you_going":"أين تريد الذهاب  ؟",
     "select_your_location":"اختر موقعك",
     "enable_location":"تفعيل الموقع",
     "chose_your_location_to_start":"اختر موقعك للبدء في العثور على الطلب من حولك",
-    "use_my_location":"استخدم موقعي",
+    "use_my_location":"استخدام موقعي",
     "select_address":"اختر العنوان",
     "from":"من",
     "to":"إلى",
@@ -51,7 +51,9 @@
     "online_payment":"الدفع عبر الانترنت",
     "payment_method":"طريقة الدفع",
     "currency":"دينار عراقي",
-    "noPromoCode": "لا يوجد"
+    "noPromoCode": "لا يوجد",
+    "please_rate_the_trip": "من فضلك قيم الرحله ",
+    "thank_you_for_your_review": "\"شكرًا لتقييمك! رأيك يهمنا ويساعدنا على تحسين تجربتك معنا. نتمنى أن تكون رحلتك ممتعة ونتطلع لخدمتك مجددًا قريبًا!\""
 
 
 

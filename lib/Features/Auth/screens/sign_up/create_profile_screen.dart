@@ -6,7 +6,7 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
-import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import '../auth_widgets/custom_set_profile_bottoms.dart';
 
 class CreateProfileScreen extends StatefulWidget {
@@ -70,36 +70,41 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   ],
                 ),
                 verticalSpace(30),
-                CustomAppFormField(
+                CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
                   hintText: "Enter Your Name",
                   controller: nameController,
-                  isPhone: false,
+                  textStyle: AppTextStyles.style12DarkgrayW400,
+                  hinttextStyle: AppTextStyles.style12DarkgrayW400,
                 ),
                 verticalSpace(10),
-                CustomAppFormField(
+                CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
                   hintText: "Enter Your Phone Number",
                   controller: phoneController,
-                  isPhone: true,
+                  keyboardType: TextInputType.phone,
+                  textStyle: AppTextStyles.style12DarkgrayW400,
+                  hinttextStyle: AppTextStyles.style12DarkgrayW400,
                 ),
                 verticalSpace(10),
-                CustomAppFormField(
+                CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
                   hintText: "Enter Your Email",
                   controller: emailController,
-                  isPhone: false,
+                  textStyle: AppTextStyles.style12DarkgrayW400,
+                  hinttextStyle: AppTextStyles.style12DarkgrayW400,
                 ),
                 verticalSpace(10),
-                CustomAppFormField(
+                CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
                   hintText: "Enter Your street",
                   controller: streetNameController,
-                  isPhone: false,
+                  textStyle: AppTextStyles.style12DarkgrayW400,
+                  hinttextStyle: AppTextStyles.style12DarkgrayW400,
                 ),
                 verticalSpace(10),
                 CustomDropDownFormField(

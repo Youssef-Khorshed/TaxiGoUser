@@ -26,7 +26,7 @@ class HistoryScreen extends StatelessWidget {
                     child: Text("History",
                         style: AppTextStyles.style20WhiteW600
                             .copyWith(color: AppColors.blackColor))),
-                Expanded(child: const CustomDetailsfilterdropdown()),
+                const Expanded(child: CustomDetailsfilterdropdown()),
               ],
             ),
             verticalSpace(16),

@@ -26,44 +26,41 @@ class CustomAppBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: InkWell(
-        onTap: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(borderCornerRadius ?? 10),
-                color: buttonColor ?? AppColors.blueColor,
-                border: Border.all(color: Colors.white, width: 2)),
-            width: double.infinity,
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                hasIcon != null
-                    ? hasIcon!
-                        ? Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Icon(
-                              Icons.my_location_outlined,
-                              size: 20,
-                              color: iconColor,
-                            ),
-                          )
-                        : const SizedBox.shrink()
-                    : const SizedBox.shrink(),
-                verticalSpace(20),
-                Center(
-                  child: AutoSizeText(
-                    buttonText ?? "",
-                    style: AppTextStyles.style16WhiteW500
-                        .copyWith(color: textColor),
-                  ),
+    return InkWell(
+      onTap: onPressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderCornerRadius ?? 10),
+              color: buttonColor ?? AppColors.blueColor,
+              border: Border.all(color: borderColor ?? Colors.white, width: 2)),
+          width: double.infinity,
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              hasIcon != null
+                  ? hasIcon!
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Icon(
+                            Icons.my_location_outlined,
+                            size: 20,
+                            color: iconColor,
+                          ),
+                        )
+                      : const SizedBox.shrink()
+                  : const SizedBox.shrink(),
+              verticalSpace(20),
+              Center(
+                child: AutoSizeText(
+                  buttonText ?? "",
+                  style:
+                      AppTextStyles.style16WhiteW500.copyWith(color: textColor),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

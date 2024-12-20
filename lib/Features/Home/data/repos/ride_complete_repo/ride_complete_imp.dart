@@ -26,7 +26,7 @@ class RideCompleteRepoImpl implements RideCompleteRepo {
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
-      return Left(InternetConnectionFailure(message: e.message.toString()));
+      return Left(ServerFailure(message: e.message.toString()));
     }
   }
 }

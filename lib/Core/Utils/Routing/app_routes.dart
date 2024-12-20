@@ -67,12 +67,12 @@ class AppRoutes {
             return const WelcomeScreen();
           },
         );
-      case signUp:
-        return CupertinoPageRoute(
-          builder: (context) {
-            return const SignUpScreen();
-          },
-        );
+      // case signUp:
+      //   return CupertinoPageRoute(
+      //     builder: (context) {
+      //       return const SignUpScreen();
+      //     },
+      //   );
       case otp:
         return CupertinoPageRoute(
           builder: (context) {

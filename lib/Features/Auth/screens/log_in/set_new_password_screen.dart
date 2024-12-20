@@ -5,8 +5,7 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
-
-import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 
 class SetNewPasswordScreen extends StatefulWidget {
   const SetNewPasswordScreen({super.key});
@@ -38,13 +37,13 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                   textAlign: TextAlign.left,
                 ),
                 verticalSpace(10),
-                CustomAppFormField(
+                CustomTextFormFiled(
                   isPassword: true,
                   obscureText: true,
                   hintText: "Enter Your New Password",
                   controller: passwordController,
                 ),
-                CustomAppFormField(
+                CustomTextFormFiled(
                   isPassword: true,
                   obscureText: true,
                   hintText: "Confirm Password",

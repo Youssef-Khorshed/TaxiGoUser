@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo/ride_complete.dart';
@@ -6,20 +7,27 @@ import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo
 part 'ride_complete_details_state.dart';
 
 class RideCompleteDetailsCubit extends Cubit<RideCompleteDetailsState> {
-  RideCompleteDetailsCubit(this.rideCompleteRepoImp)
-      : super(RideCompleteDetailsInitial());
   final RideCompleteRepo rideCompleteRepoImp;
 
-  Future<void> getRideCompleteDetails(context) async {
-    print("**************************${state}");
+  RideCompleteDetailsCubit(this.rideCompleteRepoImp)
+      : super(RideCompleteDetailsInitial());
+
+  Future<void> getRideCompleteDetails(BuildContext context) async {
     emit(RideCompleteDetailsLoading());
+
+    // استدعاء الريبو للحصول على التفاصيل
     final result = await rideCompleteRepoImp.getRideCompleteDetails(context);
-    result.fold((failure) {
-      emit(RideCompleteDetailsFailure(failure.message));
-      print("**************************${state}");
-    }, (rideCompleteDetails) {
-      emit(RideCompleteDetailsSuccess(rideCompleteDetails));
-      print("**************************${state}");
-    });
+
+    // التعامل مع النتيجة
+    result.fold(
+      (failure) {
+        // في حال حدوث فشل
+        emit(RideCompleteDetailsFailure(failure.message));
+      },
+      (rideCompleteDetails) {
+        // في حال نجاح الاستجابة
+        emit(RideCompleteDetailsSuccess(rideCompleteDetails));
+      },
+    );
   }
 }
