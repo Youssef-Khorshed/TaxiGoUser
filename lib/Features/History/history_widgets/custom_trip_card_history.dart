@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
 // ignore: must_be_immutable
@@ -16,6 +17,7 @@ class TripCard extends StatelessWidget {
   final void Function() onSavedPressed;
   IconData? savedicon;
   IconData? favicon;
+  final HistoryData historyData;
 
   TripCard({
     super.key,
@@ -30,6 +32,7 @@ class TripCard extends StatelessWidget {
     required this.rating,
     required this.price,
     required this.onSavedPressed,
+    required this.historyData,
   });
 
   @override
@@ -70,13 +73,9 @@ class TripCard extends StatelessWidget {
               ),
               CustomBuildTripDetails(
                 hasIcon: false,
-                from: from,
-                to: to,
-                timeFrom: timeFrom,
-                timeTo: timeTo,
                 price: price,
-                driverName: driverName,
                 rating: rating,
+                historyData: historyData,
               ),
             ],
           ),

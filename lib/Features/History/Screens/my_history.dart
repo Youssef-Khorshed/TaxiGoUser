@@ -44,15 +44,17 @@ class HistoryScreen extends StatelessWidget {
                           driverName: '',
                           from: historyData[index].addressFrom!,
                           to: historyData[index].addressTo!,
-                          price: historyData[index].ride![0].total!,
+                          price: historyData[index].ride![0].total ?? '',
                           timeFrom: '',
                           timeTo: '',
                           onStarPressed: () {},
                           onSavedPressed: () {
-                            HistoryViewModel.get(context).saveTrip(context, 3);
+                            HistoryViewModel.get(context).saveTrip(
+                                context, historyData[index].ride![0].id!);
                             HistoryViewModel.get(context)
                                 .getHistoryData(context);
                           },
+                          historyData: historyData[index],
                         );
                       },
                     ),
