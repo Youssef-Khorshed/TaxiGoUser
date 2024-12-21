@@ -87,7 +87,10 @@ class CustomBuildTripDetails extends StatelessWidget {
           height: 1,
           color: AppColors.darkgrayColor,
         ),
-        const CustomDriverdetailsHistory(),
+        const CustomDriverdetailsHistory(
+          price: '',
+          rating: '',
+        ),
       ],
     );
   }

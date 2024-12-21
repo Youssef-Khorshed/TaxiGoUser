@@ -7,9 +7,9 @@ import 'package:taxi_go_user_version/Features/History/history_widgets/custom_dri
 
 class CustomFavoriteBuildTripDetails extends StatelessWidget {
   const CustomFavoriteBuildTripDetails(
-      {super.key, required this.rideData, required this.distance});
+      {super.key, required this.rideData, required this.favoriteRide});
   final RideRequestData rideData;
-  final int distance;
+  final FavoriteRide favoriteRide;
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +25,17 @@ class CustomFavoriteBuildTripDetails extends StatelessWidget {
               EdgeInsets.only(top: 20.h, bottom: 5.h, right: 10.w, left: 10.w),
           color: AppColors.whiteColor2,
           child: CustomFavBuildAddressRow(
-              rideDetails: rideData, distance: distance),
+              rideDetails: rideData, distance: favoriteRide.distance!),
         ),
         Container(
           width: double.infinity,
           height: 1,
           color: AppColors.darkgrayColor,
         ),
-        const CustomDriverdetailsHistory(),
+        CustomDriverdetailsHistory(
+          price: favoriteRide.total!,
+          rating: favoriteRide.rate!,
+        ),
       ],
     );
   }

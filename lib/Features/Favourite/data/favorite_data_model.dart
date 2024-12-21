@@ -19,25 +19,25 @@ class FavoriteDataModel {
 
 class FavoriteData {
   int? id;
-  Ride? ride;
+  FavoriteRide? ride;
 
   FavoriteData({this.ride, this.id});
 
   FavoriteData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    ride = json['ride'] != null ? Ride.fromJson(json['ride']) : null;
+    ride = json['ride'] != null ? FavoriteRide.fromJson(json['ride']) : null;
   }
 }
 
-class Ride {
+class FavoriteRide {
   int? distance;
   String? total;
   String? rate;
   RideRequestData? rideRequest;
 
-  Ride({this.distance, this.total, this.rate, this.rideRequest});
+  FavoriteRide({this.distance, this.total, this.rate, this.rideRequest});
 
-  Ride.fromJson(Map<String, dynamic> json) {
+  FavoriteRide.fromJson(Map<String, dynamic> json) {
     distance = json['distance'];
 
     total = json['total'];

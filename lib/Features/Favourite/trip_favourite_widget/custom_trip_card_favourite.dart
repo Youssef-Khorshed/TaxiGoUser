@@ -5,13 +5,13 @@ import 'package:taxi_go_user_version/Features/Favourite/trip_favourite_widget/cu
 
 class FavouriteCard extends StatelessWidget {
   final RideRequestData rideData;
-  final int distance;
+  final FavoriteRide favoriteRide;
   final Function() onPressed;
   const FavouriteCard({
     super.key,
     required this.rideData,
-    required this.distance,
     required this.onPressed,
+    required this.favoriteRide,
   });
 
   @override
@@ -30,7 +30,7 @@ class FavouriteCard extends StatelessWidget {
               Expanded(
                   child: CustomFavoriteBuildTripDetails(
                 rideData: rideData,
-                distance: distance,
+                favoriteRide: favoriteRide,
               )),
             ],
           ),

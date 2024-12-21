@@ -39,13 +39,13 @@ class FavouriteScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return FavouriteCard(
                           rideData: favoriteData[index].ride!.rideRequest!,
-                          distance: favoriteData[index].ride!.distance!,
                           onPressed: () {
                             FavouriteViewModel.get(context)
                                 .rmvFavTrip(context, favoriteData[index].id!);
                             FavouriteViewModel.get(context)
                                 .getFavouriteDate(context);
                           },
+                          favoriteRide: favoriteData[index].ride!,
                         );
                       },
                     ),
