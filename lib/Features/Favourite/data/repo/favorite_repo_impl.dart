@@ -15,7 +15,7 @@ class FavoriteRepoImpl extends FavouriteRepo {
   Future<Either<Failure, FavoriteDataModel>> getData(
       BuildContext context) async {
     var response = await apiService.getRequest(
-      Constants.baseUrl + Constants.historyEndPoint,
+      Constants.baseUrl + Constants.favoriteEndPoint,
       context: context,
     );
 
