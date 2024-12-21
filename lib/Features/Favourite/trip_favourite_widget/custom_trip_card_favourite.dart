@@ -6,10 +6,12 @@ import 'package:taxi_go_user_version/Features/Favourite/trip_favourite_widget/cu
 class FavouriteCard extends StatelessWidget {
   final RideRequestData rideData;
   final int distance;
+  final Function() onPressed;
   const FavouriteCard({
     super.key,
     required this.rideData,
     required this.distance,
+    required this.onPressed,
   });
 
   @override
@@ -37,7 +39,7 @@ class FavouriteCard extends StatelessWidget {
           top: 5,
           right: 1,
           child: IconButton(
-            onPressed: () {},
+            onPressed: onPressed,
             icon: const Icon(
               size: 30,
               Icons.star_rate_rounded,

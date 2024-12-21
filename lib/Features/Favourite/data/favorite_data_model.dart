@@ -18,11 +18,13 @@ class FavoriteDataModel {
 }
 
 class FavoriteData {
+  int? id;
   Ride? ride;
 
-  FavoriteData({this.ride});
+  FavoriteData({this.ride, this.id});
 
   FavoriteData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     ride = json['ride'] != null ? Ride.fromJson(json['ride']) : null;
   }
 }

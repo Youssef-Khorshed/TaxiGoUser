@@ -24,4 +24,17 @@ class FavouriteViewModel extends Cubit<FavouriteStates> {
       },
     );
   }
+
+  rmvFavTrip(BuildContext context, int tripId) async {
+    emit(RmvFavoriteLoadingStates());
+    var either = await favoriteRepo.removeFavTrip(context, tripId);
+    either.fold(
+      (rmvFavFailure) {
+        emit(RmvFavoriteFailureStates(errMessage: rmvFavFailure.message));
+      },
+      (rmvFavResponse) {
+        emit(RmvFavoriteSuccessStates(rmvFavModel: rmvFavResponse));
+      },
+    );
+  }
 }

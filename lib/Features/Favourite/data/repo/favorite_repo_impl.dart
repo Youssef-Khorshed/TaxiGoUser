@@ -1,11 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/favorite_data_model.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo.dart';
+import 'package:taxi_go_user_version/Features/Favourite/data/rmove_favorite_model.dart';
 
 class FavoriteRepoImpl extends FavouriteRepo {
   ApiService apiService;
@@ -30,6 +32,24 @@ class FavoriteRepoImpl extends FavouriteRepo {
       } else {
         return Left(ServerFailure(message: e.toString()));
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, RemoveFavoriteModel>> removeFavTrip(
+      BuildContext context, int tripId) async {
+    var response = await apiService.deleteRequest(
+      '${Constants.baseUrl}${Constants.removefavoriteEndPoint}$tripId',
+      context: context,
+    );
+    try {
+      RemoveFavoriteModel unSaveModel = RemoveFavoriteModel.fromJson(response);
+
+      return Right(unSaveModel);
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(InternetConnectionFailure(message: e.message.toString()));
     }
   }
 }

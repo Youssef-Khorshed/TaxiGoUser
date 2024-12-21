@@ -19,7 +19,8 @@ class FavouriteScreen extends StatelessWidget {
             child: Text(state.errMessage),
           );
         }
-        if (state is FavoriteSuccessStates) {
+        if (state is FavoriteSuccessStates ||
+            state is RmvFavoriteSuccessStates) {
           List<FavoriteData> favoriteData =
               FavouriteViewModel.get(context).favoriteData;
           return Padding(
@@ -34,10 +35,17 @@ class FavouriteScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ListView.builder(
+                      itemCount: favoriteData.length,
                       itemBuilder: (context, index) {
                         return FavouriteCard(
                           rideData: favoriteData[index].ride!.rideRequest!,
                           distance: favoriteData[index].ride!.distance!,
+                          onPressed: () {
+                            FavouriteViewModel.get(context)
+                                .rmvFavTrip(context, favoriteData[index].id!);
+                            FavouriteViewModel.get(context)
+                                .getFavouriteDate(context);
+                          },
                         );
                       },
                     ),
