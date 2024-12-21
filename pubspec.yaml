@@ -37,6 +37,7 @@ dependencies:
   shimmer: ^3.0.0
   geocode: ^1.0.3
   redacted:
+  skeletonizer:
 
 dev_dependencies:
   flutter_launcher_icons: null

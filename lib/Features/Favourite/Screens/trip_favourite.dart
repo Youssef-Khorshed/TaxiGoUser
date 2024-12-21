@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:redacted/redacted.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_empty_data_view.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_failure_view.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_states.dart';
@@ -64,9 +66,29 @@ class FavouriteScreen extends StatelessWidget {
             ),
           );
         }
-        return const Center(
-          child: CircularProgressIndicator(
-            color: AppColors.blueColor,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+            decoration: BoxDecoration(
+                color: AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(20)),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return Skeletonizer(
+                        child: CustomDummyWidget(
+                          onPressed: () {},
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
