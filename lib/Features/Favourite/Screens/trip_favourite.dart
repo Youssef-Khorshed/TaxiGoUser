@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_empty_data_view.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_states.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/favorite_data_model.dart';
@@ -31,27 +32,30 @@ class FavouriteScreen extends StatelessWidget {
               decoration: BoxDecoration(
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: favoriteData.length,
-                      itemBuilder: (context, index) {
-                        return FavouriteCard(
-                          rideData: favoriteData[index].ride!.rideRequest!,
-                          onPressed: () {
-                            FavouriteViewModel.get(context)
-                                .rmvFavTrip(context, favoriteData[index].id!);
-                            FavouriteViewModel.get(context)
-                                .getFavouriteDate(context);
-                          },
-                          favoriteRide: favoriteData[index].ride!,
-                        );
-                      },
+              child: favoriteData.isEmpty
+                  ? CustomEmptyDataView()
+                  : Column(
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: favoriteData.length,
+                            itemBuilder: (context, index) {
+                              return FavouriteCard(
+                                rideData:
+                                    favoriteData[index].ride!.rideRequest!,
+                                onPressed: () {
+                                  FavouriteViewModel.get(context).rmvFavTrip(
+                                      context, favoriteData[index].id!);
+                                  FavouriteViewModel.get(context)
+                                      .getFavouriteDate(context);
+                                },
+                                favoriteRide: favoriteData[index].ride!,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
             ),
           );
         }

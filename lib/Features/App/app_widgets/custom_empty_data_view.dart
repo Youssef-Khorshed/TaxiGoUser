@@ -1,6 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 class CustomEmptyDataView extends StatelessWidget {
   const CustomEmptyDataView({super.key});
@@ -8,9 +12,20 @@ class CustomEmptyDataView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SvgPicture.asset(
-        AppImages.emptyData,
-        height: 150,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            AppImages.emptyData,
+            height: MediaQuery.of(context).size.height * 0.3,
+            width: MediaQuery.of(context).size.width * 0.3,
+          ),
+          verticalSpace(30.h),
+          AutoSizeText(
+            'لاتوجد اى رحلات ',
+            style: AppTextStyles.style20BlackW500,
+          )
+        ],
       ),
     );
   }
