@@ -11,7 +11,11 @@ dependencies:
   cupertino_icons: null
   device_preview: ^1.2.0
   dropdown_button2: ^2.3.9
+  shared_preferences:
   firebase_core: null
+  bloc:
+  uuid:
+  flutter_google_maps_webservices:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
@@ -26,6 +30,7 @@ dependencies:
   connectivity_plus: ^6.1.1
   location: ^7.0.1
   dio: ^5.7.0
+  geocoding: ^2.0.3
   google_maps_flutter: ^2.10.0
   intl: any
   pin_code_fields: ^8.0.1
@@ -36,9 +41,9 @@ dependencies:
   flutter_polyline_points: ^2.1.0
   dartz: ^0.10.1
   flutter_secure_storage: ^9.2.2
-  fluttertoast: ^8.2.10
   geocode: ^1.0.3
-  shimmer: ^3.0.0
+  fluttertoast: ^8.2.10
+  circular_countdown_timer: ^0.2.4
 
 dev_dependencies:
   flutter_launcher_icons: null

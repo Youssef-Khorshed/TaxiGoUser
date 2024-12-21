@@ -18,9 +18,9 @@ class TripeCompleteDate extends StatelessWidget {
         // LocationDetails(
         //   rideDetails: rideCompleteDetailsModel,
         // )
-        BuildAddressRow(
-          rideDetails: rideCompleteDetailsModel,
-        ),
+        // BuildAddressRow(
+        //   rideDetails: rideCompleteDetailsModel,
+        // ),
         verticalSpace(30.h),
         PaymentsDetails(
             rideDetails: rideCompleteDetailsModel,

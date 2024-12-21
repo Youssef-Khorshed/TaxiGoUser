@@ -38,6 +38,8 @@ class LocationService {
     await checkAndrequestLocationService();
     await checkAndrequestLocationPermission();
     location.changeSettings(distanceFilter: 3);
+    debugPrint("location change");
+
     location.onLocationChanged.listen(onDatachange);
   }
 

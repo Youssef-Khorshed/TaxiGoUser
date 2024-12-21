@@ -18,11 +18,19 @@ class PaymentMethodSelector extends StatefulWidget {
   String addressFrom;
   String addressTo;
   int tripType;
+  String originTitle;
+  String destinationTitle;
+  String distance;
+  String time;
   PaymentMethodSelector({
     super.key,
     required this.addressFrom,
     required this.addressTo,
     required this.tripType,
+    required this.originTitle,
+    required this.destinationTitle,
+    required this.distance,
+    required this.time,
   });
 
   @override
@@ -104,6 +112,12 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
 
             // Buttons
             PaymentButton(
+                originSubTitle: widget.addressFrom,
+                originTitle: widget.originTitle,
+                destinationSubTitle: widget.addressTo,
+                destinationTitle: widget.destinationTitle,
+                distance: widget.distance,
+                time: widget.time,
                 controller: controller,
                 widget: widget,
                 selectedMethod: selectedMethod)

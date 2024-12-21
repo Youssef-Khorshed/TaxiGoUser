@@ -1,20 +1,32 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+// ignore: camel_case_types, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:taxi_go_user_version/Core/Utils/convertTime_Distance/custom_covertMethods.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_PaymentMethodSelector.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_changeAddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 
-// ignore: camel_case_types
+// ignore: must_be_immutable, camel_case_types
 class Custom_changeAddress_buttons_sheet extends StatelessWidget {
-  const Custom_changeAddress_buttons_sheet({
+  String originTitle;
+  String destinationTitle;
+  String distance;
+  String time;
+  Custom_changeAddress_buttons_sheet({
     super.key,
-    required this.widget,
     required int selectedtriptype,
+    required this.originTitle,
+    required this.destinationTitle,
+    required this.distance,
+    required this.time,
+    required this.widget,
   }) : _selectedtriptype = selectedtriptype;
 
   final CustomChangeaddressSheet widget;
@@ -47,6 +59,12 @@ class Custom_changeAddress_buttons_sheet extends StatelessWidget {
               customBottomSheet(
                   context: context,
                   widget: PaymentMethodSelector(
+                    originTitle: widget.originTitle,
+                    destinationTitle: widget.destinationTitle,
+                    distance:
+                        convertMilesToKilometers(double.parse(widget.distance))
+                            .toString(),
+                    time: convertToMinutes(widget.time).toString(),
                     addressFrom: widget.originSubTitle,
                     addressTo: widget.destinationSubTitle,
                     tripType: _selectedtriptype + 1,

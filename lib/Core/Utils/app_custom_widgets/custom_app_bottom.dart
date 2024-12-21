@@ -5,23 +5,21 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 class CustomAppBottom extends StatelessWidget {
-  final String? buttonText, icon;
+  final String? buttonText;
   final VoidCallback onPressed;
   final Color? textColor, buttonColor, borderColor, iconColor;
-  final bool? hasIcon;
-
+  final Icon? icon;
   final double? borderCornerRadius;
   const CustomAppBottom({
-    this.icon,
     this.iconColor,
     this.borderColor,
     this.textColor,
-    this.hasIcon,
     this.borderCornerRadius,
     this.buttonText,
     this.buttonColor,
     required this.onPressed,
     super.key,
+    this.icon,
   });
 
   @override
@@ -40,18 +38,7 @@ class CustomAppBottom extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              hasIcon != null
-                  ? hasIcon!
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Icon(
-                            Icons.my_location_outlined,
-                            size: 20,
-                            color: iconColor,
-                          ),
-                        )
-                      : const SizedBox.shrink()
-                  : const SizedBox.shrink(),
+              icon ?? const SizedBox(),
               verticalSpace(20),
               Center(
                 child: AutoSizeText(

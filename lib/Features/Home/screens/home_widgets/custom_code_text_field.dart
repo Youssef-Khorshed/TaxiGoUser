@@ -31,7 +31,6 @@ class CodeTextField extends StatelessWidget {
               onPressed: () {},
               buttonText: AppLocalizations.of(context)!.use_code,
               buttonColor: AppColors.blueColor,
-              hasIcon: false,
               textColor: AppColors.whiteColor,
             ),
           )

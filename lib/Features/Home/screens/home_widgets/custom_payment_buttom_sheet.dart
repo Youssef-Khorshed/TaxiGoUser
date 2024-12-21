@@ -59,7 +59,6 @@ class PaymentButtomSheet extends StatelessWidget {
                   onPressed: () {},
                   buttonText: AppLocalizations.of(context)!.back,
                   buttonColor: AppColors.whiteColor,
-                  hasIcon: false,
                   textColor: AppColors.redColor),
               CustomAppBottom(
                   onPressed: () {
@@ -80,7 +79,6 @@ class PaymentButtomSheet extends StatelessWidget {
                   },
                   buttonText: AppLocalizations.of(context)!.done,
                   buttonColor: AppColors.blueColor,
-                  hasIcon: false,
                   textColor: AppColors.whiteColor),
             ],
           )

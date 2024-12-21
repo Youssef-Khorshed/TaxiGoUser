@@ -19,8 +19,8 @@ class _CustomRidetypeselectorState extends State<CustomRidetypeselector> {
   final List<Map<String, dynamic>> rideTypes = [
     {'title': 'Economy', 'icon': Icons.directions_car},
     {'title': 'VIP', 'icon': Icons.directions_car_filled},
-    {'title': 'Airport', 'icon': Icons.local_airport},
-    {'title': 'Between country', 'icon': Icons.map},
+    {'title': 'Airport', 'icon': Icons.directions_car},
+    {'title': 'Between country', 'icon': Icons.directions_car},
   ];
 
   @override

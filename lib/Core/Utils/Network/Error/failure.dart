@@ -12,7 +12,11 @@ class ServerFailure extends Failure {
   ServerFailure({required super.message});
   static String fromDioError(DioException dioError) {
     if (dioError.response != null) {
-      return dioError.response?.data['error'];
+      if (dioError.response?.data['error'] != null) {
+        return dioError.response?.data['error'];
+      }
+
+      return dioError.response?.data['message'];
     } else {
       switch (dioError.type) {
         case DioExceptionType.connectionTimeout:
