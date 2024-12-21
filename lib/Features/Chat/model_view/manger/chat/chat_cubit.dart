@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepo.dart';
@@ -18,6 +20,27 @@ class ChatCubit extends Cubit<ChatState> {
       emit(Chatsend());
 
   }
+  void listenForMessages() {
+    print('Start Listening');
+    chatrepo.listenForMessages(onEvent: (data) {
+      print('Raw Data: $data');
+      final reply = jsonDecode(data);
+
+      print('Parsed Data: $reply');
+      final message = Message.fromJson(reply);
+
+      print('Message: $message');
+      emit(Chatsuccful([message]));
+    });
+  }
+
+
+
+
+
+
+
+
   Future<void> getChatdata(BuildContext context) async {
     emit(ChatLoad());
     try {
