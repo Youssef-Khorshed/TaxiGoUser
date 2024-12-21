@@ -6,9 +6,8 @@ import 'package:taxi_go_user_version/Features/Favourite/trip_favourite_widget/cu
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_driver_details_history.dart';
 
 class CustomFavoriteBuildTripDetails extends StatelessWidget {
-  const CustomFavoriteBuildTripDetails(
-      {super.key, required this.rideData, required this.favoriteRide});
-  final RideRequestData rideData;
+  const CustomFavoriteBuildTripDetails({super.key, required this.favoriteRide});
+
   final FavoriteRide favoriteRide;
 
   @override
@@ -25,7 +24,8 @@ class CustomFavoriteBuildTripDetails extends StatelessWidget {
               EdgeInsets.only(top: 20.h, bottom: 5.h, right: 10.w, left: 10.w),
           color: AppColors.whiteColor2,
           child: CustomFavBuildAddressRow(
-              rideDetails: rideData, distance: favoriteRide.distance!),
+              rideDetails: favoriteRide.rideRequest!,
+              distance: favoriteRide.distance!),
         ),
         Container(
           width: double.infinity,
@@ -35,6 +35,7 @@ class CustomFavoriteBuildTripDetails extends StatelessWidget {
         CustomDriverdetailsHistory(
           price: favoriteRide.total!,
           rating: favoriteRide.rate!,
+          name: favoriteRide.favoriteCaptain!.name ?? 'mohamed',
         ),
       ],
     );

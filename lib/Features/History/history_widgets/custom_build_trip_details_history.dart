@@ -90,6 +90,7 @@ class CustomBuildTripDetails extends StatelessWidget {
         const CustomDriverdetailsHistory(
           price: '',
           rating: '',
+          name: '',
         ),
       ],
     );

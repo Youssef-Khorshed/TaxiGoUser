@@ -48,8 +48,6 @@ class FavouriteScreen extends StatelessWidget {
                             itemCount: favoriteData.length,
                             itemBuilder: (context, index) {
                               return FavouriteCard(
-                                rideData:
-                                    favoriteData[index].ride!.rideRequest!,
                                 onPressed: () {
                                   FavouriteViewModel.get(context).rmvFavTrip(
                                       context, favoriteData[index].id!);

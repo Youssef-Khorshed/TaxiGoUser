@@ -34,6 +34,7 @@ class FavoriteRide {
   String? total;
   String? rate;
   RideRequestData? rideRequest;
+  FavoriteCaptain? favoriteCaptain;
 
   FavoriteRide({this.distance, this.total, this.rate, this.rideRequest});
 
@@ -43,9 +44,23 @@ class FavoriteRide {
     total = json['total'];
     rate = json['rate'];
 
+    favoriteCaptain = json['captain'] != null
+        ? FavoriteCaptain.fromJson(json['captain'])
+        : null;
     rideRequest = json['ride_request'] != null
         ? RideRequestData.fromJson(json['ride_request'])
         : null;
+  }
+}
+
+class FavoriteCaptain {
+  String? name;
+  String? picturePath;
+
+  FavoriteCaptain({this.name, this.picturePath});
+  FavoriteCaptain.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    picturePath = json['picture'];
   }
 }
 

@@ -4,12 +4,10 @@ import 'package:taxi_go_user_version/Features/Favourite/data/favorite_data_model
 import 'package:taxi_go_user_version/Features/Favourite/trip_favourite_widget/custom_favorite_build_trip_details.dart';
 
 class FavouriteCard extends StatelessWidget {
-  final RideRequestData rideData;
   final FavoriteRide favoriteRide;
   final Function() onPressed;
   const FavouriteCard({
     super.key,
-    required this.rideData,
     required this.onPressed,
     required this.favoriteRide,
   });
@@ -29,7 +27,6 @@ class FavouriteCard extends StatelessWidget {
             children: [
               Expanded(
                   child: CustomFavoriteBuildTripDetails(
-                rideData: rideData,
                 favoriteRide: favoriteRide,
               )),
             ],

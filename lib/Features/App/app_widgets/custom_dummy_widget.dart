@@ -74,6 +74,7 @@ class DummyBuildTripDetails extends StatelessWidget {
         const CustomDriverdetailsHistory(
           price: '55',
           rating: '2.5',
+          name: '',
         ),
       ],
     );

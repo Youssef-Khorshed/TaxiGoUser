@@ -7,9 +7,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomDriverdetailsHistory extends StatelessWidget {
   const CustomDriverdetailsHistory(
-      {super.key, required this.price, required this.rating});
+      {super.key,
+      required this.price,
+      required this.rating,
+      required this.name});
   final String price;
   final String rating;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class CustomDriverdetailsHistory extends StatelessWidget {
         radius: 20.r,
       ),
       title: AutoSizeText(
-        'Mohamed haggag',
+        name,
         style: AppTextStyles.style18BlackW500,
         maxLines: 1,
       ),
