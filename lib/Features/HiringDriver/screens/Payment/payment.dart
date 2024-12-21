@@ -7,6 +7,8 @@ import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widget
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment_method_list_card.dart';
 
+import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
 
@@ -125,10 +127,8 @@ class PaymentScreen extends StatelessWidget {
             ),
             verticalSpace(10),
             const PaymentMethodList(),
-            AppButton(
-                text: 'Confirm',
-                height: size.height * 0.01,
-                circlesize: 8,
+            CustomAppBottom(
+                buttonText: 'Confirm',
                 onPressed: () {
                   Navigator.of(context).pushNamed(AppRoutes.rate);
                 })

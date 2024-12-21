@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
 
 class CustomCancelbodyCancel extends StatefulWidget {
@@ -54,10 +55,8 @@ class _CustomCancelbodyCancelState extends State<CustomCancelbodyCancel> {
                   3, "The driver took too long to be appointed."),
               _buildReasonOption(4, "Other"),
               verticalSpace(20),
-              AppButton(
-                text: 'Send',
-                height: size.height * 0.01,
-                circlesize: 24,
+              CustomAppBottom(
+                buttonText: 'Send',
                 onPressed: () {},
               )
             ],

@@ -8,12 +8,12 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 // ignore: must_be_immutable
 class CustomErroranimation extends StatelessWidget {
   String errormessage;
-  String lottie;
+  String? lottie;
 
   CustomErroranimation({
     super.key,
     required this.errormessage,
-    required this.lottie,
+    this.lottie,
   });
 
   @override
@@ -23,9 +23,9 @@ class CustomErroranimation extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            Lottie.asset(AppLottie.errorFailure,
-                fit: BoxFit.cover, height: 300.h, width: 300.w),
-            verticalSpace(10.h),
+            //Lottie.asset(AppLottie.errorFailure,
+            //    fit: BoxFit.cover, height: 300.h, width: 300.w),
+            //verticalSpace(10.h),
             Text('An error occurred'),
           ],
         ),

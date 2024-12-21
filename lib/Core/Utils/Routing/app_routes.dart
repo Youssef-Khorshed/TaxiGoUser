@@ -19,7 +19,8 @@ import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
+import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
 
@@ -48,6 +49,7 @@ class AppRoutes {
   static const String chat = '/chat';
   static const String profile = '/profile';
   static const String loginOtpScreen = '/loginOtpScreen';
+  static const String notificationScreen = '/notificationScreen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -149,6 +151,12 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return const WalletScreen();
+          },
+        );
+      case notificationScreen:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const NotificationScreen();
           },
         );
       case mapScreen:

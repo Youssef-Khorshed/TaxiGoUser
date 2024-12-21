@@ -6,13 +6,13 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 // ignore: must_be_immutable
-class AppButton extends StatelessWidget {
+class CustomButtonHiring extends StatelessWidget {
   String text;
   double height;
   double? width;
   double circlesize;
   void Function()? onPressed;
-  AppButton({
+  CustomButtonHiring({
     super.key,
     required this.text,
     required this.height,

@@ -25,14 +25,18 @@ class TaxiGoUserEditionApp extends StatelessWidget {
             create: (context) => LocalCubit()..isConnection(),
             child:
                 BlocBuilder<LocalCubit, LocalState>(builder: (context, state) {
-              return MaterialApp(
-                locale: LocalCubit.get(context).localization,
-                builder: DevicePreview.appBuilder,
-                debugShowCheckedModeBanner: false,
-                initialRoute: AppRoutes.splash,
-                onGenerateRoute: AppRoutes.generateRoute,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
-                supportedLocales: AppLocalizations.supportedLocales,
+              return Directionality(
+                textDirection: TextDirection.rtl,
+                child: MaterialApp(
+                  locale: LocalCubit.get(context).localization,
+                  builder: DevicePreview.appBuilder,
+                  debugShowCheckedModeBanner: false,
+                  initialRoute: AppRoutes.splash,
+                  onGenerateRoute: AppRoutes.generateRoute,
+                  localizationsDelegates:
+                      AppLocalizations.localizationsDelegates,
+                  supportedLocales: AppLocalizations.supportedLocales,
+                ),
               );
             })),
       ),

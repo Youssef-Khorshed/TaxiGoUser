@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -12,7 +13,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});
@@ -61,9 +62,9 @@ class _GeneralScreenState extends State<GeneralScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          verticalSpace(10),
+          verticalSpace(5),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 3.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
