@@ -22,32 +22,34 @@ class _MapScreenState extends State<MapScreen> {
         body: Stack(children: [
       ClipRRect(
         borderRadius: BorderRadius.circular(20.r),
-        child: Stack(children: [
-          const CustomMap(),
-          Positioned(
-            top: 60.h,
-            right: 20.w,
-            child: CircleAvatar(
-              radius: 20.r,
-              backgroundColor: AppColors.transparentColor.withAlpha(
-                100,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(right: 3.0.w),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, AppRoutes.generalScreen);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: AppColors.whiteColor,
+        child: Stack(
+          children: [
+            const CustomMap(),
+            Positioned(
+              top: 60.h,
+              right: 20.w,
+              child: CircleAvatar(
+                radius: 20.r,
+                backgroundColor: AppColors.transparentColor.withAlpha(
+                  100,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(right: 3.0.w),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.generalScreen);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.whiteColor,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
       Positioned(
         bottom: 30.h,

@@ -5,7 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Home/controller/rate_cubit/rete_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/feedback_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,9 +19,9 @@ class RateTripeWidget extends StatelessWidget {
   final Size size;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RateCubit, RateState>(
+    return BlocBuilder<RateCancelCubit, RateCancelState>(
       builder: (context, state) {
-        final cubit = context.read<RateCubit>();
+        final cubit = context.read<RateCancelCubit>();
         if (state is RideCompleteDetailsInitial) {}
         print("Current state: $state");
         return Center(

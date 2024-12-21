@@ -14,15 +14,15 @@ import '../../../../Core/Utils/Text/text_style.dart';
 import 'customAppFormField.dart';
 
 // ignore: must_be_immutable
-class AddressBottomSheet extends StatefulWidget {
+class TestAddressBottomSheet extends StatefulWidget {
   String originTitle;
-  AddressBottomSheet({super.key, required this.originTitle});
+  TestAddressBottomSheet({super.key, required this.originTitle});
 
   @override
-  State<AddressBottomSheet> createState() => _AddressBottomSheetState();
+  State<TestAddressBottomSheet> createState() => _AddressBottomSheetState();
 }
 
-class _AddressBottomSheetState extends State<AddressBottomSheet> {
+class _AddressBottomSheetState extends State<TestAddressBottomSheet> {
   TextEditingController sourceController = TextEditingController();
 
   TextEditingController destinationController = TextEditingController();
@@ -77,5 +77,14 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
         ],
       ),
     );
+  }
+}
+
+class Test extends StatelessWidget {
+  const Test({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }

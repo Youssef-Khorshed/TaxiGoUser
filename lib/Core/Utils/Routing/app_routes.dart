@@ -11,11 +11,11 @@ import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_p
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/rate.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
@@ -125,7 +125,7 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             // return const GeneralScreen();
-            return PaymentScreen();
+            return GeneralScreen();
           },
         );
 

@@ -10,8 +10,8 @@ import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
 import 'package:uuid/uuid.dart';
 
-class CustomEnableDilaog extends StatelessWidget {
-  const CustomEnableDilaog({
+class TestCustomEnableDilaog extends StatelessWidget {
+  const TestCustomEnableDilaog({
     super.key,
     required this.mounted,
     required this.mapcubit,

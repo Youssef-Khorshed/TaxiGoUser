@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 class CustomSnackBar extends StatelessWidget {
   final String message;
@@ -27,9 +26,10 @@ class CustomSnackBar extends StatelessWidget {
       ),
       backgroundColor: backgroundColor,
       behavior: SnackBarBehavior.floating,
-      margin: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.width * 0.2, // Centered width
-        vertical: MediaQuery.of(context).size.height * 0.4, // Centered height
+      margin: EdgeInsets.only(
+        left: MediaQuery.of(context).size.width * 0.2, // تباعد أفقي
+        right: MediaQuery.of(context).size.width * 0.2,
+        bottom: MediaQuery.of(context).size.height * 0.1, // منتصف أسفل الشاشة
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),

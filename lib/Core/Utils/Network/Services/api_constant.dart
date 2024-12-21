@@ -4,11 +4,13 @@ class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
   static const String userToken =
       '31|Kmu10EvtFiRiyrsufe3dy2z7q5ECODM9pqhECxtP7f2800da';
-  static const String mapToken = 'AIzaSyBprQ0bW-2_lCUfB2uhAk1GY0dUS9A8fxA';
+  static const String mapToken = 'AIzaSyCmrk6YbjdCAlwichSDNyyfxlA7zwXhVwc';
   static const String completeRide =
       'https://go-taxi.codecraft1.com/api/customer/rides/get-last';
   static const String rateTripe =
       'https://go-taxi.codecraft1.com/api/customer/rides/rate';
+  static const String cancelRideAfter =
+      'https://go-taxi.codecraft1.com/api/customer/rides/cancel';
 
   /// Routes
 
@@ -87,7 +89,7 @@ class Constants {
         "code": code //"SAVE10"//"SUMMER2024"
       };
   static const String getactiveRide = '/customer/rides/active';
-  static const String cancelRide = '/customer/rides/cancel';
+  // static const String cancelRide = '/customer/rides/cancel';
   static String rateCaptin({required String rate}) =>
       '/customer/rides/rate?rate=$rate';
   static const kModelFont = 'Medel';

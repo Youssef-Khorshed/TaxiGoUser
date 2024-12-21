@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,10 +9,9 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Core/app_constants.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
-import 'package:taxi_go_user_version/Features/Home/controller/rate_cubit/rete_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_snack_bar.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/rate_btn.dart';
@@ -58,7 +56,7 @@ class RateDetailsBlockBuilder extends StatelessWidget {
         verticalSpace(15.h),
         SizedBox(
           width: double.infinity,
-          child: BlocConsumer<RateCubit, RateState>(
+          child: BlocConsumer<RateCancelCubit, RateCancelState>(
             listener: (context, state) => () {
               if (state is RateError) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -73,7 +71,7 @@ class RateDetailsBlockBuilder extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              final rateCubit = context.read<RateCubit>();
+              final rateCubit = context.read<RateCancelCubit>();
 
               return RateButton(
                 onValidRateWithFeedback: () {

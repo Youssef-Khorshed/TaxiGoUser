@@ -5,10 +5,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/dependencyInjection.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-import 'package:taxi_go_user_version/Features/Home/controller/rate_cubit/rete_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo/ride_complete.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/tare_repo/rate_repo.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 
 import 'Core/Utils/localization/cubit/local_cubit.dart';
 
@@ -35,8 +37,14 @@ class TaxiGoUserEditionApp extends StatelessWidget {
               create: (context) =>
                   RideCompleteDetailsCubit(sl<RideCompleteRepo>()),
             ),
+            BlocProvider(create: (context) => sl.get<MapsCubit>()),
             BlocProvider(
-              create: (context) => RateCubit(sl<RateRepo>()),
+              create: (context) =>
+                  RideCompleteDetailsCubit(sl<RideCompleteRepo>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  RateCancelCubit(sl<RateRepo>(), sl<CancelRepo>()),
             ),
           ],
           child: BlocBuilder<LocalCubit, LocalState>(
