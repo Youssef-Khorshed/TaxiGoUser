@@ -17,7 +17,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
 
   );
-  SecureToken.addToken(AppConstants.kTokenValue);
+ // SecureToken.addToken(AppConstants.kTokenValue);
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => const TaxiGoUserEditionApp(),

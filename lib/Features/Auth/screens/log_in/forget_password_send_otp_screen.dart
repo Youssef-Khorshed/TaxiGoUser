@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_forget_password_input_otp_field.dart';
@@ -7,7 +8,7 @@ import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ForgetPasswordSendOtpScreen extends StatelessWidget {
   const ForgetPasswordSendOtpScreen({super.key});
 
@@ -19,7 +20,7 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
             preferredSize: Size(MediaQuery.of(context).size.width, 80),
             child: const CustomAuthAppBar()),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+          padding:  EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
           child: Column(
             children: [
               verticalSpace(10),
@@ -28,7 +29,7 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
                 style: AppTextStyles.style24BlackW500,
               ),
               AutoSizeText(
-                "Code has been send to ***** ***790",
+               AppLocalizations.of(context)!.code_sent_to,
                 style: AppTextStyles.style16WhiteW500
                     .copyWith(color: AppColors.grayColor),
                 textAlign: TextAlign.center,
@@ -41,12 +42,12 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
                 child: Center(
                   child: RichText(
                     text: TextSpan(
-                      text: 'Didn\'t receive the code ? ',
+                      text: AppLocalizations.of(context)!.didNotReceiveCode,
                       style: AppTextStyles.style16WhiteW500
                           .copyWith(color: AppColors.blackColor),
                       children: [
                         TextSpan(
-                          text: 'Resend Code',
+                          text: AppLocalizations.of(context)!.resend_again,
                           style: AppTextStyles.style16WhiteW500
                               .copyWith(color: AppColors.blueColor),
                         ),
@@ -60,7 +61,7 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.setNewPassword);
                 },
-                buttonText: " Verify",
+                buttonText:AppLocalizations.of(context)!.verify,
               ),
             ],
           ),

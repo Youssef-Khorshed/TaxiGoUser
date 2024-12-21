@@ -1,14 +1,12 @@
-import 'data_login_model.dart';
-
-class LoginModel {
-  LoginModel({
+class SendPasswordModel {
+  SendPasswordModel({
       this.status, 
       this.message, 
       this.errors, 
       this.data, 
       this.notes,});
 
-  LoginModel.fromJson(dynamic json) {
+  SendPasswordModel.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
     if (json['errors'] != null) {
@@ -17,7 +15,12 @@ class LoginModel {
         errors?.add(v);
       });
     }
-    data = json['data'] != null ? DataLoginModel.fromJson(json['data']) : null;
+    if (json['data'] != null) {
+      data = [];
+      json['data'].forEach((v) {
+        data?.add(v);
+      });
+    }
     if (json['notes'] != null) {
       notes = [];
       json['notes'].forEach((v) {
@@ -28,7 +31,7 @@ class LoginModel {
   bool? status;
   String? message;
   List<dynamic>? errors;
-  DataLoginModel? data;
+  List<dynamic>? data;
   List<dynamic>? notes;
 
   Map<String, dynamic> toJson() {
@@ -39,7 +42,7 @@ class LoginModel {
       map['errors'] = errors?.map((v) => v.toJson()).toList();
     }
     if (data != null) {
-      map['data'] = data?.toJson();
+      map['data'] = data?.map((v) => v.toJson()).toList();
     }
     if (notes != null) {
       map['notes'] = notes?.map((v) => v.toJson()).toList();

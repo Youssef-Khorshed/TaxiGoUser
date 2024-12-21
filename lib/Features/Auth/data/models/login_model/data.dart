@@ -1,8 +1,8 @@
-class DataLoginModel {
-  DataLoginModel({
+class DataUserModel {
+  DataUserModel({
       this.token,});
 
-  DataLoginModel.fromJson(dynamic json) {
+  DataUserModel.fromJson(dynamic json) {
     token = json['token'];
   }
   String? token;

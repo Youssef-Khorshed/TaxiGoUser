@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
@@ -10,6 +13,13 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_d
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_terms_check_box.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../Core/Utils/enums/gender.dart';
+import '../../../../Core/Utils/validation.dart';
+import '../../../App/app_widgets/custom_loading.dart';
+import 'controller/sign_up_cubit.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -19,108 +29,232 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final List<String> genders = ['Male', 'Female'];
   bool _isChecked = false;
 
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final phoneController = TextEditingController();
 
+
+
+  void dispose() {
+
+
+    super.dispose();
+  }
+@override
+  void deactivate() {
+
+  super.deactivate();
+  }
+  String selectedGender="gender";
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Row(children: [
-                    const Icon(
-                      FontAwesomeIcons.angleLeft,
-                      color: Colors.black,
-                      size: 25,
-                    ),
-                    horizontalSpace(5),
-                    AutoSizeText('Back', style: AppTextStyles.style20BlackW500)
-                  ]),
-                ),
+        body: BlocConsumer<SignUpCubit, SignUpState>(
+          listener: (context, state) {
+            if (state is SignUpSuccess) {
+              Navigator.pushReplacementNamed(context, AppRoutes.otp);
+            } else if (state is SignUpFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.message),
+              ));
+            }
+          },
+          builder: (context, state) {
+            SignUpCubit cubit = SignUpCubit.get(context);
+
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
+              child: Form(
+                autovalidateMode: cubit.autoValidateMode,
+                key: cubit.formKey1,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Row(children: [
+                          Icon(
+                            FontAwesomeIcons.angleLeft,
+                            color: Colors.black,
+                            size: 25.r,
+                          ),
+                          horizontalSpace(5),
+                          AutoSizeText(AppLocalizations.of(context)!.back,
+                              style: AppTextStyles.style20BlackW500)
+                        ]),
+                      ),
+                      verticalSpace(10),
+                      AutoSizeText(
+                        AppLocalizations.of(context)!.createAccount,
+                        style: AppTextStyles.style24WhiteW500
+                            .copyWith(color: Colors.black),
+                      ),
+                      verticalSpace(10),
+                      CustomAppFormField(
+                        validator: (p0) => Validation.validateName(p0, context),
+                        hintText: AppLocalizations.of(context)!.name,
+                        controller: SignUpCubit.get(context).nameController,
+                      ),
+                      verticalSpace(10),
+                      CustomAppFormField(
+                        hintText: AppLocalizations.of(context)!.phoneNumber,
+                        validator: (p0) =>
+                            Validation.validatePhone(p0, context),
+                        controller: cubit.phoneController,
+                        isPhone: true,
+                      ),
+                      verticalSpace(10),
+                      CustomDropDownFormFieldAuth(
+                        items: SignUpCubit.get(context).genderList(context),
+                        nameTextStyle: AppTextStyles.style14BlackW500,
+                        name: selectedGender,
+                        onChanged: (value) {
+                          SignUpCubit.get(context).selectedGender =
+                              value == AppLocalizations.of(context)!.male
+                                  ? Gender.male
+                                  : Gender.female;
+                          setState(() {
+
+                          });
+                          selectedGender = value!;
+                        },
+                      ),
+                      verticalSpace(10),
+                      CustomTermsCheckBox(
+                        isChecked: _isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _isChecked = value!;
+                          });
+                        },
+                      ),
+                      verticalSpace(20),
+                      BlocConsumer<SignUpCubit, SignUpState>(
+  listener: (context, state) {
+if (state is SignUpSuccess) {
+  Navigator.pushNamed(context, AppRoutes.otp);
+}
+else if (state is SignUpFailure) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(state.message),
+  ));
+}
+
+  },
+
+
+                        builder: (context, state) {
+                          if (state is SignUpLoading) {
+                            return const CustomLoading();
+                          } else {
+                            
+                            return CustomAppBottom(
+                              buttonText: AppLocalizations.of(context)!.sign_up,
+                              onPressed: _isChecked
+                                  ? () {
+                                      //  Navigator.pushNamed(context, AppRoutes.otp);
+
+                                      cubit.validate(context);
+                                    }
+                                  : () {},
+                            );
+                          }
+                        },
+                      ),
                 verticalSpace(10),
-                AutoSizeText(
-                  'Create Account',
-                  style: AppTextStyles.style24WhiteW500
-                      .copyWith(color: Colors.black),
-                ),
-                verticalSpace(10),
-                CustomAppFormField(
-                  hintText: 'Name',
-                  controller: nameController,
-                ),
-                verticalSpace(10),
-                CustomAppFormField(
-                  hintText: 'Email',
-                  controller: emailController,
-                ),
-                verticalSpace(10),
-                CustomAppFormField(
-                  hintText: 'phone',
-                  controller: phoneController,
-                  isPhone: true,
-                ),
-                verticalSpace(10),
-                CustomDropDownFormField(
-                  items: genders,
-                  nameTextStyle: AppTextStyles.style14BlackW500,
-                  name: 'Gender',
-                ),
-                verticalSpace(10),
-                CustomTermsCheckBox(
-                  isChecked: _isChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      _isChecked = value!;
-                    });
-                  },
-                ),
-                verticalSpace(20),
-                CustomAppBottom(
-                  buttonText: 'Sign Up',
-                  onPressed: _isChecked
-                      ? () {
-                          Navigator.pushNamed(context, AppRoutes.otp);
-                        }
-                      : () {},
-                ),
-                verticalSpace(10),
-                Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'Already have an account ? ',
-                      style:
-                          AppTextStyles.style20BlackW500.copyWith(fontSize: 16),
-                      children: [
-                        TextSpan(
-                          text: 'Log in now',
-                          style: AppTextStyles.style16WhiteW500
-                              .copyWith(color: AppColors.blueColor),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.pushNamed(context, AppRoutes.logIn);
-                            },
+                      Center(
+                        child: RichText(
+                          text: TextSpan(
+                            text: AppLocalizations.of(context)!.already_have_an_account,
+                            style: AppTextStyles.style20BlackW500
+                                .copyWith(fontSize: 16),
+                            children: [
+                              TextSpan(
+                                text: AppLocalizations.of(context)!.logIn,
+                                style: AppTextStyles.style16WhiteW500
+                                    .copyWith(color: AppColors.blueColor),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.logIn);
+                                  },
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
+    );
+  }
+}
+
+class CustomDropDownFormFieldAuth extends StatefulWidget {
+  final List<String> items;
+  final String name;
+  final Color? backgroundcolor;
+  final Color bordercolor;
+  final Color? iconEnabledColor;
+  final Gradient? gradient;
+  final TextStyle? nameTextStyle;
+  CustomDropDownFormFieldAuth(
+      {super.key,
+      required this.items,
+      required this.name,
+      this.gradient,
+      this.iconEnabledColor,
+      this.nameTextStyle,
+      this.bordercolor = AppColors.blackColor,
+      this.backgroundcolor,
+      this.onChanged});
+  void Function(String?)? onChanged;
+
+  @override
+  State<CustomDropDownFormFieldAuth> createState() =>
+      _CustomDropDownFormFieldAuthState();
+}
+
+class _CustomDropDownFormFieldAuthState
+    extends State<CustomDropDownFormFieldAuth> {
+  String? selectedValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton2(
+
+      underline: const SizedBox(),
+      isExpanded: true,
+      iconStyleData: IconStyleData(iconEnabledColor: widget.iconEnabledColor),
+      buttonStyleData: ButtonStyleData(
+        decoration: BoxDecoration(
+            gradient: widget.gradient,
+            color: widget.backgroundcolor,
+            border: Border.all(color: widget.bordercolor, width: 1),
+            borderRadius: BorderRadius.circular(10)),
+      ),
+      dropdownStyleData: DropdownStyleData(
+
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+        useSafeArea: true,
+      ),
+      hint: AutoSizeText(
+        selectedValue ?? widget.name,
+        style: widget.nameTextStyle,
+        textAlign: TextAlign.center,
+      ),
+      items: widget.items
+          .map((gender) =>
+              DropdownMenuItem(value: gender, child: AutoSizeText(gender)))
+          .toList(),
+      onChanged: widget.onChanged,
     );
   }
 }

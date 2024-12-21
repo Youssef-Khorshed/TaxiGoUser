@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/login_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/set_new_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_phone_screen.dart';
+import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/controller/create_profile_cubit/create_profile_cubit.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
@@ -20,8 +22,14 @@ import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+import '../../../Features/Auth/screens/sign_up/controller/login_cubit/login_cubit.dart';
+import '../../../Features/Auth/screens/sign_up/controller/otp_cubit/otp_cubit.dart';
+import '../../../Features/Auth/screens/sign_up/controller/set_new_password/set_new_password_cubit.dart';
+import '../../../Features/Auth/screens/sign_up/controller/set_password_cubit/set_password_cubit.dart';
+import '../../../Features/Auth/screens/sign_up/controller/sign_up_cubit.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
+import '../Network/Services/services_locator.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -66,37 +74,58 @@ class AppRoutes {
       case signUp:
         return CupertinoPageRoute(
           builder: (context) {
-            return const SignUpScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<SignUpCubit>(),
+              child: SignUpScreen(),
+            );
           },
         );
       case otp:
+        var phone = settings.arguments != null
+            ? settings.arguments as String
+            : null;
         return CupertinoPageRoute(
           builder: (context) {
-            return const OtpScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<OtpCubit>(),
+              child: OtpScreen(phone: phone),
+            );
           },
         );
       case setPassword:
         return CupertinoPageRoute(
           builder: (context) {
-            return const SetPasswordScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<SetPasswordCubit>(),
+              child: SetPasswordScreen(),
+            );
           },
         );
       case setProfile:
         return CupertinoPageRoute(
           builder: (context) {
-            return const CreateProfileScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<CreateProfileCubit>(),
+              child: CreateProfileScreen(),
+            );
           },
         );
       case logIn:
         return CupertinoPageRoute(
           builder: (context) {
-            return const LogInScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<LoginCubit>(),
+              child: LogInScreen(),
+            );
           },
         );
       case verificationPhoneAndPassword:
         return CupertinoPageRoute(
           builder: (context) {
-            return const VerificationPhoneAndPasswordScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<OtpCubit>(),
+              child: VerificationPhoneAndPasswordScreen(),
+            );
           },
         );
       case forgetPassword:
@@ -112,9 +141,15 @@ class AppRoutes {
           },
         );
       case setNewPassword:
+        var phone = settings.arguments != null
+            ? settings.arguments as String
+            : null;
         return CupertinoPageRoute(
           builder: (context) {
-            return const SetNewPasswordScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<SetNewPasswordCubit>(),
+              child: SetNewPasswordScreen(phone: phone),
+            );
           },
         );
       case generalScreen:

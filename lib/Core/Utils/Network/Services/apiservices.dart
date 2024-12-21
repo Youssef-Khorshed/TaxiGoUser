@@ -20,22 +20,24 @@ class ApiService {
     if (_dio == null) {
       _dio = Dio();
 
-      // Configure Dio options (timeouts, etc.)
       _dio!
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
 
-      // Add default headers and interceptors
-
-      String language = LocalCubit.get(context).localizationThemeState ==
-          LocalizationThemeState.ar
-          ? "ar"
-          : "en";
-      var token=await      SecureToken.getToken();
-
-      _addDioHeaders(language: language,token: token);
       _addDioInterceptor();
+
+
     }
+
+
+    String language = LocalCubit.get(context).localizationThemeState ==
+        LocalizationThemeState.ar
+        ? "ar"
+        : "en";
+    var token=await      SecureToken.getToken();
+print(token);
+    _addDioHeaders(language: language,token: token);
+
 
     return _dio!;
   }
@@ -46,7 +48,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-      'Bearer Token $token', //'Bearer your_token_here', // You can add a token dynamically if needed
+      'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -70,7 +72,8 @@ class ApiService {
     if (await internetConnectivity.isConnected) {
       getDio(context);
       final response =
-      await _dio!.get(url, queryParameters: queryParameters);
+
+      await _dio!.get(url, data: queryParameters,);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
@@ -96,7 +99,14 @@ class ApiService {
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
           return response.data;
-        } else {
+
+        }
+        if (response.statusCode == 302) {
+          var redirectedUrl = response.headers['location'];
+          print('Redirected to: $redirectedUrl');
+        }
+
+        else {
           throw ServerException(
             message: response.toString(),
           );

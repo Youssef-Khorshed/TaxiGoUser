@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CustomTermsCheckBox extends StatelessWidget {
   final bool isChecked;
   final Function(bool?) onChanged;
@@ -28,7 +29,7 @@ class CustomTermsCheckBox extends StatelessWidget {
       icon: Icon(
         isChecked ? FontAwesomeIcons.circleCheck : FontAwesomeIcons.circle,
         color: isChecked ? AppColors.blueColor : AppColors.grayColor,
-        size: 24,
+        size: 24.r,
       ),
       onPressed: () => onChanged(!isChecked),
     );
@@ -36,29 +37,33 @@ class CustomTermsCheckBox extends StatelessWidget {
 
   Widget _buildTermsText() {
     return Expanded(
-      child: Text.rich(
-        TextSpan(
-          text: 'By signing up, you agree to the ',
-          style: AppTextStyles.style16WhiteW500
-              .copyWith(color: AppColors.grayColor, fontSize: 14),
-          children: [
+      child: Builder(
+        builder: (context) {
+          return Text.rich(
             TextSpan(
-              text: 'Terms of service',
+              text: AppLocalizations.of(context)!.agreement,
               style: AppTextStyles.style16WhiteW500
-                  .copyWith(color: AppColors.blueColor, fontSize: 14),
+                  .copyWith(color: AppColors.grayColor, fontSize: 14.sp),
+              children: [
+                TextSpan(
+                  text: AppLocalizations.of(context)!.terms_of_service,
+                  style: AppTextStyles.style16WhiteW500
+                      .copyWith(color: AppColors.blueColor, fontSize: 14.sp),
+                ),
+                TextSpan(
+                  text: AppLocalizations.of(context)!.and,
+                  style: AppTextStyles.style16WhiteW500
+                      .copyWith(color: AppColors.grayColor, fontSize: 14.sp),
+                ),
+                TextSpan(
+                  text: AppLocalizations.of(context)!.privacy_policy,
+                  style: AppTextStyles.style16WhiteW500
+                      .copyWith(color: AppColors.blueColor, fontSize: 14.sp),
+                ),
+              ],
             ),
-            TextSpan(
-              text: ' and ',
-              style: AppTextStyles.style16WhiteW500
-                  .copyWith(color: AppColors.grayColor, fontSize: 14),
-            ),
-            TextSpan(
-              text: 'Privacy policy.',
-              style: AppTextStyles.style16WhiteW500
-                  .copyWith(color: AppColors.blueColor, fontSize: 14),
-            ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
