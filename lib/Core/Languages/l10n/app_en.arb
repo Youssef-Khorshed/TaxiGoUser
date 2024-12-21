@@ -11,5 +11,6 @@
        "trip_favorite":"Trip Favorite",
    "trip_saved":"Trip Saved",
    "km": "km",
-   "iqd": "IQD"
+   "iqd": "IQD",
+      "empty_message": "There are no trips"
 }

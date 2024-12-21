@@ -6,8 +6,8 @@ import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
-class CustomEmptyDataView extends StatelessWidget {
-  const CustomEmptyDataView({super.key, required this.message});
+class CustomFailureView extends StatelessWidget {
+  const CustomFailureView({super.key, required this.message});
   final String message;
 
   @override
@@ -17,7 +17,7 @@ class CustomEmptyDataView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            AppImages.emptyData,
+            AppImages.failureData,
             height: MediaQuery.of(context).size.height * 0.3,
             width: MediaQuery.of(context).size.width * 0.3,
           ),

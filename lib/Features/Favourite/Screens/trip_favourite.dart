@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:redacted/redacted.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_empty_data_view.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_failure_view.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_states.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/favorite_data_model.dart';
 import '../trip_favourite_widget/custom_trip_card_favourite.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
@@ -16,8 +19,8 @@ class FavouriteScreen extends StatelessWidget {
       bloc: FavouriteViewModel.get(context)..getFavouriteDate(context),
       builder: (context, state) {
         if (state is FavoriteFailureStates) {
-          return Center(
-            child: Text(state.errMessage),
+          return const CustomFailureView(
+            message: '',
           );
         }
         if (state is FavoriteSuccessStates ||
@@ -33,7 +36,9 @@ class FavouriteScreen extends StatelessWidget {
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(20)),
               child: favoriteData.isEmpty
-                  ? CustomEmptyDataView()
+                  ? CustomEmptyDataView(
+                      message: AppLocalizations.of(context)!.empty_message,
+                    )
                   : Column(
                       children: [
                         Expanded(
@@ -50,7 +55,7 @@ class FavouriteScreen extends StatelessWidget {
                                       .getFavouriteDate(context);
                                 },
                                 favoriteRide: favoriteData[index].ride!,
-                              );
+                              ).redacted(context: context, redact: true);
                             },
                           ),
                         ),
