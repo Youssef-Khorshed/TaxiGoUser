@@ -6,6 +6,6 @@ int convertToMinutes(String timeString) {
   return hours * 60 + minutes;
 }
 
-int convertMilesToKilometers(double miles) {
-  return (miles * 1.60934).round();
+String convertMilesToKilometers(double miles) {
+  return (miles * 1.60934).round().toString();
 }

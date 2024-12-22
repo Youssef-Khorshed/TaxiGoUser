@@ -4,7 +4,7 @@ class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
   static const String userToken =
       '31|Kmu10EvtFiRiyrsufe3dy2z7q5ECODM9pqhECxtP7f2800da';
-  static const String mapToken = 'AIzaSyBprQ0bW-2_lCUfB2uhAk1GY0dUS9A8fxA';
+  static const String mapToken = 'AIzaSyCmrk6YbjdCAlwichSDNyyfxlA7zwXhVwc';
 
   /// Routes
   static String searchplace(
@@ -65,7 +65,7 @@ class Constants {
   }) =>
       {
         "address_from": addressFrom,
-        "lat_from": addressFrom,
+        "lat_from": latFrom,
         "lng_from": latFrom,
         "address_to": addressTo,
         "lat_to": latTo,
