@@ -8,10 +8,8 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 class CustomDummyWidget extends StatelessWidget {
-  final Function() onPressed;
   const CustomDummyWidget({
     super.key,
-    required this.onPressed,
   });
 
   @override
@@ -37,7 +35,7 @@ class CustomDummyWidget extends StatelessWidget {
           top: 5,
           right: 1,
           child: IconButton(
-            onPressed: onPressed,
+            onPressed: () {},
             icon: const Icon(
               size: 30,
               Icons.star_rate_rounded,
