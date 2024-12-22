@@ -1,0 +1,81 @@
+name: taxi_go_user_version
+description: "Taxi Go is Flutter App Was Created By Craft Code Company"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  auto_size_text: null
+  cupertino_icons: null
+  device_preview: ^1.2.0
+  dropdown_button2: ^2.3.9
+  shared_preferences:
+  firebase_core: null
+  bloc:
+  uuid:
+  flutter_google_maps_webservices:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_localizations:
+    sdk: flutter
+  flutter_rating_bar: ^4.0.1
+  flutter_screenutil: ^5.9.3
+  flutter_svg: null
+  font_awesome_flutter: ^10.8.0
+  google_fonts: null
+  pretty_dio_logger: ^1.4.0
+  connectivity_plus: ^6.1.1
+  location: ^7.0.1
+  dio: ^5.7.0
+  geocoding: ^2.0.3
+  google_maps_flutter: ^2.10.0
+  intl: any
+  pin_code_fields: ^8.0.1
+  get_it: ^8.0.3
+  loading_animation_widget: ^1.3.0
+  lottie: ^3.2.0
+  geolocator: ^13.0.2
+  flutter_polyline_points: ^2.1.0
+  dartz: ^0.10.1
+  flutter_secure_storage: ^9.2.2
+  geocode: ^1.0.3
+  fluttertoast: ^8.2.10
+  circular_countdown_timer: ^0.2.4
+  google_maps_flutter_platform_interface: ^2.9.5
+  google_maps_flutter_android: ^2.14.11
+
+dev_dependencies:
+  flutter_launcher_icons: null
+  flutter_lints: null
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/lottie/
+    - assets/fonts/
+    - assets/mapstyle/night.json
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/taxi_go_icon.jpg"
+  remove_alpha: true
+  adaptive_icon_background: "#1D1AD8"
+  adaptive_icon_foreground: "assets/icons/taxi_go_icon.jpg"
+fonts:
+  - family: Cairo
+    fonts:
+      - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
+
+  - family: Amiri
+    fonts:
+      - asset: assets/fonts/Amiri.ttf
