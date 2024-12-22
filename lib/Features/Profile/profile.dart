@@ -10,6 +10,7 @@ import 'package:taxi_go_user_version/Features/Profile/controller/profile_view_mo
 import 'package:taxi_go_user_version/Features/Profile/data/profile_model.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_chage_language_profile.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_raw_profile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -52,32 +53,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 verticalSpace(size.height * 0.15),
-                Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-                    Container(
-                      width: size.width * 0.3,
-                      height: size.width * 0.3,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(userInfo.picture ??
-                              'https://mrwallpaper.com/images/high/cool-profile-pictures-bart-xxxtentacion-qriuzlsntbbl9cv5.webp'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                Container(
+                  width: size.width * 0.3,
+                  height: size.width * 0.3,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: NetworkImage(userInfo.picture ??
+                          'https://mrwallpaper.com/images/high/cool-profile-pictures-bart-xxxtentacion-qriuzlsntbbl9cv5.webp'),
+                      fit: BoxFit.cover,
                     ),
-                    CircleAvatar(
-                      radius: size.width * 0.06,
-                      backgroundColor: AppColors.blueColor.withOpacity(0.5),
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.white,
-                        size: size.width * 0.06,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 const Spacer(),
                 Container(
@@ -93,18 +80,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomRawProfile(title: 'Name', content: userInfo.name!),
                       CustomRawProfile(
-                          title: 'Gender', content: userInfo.gender!),
+                          title: AppLocalizations.of(context)!.name,
+                          content: userInfo.name!),
                       CustomRawProfile(
-                          title: 'Email',
-                          content:
-                              userInfo.emailVerifiedAt ?? 'Mohamed@gmail.com'),
+                          title: AppLocalizations.of(context)!.gender,
+                          content: userInfo.gender!),
+
                       CustomRawProfile(
-                          title: 'Phone',
+                          title: AppLocalizations.of(context)!.phone_nubmer,
                           content: userInfo.phone ?? '+994 012344'),
                       CustomRawProfile(
-                          title: 'BirthDate',
+                          title: AppLocalizations.of(context)!.birth_day,
                           content: userInfo.birthday ?? '1-1-1999'),
                       // CustomRawProfile(title: 'Language', content: 'Ar')
                       CustomChagelanguageProfile(

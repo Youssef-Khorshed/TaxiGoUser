@@ -12,5 +12,9 @@
    "trip_saved":"الرحلات المحفوظة",
    "km": "كم",
    "iqd": "د.ع",
-   "empty_message": "لا توجد اى رحلات"
+   "empty_message": "لا توجد اى رحلات",
+   "name": "الاسم",
+   "phone_nubmer": "رقم الهاتف",
+   "birth_day": "يوم الميلاد",
+   "gender":"الجنس"
 }
