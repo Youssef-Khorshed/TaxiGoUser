@@ -7,6 +7,8 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locato
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
 import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/Profile/controller/profile_view_model.dart';
+import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo_impl.dart';
 
@@ -36,7 +38,10 @@ class TaxiGoUserEditionApp extends StatelessWidget {
                       historyRepo: getIt.get<HistoryRepoImpl>())),
               BlocProvider(
                   create: (context) =>
-                      SavedViewModel(savedRepo: getIt.get<SavedRepoImpl>()))
+                      SavedViewModel(savedRepo: getIt.get<SavedRepoImpl>())),
+              BlocProvider(
+                  create: (context) => ProfileViewModel(
+                      profileRepo: getIt.get<ProfileRepoImpl>())),
             ],
             child:
                 BlocBuilder<LocalCubit, LocalState>(builder: (context, state) {

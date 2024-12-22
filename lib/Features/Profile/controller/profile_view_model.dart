@@ -6,6 +6,8 @@ import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo.dar
 class ProfileViewModel extends Cubit<ProfileStates> {
   ProfileRepo profileRepo;
   ProfileViewModel({required this.profileRepo}) : super(ProfileLoadingStates());
+
+  static ProfileViewModel get(context) => BlocProvider.of(context);
   fetchPrfaileInfo(BuildContext context) async {
     emit(ProfileLoadingStates());
     var either = await profileRepo.fetchUserInfo(context);
