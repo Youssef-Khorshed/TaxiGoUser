@@ -65,7 +65,7 @@ class PusherConsumerImpl implements PusherConsumer {
             },
           ),
         ),
-        autoConnect: false, // Manual connection
+        autoConnect: false,
       );
       log('Pusher initialized');
     } catch (e) {

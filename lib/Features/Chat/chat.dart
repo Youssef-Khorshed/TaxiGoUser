@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/share_location.dart';
-import '../../Core/Utils/Network/Services/services_locator.dart';
-import 'model_view/chat_widgets/custom_message_input_bar_chat.dart';
+import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepo.dart';
+import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/custom_message_input_bar_chat.dart';
+import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
+
 import 'model_view/chat_widgets/custom_user_message_chat.dart';
 import 'model_view/chat_widgets/locationmessage.dart';
 import 'model_view/chat_widgets/user_name_container.dart';
-import 'model_view/manger/chat/chat_cubit.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -18,24 +20,20 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   late final ChatCubit _chatCubit;
-  final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
+
     _chatCubit = getIt<ChatCubit>();
-
-    _chatCubit.getChatdata(context);
-
-    _chatCubit.listenForMessages();
+    _chatCubit.fetchMessages(context);
   }
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-
     return BlocProvider.value(
       value: _chatCubit,
       child: Scaffold(
@@ -52,18 +50,24 @@ class _ChatScreenState extends State<ChatScreen> {
             if (state is ChatLoad) {
               return const Center(child: CircularProgressIndicator());
             }
-            if(state is Chaterror){
-              return const Center(child: Text("sss"));
+            if (state is Chaterror) {
+              return const Center(child: Text("Error"));
             }
-
             if (state is Chatsuccful) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                _scrollController.animateTo(
+                  _scrollController.position.maxScrollExtent,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOut,
+                );
+              });
+
               return Column(
                 children: [
-                const ShareLocation(),
-                               Expanded(
+                  Expanded(
                     child: ListView.builder(
                       controller: _scrollController,
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(5.sp),
                       itemCount: state.messages.length,
                       itemBuilder: (context, index) {
                         final message = state.messages[index];
@@ -82,10 +86,11 @@ class _ChatScreenState extends State<ChatScreen> {
                           userType: message.senderType,
                           widthFactor: screenWidth * 0.9,
                         );
+
                       },
                     ),
                   ),
-                  const MessageInputBar(),
+                  MessageInputBar(chatCubit: _chatCubit),
                 ],
               );
             }
@@ -99,7 +104,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
-    _messageController.dispose();
+    _chatCubit.close();
     _scrollController.dispose();
     super.dispose();
   }

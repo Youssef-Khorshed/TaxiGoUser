@@ -1,17 +1,22 @@
-import 'dart:convert';
+import 'dart:async';
 
-import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepo.dart';
-import '../../../../../Core/Utils/Network/Error/failure.dart';
+import 'package:flutter/cupertino.dart';
 import '../../../data/model/message_data.dart';
+import '../../../data/repo/chatrepo.dart';
+
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
-  ChatCubit(this.chatrepo) : super(ChatInitial());
+  ChatCubit(this.chatrepo) : super(ChatInitial()) {
+    _startPollingMessages();
+  }
+
   final Chatrepo chatrepo;
-  static ChatCubit get(context) => BlocProvider.of<ChatCubit>(context);
+  final List<Message> _messages = [];
+  Timer? _pollingTimer;
+
+  List<Message> get messages => List.unmodifiable(_messages);
 
   Future<void> sendMessage(
       String message, Map data, String type, BuildContext context) async {
@@ -20,40 +25,43 @@ class ChatCubit extends Cubit<ChatState> {
       type: type,
       context: context,
     );
+    fetchMessages(context);
+    _messages.clear();
+    emit(Chatsuccful(_messages));
 
-    emit(Chatsend());
   }
 
-  void listenForMessages() {
-    print('Start Listening');
-    chatrepo.listenForMessages(onEvent: (data) {
-      print('Raw Data: $data');
-      final reply = jsonDecode(data);
-
-      print('Parsed Data: $reply');
-      final message = Message.fromJson(reply);
-
-      print('Message: $message');
-
-      emit(Chatsuccful([message]));
-    });
-  }
-
-  Future<Either<Failure, List<Message>>> getChatdata(BuildContext context) async {
+  Future<void> fetchMessages(BuildContext context) async {
     emit(ChatLoad());
 
     final response = await chatrepo.getChatDetails(context: context);
-
     response.fold(
           (failure) {
         emit(Chaterror());
       },
-          (messages) {
-        emit(Chatsuccful(messages));
+          (newMessages) {
+        _updateMessages(newMessages);
+        emit(Chatsuccful(_messages));
       },
     );
-
-    return response;
   }
 
+  void _updateMessages(List<Message> newMessages) {
+    for (var message in newMessages) {
+      if (!_messages.contains(message)) {
+        _messages.add(message);
+      }
+    }
+  }
+
+  void _startPollingMessages() {
+    _pollingTimer = Timer.periodic(const Duration(seconds: 3), (_) {
+    });
+  }
+
+  @override
+  Future<void> close() {
+    _pollingTimer?.cancel();
+    return super.close();
+  }
 }

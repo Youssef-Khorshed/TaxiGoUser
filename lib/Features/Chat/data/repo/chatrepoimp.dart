@@ -62,24 +62,4 @@ class Chatrepoimp implements Chatrepo {
     }
   }
 
-  @override
-  Future<void> listenForMessages({required DynamicListener onEvent}) async {
-    try {
-      await _pusherConsumer.initialize();
-      await _pusherConsumer.connect();
-
-      _pusherConsumer.subscribe(".ride");
-      _pusherConsumer.bind(".ride", "send_message",
-              (data) {
-            try {
-              onEvent(data);
-            } catch (e) {
-              log('Error parsing message: $e');
-            }
-          });
-      log('Listening for new chat messages...');
-    } catch (e) {
-      log('Error initializing or subscribing to Pusher:$e');
-    }
-  }
 }

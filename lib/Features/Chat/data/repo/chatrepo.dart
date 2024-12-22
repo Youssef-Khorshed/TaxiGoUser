@@ -18,6 +18,5 @@ abstract class Chatrepo {
     required BuildContext context
   });
 
-  Future<void> listenForMessages({required DynamicListener onEvent}) ;
 
 }
