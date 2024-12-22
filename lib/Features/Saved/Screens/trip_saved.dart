@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_states.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});
@@ -59,9 +61,29 @@ class SavedScreen extends StatelessWidget {
             ),
           );
         }
-        return const Center(
-          child: CircularProgressIndicator(
-            color: AppColors.blueColor2,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+            decoration: BoxDecoration(
+                color: AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(20)),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return Skeletonizer(
+                        child: CustomDummyWidget(
+                          onPressed: () {},
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
