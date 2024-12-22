@@ -32,7 +32,7 @@ class CustomAppBottom extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderCornerRadius ?? 10),
               color: buttonColor ?? AppColors.blueColor,
-              border: Border.all(color: borderColor ?? Colors.white, width: 2)),
+              border: Border.all(color: borderColor ?? Colors.white, width: 1)),
           width: double.infinity,
           height: 60,
           child: Row(

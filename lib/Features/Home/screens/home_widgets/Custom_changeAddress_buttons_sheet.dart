@@ -12,6 +12,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_P
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_changeAddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable, camel_case_types
 class Custom_changeAddress_buttons_sheet extends StatelessWidget {
@@ -42,19 +43,23 @@ class Custom_changeAddress_buttons_sheet extends StatelessWidget {
             buttonColor: AppColors.blueColor,
             borderColor: Colors.white,
             borderCornerRadius: 40.r,
-            buttonText: "Done",
+            buttonText: AppLocalizations.of(context)!.done,
             textColor: Colors.white,
             onPressed: () async {
               final cubit = context.read<MapsCubit>();
               await cubit.calculatePrice(
-                  context: context,
-                  time: convertToMinutes(widget.time),
-                  distance: widget.distance,
-                  triptype: _selectedtriptype + 1,
-                  origin: LatLng(
-                      cubit.orginPosition!.lat!, cubit.orginPosition!.lng!),
-                  destination: LatLng(cubit.destinationostion.lat!,
-                      cubit.destinationostion.lng!));
+                context: context,
+                time: convertToMinutes(widget.time),
+                distance: widget.distance,
+                triptype: _selectedtriptype + 1,
+                origin: LatLng(29.85639348920912, 31.317788563601813
+                    // cubit.orginPosition!.lat!, cubit.orginPosition!.lng!
+                    ),
+                destination: LatLng(29.85639348920912, 31.322423420497717
+                    // cubit.destinationostion.lat!,
+                    // cubit.destinationostion.lng!
+                    ),
+              );
               //  Navigator.pop(context);
               customBottomSheet(
                   context: context,
@@ -75,10 +80,10 @@ class Custom_changeAddress_buttons_sheet extends StatelessWidget {
         Expanded(
           child: CustomAppBottom(
             buttonColor: AppColors.whiteColor,
-            borderColor: AppColors.redColor,
+            borderColor: AppColors.redLight,
             borderCornerRadius: 40.r,
-            buttonText: "Cancel",
-            textColor: AppColors.redColor,
+            buttonText: AppLocalizations.of(context)!.cancel,
+            textColor: AppColors.redLight,
             onPressed: () {
               Navigator.pop(context);
             },

@@ -91,10 +91,10 @@ abstract class AppTextStyles {
   );
 
   static TextStyle style16BlackW600 = TextStyle(
-    fontSize: 16,
+    fontSize: 15.sp,
     color: AppColors.blackColor,
     fontWeight: FontWeight.w600,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: "Cairo",
     height: 0,
   );
 
@@ -139,10 +139,10 @@ abstract class AppTextStyles {
   );
 
   static TextStyle style12DarkgrayW400 = TextStyle(
-    fontSize: 12,
+    fontSize: 10.sp,
     color: AppColors.darkgrayColor,
     fontWeight: FontWeight.w400,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: "Cairo",
     height: 0,
   );
 

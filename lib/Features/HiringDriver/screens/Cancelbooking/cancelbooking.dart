@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
@@ -19,11 +20,8 @@ class CancelBookingScreen extends StatefulWidget {
 class _CancelBookingScreenState extends State<CancelBookingScreen> {
   void _handleCancellation(String selectedReason) {
     print("Cancellation Reason: $selectedReason");
-    CustomSnackBar(
-      textStyle: AppTextStyles.style16WhiteW500,
-      message: AppLocalizations.of(context)!.canceled,
-      backgroundColor: AppColors.lightGreen,
-    ).show(context);
+    Fluttertoast.showToast(msg: AppLocalizations.of(context)!.canceled);
+
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushNamed(AppRoutes.generalScreen);
     });
@@ -53,7 +51,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: MediaQuery.of(context).size.height * 0.4,
               child: Center(
                 child: CircleAvatar(
                   radius: 100.r,
@@ -61,7 +59,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            Expanded(
               child: CustomCancelBodyCancel(onCancel: _handleCancellation),
             ),
           ],

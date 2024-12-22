@@ -18,6 +18,7 @@ import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/rate.dart';
+import 'package:taxi_go_user_version/Features/Home/test_sccreen.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
@@ -58,6 +59,7 @@ class AppRoutes {
       case splash:
         return CupertinoPageRoute(
           builder: (context) {
+            return const TestSccreen();
             return const SplashScreen();
           },
         );

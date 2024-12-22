@@ -39,7 +39,6 @@ class _CustomCancelBodyCancelState extends State<CustomCancelBodyCancel> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    // إعداد النصوص المترجمة
     final reasons = [
       AppLocalizations.of(context)!.i_dont_need_this_journey,
       AppLocalizations.of(context)!.i_want_to_change_details,

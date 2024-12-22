@@ -44,7 +44,7 @@ class RateTripeWidget extends StatelessWidget {
                   color: Colors.amber,
                 ),
                 onRatingUpdate: (rating) {
-                  cubit.rateBtn(rating); // تحديث القيمة داخل الكيوبت
+                  cubit.rateBtn(rating);
                   print("Current rate in cubit: ${cubit.rate}");
                 },
               ),
@@ -59,8 +59,11 @@ class RateTripeWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              FeedbackField(
-                feedBackController: cubit.feedBackController,
+              SizedBox(
+                height: 80.h,
+                child: FeedbackField(
+                  feedBackController: cubit.feedBackController,
+                ),
               ),
             ],
           ),

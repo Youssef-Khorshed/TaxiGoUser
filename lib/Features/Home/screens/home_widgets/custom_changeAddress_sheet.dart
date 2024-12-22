@@ -7,6 +7,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/Custom_c
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_RideTypeSelector.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/get_adress.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class CustomChangeaddressSheet extends StatefulWidget {
@@ -35,47 +36,42 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
   int _selectedtriptype = 0;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "Change address",
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-          ),
-          verticalSpace(16.h),
-          BuildAddressRowYouef(
-            title: widget.originTitle,
-            traling: false,
-            icon: const Icon(Icons.location_on, color: AppColors.redColor),
-            subtitle: widget.originSubTitle,
-          ),
-          verticalSpace(12.h),
-          BuildAddressRowYouef(
-            traling: true,
-            title: widget.destinationTitle,
-            icon: const Icon(Icons.location_on, color: AppColors.blueColor),
-            subtitle: widget.destinationSubTitle,
-            distance: widget.distance,
-            time: widget.time,
-          ),
-          verticalSpace(16.h),
-          CustomRidetypeselector(
-            onRideTypeSelected: (index) {
-              _selectedtriptype = index;
-              setState(() {});
-            },
-          ),
-          verticalSpace(20.h),
-          Custom_changeAddress_buttons_sheet(
-              originTitle: widget.originTitle,
-              destinationTitle: widget.destinationTitle,
+    return Container(
+      color: AppColors.grayColor.withValues(alpha: .2),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              AppLocalizations.of(context)!.change_address,
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+            ),
+            verticalSpace(16.h),
+            BuildAddressRow2(
+              destinationSubTitle: widget.destinationSubTitle,
+              destinationTitle: widget.originTitle,
               distance: widget.distance,
-              time: widget.time,
-              widget: widget,
-              selectedtriptype: _selectedtriptype)
-        ],
+              originSubTitle: widget.originTitle,
+              originTitle: widget.originSubTitle,
+            ),
+            verticalSpace(16.h),
+            CustomRidetypeselector(
+              onRideTypeSelected: (index) {
+                _selectedtriptype = index;
+                setState(() {});
+              },
+            ),
+            verticalSpace(20.h),
+            Custom_changeAddress_buttons_sheet(
+                originTitle: widget.originTitle,
+                destinationTitle: widget.destinationTitle,
+                distance: widget.distance,
+                time: widget.time,
+                widget: widget,
+                selectedtriptype: _selectedtriptype)
+          ],
+        ),
       ),
     );
   }

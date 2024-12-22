@@ -1,87 +1,88 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocode/geocode.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/trip_details.dart';
 
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-
-// ignore: must_be_immutable
-class BuildAddressRowYouef extends StatelessWidget {
-  Icon icon;
-  String title;
-  String subtitle;
-  bool? traling;
-  String? distance;
-  String? time;
-  BuildAddressRowYouef({
+class BuildAddressRow2 extends StatelessWidget {
+  BuildAddressRow2({
     super.key,
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.traling,
-    this.distance,
-    this.time,
+    required this.originTitle,
+    required this.originSubTitle,
+    required this.destinationTitle,
+    required this.destinationSubTitle,
+    required this.distance,
   });
+
+  final String originTitle;
+  final String originSubTitle;
+  final String destinationTitle;
+  final String destinationSubTitle;
+  final String distance;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        traling ?? true
-            ? Row(
-                children: [
-                  Text(distance!, style: AppTextStyles.style12DarkgrayW400),
-                ],
-              )
-            : const SizedBox(),
-        const Spacer(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(title,
-                textAlign: TextAlign.start,
-                style: AppTextStyles.style16BlackW600),
-            SizedBox(
-                height: 20.h,
-                width: 270.w,
-                child: Text(subtitle,
-                    textAlign: TextAlign.end,
-                    style: AppTextStyles.style14GrayW500)),
-          ],
-        ),
-        icon
-      ],
+    return ListTile(
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TripDetailsMap(
+            address: originTitle,
+            location: originSubTitle,
+            icon: AppIcons.iconsMapRed,
+          ),
+          TripDetailsMap(
+            address: destinationTitle,
+            location: destinationSubTitle,
+            icon: AppIcons.iconsMapBlue,
+          ),
+        ],
+      ),
+      trailing: Text(
+        "${distance} ",
+        style: TextStyle(fontSize: 15.sp),
+      ),
     );
   }
+}
 
-  Future<String> formatAddress(
-      {required double latitude, required double longitude}) async {
-    final address = await GeoCode()
-        .reverseGeocoding(latitude: latitude, longitude: longitude);
-
-    List<String> parts = address.toString().split(',');
-    String streetNumber = '';
-    String streetAddress = '';
-    String city = '';
-    String region = '';
-    String postalCode = '';
-    String countryName = '';
-
-    for (var part in parts) {
-      if (part.contains('streetNumber=')) {
-        streetNumber = part.split('=')[1].trim();
-      } else if (part.contains('streetAddress=')) {
-        streetAddress = part.split('=')[1].trim();
-      } else if (part.contains('city=')) {
-        city = part.split('=')[1].trim();
-      } else if (part.contains('region=')) {
-        region = part.split('=')[1].trim();
-      } else if (part.contains('postal=')) {
-        postalCode = part.split('=')[1].trim();
-      } else if (part.contains('countryName=')) {
-        countryName = part.split('=')[1].trim();
-      }
-    }
-
-    return '$streetNumber $streetAddress, $city, $region $postalCode $countryName';
-  }
+Widget simmerWidget(context) {
+  return Column(
+    children: [
+      ListTile(
+        title: Container(
+          height: 15.h,
+          width: 20.w,
+          decoration: BoxDecoration(
+              color: AppColors.grayColor,
+              borderRadius: BorderRadius.circular(12.r)),
+        ),
+        subtitle: Container(
+          height: 15.h,
+          width: 50.w,
+          decoration: BoxDecoration(
+              color: AppColors.grayColor,
+              borderRadius: BorderRadius.circular(12.r)),
+        ),
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .02,
+              width: MediaQuery.of(context).size.width * .05,
+              child: SvgPicture.asset(
+                AppIcons.iconsMapBlue,
+              ),
+            ),
+          ],
+        ),
+      ),
+      horizontalSpace(5),
+    ],
+  );
 }

@@ -7,6 +7,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/trip_details.dart';
 
@@ -84,7 +85,7 @@ class BuildAddressRow extends StatelessWidget {
           ),
           trailing: Text(
             "${rideDetails.ride!.distance} ${AppLocalizations.of(context)!.km}",
-            style: TextStyle(fontSize: 15.sp),
+            style: AppTextStyles.style12DarkgrayW400,
           ),
         );
       },

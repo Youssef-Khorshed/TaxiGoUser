@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/lottie/lottie.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
@@ -79,24 +80,18 @@ class RateDetailsBlockBuilder extends StatelessWidget {
                       rateCubit.feedBackController.text, rateCubit.rate);
                   Navigator.pushReplacementNamed(
                       context, AppRoutes.generalScreen);
-                  CustomSnackBar(
-                    textStyle: AppTextStyles.style16WhiteW500,
-                    message:
-                        AppLocalizations.of(context)!.thank_you_for_your_review,
-                    backgroundColor: AppColors.lightGreen,
-                  ).show(context);
+                  Fluttertoast.showToast(
+                      msg: AppLocalizations.of(context)!
+                          .thank_you_for_your_review);
                 },
                 onValidRateWithoutFeedback: () {
                   rateCubit.confirmRate(context,
                       rateCubit.feedBackController.text, rateCubit.rate);
-                  Future.delayed(const Duration(seconds: 1), () {
-                    CustomSnackBar(
-                      textStyle: AppTextStyles.style16WhiteW500,
-                      message: AppLocalizations.of(context)!
-                          .thank_you_for_your_review,
-                      backgroundColor: AppColors.grayColor,
-                    ).show(context);
-                  }).then(
+                  Fluttertoast.showToast(
+                      msg: AppLocalizations.of(context)!
+                          .thank_you_for_your_review);
+
+                  Future.delayed(const Duration(seconds: 1), () {}).then(
                     (_) => Navigator.pushReplacementNamed(
                       context,
                       AppRoutes.generalScreen,
@@ -104,11 +99,8 @@ class RateDetailsBlockBuilder extends StatelessWidget {
                   );
                 },
                 onInvalidRateWithFeedback: () {
-                  CustomSnackBar(
-                    textStyle: AppTextStyles.style16WhiteW500,
-                    message: AppLocalizations.of(context)!.please_rate_the_trip,
-                    backgroundColor: AppColors.lightGreen,
-                  ).show(context);
+                  Fluttertoast.showToast(
+                      msg: AppLocalizations.of(context)!.please_rate_the_trip);
                 },
                 onInvalidRateWithoutFeedback: () {
                   Navigator.pushReplacementNamed(

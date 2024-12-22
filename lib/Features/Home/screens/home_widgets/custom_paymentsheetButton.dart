@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSearchingDriverSheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_PaymentMethodSelector.dart';
@@ -45,34 +47,38 @@ class PaymentButton extends StatelessWidget {
             buttonColor: AppColors.blueColor,
             borderColor: Colors.white,
             borderCornerRadius: 40.r,
-            buttonText: "Done",
+            buttonText: AppLocalizations.of(context)!.done,
             textColor: Colors.white,
             onPressed: () async {
               await context.read<MapsCubit>().riderequest(
                     context: context,
                     promocode: controller.text,
                     addressFrom: widget.addressFrom,
-                    latFrom: context
-                        .read<MapsCubit>()
-                        .orginPosition!
-                        .lat!
-                        .toString(),
-                    lngFrom: context
-                        .read<MapsCubit>()
-                        .orginPosition!
-                        .lng!
-                        .toString(),
+                    latFrom: "29.86093415790205",
+                    // context
+                    //     .read<MapsCubit>()
+                    //     .orginPosition!
+                    //     .lat!
+                    //     .toString(),
+                    lngFrom: "31.337443790067766",
+                    // context
+                    //     .read<MapsCubit>()
+                    //     .orginPosition!
+                    //     .lat!
+                    //     .toString(),
                     addressTo: widget.addressTo,
-                    latTo: context
-                        .read<MapsCubit>()
-                        .destinationostion
-                        .lat!
-                        .toString(),
-                    lngTo: context
-                        .read<MapsCubit>()
-                        .destinationostion
-                        .lng!
-                        .toString(),
+                    latTo: "29.857100656110628",
+                    // context
+                    //     .read<MapsCubit>()
+                    //     .orginPosition!
+                    //     .lat!
+                    //     .toString(),
+                    lngTo: "31.307918035027203",
+                    // context
+                    //     .read<MapsCubit>()
+                    //     .orginPosition!
+                    //     .lat!
+                    //     .toString(),
                     tripType: widget.tripType,
                     paymentMethod: selectedMethod,
                   );
@@ -90,12 +96,13 @@ class PaymentButton extends StatelessWidget {
             },
           ),
         ),
+        verticalSpace(10.h),
         Expanded(
           child: CustomAppBottom(
             buttonColor: AppColors.whiteColor,
             borderColor: AppColors.redColor,
             borderCornerRadius: 40.r,
-            buttonText: "Cancel",
+            buttonText: AppLocalizations.of(context)!.cancel,
             textColor: AppColors.redColor,
             onPressed: () {
               Navigator.pop(context);

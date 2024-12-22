@@ -54,7 +54,16 @@
     "noPromoCode": "لا يوجد",
     "please_rate_the_trip": "من فضلك قيم الرحله ",
     "thank_you_for_your_review": "\"شكرًا لتقييمك! رأيك يهمنا ويساعدنا على تحسين تجربتك معنا. نتمنى أن تكون رحلتك ممتعة ونتطلع لخدمتك مجددًا قريبًا!\"",
-    "canceled": "\"تم الغاء الرحله بنجاح!\""
+    "canceled": "\"تم الغاء الرحله بنجاح!\"",
+    "cancel": "الغاء",
+    "if__you_have_promo_code_you_can_get_a__discount": "إذا كان لديك رمز ترويجي، يمكنك الحصول على خصم",
+    "apply": "تطبيق",
+    "economy": "اقتصادي",
+    "vip": "VIP",
+    "airport": "المطار",
+    "between_country": "بين المدن",
+    "searching_for_a_driver": "جاري البحث عن سائق",
+    "searching": "جاري البحث"
 
 
 

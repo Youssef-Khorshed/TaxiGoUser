@@ -38,30 +38,30 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
             onPressed: () async {
               // ignore: use_build_context_synchronously
               await mapsCubit.emitPlaceDirections(
-                  origin: LatLng(mapsCubit.orginPosition!.lat!,
-                      mapsCubit.orginPosition!.lng!),
+                  origin: LatLng(29.859519873411035, 31.321822605714914),
                   destination: LatLng(
-                    mapsCubit.destinationostion.lat!,
-                    mapsCubit.destinationostion.lng!,
+                    29.860450325989472,
+                    31.32212301310631,
                   ),
                   sessionToken: const Uuid().v4(),
                   context: context);
-
-              Navigator.of(context).pop();
+              Navigator.pop(context);
 
               customBottomSheet(
                   context: context,
                   widget: CustomChangeaddressSheet(
                       originSubTitle:
-                          "${mapsCubit.originAddress.addressComponents![0].shortName!} ${mapsCubit.originAddress.addressComponents![1].longName!} ${mapsCubit.originAddress.addressComponents![2].longName!} ",
-                      destinationTitle: mapsCubit
-                          .destinationAddress.addressComponents![3].longName!,
+                          "${mapsCubit.originAddress.addressComponents?[0].shortName! ?? ""} ${mapsCubit.originAddress.addressComponents?[1].longName! ?? ""} ${mapsCubit.originAddress.addressComponents?[2].longName! ?? ''} ",
+                      destinationTitle: mapsCubit.destinationAddress
+                              .addressComponents?[3].longName! ??
+                          '',
                       destinationSubTitle:
-                          "${mapsCubit.destinationAddress.addressComponents![0].shortName!} ${mapsCubit.destinationAddress.addressComponents![1].longName!} ${mapsCubit.destinationAddress.addressComponents![2].longName!} ",
+                          "${mapsCubit.destinationAddress.addressComponents?[0].shortName! ?? ""} ${mapsCubit.destinationAddress.addressComponents?[1].longName! ?? ''} ${mapsCubit.destinationAddress.addressComponents?[2].longName! ?? ''} ",
                       originTitle: mapsCubit
-                          .originAddress.addressComponents![3].longName!,
-                      distance: mapsCubit.distanceTime.distance!.text!,
-                      time: mapsCubit.distanceTime.duration!.text!));
+                              .originAddress.addressComponents?[3].longName! ??
+                          '',
+                      distance: mapsCubit.distanceTime.distance?.text! ?? '',
+                      time: mapsCubit.distanceTime.duration?.text! ?? ''));
             },
           ),
         );

@@ -11,6 +11,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_b
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_countDownTimer.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class CustomSearchingDriverSheet extends StatelessWidget {
@@ -66,7 +67,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                "Searching for a driver",
+                AppLocalizations.of(context)!.searching_for_a_driver,
                 style: AppTextStyles.style18BlueBold,
               ),
               const Spacer(),
@@ -76,7 +77,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
           const CustomCountdowntimer(),
           verticalSpace(20.h),
           Text(
-            "...Loading",
+            AppLocalizations.of(context)!.searching,
             style: AppTextStyles.style18BlueBold,
           ),
           verticalSpace(20.h),

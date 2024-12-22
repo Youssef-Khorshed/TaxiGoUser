@@ -30,7 +30,7 @@ class TripDetailsMap extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * .02,
+              height: MediaQuery.of(context).size.height * .03,
               width: MediaQuery.of(context).size.width * .05,
               child: SvgPicture.asset(
                 icon,
