@@ -4,12 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 
 class CustomDriverDetailsSaved extends StatelessWidget {
   const CustomDriverDetailsSaved(
-      {super.key, required this.rate, required this.price});
+      {super.key,
+      required this.rate,
+      required this.price,
+      required this.saveCaptain});
   final String rate;
   final String price;
+  final SaveCaptain saveCaptain;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +24,14 @@ class CustomDriverDetailsSaved extends StatelessWidget {
   Widget _buildDriverDetails(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: AppColors.grayColor,
         radius: 20.r,
+        backgroundImage: NetworkImage(
+          saveCaptain.picture ??
+              'https://r2-us-west.photoai.com/1725044540-0740bf41f0465a6d0ef030a85d1f270a-1.png',
+        ),
       ),
       title: AutoSizeText(
-        'Mohamed haggag',
+        saveCaptain.name!,
         style: AppTextStyles.style18BlackW500,
         maxLines: 1,
       ),
@@ -49,7 +57,7 @@ class CustomDriverDetailsSaved extends StatelessWidget {
           style: AppTextStyles.style14DarkgrayW500,
         ),
         AutoSizeText(
-          price,
+          '$price ${AppLocalizations.of(context)!.iqd}',
           style: AppTextStyles.style14BlackW500,
         ),
       ],

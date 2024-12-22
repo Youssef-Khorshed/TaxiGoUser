@@ -22,7 +22,8 @@ class SavedBuildTripDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.only(bottom: 5.h, right: 10.w, left: 10.w),
+          padding:
+              EdgeInsets.only(top: 30, bottom: 5.h, right: 10.w, left: 10.w),
           color: AppColors.whiteColor2,
           child: CustomSavedBuildAddressRow(
             savedRide: savedData.ride!,
@@ -37,6 +38,7 @@ class SavedBuildTripDetails extends StatelessWidget {
         CustomDriverDetailsSaved(
           rate: savedData.ride?.rate ?? '4.5',
           price: savedData.ride?.total ?? '200',
+          saveCaptain: savedData.ride!.saveCaptain!,
         ),
       ],
     );

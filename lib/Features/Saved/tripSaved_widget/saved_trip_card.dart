@@ -5,13 +5,11 @@ import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/saved_build
 
 // ignore: must_be_immutable
 class SavedTripCard extends StatelessWidget {
-  final void Function() onStarPressed;
   final void Function() onSavedPressed;
   final SavedData savedData;
 
   const SavedTripCard({
     super.key,
-    required this.onStarPressed,
     required this.onSavedPressed,
     required this.savedData,
   });
@@ -43,8 +41,8 @@ class SavedTripCard extends StatelessWidget {
             onPressed: onSavedPressed,
             icon: const Icon(
               size: 30,
-              Icons.star_rate_rounded,
-              color: AppColors.yellowColor,
+              Icons.bookmark,
+              color: AppColors.blueColor,
             ),
           ),
         )

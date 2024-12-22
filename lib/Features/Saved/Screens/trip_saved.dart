@@ -38,7 +38,6 @@ class SavedScreen extends StatelessWidget {
                       itemCount: savedData.length,
                       itemBuilder: (context, index) {
                         return SavedTripCard(
-                          onStarPressed: () {},
                           onSavedPressed: () {
                             SavedViewModel.get(context)
                                 .unSaveTrip(context, savedData[index].id!);
