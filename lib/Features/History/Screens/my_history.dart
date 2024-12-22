@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
@@ -48,13 +49,6 @@ class HistoryScreen extends StatelessWidget {
                             itemCount: historyData.length,
                             itemBuilder: (context, index) {
                               return TripCard(
-                                rating: historyData[index].ride![0].rate ?? '',
-                                driverName: '',
-                                from: historyData[index].addressFrom!,
-                                to: historyData[index].addressTo!,
-                                price: historyData[index].ride![0].total ?? '',
-                                timeFrom: '',
-                                timeTo: '',
                                 onStarPressed: () {
                                   HistoryViewModel.get(context).addToFavTrip(
                                       context, historyData[index].ride![0].id!);
@@ -88,10 +82,23 @@ class HistoryScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(20.r)),
-                child: ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) =>
-                        const CustomDummyWidget())));
+                child: Skeletonizer(
+                  child: Column(
+                    children: [
+                      const Row(
+                        children: [
+                          Expanded(child: CustomDetailsfilterdropdown()),
+                        ],
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: 10,
+                            itemBuilder: (context, index) =>
+                                const CustomDummyWidget()),
+                      ),
+                    ],
+                  ),
+                )));
       },
     );
   }

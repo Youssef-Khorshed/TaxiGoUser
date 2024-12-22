@@ -6,15 +6,9 @@ import 'package:taxi_go_user_version/Features/History/history_widgets/custom_Bui
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_driver_details_history.dart';
 
 class CustomBuildTripDetails extends StatelessWidget {
-  final String rating;
-  final String price;
   final HistoryData historyData;
 
-  const CustomBuildTripDetails(
-      {super.key,
-      required this.rating,
-      required this.price,
-      required this.historyData});
+  const CustomBuildTripDetails({super.key, required this.historyData});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +32,8 @@ class CustomBuildTripDetails extends StatelessWidget {
           color: AppColors.darkgrayColor,
         ),
         CustomDriverdetailsHistory(
-          rate: rating,
-          price: price,
+          rate: historyData.ride?[0].rate ?? '4.5',
+          price: historyData.ride?[0].total ?? '200',
         ),
       ],
     );

@@ -6,13 +6,6 @@ import 'package:taxi_go_user_version/Features/History/history_widgets/custom_bui
 
 // ignore: must_be_immutable
 class TripCard extends StatelessWidget {
-  final String from;
-  final String to;
-  final String timeFrom;
-  final String timeTo;
-  final String driverName;
-  final String rating;
-  final String price;
   final void Function() onStarPressed;
   final void Function() onSavedPressed;
   IconData? savedicon;
@@ -24,13 +17,6 @@ class TripCard extends StatelessWidget {
     this.favicon,
     this.savedicon,
     required this.onStarPressed,
-    required this.from,
-    required this.to,
-    required this.timeFrom,
-    required this.timeTo,
-    required this.driverName,
-    required this.rating,
-    required this.price,
     required this.onSavedPressed,
     required this.historyData,
   });
@@ -68,8 +54,6 @@ class TripCard extends StatelessWidget {
             ),
           ),
           CustomBuildTripDetails(
-            price: price,
-            rating: rating,
             historyData: historyData,
           ),
         ],
