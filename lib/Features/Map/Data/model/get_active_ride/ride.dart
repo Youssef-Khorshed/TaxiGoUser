@@ -1,8 +1,11 @@
+import 'captain.dart';
+
 class Ride {
   int? id;
   int? rideRequestId;
   int? captainId;
   String? status;
+  dynamic cancelReason;
   dynamic distance;
   dynamic time;
   dynamic distancePrice;
@@ -18,12 +21,14 @@ class Ride {
   dynamic arivalTime;
   DateTime? createdAt;
   DateTime? updatedAt;
+  Captain? captain;
 
   Ride({
     this.id,
     this.rideRequestId,
     this.captainId,
     this.status,
+    this.cancelReason,
     this.distance,
     this.time,
     this.distancePrice,
@@ -39,6 +44,7 @@ class Ride {
     this.arivalTime,
     this.createdAt,
     this.updatedAt,
+    this.captain,
   });
 
   factory Ride.fromJson(Map<String, dynamic> json) => Ride(
@@ -46,6 +52,7 @@ class Ride {
         rideRequestId: json['ride_request_id'] as int?,
         captainId: json['captain_id'] as int?,
         status: json['status'] as String?,
+        cancelReason: json['cancel_reason'] as dynamic,
         distance: json['distance'] as dynamic,
         time: json['time'] as dynamic,
         distancePrice: json['distance_price'] as dynamic,
@@ -65,6 +72,9 @@ class Ride {
         updatedAt: json['updated_at'] == null
             ? null
             : DateTime.parse(json['updated_at'] as String),
+        captain: json['captain'] == null
+            ? null
+            : Captain.fromJson(json['captain'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -72,6 +82,7 @@ class Ride {
         'ride_request_id': rideRequestId,
         'captain_id': captainId,
         'status': status,
+        'cancel_reason': cancelReason,
         'distance': distance,
         'time': time,
         'distance_price': distancePrice,
@@ -87,5 +98,6 @@ class Ride {
         'arival_time': arivalTime,
         'created_at': createdAt?.toIso8601String(),
         'updated_at': updatedAt?.toIso8601String(),
+        'captain': captain?.toJson(),
       };
 }

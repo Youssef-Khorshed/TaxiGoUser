@@ -93,13 +93,6 @@ class MapsCubit extends Cubit<MapsState> {
     });
   }
 
-  /// map initialization
-  Future<void> initMap() async {
-    placeCameraPosition = const CameraPosition(
-        target: LatLng(33.40302561069593, 44.498105563683005), zoom: 8);
-    emit(MapsInitialized());
-  }
-
   /// get place suggestions
   Future<void> emitPlaceSuggestions({
     required String searchQuery,

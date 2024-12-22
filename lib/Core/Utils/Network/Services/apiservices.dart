@@ -44,7 +44,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer ${Constants.userToken}', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer $token', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
