@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/share_location.dart';
 import '../../Core/Utils/Network/Services/services_locator.dart';
 import 'model_view/chat_widgets/custom_message_input_bar_chat.dart';
 import 'model_view/chat_widgets/custom_user_message_chat.dart';
@@ -51,11 +52,15 @@ class _ChatScreenState extends State<ChatScreen> {
             if (state is ChatLoad) {
               return const Center(child: CircularProgressIndicator());
             }
+            if(state is Chaterror){
+              return Center(child: Text("sss"));
+            }
 
             if (state is Chatsuccful) {
               return Column(
                 children: [
-                  Expanded(
+                const ShareLocation(),
+                               Expanded(
                     child: ListView.builder(
                       controller: _scrollController,
                       padding: const EdgeInsets.all(16),
@@ -80,7 +85,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       },
                     ),
                   ),
-                  MessageInputBar(),
+                  const MessageInputBar(),
                 ],
               );
             }

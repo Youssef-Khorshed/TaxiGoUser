@@ -42,9 +42,9 @@ class ChatCubit extends Cubit<ChatState> {
   Future<Either<Failure, List<Message>>> getChatdata(BuildContext context) async {
     emit(ChatLoad());
 
-    final response = await chatrepo.getChatDetails(context: context);
+    var response = await chatrepo.getChatDetails(context: context);
 
-    response.fold(
+     response.fold(
           (failure) {
         emit(Chaterror());
       },
@@ -53,7 +53,5 @@ class ChatCubit extends Cubit<ChatState> {
       },
     );
 
-    return response;
   }
-
 }

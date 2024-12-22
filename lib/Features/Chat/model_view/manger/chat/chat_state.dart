@@ -16,3 +16,7 @@ class Chatsuccful extends ChatState{
   Chatsuccful(this.messages);
 }
 
+class Chaterror extends ChatState{
+
+
+}
