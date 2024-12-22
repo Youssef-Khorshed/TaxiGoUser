@@ -40,6 +40,7 @@ class AppRoutes {
   static const String rate = '/rate';
   static const String cancelbooing = '/cancelbooing';
   static const String wallet = '/wallet';
+  static const String notificationScreen = '/notificationScreen';
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
   static const String mapScreen = '/MapScreen';
@@ -49,7 +50,6 @@ class AppRoutes {
   static const String chat = '/chat';
   static const String profile = '/profile';
   static const String loginOtpScreen = '/loginOtpScreen';
-  static const String notificationScreen = '/notificationScreen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {

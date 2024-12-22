@@ -15,6 +15,8 @@ import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.d
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 
+import '../../notification/screens/notification_screen.dart';
+
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});
 
@@ -31,6 +33,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
     const FavouriteScreen(),
     const SavedScreen(),
     const WalletScreen(),
+    const NotificationScreen(),
     const LogInScreen(),
   ];
 
@@ -41,6 +44,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
     "Trip Favourite",
     "Trip Saved",
     "Wallet",
+    "Notification",
     "Logout",
   ];
   void onItemTap(int index) {

@@ -123,6 +123,19 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                 ),
                 ListTile(
                   leading: const Icon(
+                    Icons.notifications,
+                    color: AppColors.blueColor,
+                  ),
+                  title: Text(
+                    'Notification',
+                    style: AppTextStyles.style20BlackW500
+                        .copyWith(color: AppColors.blueColor),
+                  ),
+                  selected: widget.selectedIndex == 5,
+                  onTap: () => widget.onItemTap(5),
+                ),
+                ListTile(
+                  leading: const Icon(
                     Icons.logout,
                     color: AppColors.redColor,
                   ),
@@ -131,7 +144,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.redColor),
                   ),
-                  selected: widget.selectedIndex == 5,
+                  selected: widget.selectedIndex == 6,
                   onTap: () => Navigator.pushReplacementNamed(
                       context, AppRoutes.welcome),
                 ),

@@ -3,7 +3,7 @@ class Constants {
   static const String walletDeposit = 'deposit';
   static const String walleTransactions = 'transactions';
   static const String walleGetProfileData = 'profile';
-
+  static const String getAllNotification = 'notifications';
 
   static String depositURL({
     required String amount,
@@ -24,5 +24,8 @@ class Constants {
     }
     return url;
   }
+
   static String getProfileURL() => '$baseUrl$walleGetProfileData';
+
+  static String getAllNotificationURL() => '$baseUrl$getAllNotification';
 }

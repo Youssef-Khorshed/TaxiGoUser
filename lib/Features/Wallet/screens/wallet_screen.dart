@@ -44,12 +44,6 @@ class WalletScreen extends StatelessWidget {
               ),
             ),
             verticalSpace(10),
-            GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.notificationScreen);
-                },
-                child: Icon(Icons.notification_add_rounded,
-                    color: AppColors.darkgrayColor)),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: AutoSizeText(AppLocalizations.of(context)!.transactions,

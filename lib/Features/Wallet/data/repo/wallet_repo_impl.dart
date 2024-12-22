@@ -36,18 +36,15 @@ class WalletRepoImpl extends WalletRepo {
     required BuildContext context,
   }) async {
     try {
-      // Construct the URL and log it for debugging
       final url = Constants.transactionsURL(
         paymentMethod: paymentMethod,
         transactionType: transactionType,
       );
       print('Constructed URL: $url');
 
-      // Perform the API request and log the raw response
       final response = await apiService.getRequest(url, context: context);
       print('Raw API response: $response');
 
-      // Parse the response and return the model
       return Right(GetAllTransactionsModel.fromJson(response));
     } on NoInternetException {
       print('Error: No internet connection');

@@ -36,8 +36,7 @@ dependencies:
   json_annotation: ^4.8.0
   dartz: 
   url_launcher: 
-  shimmer:
-
+  shimmer: 
 
 dev_dependencies:
   flutter_launcher_icons: null

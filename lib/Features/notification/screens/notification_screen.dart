@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_user_version/Features/notification/screens/widgets/notification_item_widget.dart';
+import 'widgets/notification_list_widget.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -23,12 +23,7 @@ class NotificationScreen extends StatelessWidget {
       backgroundColor: AppColors.whiteColor,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return NotificationItemWidget(index: index);
-          },
-          itemCount: 15,
-        ),
+        child: const NotificationListWidget(),
       ),
     );
   }
