@@ -18,7 +18,7 @@ class TripeCompleteDate extends StatelessWidget {
       children: [
         LocationDetails(
           rideDetails: rideCompleteDetailsModel,
-        )
+        ),
         BuildAddressRow(
           rideDetails: rideCompleteDetailsModel,
         ),

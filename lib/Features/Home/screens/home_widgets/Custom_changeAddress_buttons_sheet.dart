@@ -61,9 +61,9 @@ class Custom_changeAddress_buttons_sheet extends StatelessWidget {
                   widget: PaymentMethodSelector(
                     originTitle: widget.originTitle,
                     destinationTitle: widget.destinationTitle,
-                    distance:
-                        convertMilesToKilometers(double.parse(widget.distance))
-                            .toString(),
+                    distance: widget.distance,
+                    // convertMilesToKilometers(double.parse(widget.distance))
+                    // .toString(),
                     time: convertToMinutes(widget.time).toString(),
                     addressFrom: widget.originSubTitle,
                     addressTo: widget.destinationSubTitle,
