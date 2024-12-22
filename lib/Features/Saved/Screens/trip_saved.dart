@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
-import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_states.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/saved_trip_card.dart';
 
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});
@@ -37,21 +37,14 @@ class SavedScreen extends StatelessWidget {
                     child: ListView.builder(
                       itemCount: savedData.length,
                       itemBuilder: (context, index) {
-                        return TripCard(
-                          savedicon: Icons.bookmark,
-                          rating: savedData[index].ride!.rate!,
-                          driverName: '',
-                          from: 'state',
-                          to: 'home',
-                          price: savedData[index].ride!.total!,
-                          timeFrom: '',
-                          timeTo: '',
+                        return SavedTripCard(
                           onStarPressed: () {},
                           onSavedPressed: () {
                             SavedViewModel.get(context)
                                 .unSaveTrip(context, savedData[index].id!);
                             SavedViewModel.get(context).getSavedData(context);
                           },
+                          savedData: savedData[index],
                         );
                       },
                     ),

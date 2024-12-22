@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_states.dart';
@@ -19,6 +21,7 @@ class SavedViewModel extends Cubit<SavedStates> {
       },
       (savedResponse) {
         savedDataList = savedResponse.data!;
+        log('dddddddddddddddddddddddd ${savedDataList[0].ride!}');
         emit(SavedSuccessStates(savedDataModel: savedResponse));
       },
     );
