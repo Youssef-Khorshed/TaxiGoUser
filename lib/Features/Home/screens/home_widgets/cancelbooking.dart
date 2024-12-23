@@ -7,8 +7,7 @@ import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cnacelBooking_widget/custom_cancelbody_cancel.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_snack_bar.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_cancelbody_cancel.dart';
 
 class CancelBookingScreen extends StatefulWidget {
   const CancelBookingScreen({super.key});
