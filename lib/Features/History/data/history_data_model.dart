@@ -23,10 +23,19 @@ class HistoryData {
   String? lngFrom;
   String? latTo;
   String? lngTo;
+  bool? isSaved;
+  bool? isFavorite;
   List<HistoryRide>? ride;
 
   HistoryData(
-      {this.id, this.latFrom, this.lngFrom, this.latTo, this.lngTo, this.ride});
+      {this.id,
+      this.latFrom,
+      this.lngFrom,
+      this.latTo,
+      this.lngTo,
+      this.ride,
+      this.isFavorite,
+      this.isSaved});
 
   HistoryData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -34,6 +43,8 @@ class HistoryData {
     lngFrom = json['lng_from'];
     latTo = json['lat_to'];
     lngTo = json['lng_to'];
+    isSaved = json['is_saved'];
+    isFavorite = json['is_favorite'];
     if (json['ride'] != null) {
       ride = <HistoryRide>[];
       json['ride'].forEach((v) {

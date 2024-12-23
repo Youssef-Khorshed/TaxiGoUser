@@ -3,12 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/trip_details%5B1%5D.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BuildAddressRow extends StatelessWidget {
-  BuildAddressRow({
+  const BuildAddressRow({
     super.key,
     required this.rideDetails,
   });
@@ -20,7 +21,7 @@ class BuildAddressRow extends StatelessWidget {
         rideDetails.lngFrom == null ||
         rideDetails.latTo == null ||
         rideDetails.lngTo == null) {
-      return Center(child: Text("Invalid location data"));
+      return const Center(child: Text("Invalid location data"));
     }
 
     return FutureBuilder<Map<String, String>>(
@@ -39,17 +40,17 @@ class BuildAddressRow extends StatelessWidget {
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: TripDetailsMap(
+                  child: const TripDetailsMap(
                     address: " ",
                     location: " ",
                     icon: AppIcons.iconsMapRed,
                   ),
                 ),
-                SizedBox(height: 10),
+                verticalSpace(10.h),
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: TripDetailsMap(
+                  child: const TripDetailsMap(
                     address: " ",
                     location: " ",
                     icon: AppIcons.iconsMapBlue,
@@ -61,7 +62,7 @@ class BuildAddressRow extends StatelessWidget {
         }
 
         if (snapshot.hasError || !snapshot.hasData) {
-          return ListTile(
+          return const ListTile(
             title: Text("حدث خطأ أثناء جلب البيانات"),
           );
         }
@@ -121,11 +122,7 @@ class BuildAddressRow extends StatelessWidget {
       double latitude, double longitude) async {
     final address = await GeoCode()
         .reverseGeocoding(latitude: latitude, longitude: longitude);
-
-    if (address == null) {
-      throw Exception("عنوان غير موجود");
-    }
-    String _getCity(String city) {
+    String getCity(String city) {
       if (city.isEmpty) return '';
 
       List<String> parts = city.split(' ');
@@ -138,7 +135,7 @@ class BuildAddressRow extends StatelessWidget {
 
     return {
       'address': address.streetAddress ?? '',
-      'city': _getCity(address.city ?? ''),
+      'city': getCity(address.city ?? ''),
     };
   }
 }

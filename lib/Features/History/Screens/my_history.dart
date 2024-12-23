@@ -48,7 +48,7 @@ class HistoryScreen extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: historyData.length,
                             itemBuilder: (context, index) {
-                              return TripCard(
+                              return HistoryTripCard(
                                 onStarPressed: () {
                                   HistoryViewModel.get(context).addToFavTrip(
                                       context, historyData[index].ride![0].id!);

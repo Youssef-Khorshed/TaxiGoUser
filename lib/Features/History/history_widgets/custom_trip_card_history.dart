@@ -5,17 +5,13 @@ import 'package:taxi_go_user_version/Features/History/data/history_data_model.da
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
 // ignore: must_be_immutable
-class TripCard extends StatelessWidget {
+class HistoryTripCard extends StatelessWidget {
   final void Function() onStarPressed;
   final void Function() onSavedPressed;
-  IconData? savedicon;
-  IconData? favicon;
   final HistoryData historyData;
 
-  TripCard({
+  HistoryTripCard({
     super.key,
-    this.favicon,
-    this.savedicon,
     required this.onStarPressed,
     required this.onSavedPressed,
     required this.historyData,
@@ -40,14 +36,18 @@ class TripCard extends StatelessWidget {
                 IconButton(
                   onPressed: onStarPressed,
                   icon: Icon(
-                    favicon ?? Icons.star_border_outlined,
+                    historyData.isFavorite == true
+                        ? Icons.star
+                        : Icons.star_border_outlined,
                     color: AppColors.amberColor,
                   ),
                 ),
                 IconButton(
                     onPressed: onSavedPressed,
                     icon: Icon(
-                      savedicon ?? Icons.bookmark_add_outlined,
+                      historyData.isSaved == true
+                          ? Icons.bookmark
+                          : Icons.bookmark_add_outlined,
                       color: AppColors.blueColor,
                     ))
               ],
