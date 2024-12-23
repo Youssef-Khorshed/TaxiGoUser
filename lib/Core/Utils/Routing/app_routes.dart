@@ -1,16 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/login_otp_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/set_new_password_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_phone_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/controller/create_profile_cubit/create_profile_cubit.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
@@ -22,11 +11,24 @@ import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
-import '../../../Features/Auth/screens/sign_up/controller/login_cubit/login_cubit.dart';
-import '../../../Features/Auth/screens/sign_up/controller/otp_cubit/otp_cubit.dart';
-import '../../../Features/Auth/screens/sign_up/controller/set_new_password/set_new_password_cubit.dart';
-import '../../../Features/Auth/screens/sign_up/controller/set_password_cubit/set_password_cubit.dart';
-import '../../../Features/Auth/screens/sign_up/controller/sign_up_cubit.dart';
+
+import '../../../Features/Auth/presentation/controller/create_profile_cubit/create_profile_cubit.dart';
+import '../../../Features/Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
+import '../../../Features/Auth/presentation/controller/login_cubit/login_cubit.dart';
+import '../../../Features/Auth/presentation/controller/otp_cubit/otp_cubit.dart';
+import '../../../Features/Auth/presentation/controller/set_new_password/set_new_password_cubit.dart';
+import '../../../Features/Auth/presentation/controller/set_password_cubit/set_password_cubit.dart';
+import '../../../Features/Auth/presentation/controller/sign_up_cubit.dart';
+import '../../../Features/Auth/presentation/screens/log_in/forget_password_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/forget_password_send_otp_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/log_in_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/login_otp_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/set_new_password_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/verification_phone_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/create_profile_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/otp_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/set_password_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/sign_up_screen.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
 import '../Network/Services/services_locator.dart';
@@ -155,7 +157,10 @@ class AppRoutes {
       case generalScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            return const GeneralScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<LogOutCubit>(),
+              child: GeneralScreen(),
+            );
           },
         );
 
@@ -226,9 +231,13 @@ class AppRoutes {
           },
         );
       case loginOtpScreen:
+        String phone = settings.arguments as String;
         return CupertinoPageRoute(
           builder: (context) {
-            return const LoginOtpScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<OtpCubit>(),
+              child: LoginOtpScreen(phone: phone),
+            );
           },
         );
 

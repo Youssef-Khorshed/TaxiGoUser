@@ -12,7 +12,8 @@ import '../../../../Core/Utils/Network/Services/apiservices.dart';
 import '../../../../Core/Utils/Network/Services/secure_token.dart';
 import '../models/create_profile_model/create_profile_model.dart';
 import '../models/forget_password_model/Forget_password_model.dart';
-import '../models/login_model/login_model.dart';
+import '../models/login_model/LoginModel.dart';
+
 import '../models/login_model/set_password_model.dart';
 import '../models/send_verification_code_model/send_verification_code_model.dart';
 import '../models/set_password_model/SendPasswordModel.dart';
@@ -99,8 +100,13 @@ class AuthRepoImpl extends AuthRepo {
           body: {"code": otp},
           context: context);
       print("respondse ${response}");
-      VerifyAccount data = VerifyAccount.fromJson(response);
-      return Right(data);
+      if (response["status"] == false) {
+        return Left(ServerFailure(message: response["message"]));
+      }
+      else
+      {  VerifyAccount data = VerifyAccount.fromJson(response);
+      return Right(data);}
+
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -122,8 +128,12 @@ class AuthRepoImpl extends AuthRepo {
           Constants.baseUrl + Constants.verifyAccount,
           body: body,
           context: context);
+      if (response["status"] == false) {
+        return Left(ServerFailure(message: response["message"]));
+      }
+      else{
       SendPasswordModel data = SendPasswordModel.fromJson(response);
-      return Right(data);
+      return Right(data);}
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -145,10 +155,16 @@ class AuthRepoImpl extends AuthRepo {
           Constants.baseUrl + Constants.forgotPassword,
           queryParameters: {"identifier": phone},
           context: context);
-      ForgetPasswordModel data = ForgetPasswordModel.fromJson(response);
-      return Right(data);
+      if(response["status"] == false){
+        return Left(ServerFailure(message: response["message"]));
+
+      }
+      else{ ForgetPasswordModel data = ForgetPasswordModel.fromJson(response);
+      return Right(data);}
+
     } catch (e) {
       if (e is DioException) {
+
         return Left(ServerFailure(
           message: e.response!.data.toString(),
         ));
@@ -170,9 +186,15 @@ class AuthRepoImpl extends AuthRepo {
           Constants.baseUrl + Constants.forgotPasswordCheckCode,
           body: {"identifier": phone, "code": otp},
           context: context);
-      SendVerificationCodeModel data =
-          SendVerificationCodeModel.fromJson(response);
-      return Right(data);
+      if(response["status"] == false){
+        return Left(ServerFailure(message: response["message"]));
+
+      }
+    else{
+        SendVerificationCodeModel data =
+        SendVerificationCodeModel.fromJson(response);
+        return Right(data);
+    }
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -198,13 +220,19 @@ class AuthRepoImpl extends AuthRepo {
           body: {"name": name, "phone": phone, "gender": gender},
           context: context);
       print(response);
-      RegisterModel dataModel = RegisterModel.fromJson(response);
-      if (dataModel.data?.token != null) {
-        print("LOL${dataModel.data?.token}");
-        await SecureToken.addToken(dataModel.data!.token!);
+      if(response["status"] == false){
+        return Left(ServerFailure(message: response["message"]));
+
       }
-      var token = await SecureToken.getToken();
-      return Right(dataModel.data ?? RegisterDataModel());
+     else{
+        RegisterModel dataModel = RegisterModel.fromJson(response);
+        if (dataModel.data?.token != null) {
+          print("LOL${dataModel.data?.token}");
+
+        }
+        await SecureToken.addToken(dataModel.data!.token!);
+        return Right(dataModel.data ?? RegisterDataModel());
+     }
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
@@ -304,8 +332,8 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failure, LogOutModel>> logout(BuildContext context) async {
     try {
       var response = await apiService
-          .getRequest(Constants.baseUrl + Constants.logout, context: context);
-      return Right(LogOutModel.fromJson(response.data));
+          .postRequest(Constants.baseUrl + Constants.logout, context: context);
+      return Right(LogOutModel.fromJson(response));
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

@@ -5,12 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_profile.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/controller/log_out_cubit/log_out_cubit.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
+
 class CustomAppDrawer extends StatefulWidget {
   final int selectedIndex;
   final Function(int index) onItemTap;
@@ -139,31 +141,34 @@ image=  await  SecureProfile.getProfileImage();
                   selected: widget.selectedIndex == 4,
                   onTap: () => widget.onItemTap(4),
                 ),
-                BlocConsumer<LogOutCubit, LogOutState>(
-  listener: (context, state) {
-  },
-  builder: (context, state) {
+                ListTile(
+                  leading: const Icon(
+                    Icons.logout,
+                    color: AppColors.redColor,
+                  ),
+                  title:                BlocConsumer<LogOutCubit, LogOutState>(
+    listener: (context, state) {
+      if (state is LogOutSuccess) {
+        Navigator.pushReplacementNamed(context, AppRoutes.welcome);
+      }
+    },
+    builder: (context, state) {
     return GestureDetector(
-                  onTap: () {
-                    LogOutCubit.get(context).logOut(context);
-                  },
-                  child: ListTile(
-                    leading: const Icon(
-                      Icons.logout,
-                      color: AppColors.redColor,
-                    ),
-                    title: Text(
+    onTap: () {
+      print("object");
+    LogOutCubit.get(context).logOut(context);
+    },
+                    child: Text(
                      AppLocalizations.of(context)!.logout,
                       style: AppTextStyles.style20BlackW500
                           .copyWith(color: AppColors.redColor),
                     ),
-                    selected: widget.selectedIndex == 5,
-                    onTap: () => Navigator.pushReplacementNamed(
-                        context, AppRoutes.welcome),
-                  ),
-                );
-  },
-),
+                  );},
+                ),
+                  selected: widget.selectedIndex == 5,
+                  onTap: () => Navigator.pushReplacementNamed(
+                      context, AppRoutes.welcome),
+                ),
               ],
             ),
           ]),

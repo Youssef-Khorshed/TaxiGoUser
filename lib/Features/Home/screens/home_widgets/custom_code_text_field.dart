@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import '../../../Auth/screens/auth_widgets/custom_auth_form_field.dart';
+import '../../../Auth/presentation/auth_widgets/custom_auth_form_field.dart';
 
 class CodeTextField extends StatelessWidget {
   const CodeTextField({super.key});

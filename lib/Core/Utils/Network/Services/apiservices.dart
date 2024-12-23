@@ -14,7 +14,9 @@ class ApiService {
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
   // Singleton Dio instance
-  getDio(context) async {
+ Future<Dio> getDio(context) async {
+    String? token=await   SecureToken.getToken();
+print("EEEEEEEEEWWWWWWW${token}");
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -34,8 +36,9 @@ class ApiService {
         LocalizationThemeState.ar
         ? "ar"
         : "en";
-    var token=await      SecureToken.getToken();
-print(token);
+
+print("EEEEEE${token}");
+
     _addDioHeaders(language: language,token: token);
 
 
@@ -93,7 +96,7 @@ print(token);
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      getDio(context);
+     await getDio(context);
 
       final response = await _dio!.post(url, data: body);
       if (response.statusCode != null) {
@@ -122,7 +125,7 @@ print(token);
   Future<T> putRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      getDio(context);
+      await getDio(context);
 
       final response = await _dio!.put(
         url,
@@ -148,7 +151,7 @@ print(token);
   Future<T> deleteRequest<T>(String url,
       {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      getDio(context);
+      await getDio(context);
       final response = await _dio!.delete(url);
       if (response.statusCode != null) {
         if (response.statusCode == 200) {
