@@ -21,8 +21,8 @@ class FavouriteScreen extends StatelessWidget {
       bloc: FavouriteViewModel.get(context)..getFavouriteDate(context),
       builder: (context, state) {
         if (state is FavoriteFailureStates) {
-          return const CustomFailureView(
-            message: '',
+          return CustomFailureView(
+            message: state.errMessage,
           );
         }
         if (state is FavoriteSuccessStates ||
