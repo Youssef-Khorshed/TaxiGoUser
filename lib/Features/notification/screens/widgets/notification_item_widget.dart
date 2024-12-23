@@ -17,7 +17,7 @@ class NotificationItemWidget extends StatelessWidget {
         elevation: 2.5,
         shadowColor: AppColors.blackColor,
         color: AppColors.whiteColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 7.w),
           margin: EdgeInsets.symmetric(horizontal: 5.w),

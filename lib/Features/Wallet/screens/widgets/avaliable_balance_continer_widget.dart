@@ -7,9 +7,9 @@ import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 import 'wallet_dialog_method.dart';
 
-class AvaliableBalanceContinerWidget extends StatelessWidget {
+class AvaliableBalanceItemWidget extends StatelessWidget {
   final String amount;
-  const AvaliableBalanceContinerWidget({super.key, required this.amount});
+  const AvaliableBalanceItemWidget({super.key, required this.amount});
 
   @override
   Widget build(BuildContext context) {

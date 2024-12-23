@@ -5,7 +5,6 @@ import 'package:taxi_go_user_version/Features/Wallet/screens/widgets/withdrawal_
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import 'withdrawal_deposit_arrow_widget.dart';
 import 'withdrawal_deposit_text_widget.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransactionCardWidget extends StatelessWidget {
   final String paymentType , amount;
