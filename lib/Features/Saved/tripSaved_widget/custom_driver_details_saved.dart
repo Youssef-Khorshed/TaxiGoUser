@@ -31,7 +31,7 @@ class CustomDriverDetailsSaved extends StatelessWidget {
         ),
       ),
       title: AutoSizeText(
-        saveCaptain.name!,
+        saveCaptain.name ?? 'name',
         style: AppTextStyles.style18BlackW500,
         maxLines: 1,
       ),
