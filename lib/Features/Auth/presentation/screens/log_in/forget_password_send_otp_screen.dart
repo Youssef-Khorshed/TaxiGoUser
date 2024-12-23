@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../../Core/Utils/Spacing/app_spacing.dart';
@@ -11,6 +12,7 @@ import '../../../../../Core/Utils/Text/text_style.dart';
 import '../../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import '../../auth_widgets/custom_auth_app_bar.dart';
 import '../../auth_widgets/custom_forget_password_input_otp_field.dart';
+
 class ForgetPasswordSendOtpScreen extends StatelessWidget {
   const ForgetPasswordSendOtpScreen({super.key});
 
@@ -22,16 +24,16 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
             preferredSize: Size(MediaQuery.of(context).size.width, 80),
             child: const CustomAuthAppBar()),
         body: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
+          padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
           child: Column(
             children: [
               verticalSpace(10),
               AutoSizeText(
-                "Forget Password OTP",
+                AppLocalizations.of(context)!.forget_password,
                 style: AppTextStyles.style24BlackW500,
               ),
               AutoSizeText(
-               AppLocalizations.of(context)!.code_sent_to,
+                AppLocalizations.of(context)!.code_sent_to,
                 style: AppTextStyles.style16WhiteW500
                     .copyWith(color: AppColors.grayColor),
                 textAlign: TextAlign.center,
@@ -63,7 +65,7 @@ class ForgetPasswordSendOtpScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.setNewPassword);
                 },
-                buttonText:AppLocalizations.of(context)!.verify,
+                buttonText: AppLocalizations.of(context)!.verify,
               ),
             ],
           ),

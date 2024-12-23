@@ -9,6 +9,7 @@ import '../../../../Core/Utils/Colors/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../Core/Utils/enums/localization.dart';
+
 class CustomAuthAppBar extends StatelessWidget {
   const CustomAuthAppBar({
     super.key,
@@ -17,19 +18,23 @@ class CustomAuthAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
       child: GestureDetector(
         onTap: () => Navigator.pop(context),
         child: Row(
           children: [
             Transform.rotate(
-              angle:LocalCubit.get(context).localizationThemeState == LocalizationThemeState.ar ? 3.14:0,
-               child: Icon(
+              angle: LocalCubit.get(context).localizationThemeState ==
+                      LocalizationThemeState.ar
+                  ? 3.14
+                  : 0,
+              child: Icon(
                 FontAwesomeIcons.angleLeft,
                 color: Colors.black,
-                           ),
-             ),
-            horizontalSpace(5),
+                size: 25.r,
+              ),
+            ),
+            horizontalSpace(5.w),
             AutoSizeText(
               AppLocalizations.of(context)!.back,
               style: AppTextStyles.style16WhiteW500

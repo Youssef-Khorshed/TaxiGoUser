@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 import '../../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
@@ -16,6 +16,7 @@ import '../../../../../Core/Utils/validation.dart';
 import '../../../../App/app_widgets/custom_loading.dart';
 import '../../auth_widgets/custom_auth_app_bar.dart';
 import '../../controller/otp_cubit/otp_cubit.dart';
+
 class VerificationPhoneAndPasswordScreen extends StatefulWidget {
   const VerificationPhoneAndPasswordScreen({super.key});
 
@@ -37,9 +38,9 @@ class _VerificationPhoneAndPasswordScreenState
               child: const CustomAuthAppBar()),
           body: Form(
             key: OtpCubit.get(context).formKey,
-            autovalidateMode:OtpCubit.get(context).autovalidateMode ,
+            autovalidateMode: OtpCubit.get(context).autovalidateMode,
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,11 +52,10 @@ class _VerificationPhoneAndPasswordScreenState
                   ),
                   verticalSpace(15),
                   CustomAppFormField(
-                    controller:  OtpCubit.get(context).controller ,
+                    controller: OtpCubit.get(context).controller,
                     validator: (value) {
-                    return  Validation.validatePhone(value, context);
+                      return Validation.validatePhone(value, context);
                     },
-
                     isPassword: false,
                     obscureText: false,
                     hintText: AppLocalizations.of(context)!.password_required,
@@ -63,36 +63,42 @@ class _VerificationPhoneAndPasswordScreenState
                   ),
                   const Spacer(),
                   BlocConsumer<OtpCubit, OtpState>(
-              listener: (context, state) {
-                if(state is ForgetPassSuccess){
-                  Navigator.pushReplacementNamed(context, AppRoutes.otp,arguments: OtpCubit.get(context).controller?.text
-                      );
-
-                }
-                else if(state is ForgetPassFailure){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error??"Error")));
-                }  },
-              builder: (context, state) {
-                if(state is ForgetPassLoading){
-                  return CustomLoading();
-                }
-                return CustomAppBottom(
-                    onPressed: () async {
-                      // Navigator.pushNamed(
-                      //   context,
-                      //   AppRoutes.generalScreen,
-                      // );
-                  await    OtpCubit.get(context).validateForgetPassword(context);
-                  setState(() {
-
-                  });
-                    //   Navigator.pushNamed(context, AppRoutes.otp,arguments: OtpCubit.get(context).controller?.text
-                    //   );
+                    listener: (context, state) {
+                      if (state is ForgetPassSuccess) {
+                        Navigator.pushReplacementNamed(context, AppRoutes.otp,
+                            arguments: OtpCubit.get(context).controller?.text);
+                      } else if (state is ForgetPassFailure) {
+                        Fluttertoast.showToast(
+                            msg: state.error ??
+                                AppLocalizations.of(context)!.error,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0.sp);
+                      }
                     },
-                    buttonText: AppLocalizations.of(context)!.send_otp,
-                  );
-              },
-            ),
+                    builder: (context, state) {
+                      if (state is ForgetPassLoading) {
+                        return CustomLoading();
+                      }
+                      return CustomAppBottom(
+                        onPressed: () async {
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   AppRoutes.generalScreen,
+                          // );
+                          await OtpCubit.get(context)
+                              .validateForgetPassword(context);
+                          setState(() {});
+                          //   Navigator.pushNamed(context, AppRoutes.otp,arguments: OtpCubit.get(context).controller?.text
+                          //   );
+                        },
+                        buttonText: AppLocalizations.of(context)!.send_otp,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
