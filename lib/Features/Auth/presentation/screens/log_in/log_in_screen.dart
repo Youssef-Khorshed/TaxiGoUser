@@ -69,6 +69,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       CustomAppFormField(
                         onTap: () {},
                         isPassword: false,
+                        hintStyle: AppTextStyles.style14BlackW500,
                         obscureText: false,
                         hintText: AppLocalizations.of(context)!.phoneNumber,
                         controller:
@@ -79,6 +80,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                       verticalSpace(15.h),
                       CustomAppFormField(
+                        hintStyle: AppTextStyles.style14BlackW500,
                         onTap: () {},
                         isPassword: true,
                         obscureText: true,
@@ -102,7 +104,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       child: Text(
                         AppLocalizations.of(context)!.forgotPassword,
                         style: AppTextStyles.style16WhiteW500.copyWith(
-                            color: AppColors.redColor, fontSize: 10.sp),
+                            color: AppColors.redColor, fontSize: 14.sp),
                       ),
                     ),
                   ),

@@ -93,7 +93,7 @@ abstract class AppTextStyles {
     fontSize: 16.sp,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: "Cairo",
     height: 0,
   );
 

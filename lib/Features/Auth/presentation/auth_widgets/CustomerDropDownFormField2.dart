@@ -3,6 +3,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/models/get_cities_model/Cities.dart';
 
 import '../../data/models/get_districts_by_cities/Cities.dart';
@@ -17,16 +18,16 @@ class CustomDropDownFormField2 extends StatefulWidget {
   final Gradient? gradient;
   final TextStyle? nameTextStyle;
   void Function(DistricCities?)? onChanged;
-   CustomDropDownFormField2(
+  CustomDropDownFormField2(
       {super.key,
-        this.onChanged,
-        required this.items,
-        required this.name,
-        this.gradient,
-        this.iconEnabledColor,
-        this.nameTextStyle,
-        this.bordercolor = AppColors.blackColor,
-        this.backgroundcolor});
+      this.onChanged,
+      required this.items,
+      required this.name,
+      this.gradient,
+      this.iconEnabledColor,
+      this.nameTextStyle,
+      this.bordercolor = AppColors.blackColor,
+      this.backgroundcolor});
 
   @override
   State<CustomDropDownFormField2> createState() =>
@@ -55,19 +56,20 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField2> {
       ),
       hint: AutoSizeText(
         selectedValue ?? widget.name,
-        style: widget.nameTextStyle,
+        style: selectedValue == widget.name
+            ? AppTextStyles.style16DarkgrayW500
+            : widget.nameTextStyle,
         textAlign: TextAlign.center,
       ),
       items: widget.items
-          .map((gender) =>
-          DropdownMenuItem(value: gender, child: AutoSizeText(gender.district!)))
+          .map((gender) => DropdownMenuItem(
+              value: gender, child: AutoSizeText(gender.district!)))
           .toList(),
       onChanged: (value) {
         print("R");
         widget.onChanged!(value);
 
         setState(() {
-
           selectedValue = value!.district!;
         });
       },
@@ -87,14 +89,14 @@ class CustomDropDownFormField3 extends StatefulWidget {
   void Function(Cities?)? onChanged;
   CustomDropDownFormField3(
       {super.key,
-        this.onChanged,
-        required this.items,
-        required this.name,
-        this.gradient,
-        this.iconEnabledColor,
-        this.nameTextStyle,
-        this.bordercolor = AppColors.blackColor,
-        this.backgroundcolor});
+      this.onChanged,
+      required this.items,
+      required this.name,
+      this.gradient,
+      this.iconEnabledColor,
+      this.nameTextStyle,
+      this.bordercolor = AppColors.blackColor,
+      this.backgroundcolor});
 
   @override
   State<CustomDropDownFormField3> createState() =>
@@ -107,7 +109,6 @@ class _CustomDropDownFormFieldState3 extends State<CustomDropDownFormField3> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton2(
-
       underline: const SizedBox(),
       isExpanded: true,
       iconStyleData: IconStyleData(iconEnabledColor: widget.iconEnabledColor),
@@ -129,8 +130,8 @@ class _CustomDropDownFormFieldState3 extends State<CustomDropDownFormField3> {
         textAlign: TextAlign.center,
       ),
       items: widget.items
-          .map((gender) =>
-          DropdownMenuItem(value: gender, child: AutoSizeText(gender.city!)))
+          .map((gender) => DropdownMenuItem(
+              value: gender, child: AutoSizeText(gender.city!)))
           .toList(),
       onChanged: (value) {
         setState(() {

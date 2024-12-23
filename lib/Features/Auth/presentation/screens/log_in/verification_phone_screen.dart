@@ -68,6 +68,7 @@ class _VerificationPhoneAndPasswordScreenState
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 4.0.w),
                 child: CustomAppFormField(
+                  hintStyle: AppTextStyles.style14BlackW500,
                   controller: OtpCubit.get(context).controller,
                   validator: (value) {
                     return Validation.validatePhone(value, context);

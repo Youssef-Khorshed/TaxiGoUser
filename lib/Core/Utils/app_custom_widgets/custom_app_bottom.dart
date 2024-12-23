@@ -54,7 +54,7 @@ class CustomAppBottom extends StatelessWidget {
                     : const SizedBox.shrink(),
                 verticalSpace(20),
                 Center(
-                  child: AutoSizeText(
+                  child: Text(
                     buttonText ?? "",
                     style: AppTextStyles.style16WhiteW500
                         .copyWith(color: textColor, fontSize: 20.sp),

@@ -69,80 +69,83 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     CreateProfileCubit.get(context).autovalidateMode,
                 child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Row(children: [
-                          Icon(
-                            FontAwesomeIcons.angleLeft,
-                            color: Colors.black,
-                            size: 25.r,
+                      verticalSpace(30.h),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios_new,
+                            color: AppColors.blackColor,
                           ),
-                          horizontalSpace(5),
-                          AutoSizeText(AppLocalizations.of(context)!.back,
-                              style: AppTextStyles.style20BlackW500)
-                        ]),
+                        ),
                       ),
-                      verticalSpace(30),
-                      Stack(
-                        children: [
-                          BlocProvider(
-                            create: (_) => ImageCubit(),
-                            child: BlocBuilder<ImageCubit, ImageState>(
-                              builder: (context, state) {
-                                file = ImageCubit.get(context).file;
-                                Widget avatarContent;
+                      verticalSpace(30.h),
+                      Center(
+                        child: Stack(
+                          children: [
+                            BlocProvider(
+                              create: (_) => ImageCubit(),
+                              child: BlocBuilder<ImageCubit, ImageState>(
+                                builder: (context, state) {
+                                  file = ImageCubit.get(context).file;
+                                  Widget avatarContent;
 
-                                if (state is ImagePicked) {
-                                  avatarContent = ClipOval(
-                                    child: Image.file(
-                                      state.image,
-                                      width: 130.w,
-                                      height: 130.h,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  );
-                                } else {
-                                  avatarContent = CircleAvatar(
-                                    radius: 65.r,
-                                    backgroundColor: Colors.grey[300],
-                                    child: Icon(
-                                      Icons.person,
-                                      size: 60.h,
-                                      color: Colors.grey[600],
-                                    ),
-                                  );
-                                }
+                                  if (state is ImagePicked) {
+                                    avatarContent = ClipOval(
+                                      child: Image.file(
+                                        state.image,
+                                        width: 130.w,
+                                        height: 130.h,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    );
+                                  } else {
+                                    avatarContent = CircleAvatar(
+                                      radius: 65.r,
+                                      backgroundColor: Colors.grey[300],
+                                      child: Icon(
+                                        Icons.person,
+                                        size: 60.h,
+                                        color: Colors.grey[600],
+                                      ),
+                                    );
+                                  }
 
-                                return Stack(
-                                  children: [
-                                    avatarContent,
-                                    Positioned(
-                                      bottom: 0,
-                                      right: 0,
-                                      child: GestureDetector(
-                                        onTap: () => context
-                                            .read<ImageCubit>()
-                                            .pickImage(),
-                                        child: CircleAvatar(
-                                          radius: 20.r,
-                                          backgroundColor: Colors.blue,
-                                          child: Icon(
-                                            Icons.camera_alt,
-                                            color: Colors.white,
-                                            size: 18.r,
+                                  return Stack(
+                                    children: [
+                                      avatarContent,
+                                      Positioned(
+                                        bottom: 0,
+                                        right: 0,
+                                        child: GestureDetector(
+                                          onTap: () => context
+                                              .read<ImageCubit>()
+                                              .pickImage(),
+                                          child: CircleAvatar(
+                                            radius: 20.r,
+                                            backgroundColor: Colors.blue,
+                                            child: Icon(
+                                              Icons.camera_alt,
+                                              color: Colors.white,
+                                              size: 18.r,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      verticalSpace(30),
+                      verticalSpace(30.h),
                       // const CustomAppFormField(
                       //
                       //
@@ -170,10 +173,10 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       //   hintText: "Enter Your Email",
                       //   isPhone: false,
                       // ),
-                      verticalSpace(10),
+                      verticalSpace(10.h),
                       CustomAppFormField(
+                        hintStyle: AppTextStyles.style14BlackW500,
                         validator: (value) {
-
                           return Validation.validateName(value, context);
                         },
                         controller:
@@ -183,15 +186,17 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         hintText: AppLocalizations.of(context)!.enterYourStreet,
                         isPhone: false,
                       ),
-                      verticalSpace(10),
+                      verticalSpace(10.h),
 
                       CustomDropDownFormField3(
+                        nameTextStyle: AppTextStyles.style14BlackW500,
+                        bordercolor: AppColors.blackColor.withAlpha(200),
                         onChanged: (p0) async {
                           CreateProfileCubit.get(context).selectedDistrictId =
                               p0!.id!.toString();
 
                           await CreateProfileCubit.get(context)
-                              .getDistricts(context, p0!.id!);
+                              .getDistricts(context, p0.id!);
                         },
                         items: CreateProfileCubit.get(context)
                                 .getCitiesModel
@@ -200,9 +205,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             [],
                         name: AppLocalizations.of(context)!.city,
                       ),
-                      verticalSpace(10),
+                      verticalSpace(10.h),
 
                       CustomDropDownFormField2(
+                        nameTextStyle: AppTextStyles.style14BlackW500,
+                        bordercolor: AppColors.blackColor.withAlpha(200),
                         onChanged: (p0) {
                           CreateProfileCubit.get(context).selectedDistrictId =
                               p0!.id!.toString();
@@ -216,7 +223,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             [],
                         name: AppLocalizations.of(context)!.district,
                       ),
-                      verticalSpace(20),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.31),
                       Row(
                         children: [
                           /*      Expanded(
@@ -238,11 +246,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                               backgroundColor: AppColors.blueColor,
                               textColor: AppColors.whiteColor,
                               onPressed: () async {
-                              await  CreateProfileCubit.get(context)
+                                await CreateProfileCubit.get(context)
                                     .createProfileValidate(context, file);
-                              setState(() {
-
-                              });
+                                setState(() {});
                                 // Navigator.pushNamed(context, AppRoutes.generalScreen);
                               },
                             ),

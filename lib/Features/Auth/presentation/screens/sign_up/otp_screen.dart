@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -170,13 +171,9 @@ class _OtpScreenState extends State<OtpScreen> {
                           arguments: widget.phone);
                     }
                   } else if (state is VerifyAccountFailure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          state.error ?? AppLocalizations.of(context)!.tryAgain,
-                        ),
-                      ),
-                    );
+                    Fluttertoast.showToast(
+                        msg: state.error ??
+                            AppLocalizations.of(context)!.tryAgain);
                   }
                 },
                 builder: (context, state) {
