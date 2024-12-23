@@ -5,11 +5,12 @@ import 'package:taxi_go_user_version/Core/app_constants.dart';
 abstract class SecureToken {
  static SecureStorageHelper secureStorageHelper = SecureStorageHelper();
 static  addToken(String token) async {
-    await secureStorageHelper.writeValue(AppConstants.kToken, token);
+   var ktoken = await secureStorageHelper.writeValue(AppConstants.kToken, token);
   }
 
  static Future<String?> getToken() async {
- return   await secureStorageHelper.readValue(AppConstants.kToken);
+  var token = await secureStorageHelper.readValue(AppConstants.kToken);
+ return   token;
   }
 
 static   deleteToken() async {

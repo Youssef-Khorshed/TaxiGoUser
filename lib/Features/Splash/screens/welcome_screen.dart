@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                     },
                     textColor: AppColors.whiteColor,
                     buttonColor: AppColors.transparentColor,
-                    buttonText: AppLocalizations.of(context)!.log_in,
+                    buttonText: AppLocalizations.of(context)!.logIn,
                   ),
                 ],
               ),
