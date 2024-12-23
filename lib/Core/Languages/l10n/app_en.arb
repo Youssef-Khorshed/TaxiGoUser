@@ -1,3 +1,11 @@
 {
-    "log_in":"Log In"
+    "log_in": "Log In",
+    "welcome": "Welcome",
+    "have_a_better_transport_experience": "Have a better transport experience",
+    "create_an_account": "Create an account",
+    "dont_have_an_account": "Don't have an account?",
+    "enter_your_phone_number": "Enter your phone number",
+    "enter_your_password": "Enter your password",
+    "forget_password": "Forgot password",
+    "sign_up": "Sign Up"
 }
