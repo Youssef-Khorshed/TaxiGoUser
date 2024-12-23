@@ -53,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               userInfo: state.profielModel.data!.user!,
             );
           }
-          return Skeletonizer(child: DummyProfileBody());
+          return const Skeletonizer(child: DummyProfileBody());
         },
       ),
     );

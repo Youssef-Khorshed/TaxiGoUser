@@ -4,9 +4,9 @@ import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
 import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 
 class CustomChagelanguageProfile extends StatefulWidget {
-  final VoidCallback toggleLanguage;
-
-  const CustomChagelanguageProfile({super.key, required this.toggleLanguage});
+  const CustomChagelanguageProfile({
+    super.key,
+  });
 
   @override
   // ignore: library_private_types_in_public_api
@@ -18,15 +18,20 @@ class _CustomChagelanguageProfileState
     extends State<CustomChagelanguageProfile> {
   @override
   Widget build(BuildContext context) {
-    bool isEnglish = LocalCubit.get(context).localizationThemeState ==
-        LocalizationThemeState.en;
+    bool isArabic = LocalCubit.get(context).localizationThemeState ==
+        LocalizationThemeState.ar;
     return Transform.scale(
       scale: 0.8,
       child: Switch(
-        value: isEnglish,
+        value: isArabic,
         onChanged: (value) {
           setState(() {
-            isEnglish = value;
+            isArabic = value;
+            isArabic
+                ? LocalCubit.get(context).localizationThemeState =
+                    LocalizationThemeState.ar
+                : LocalCubit.get(context).localizationThemeState =
+                    LocalizationThemeState.en;
           });
         },
         activeTrackColor: AppColors.blueColor2,

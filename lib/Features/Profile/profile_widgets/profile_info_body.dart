@@ -11,7 +11,6 @@ import 'package:taxi_go_user_version/Features/Profile/data/profile_model.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_chage_language_profile.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/profile_image_widget.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/profile_info_item.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileInfoBody extends StatelessWidget {
   const ProfileInfoBody({super.key, required this.userInfo});
@@ -25,26 +24,23 @@ class ProfileInfoBody extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(spacing: 15.h, children: [
         verticalSpace(50.h),
-        Row(
+        ProfileImageWidget(
+          imagePath: userInfo.picture,
+        ),
+        Column(
           children: [
-            ProfileImageWidget(
-              imagePath: userInfo.picture,
+            AutoSizeText(
+              userInfo.name ?? 'name',
+              style: AppTextStyles.style20BlackW500
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
-            horizontalSpace(15),
-            Column(
-              children: [
-                AutoSizeText(
-                  userInfo.name ?? 'name',
-                  style: AppTextStyles.style20BlackW500
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                AutoSizeText(
-                  userInfo.phone ?? '+9641558368866',
-                  style: AppTextStyles.style16DarkgrayW500
-                      .copyWith(color: AppColors.darkgrayColor.withAlpha(180)),
-                ),
-              ],
-            )
+            AutoSizeText(
+              userInfo.phone!.startsWith('+')
+                  ? '${userInfo.phone!.substring(1)}+'
+                  : userInfo.phone!,
+              style: AppTextStyles.style16DarkgrayW500
+                  .copyWith(color: AppColors.darkgrayColor.withAlpha(180)),
+            ),
           ],
         ),
         verticalSpace(15.h),
@@ -61,17 +57,9 @@ class ProfileInfoBody extends StatelessWidget {
           textInfo: isEnglish
               ? AppLocalizations.of(context)!.english
               : AppLocalizations.of(context)!.arabic,
-          toggle: CustomChagelanguageProfile(
-            toggleLanguage: () {
-              isEnglish
-                  ? LocalCubit.get(context).localizationThemeState =
-                      LocalizationThemeState.en
-                  : LocalCubit.get(context).localizationThemeState =
-                      LocalizationThemeState.ar;
-            },
-          ),
+          toggle: const CustomChagelanguageProfile(),
         ),
-        Spacer()
+        const Spacer()
       ]),
     );
   }
