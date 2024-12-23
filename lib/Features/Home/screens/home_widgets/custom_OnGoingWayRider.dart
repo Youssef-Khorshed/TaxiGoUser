@@ -7,7 +7,7 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 
 // ignore: must_be_immutable
 class CustomOngoingwayrider extends StatefulWidget {

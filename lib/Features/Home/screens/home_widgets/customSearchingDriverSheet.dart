@@ -1,16 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_OnGoingWayRider.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_countDownTimer.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/screens/trip_screen.dart';
 
 // ignore: must_be_immutable
 class CustomSearchingDriverSheet extends StatelessWidget {
@@ -35,19 +34,10 @@ class CustomSearchingDriverSheet extends StatelessWidget {
     return BlocListener<MapsCubit, MapsState>(
       listener: (context, state) {
         if (state is GetActiveRideRequestSuccess) {
-          Navigator.pop(context);
-          customBottomSheet(
-              context: context,
-              widget: CustomOngoingwayrider(
-                  captinName: 'captinName',
-                  captinImage: 'captinImage',
-                  captinRating: '4.9',
-                  originTitle: originTitle,
-                  originSubTitle: originSubTitle,
-                  destinationTitle: destinationTitle,
-                  destinationSubTitle: destinationSubTitle,
-                  distance: distance,
-                  time: time));
+          Navigator.of(context).push(CupertinoPageRoute(
+              builder: (_) => TripScreen(
+                    activeRide: state.activeRide,
+                  )));
         }
       },
       child: Padding(

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
 import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
@@ -44,7 +43,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer ${Constants.userToken}', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer $token', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }

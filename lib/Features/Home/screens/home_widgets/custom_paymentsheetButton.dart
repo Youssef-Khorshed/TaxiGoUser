@@ -4,11 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSearchingDriverSheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_PaymentMethodSelector.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 
 // ignore: must_be_immutable
 class PaymentButton extends StatelessWidget {
@@ -48,35 +49,22 @@ class PaymentButton extends StatelessWidget {
             buttonText: "Done",
             textColor: Colors.white,
             onPressed: () async {
-              await context.read<MapsCubit>().riderequest(
-                    context: context,
-                    promocode: controller.text,
-                    addressFrom: widget.addressFrom,
-                    latFrom: context
-                        .read<MapsCubit>()
-                        .orginPosition!
-                        .lat!
-                        .toString(),
-                    lngFrom: context
-                        .read<MapsCubit>()
-                        .orginPosition!
-                        .lng!
-                        .toString(),
-                    addressTo: widget.addressTo,
-                    latTo: context
-                        .read<MapsCubit>()
-                        .destinationostion
-                        .lat!
-                        .toString(),
-                    lngTo: context
-                        .read<MapsCubit>()
-                        .destinationostion
-                        .lng!
-                        .toString(),
-                    tripType: widget.tripType,
-                    paymentMethod: selectedMethod,
-                  );
-
+              final cubit = context.read<MapsCubit>();
+              await cubit.riderequest(
+                context: context,
+                promocode: controller.text,
+                addressFrom: MapStringMaipulation.concatenateLongNames(
+                    cubit.originAddress.addressComponents),
+                addressTo: MapStringMaipulation.concatenateLongNames(
+                    cubit.destinationAddress.addressComponents),
+                latFrom: cubit.orginPosition!.lat!.toString(),
+                lngFrom: cubit.orginPosition!.lng!.toString(),
+                latTo: cubit.destinationostion.lat!.toString(),
+                lngTo: cubit.destinationostion.lng!.toString(),
+                tripType: widget.tripType,
+                paymentMethod: selectedMethod,
+              );
+              Navigator.pop(context);
               customBottomSheet(
                   context: context,
                   widget: CustomSearchingDriverSheet(

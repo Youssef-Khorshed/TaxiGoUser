@@ -7,7 +7,7 @@ import 'package:location/location.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/location.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/result.dart';
@@ -91,13 +91,6 @@ class MapsCubit extends Cubit<MapsState> {
         emit(OpenLoacationFailed());
       }
     });
-  }
-
-  /// map initialization
-  Future<void> initMap() async {
-    placeCameraPosition = const CameraPosition(
-        target: LatLng(33.40302561069593, 44.498105563683005), zoom: 8);
-    emit(MapsInitialized());
   }
 
   /// get place suggestions
@@ -321,16 +314,7 @@ class MapsCubit extends Cubit<MapsState> {
     response.fold(
         (onError) => emit(GetActiveRideRequestFail(message: onError.message)),
         (onSuccess) {
-      emit(GetActiveRideRequestSuccess());
+      emit(GetActiveRideRequestSuccess(activeRide: onSuccess));
     });
   }
 }
-
-class GetActiveRideRequestSuccess extends MapsState {}
-
-class GetActiveRideRequestFail extends MapsState {
-  final String message;
-  GetActiveRideRequestFail({required this.message});
-}
-
-class GetActiveRideRequestLoading extends MapsState {}

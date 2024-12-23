@@ -1,4 +1,5 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/prediction.dart';
@@ -15,7 +16,21 @@ class UpdateMarkers extends MapsState {}
 
 class UpdateOriginLocatoin extends MapsState {}
 
+class UpdateCaptinLocatoin extends MapsState {}
+
 class UpdateDestinationLocatoin extends MapsState {}
+
+class GetActiveRideRequestSuccess extends MapsState {
+  GetActiveRide activeRide;
+  GetActiveRideRequestSuccess({required this.activeRide});
+}
+
+class GetActiveRideRequestFail extends MapsState {
+  final String message;
+  GetActiveRideRequestFail({required this.message});
+}
+
+class GetActiveRideRequestLoading extends MapsState {}
 
 class PlacesLoading extends MapsState {}
 

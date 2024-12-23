@@ -7,7 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 
 class CustomCountdowntimer extends StatefulWidget {
   const CustomCountdowntimer({super.key, this.title});
@@ -63,9 +64,10 @@ class _CustomCountdowntimerState extends State<CustomCountdowntimer> {
             final state = context.read<MapsCubit>().state;
             if (state is GetActiveRideRequestFail) {
               Fluttertoast.showToast(msg: state.message);
-              Navigator.pop(context);
-              _timer?.cancel();
             }
+
+            Navigator.pop(context);
+            _timer?.cancel();
           }
         },
       ),

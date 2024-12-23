@@ -2,25 +2,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
+import 'package:uuid/uuid.dart';
 
 // ignore: must_be_immutable
-class CustomMap extends StatefulWidget {
-  const CustomMap({
+class CustomMaptrip extends StatefulWidget {
+  GetActiveRide nearbyRideRequest;
+
+  CustomMaptrip({
     super.key,
+    required this.nearbyRideRequest,
   });
 
   @override
-  State<CustomMap> createState() => _CustomMapState();
+  State<CustomMaptrip> createState() => _CustomMaptripState();
 }
 
-class _CustomMapState extends State<CustomMap> {
+class _CustomMaptripState extends State<CustomMaptrip> {
   String? mapStyle;
   @override
   void initState() {
-    initalStyle();
+    // initalStyle();
 
     super.initState();
   }
@@ -42,14 +46,27 @@ class _CustomMapState extends State<CustomMap> {
     return GoogleMap(
       padding: const EdgeInsets.only(bottom: 50, left: 100),
       markers: context.read<MapsCubit>().markers,
-      polylines: context.read<MapsCubit>().polyLines,
+      polylines: context.watch<MapsCubit>().polyLines,
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
-      // style: mapStyle, // to control theme (Dark/Light)
+      //style: mapStyle, // to control theme (Dark/Light)
       onMapCreated: (controller) {
-        context.read<MapsCubit>().mapController = controller;
-        setState(() {});
+        final cubit = context.read<MapsCubit>();
+        cubit.mapController = controller;
+
+        final source = LatLng(
+            double.parse(widget.nearbyRideRequest.data!.latFrom!),
+            double.parse(widget.nearbyRideRequest.data!.lngFrom!));
+        final des = LatLng(double.parse(widget.nearbyRideRequest.data!.latTo!),
+            double.parse(widget.nearbyRideRequest.data!.lngTo!));
+
+        cubit.emitPlaceDirections(
+            origin: source,
+            destination: des,
+            sessionToken: const Uuid().v4(),
+            context: context);
       },
+
       initialCameraPosition: const CameraPosition(
           target: LatLng(33.40302561069593, 44.498105563683005), zoom: 8),
     );

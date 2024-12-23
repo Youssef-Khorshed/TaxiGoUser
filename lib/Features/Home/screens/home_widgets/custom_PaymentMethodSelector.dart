@@ -10,8 +10,8 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_paymentsheetButton.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 
 // ignore: must_be_immutable
 class PaymentMethodSelector extends StatefulWidget {

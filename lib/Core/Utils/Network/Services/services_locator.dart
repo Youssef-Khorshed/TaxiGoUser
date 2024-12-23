@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepoimp.dart';
 

@@ -21,7 +21,6 @@ class DataService<T> {
   }
 }
 
-
 // Future<String> fetchStringData() async {
 //   //await Future.delayed(const Duration(seconds: 3));
 //   return 'Updated String data at ${DateTime.now()}';

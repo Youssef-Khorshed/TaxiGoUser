@@ -46,6 +46,9 @@ dependencies:
   circular_countdown_timer: ^0.2.4
   google_maps_flutter_platform_interface: ^2.9.5
   google_maps_flutter_android: ^2.14.11
+  snapping_sheet: ^3.1.0
+  shimmer: ^3.0.0
+  meta: ^1.15.0
 
 dev_dependencies:
   flutter_launcher_icons: null
@@ -67,10 +70,10 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icons/taxi_go_icon.jpg"
+  image_path: "assets/images/taxi_go_icon.jpg"
   remove_alpha: true
   adaptive_icon_background: "#1D1AD8"
-  adaptive_icon_foreground: "assets/icons/taxi_go_icon.jpg"
+  adaptive_icon_foreground: "assets/images/taxi_go_icon.jpg"
 fonts:
   - family: Cairo
     fonts:

@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_changeAddress_sheet.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
@@ -53,11 +54,15 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
                   context: context,
                   widget: CustomChangeaddressSheet(
                       originSubTitle:
-                          "${mapsCubit.originAddress.addressComponents![0].shortName!} ${mapsCubit.originAddress.addressComponents![1].longName!} ${mapsCubit.originAddress.addressComponents![2].longName!} ",
+                          MapStringMaipulation.concatenateShortNames(
+                              mapsCubit.originAddress.addressComponents),
+                      //   "${mapsCubit.originAddress.addressComponents![0].shortName!} ${mapsCubit.originAddress.addressComponents![1].longName!} ${mapsCubit.originAddress.addressComponents![2].longName!} ",
                       destinationTitle: mapsCubit
                           .destinationAddress.addressComponents![3].longName!,
                       destinationSubTitle:
-                          "${mapsCubit.destinationAddress.addressComponents![0].shortName!} ${mapsCubit.destinationAddress.addressComponents![1].longName!} ${mapsCubit.destinationAddress.addressComponents![2].longName!} ",
+                          MapStringMaipulation.concatenateShortNames(
+                              mapsCubit.destinationAddress.addressComponents),
+                      //      "${mapsCubit.destinationAddress.addressComponents![0].shortName!} ${mapsCubit.destinationAddress.addressComponents![1].longName!} ${mapsCubit.destinationAddress.addressComponents![2].longName!} ",
                       originTitle: mapsCubit
                           .originAddress.addressComponents![3].longName!,
                       distance: mapsCubit.distanceTime.distance!.text!,

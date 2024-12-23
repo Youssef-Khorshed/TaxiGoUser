@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -48,7 +48,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
           const Spacer(),
           CircleAvatar(
             radius: 50.r,
-            backgroundImage: const AssetImage(AppIcons.appIcon),
+            backgroundImage: const AssetImage(AppImages.appImage),
           ),
           const Spacer(),
           const CustomCancelbodyCancel()

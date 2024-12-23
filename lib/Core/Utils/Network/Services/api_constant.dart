@@ -3,8 +3,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
   static const String userToken =
-      '31|Kmu10EvtFiRiyrsufe3dy2z7q5ECODM9pqhECxtP7f2800da';
+      '130|pTBzqKJZfluwlnwPXVjOhyL4lQZVpdpg9a0R7lk5317c66ec';
   static const String mapToken = 'AIzaSyCmrk6YbjdCAlwichSDNyyfxlA7zwXhVwc';
+  static String kToken = "kToken";
 
   /// Routes
   static String searchplace(
@@ -66,7 +67,7 @@ class Constants {
       {
         "address_from": addressFrom,
         "lat_from": latFrom,
-        "lng_from": latFrom,
+        "lng_from": lngFrom,
         "address_to": addressTo,
         "lat_to": latTo,
         "lng_to": lngTo,

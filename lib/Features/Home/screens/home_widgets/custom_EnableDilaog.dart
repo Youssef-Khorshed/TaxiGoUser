@@ -6,8 +6,8 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bo
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_Addaddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_enable_location_dialog.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:uuid/uuid.dart';
 
 class CustomEnableDilaog extends StatelessWidget {
