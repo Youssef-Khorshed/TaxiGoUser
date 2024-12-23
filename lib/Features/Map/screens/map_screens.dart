@@ -6,7 +6,6 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_EnableDilaog.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_OnGoingWayRider.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/custom_map.dart';
 
