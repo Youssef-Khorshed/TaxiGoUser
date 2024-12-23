@@ -16,5 +16,8 @@
       "name": "Name",
    "phone_nubmer": "Phone Number",
    "birth_day": "Birthday",
-   "gender":"Gender"
+   "gender":"Gender",
+   "lang" : "Language",
+   "arabic": "Arabic", 
+   "english": "English"
 }
