@@ -19,8 +19,8 @@ class _CustomDetailsfilterdropdownState
 
   @override
   Widget build(BuildContext context) {
-    String selectedFilter = AppLocalizations.of(context)!.this_month;
     final List<String> dateFilters = [
+      AppLocalizations.of(context)!.today,
       AppLocalizations.of(context)!.yesterday,
       AppLocalizations.of(context)!.last_7_days,
       AppLocalizations.of(context)!.last_30_days,
