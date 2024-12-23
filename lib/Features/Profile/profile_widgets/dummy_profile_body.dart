@@ -17,27 +17,30 @@ class DummyProfileBody extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(spacing: 15.h, children: [
         verticalSpace(50.h),
-        Row(
+        ProfileImageWidget(),
+        AutoSizeText(
+          'Hazem Mahmoud',
+          style: AppTextStyles.style20BlackW500
+              .copyWith(fontWeight: FontWeight.bold),
+        ),
+        Column(
           children: [
-            ProfileImageWidget(),
-            horizontalSpace(15),
-            Column(
-              children: [
-                AutoSizeText(
-                  'Hazem Mahmoud',
-                  style: AppTextStyles.style20BlackW500
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                AutoSizeText(
-                  'Hazem Mahmoud',
-                  style: AppTextStyles.style16DarkgrayW500
-                      .copyWith(color: AppColors.darkgrayColor.withAlpha(180)),
-                ),
-              ],
-            )
+            AutoSizeText(
+              'Hazem Mahmoud',
+              style: AppTextStyles.style16DarkgrayW500
+                  .copyWith(color: AppColors.darkgrayColor.withAlpha(180)),
+            ),
           ],
         ),
         verticalSpace(15.h),
+        ProfileInfoItem(
+          lable: AppLocalizations.of(context)!.gender,
+          textInfo: 'Hazem Mahmoud',
+        ),
+        ProfileInfoItem(
+          lable: AppLocalizations.of(context)!.gender,
+          textInfo: 'Hazem Mahmoud',
+        ),
         ProfileInfoItem(
           lable: AppLocalizations.of(context)!.gender,
           textInfo: 'Hazem Mahmoud',

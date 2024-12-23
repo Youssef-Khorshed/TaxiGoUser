@@ -35,6 +35,9 @@ class UserInfo {
   String? gender;
   String? picture;
   String? birthday;
+  String? address;
+  String? rate;
+  String? balance;
   String? emailVerifiedAt;
 
   UserInfo({
@@ -43,6 +46,9 @@ class UserInfo {
     this.gender,
     this.picture,
     this.birthday,
+    this.address,
+    this.rate,
+    this.balance,
     this.emailVerifiedAt,
   });
 
@@ -54,6 +60,9 @@ class UserInfo {
 
     picture = json['picture'];
     birthday = json['birthday'];
+    address = json['address'];
+    rate = json['rate'];
+    balance = json['balance'];
 
     emailVerifiedAt = json['email_verified_at'];
   }

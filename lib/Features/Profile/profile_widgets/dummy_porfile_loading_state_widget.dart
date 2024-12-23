@@ -48,9 +48,7 @@ class DummyProfileLoadingStateWidget extends StatelessWidget {
                 CustomRawProfile(title: 'Phone', content: '+994 012344'),
                 CustomRawProfile(title: 'BirthDate', content: '1-1-1999'),
                 // CustomRawProfile(title: 'Language', content: 'Ar')
-                CustomChagelanguageProfile(
-                  toggleLanguage: () {},
-                ),
+                const CustomChagelanguageProfile(),
 
                 verticalSpace(10)
               ],

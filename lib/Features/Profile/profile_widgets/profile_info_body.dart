@@ -34,12 +34,20 @@ class ProfileInfoBody extends StatelessWidget {
               style: AppTextStyles.style20BlackW500
                   .copyWith(fontWeight: FontWeight.bold),
             ),
-            AutoSizeText(
-              userInfo.phone!.startsWith('+')
-                  ? '${userInfo.phone!.substring(1)}+'
-                  : userInfo.phone!,
-              style: AppTextStyles.style16DarkgrayW500
-                  .copyWith(color: AppColors.darkgrayColor.withAlpha(180)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.star,
+                  color: AppColors.amberColor,
+                  size: 20,
+                ),
+                AutoSizeText(
+                  userInfo.rate ?? '2.5',
+                  style: AppTextStyles.style16DarkgrayW500
+                      .copyWith(color: AppColors.darkgrayColor.withAlpha(180)),
+                ),
+              ],
             ),
           ],
         ),
@@ -49,8 +57,18 @@ class ProfileInfoBody extends StatelessWidget {
           textInfo: userInfo.gender ?? 'male',
         ),
         ProfileInfoItem(
-          lable: AppLocalizations.of(context)!.birth_day,
-          textInfo: userInfo.birthday ?? '1 January 1999',
+          lable: AppLocalizations.of(context)!.phone_nubmer,
+          textInfo: userInfo.phone!.startsWith('+')
+              ? '${userInfo.phone!.substring(1)}+'
+              : userInfo.phone!,
+        ),
+        ProfileInfoItem(
+          lable: AppLocalizations.of(context)!.address,
+          textInfo: userInfo.address ?? '1 January 1999',
+        ),
+        ProfileInfoItem(
+          lable: AppLocalizations.of(context)!.balance,
+          textInfo: userInfo.balance ?? '"391.78',
         ),
         ProfileInfoItem(
           lable: AppLocalizations.of(context)!.lang,

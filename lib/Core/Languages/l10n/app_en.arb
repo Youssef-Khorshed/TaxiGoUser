@@ -19,5 +19,7 @@
    "gender":"Gender",
    "lang" : "Language",
    "arabic": "Arabic", 
-   "english": "English"
+   "english": "English",
+   "balance": "Balance",
+   "address": "Address"
 }
