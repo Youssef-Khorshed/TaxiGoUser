@@ -148,13 +148,18 @@ class _LogInScreenState extends State<LogInScreen> {
               child: RichText(
                 text: TextSpan(
                   text: AppLocalizations.of(context)!.dontHaveAccount,
-                  style: AppTextStyles.style16WhiteW500
-                      .copyWith(color: AppColors.blackColor),
+                  style: AppTextStyles.style16WhiteW500.copyWith(
+                    color: AppColors.blackColor,
+                  ),
                   children: [
+                    WidgetSpan(
+                      child: SizedBox(width: 5.w),
+                    ),
                     TextSpan(
                       text: AppLocalizations.of(context)!.signUp,
-                      style: AppTextStyles.style16WhiteW500
-                          .copyWith(color: AppColors.blueColor),
+                      style: AppTextStyles.style16WhiteW500.copyWith(
+                        color: AppColors.blueColor,
+                      ),
                     ),
                   ],
                 ),

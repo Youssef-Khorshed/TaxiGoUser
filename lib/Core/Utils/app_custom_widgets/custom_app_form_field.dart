@@ -17,6 +17,7 @@ class CustomAppFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function()? onTap;
+  final TextStyle? hintStyle;
 
   const CustomAppFormField(
       {super.key,
@@ -28,7 +29,8 @@ class CustomAppFormField extends StatefulWidget {
       this.validator,
       this.onTap,
       this.prefixIcon,
-      this.isPhone = false});
+      this.isPhone = false,
+      this.hintStyle});
 
   @override
   State<CustomAppFormField> createState() => _CustomAppFormFieldState();
@@ -75,8 +77,9 @@ class _CustomAppFormFieldState extends State<CustomAppFormField> {
             .copyWith(fontSize: 14.sp, color: AppColors.redColor),
         icon: widget.iconWidget,
         hintText: widget.hintText,
-        hintStyle: AppTextStyles.style16WhiteW500
-            .copyWith(color: AppColors.grayColor, fontSize: 12.sp),
+        hintStyle: widget.hintStyle ??
+            AppTextStyles.style16WhiteW500
+                .copyWith(color: AppColors.grayColor, fontSize: 12.sp),
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(isPasswordHidden

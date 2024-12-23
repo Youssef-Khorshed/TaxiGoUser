@@ -33,76 +33,93 @@ class _VerificationPhoneAndPasswordScreenState
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: PreferredSize(
-              preferredSize: Size(MediaQuery.of(context).size.width, 80),
-              child: const CustomAuthAppBar()),
           body: Form(
-            key: OtpCubit.get(context).formKey,
-            autovalidateMode: OtpCubit.get(context).autovalidateMode,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AutoSizeText(
-                    AppLocalizations.of(context)!.phoneVerification,
-                    style: AppTextStyles.style24WhiteW500.copyWith(
-                      color: AppColors.blackColor,
-                    ),
+        key: OtpCubit.get(context).formKey,
+        autovalidateMode: OtpCubit.get(context).autovalidateMode,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              verticalSpace(30.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: AppColors.blackColor,
                   ),
-                  verticalSpace(15),
-                  CustomAppFormField(
-                    controller: OtpCubit.get(context).controller,
-                    validator: (value) {
-                      return Validation.validatePhone(value, context);
-                    },
-                    isPassword: false,
-                    obscureText: false,
-                    hintText: AppLocalizations.of(context)!.password_required,
-                    isPhone: true,
-                  ),
-                  const Spacer(),
-                  BlocConsumer<OtpCubit, OtpState>(
-                    listener: (context, state) {
-                      if (state is ForgetPassSuccess) {
-                        Navigator.pushReplacementNamed(context, AppRoutes.otp,
-                            arguments: OtpCubit.get(context).controller?.text);
-                      } else if (state is ForgetPassFailure) {
-                        Fluttertoast.showToast(
-                            msg: state.error ??
-                                AppLocalizations.of(context)!.error,
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0.sp);
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is ForgetPassLoading) {
-                        return CustomLoading();
-                      }
-                      return CustomAppBottom(
-                        onPressed: () async {
-                          // Navigator.pushNamed(
-                          //   context,
-                          //   AppRoutes.generalScreen,
-                          // );
-                          await OtpCubit.get(context)
-                              .validateForgetPassword(context);
-                          setState(() {});
-                          //   Navigator.pushNamed(context, AppRoutes.otp,arguments: OtpCubit.get(context).controller?.text
-                          //   );
-                        },
-                        buttonText: AppLocalizations.of(context)!.send_otp,
-                      );
-                    },
-                  ),
-                ],
+                ),
               ),
-            ),
-          )),
+              verticalSpace(30.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                child: Text(
+                  AppLocalizations.of(context)!.phoneVerification,
+                  style: AppTextStyles.style24WhiteW500.copyWith(
+                    color: AppColors.blackColor,
+                  ),
+                ),
+              ),
+              verticalSpace(15.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.0.w),
+                child: CustomAppFormField(
+                  controller: OtpCubit.get(context).controller,
+                  validator: (value) {
+                    return Validation.validatePhone(value, context);
+                  },
+                  isPassword: false,
+                  obscureText: false,
+                  hintText: AppLocalizations.of(context)!.password_required,
+                  isPhone: true,
+                ),
+              ),
+              const Spacer(),
+              BlocConsumer<OtpCubit, OtpState>(
+                listener: (context, state) {
+                  if (state is ForgetPassSuccess) {
+                    Navigator.pushReplacementNamed(context, AppRoutes.otp,
+                        arguments: OtpCubit.get(context).controller?.text);
+                  } else if (state is ForgetPassFailure) {
+                    Fluttertoast.showToast(
+                        msg: state.error ?? AppLocalizations.of(context)!.error,
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0.sp);
+                  }
+                },
+                builder: (context, state) {
+                  if (state is ForgetPassLoading) {
+                    return CustomLoading();
+                  }
+                  return CustomAppBottom(
+                    onPressed: () async {
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   AppRoutes.generalScreen,
+                      // );
+                      await OtpCubit.get(context)
+                          .validateForgetPassword(context);
+                      setState(() {});
+                      //   Navigator.pushNamed(context, AppRoutes.otp,arguments: OtpCubit.get(context).controller?.text
+                      //   );
+                    },
+                    buttonText: AppLocalizations.of(context)!.send_otp,
+                  );
+                },
+              ),
+              horizontalSpace(30.h),
+            ],
+          ),
+        ),
+      )),
     );
   }
 }

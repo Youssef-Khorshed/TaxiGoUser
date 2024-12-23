@@ -20,7 +20,7 @@ abstract class AppTextStyles {
   );
 
   static TextStyle style24WhiteW500 = TextStyle(
-    fontSize: 24,
+    fontSize: 24.sp,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,
