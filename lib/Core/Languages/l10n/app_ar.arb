@@ -7,6 +7,8 @@
     "enter_your_phone_number": "ادخل رقم الهاتف",
     "enter_your_password": "ادخل كلمة المرور",
     "forget_password": "نسيت كلمة المرور",
-    "sign_up": "انشاء حساب"
+    "sign_up": "انشاء حساب",
+    "please_enter_your_phone_number": "الرجاء ادخال رقم الهاتف",
+    "phone_number_must_be_exactly_10_digits": "يجب ان يكون رقم الهاتف 10 ارقام"
 
 }

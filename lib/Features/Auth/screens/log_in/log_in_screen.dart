@@ -9,6 +9,7 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bo
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_form_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -20,9 +21,21 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    String? _validatePhoneNumber(String? value) {
+      if (value == null || value.isEmpty) {
+        return AppLocalizations.of(context)!.please_enter_your_phone_number;
+      }
+      if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+        return AppLocalizations.of(context)!
+            .phone_number_must_be_exactly_10_digits;
+      }
+      return null;
+    }
+
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
@@ -30,80 +43,90 @@ class _LogInScreenState extends State<LogInScreen> {
               child: const CustomAuthAppBar()),
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpace(15.h),
-                AutoSizeText(
-                  AppLocalizations.of(context)!.log_in,
-                  style: AppTextStyles.style24WhiteW500
-                      .copyWith(color: AppColors.blackColor),
-                  textAlign: TextAlign.left,
-                ),
-                verticalSpace(15.h),
-                CustomAppFormField(
-                  isPassword: false,
-                  obscureText: false,
-                  hintText:
-                      AppLocalizations.of(context)!.enter_your_phone_number,
-                  controller: phoneController,
-                  isPhone: true,
-                ),
-                verticalSpace(10.h),
-                // CustomAppFormField(
-                //   isPassword: true,
-                //   obscureText: true,
-                //   hintText: "Enter Your Password",
-                //   controller: passwordController,
-                // ),
-                // InkWell(
-                //   onTap: () {
-                //     Navigator.pushNamed(context, AppRoutes.forgetPassword);
-                //   },
-                //   child: Align(
-                //     alignment: Alignment.bottomRight,
-                //     child: AutoSizeText(
-                //       "Forget password ?",
-                //       style: AppTextStyles.style16WhiteW500
-                //           .copyWith(color: AppColors.redColor, fontSize: 14),
-                //     ),
-                //   ),
-                // ),
-                const Spacer(),
-                CustomAppBottom(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, AppRoutes.loginOtpScreen);
-                  },
-                  buttonText: AppLocalizations.of(context)!.log_in,
-                ),
-                verticalSpace(10.h),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.signUp);
-                  },
-                  child: Center(
-                    child: RichText(
-                      text: TextSpan(
-                        text:
-                            AppLocalizations.of(context)!.dont_have_an_account,
-                        style: AppTextStyles.style16WhiteW500
-                            .copyWith(color: AppColors.blackColor),
-                        children: [
-                          TextSpan(
-                            text: "  ",
-                          ),
-                          TextSpan(
-                            text: AppLocalizations.of(context)!.sign_up,
-                            style: AppTextStyles.style16WhiteW500
-                                .copyWith(color: AppColors.blueColor),
-                          ),
-                        ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  verticalSpace(15.h),
+                  AutoSizeText(
+                    AppLocalizations.of(context)!.log_in,
+                    style: AppTextStyles.style24WhiteW500
+                        .copyWith(color: AppColors.blackColor),
+                    textAlign: TextAlign.left,
+                  ),
+                  verticalSpace(15.h),
+                  CustomAppFormField(
+                    validator: _validatePhoneNumber,
+                    isPassword: false,
+                    obscureText: false,
+                    hintText:
+                        AppLocalizations.of(context)!.enter_your_phone_number,
+                    controller: phoneController,
+                    isPhone: true,
+                  ),
+                  verticalSpace(10.h),
+                  // CustomAppFormField(
+                  //   isPassword: true,
+                  //   obscureText: true,
+                  //   hintText: "Enter Your Password",
+                  //   controller: passwordController,
+                  // ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     Navigator.pushNamed(context, AppRoutes.forgetPassword);
+                  //   },
+                  //   child: Align(
+                  //     alignment: Alignment.bottomRight,
+                  //     child: AutoSizeText(
+                  //       "Forget password ?",
+                  //       style: AppTextStyles.style16WhiteW500
+                  //           .copyWith(color: AppColors.redColor, fontSize: 14),
+                  //     ),
+                  //   ),
+                  // ),
+                  const Spacer(),
+                  CustomAppBottom(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushReplacementNamed(
+                            context, AppRoutes.loginOtpScreen);
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: AppLocalizations.of(context)!
+                                .please_enter_your_phone_number);
+                      }
+                    },
+                    buttonText: AppLocalizations.of(context)!.log_in,
+                  ),
+                  verticalSpace(10.h),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.signUp);
+                    },
+                    child: Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: AppLocalizations.of(context)!
+                              .dont_have_an_account,
+                          style: AppTextStyles.style16WhiteW500
+                              .copyWith(color: AppColors.blackColor),
+                          children: [
+                            TextSpan(
+                              text: "  ",
+                            ),
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.sign_up,
+                              style: AppTextStyles.style16WhiteW500
+                                  .copyWith(color: AppColors.blueColor),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           )),
     );

@@ -7,5 +7,7 @@
     "enter_your_phone_number": "Enter your phone number",
     "enter_your_password": "Enter your password",
     "forget_password": "Forgot password",
-    "sign_up": "Sign Up"
+    "sign_up": "Sign Up",
+    "please_enter_your_phone_number": "Please enter your phone number",
+    "phone_number_must_be_exactly_10_digits": "Phone number must be exactly 10 digits"
 }
