@@ -10,7 +10,6 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 class CustomDummyWidget extends StatelessWidget {
   const CustomDummyWidget({
     super.key,
-    required Null Function() onPressed,
   });
 
   @override

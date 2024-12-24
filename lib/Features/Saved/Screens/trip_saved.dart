@@ -66,10 +66,8 @@ class SavedScreen extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return Skeletonizer(
-                        child: CustomDummyWidget(
-                          onPressed: () {},
-                        ),
+                      return const Skeletonizer(
+                        child: CustomDummyWidget(),
                       );
                     },
                   ),
