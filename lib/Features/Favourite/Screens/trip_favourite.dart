@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:redacted/redacted.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
@@ -55,7 +54,7 @@ class FavouriteScreen extends StatelessWidget {
                                       .getFavouriteDate(context);
                                 },
                                 favoriteRide: favoriteData[index].ride!,
-                              ).redacted(context: context, redact: true);
+                              );
                             },
                           ),
                         ),
@@ -77,10 +76,8 @@ class FavouriteScreen extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return Skeletonizer(
-                        child: CustomDummyWidget(
-                          onPressed: () {},
-                        ),
+                      return const Skeletonizer(
+                        child: CustomDummyWidget(),
                       );
                     },
                   ),

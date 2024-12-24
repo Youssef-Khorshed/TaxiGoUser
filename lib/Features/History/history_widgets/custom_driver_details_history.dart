@@ -5,16 +5,13 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 
 class CustomDriverdetailsHistory extends StatelessWidget {
   const CustomDriverdetailsHistory(
-      {super.key,
-      required this.price,
-      required this.rating,
-      required this.name});
+      {super.key, required this.price, required this.captainData});
+  final CaptainData captainData;
   final String price;
-  final String rating;
-  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +23,13 @@ class CustomDriverdetailsHistory extends StatelessWidget {
       leading: CircleAvatar(
         backgroundColor: AppColors.grayColor,
         radius: 20.r,
+        backgroundImage: NetworkImage(
+          captainData.picture ??
+              'https://r2-us-west.photoai.com/1725044540-0740bf41f0465a6d0ef030a85d1f270a-1.png',
+        ),
       ),
       title: AutoSizeText(
-        name,
+        captainData.name ?? '',
         style: AppTextStyles.style18BlackW500,
         maxLines: 1,
       ),
@@ -37,7 +38,7 @@ class CustomDriverdetailsHistory extends StatelessWidget {
           const Icon(Icons.star, size: 16, color: AppColors.amberColor),
           horizontalSpace(3),
           AutoSizeText(
-            rating,
+            captainData.rate ?? '',
             style: AppTextStyles.style14GrayW500,
             maxLines: 1,
           ),

@@ -32,8 +32,8 @@ class CustomBuildTripDetails extends StatelessWidget {
           color: AppColors.darkgrayColor,
         ),
         CustomDriverdetailsHistory(
-          rate: historyData.ride?[0].rate ?? '4.5',
           price: historyData.ride?[0].total ?? '200',
+          captainData: historyData.ride![0].captainData!,
         ),
       ],
     );

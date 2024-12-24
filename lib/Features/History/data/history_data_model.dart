@@ -60,6 +60,7 @@ class HistoryRide {
   String? distancePrice;
   String? total;
   String? rate;
+  CaptainData? captainData;
 
   HistoryRide({
     this.id,
@@ -77,5 +78,19 @@ class HistoryRide {
 
     total = json['total'];
     rate = json['rate'];
+    captainData =
+        json['captain'] != null ? CaptainData.formJson(json['captain']) : null;
+  }
+}
+
+class CaptainData {
+  String? name;
+  String? rate;
+  String? picture;
+  CaptainData({this.name, this.picture, this.rate});
+  CaptainData.formJson(Map<String, dynamic> json) {
+    name = json['name'];
+    rate = json['rate'];
+    picture = json['picture'];
   }
 }
