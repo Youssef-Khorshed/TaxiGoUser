@@ -25,7 +25,12 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MapsCubit, MapsState>(
+    return BlocConsumer<MapsCubit, MapsState>(
+      listener: (context, state) {
+        if (state is PlaceDirectionsFaild) {
+          Navigator.pop(context);
+        }
+      },
       builder: (context, state) {
         if (state is PlaceAddressLoading) {
           return const CustomLoading();
@@ -35,15 +40,16 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
           child: CustomAppBottom(
             buttonColor: AppColors.blueColor,
             textColor: AppColors.whiteColor,
-            buttonText: AppLocalizations.of(context)!.go,
+            buttonText: state is PlaceDirectionsLading
+                ? "Loading ..."
+                : AppLocalizations.of(context)!.go,
             onPressed: () async {
-              // ignore: use_build_context_synchronously
               await mapsCubit.emitPlaceDirections(
                   origin: LatLng(mapsCubit.orginPosition!.lat!,
                       mapsCubit.orginPosition!.lng!),
                   destination: LatLng(
-                    mapsCubit.destinationostion.lat!,
-                    mapsCubit.destinationostion.lng!,
+                    mapsCubit.destinationostion!.lat!,
+                    mapsCubit.destinationostion!.lng!,
                   ),
                   sessionToken: const Uuid().v4(),
                   context: context);
@@ -56,13 +62,11 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
                       originSubTitle:
                           MapStringMaipulation.concatenateShortNames(
                               mapsCubit.originAddress.addressComponents),
-                      //   "${mapsCubit.originAddress.addressComponents![0].shortName!} ${mapsCubit.originAddress.addressComponents![1].longName!} ${mapsCubit.originAddress.addressComponents![2].longName!} ",
                       destinationTitle: mapsCubit
                           .destinationAddress.addressComponents![3].longName!,
                       destinationSubTitle:
                           MapStringMaipulation.concatenateShortNames(
                               mapsCubit.destinationAddress.addressComponents),
-                      //      "${mapsCubit.destinationAddress.addressComponents![0].shortName!} ${mapsCubit.destinationAddress.addressComponents![1].longName!} ${mapsCubit.destinationAddress.addressComponents![2].longName!} ",
                       originTitle: mapsCubit
                           .originAddress.addressComponents![3].longName!,
                       distance: mapsCubit.distanceTime.distance!.text!,

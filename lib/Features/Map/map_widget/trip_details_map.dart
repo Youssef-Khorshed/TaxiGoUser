@@ -18,11 +18,11 @@ class TripDetailsMap extends StatelessWidget {
     return ListTile(
       title: Text(
         location,
-        style: AppTextStyles.style12DarkgrayW400,
+        style: AppTextStyles.style16BlackW600,
       ),
       subtitle: Text(
         address,
-        style: AppTextStyles.style12DarkgrayW400,
+        style: AppTextStyles.style14DarkgrayW500,
       ),
       leading: Column(
         children: [

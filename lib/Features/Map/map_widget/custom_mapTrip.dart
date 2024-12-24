@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -21,11 +23,15 @@ class CustomMaptrip extends StatefulWidget {
 }
 
 class _CustomMaptripState extends State<CustomMaptrip> {
+  Timer? _timer;
   String? mapStyle;
   @override
   void initState() {
-    // initalStyle();
-
+    _timer = Timer(const Duration(seconds: 10), () {
+      if (mounted) {
+        context.read<MapsCubit>().getRideRequest(context: context);
+      }
+    });
     super.initState();
   }
 
@@ -45,7 +51,7 @@ class _CustomMaptripState extends State<CustomMaptrip> {
   GoogleMap buildMap() {
     return GoogleMap(
       padding: const EdgeInsets.only(bottom: 50, left: 100),
-      markers: context.read<MapsCubit>().markers,
+      markers: context.watch<MapsCubit>().markers,
       polylines: context.watch<MapsCubit>().polyLines,
       zoomControlsEnabled: false,
       myLocationButtonEnabled: false,
@@ -53,13 +59,11 @@ class _CustomMaptripState extends State<CustomMaptrip> {
       onMapCreated: (controller) {
         final cubit = context.read<MapsCubit>();
         cubit.mapController = controller;
-
         final source = LatLng(
             double.parse(widget.nearbyRideRequest.data!.latFrom!),
             double.parse(widget.nearbyRideRequest.data!.lngFrom!));
         final des = LatLng(double.parse(widget.nearbyRideRequest.data!.latTo!),
             double.parse(widget.nearbyRideRequest.data!.lngTo!));
-
         cubit.emitPlaceDirections(
             origin: source,
             destination: des,
@@ -79,6 +83,7 @@ class _CustomMaptripState extends State<CustomMaptrip> {
 
   @override
   void dispose() {
+    _timer?.cancel();
     super.dispose();
   }
 }

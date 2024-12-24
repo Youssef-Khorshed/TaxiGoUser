@@ -29,8 +29,8 @@ class CustomTripadressrow extends StatelessWidget {
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: const TripDetailsMap(
-                    address: " ",
+                  child: TripDetailsMap(
+                    address: address,
                     location: " ",
                     icon: AppIcons.mapRedIcon,
                   ),
@@ -38,8 +38,8 @@ class CustomTripadressrow extends StatelessWidget {
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: const TripDetailsMap(
-                    address: " ",
+                  child: TripDetailsMap(
+                    address: address,
                     location: " ",
                     icon: AppIcons.mapBlueIcon,
                   ),
@@ -57,7 +57,8 @@ class CustomTripadressrow extends StatelessWidget {
 
         return TripDetailsMap(
           address: address,
-          location: "${snapshot.data!['street_name']}",
+          location:
+              "${snapshot.data!['street_number']} ${snapshot.data!['city']} ",
           icon: iconmap,
         );
       },

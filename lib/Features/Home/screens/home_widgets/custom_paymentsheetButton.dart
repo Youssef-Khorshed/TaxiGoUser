@@ -59,12 +59,12 @@ class PaymentButton extends StatelessWidget {
                     cubit.destinationAddress.addressComponents),
                 latFrom: cubit.orginPosition!.lat!.toString(),
                 lngFrom: cubit.orginPosition!.lng!.toString(),
-                latTo: cubit.destinationostion.lat!.toString(),
-                lngTo: cubit.destinationostion.lng!.toString(),
+                latTo: cubit.destinationostion!.lat!.toString(),
+                lngTo: cubit.destinationostion!.lng!.toString(),
                 tripType: widget.tripType,
                 paymentMethod: selectedMethod,
               );
-              Navigator.pop(context);
+              // Navigator.pop(context);
               customBottomSheet(
                   context: context,
                   widget: CustomSearchingDriverSheet(

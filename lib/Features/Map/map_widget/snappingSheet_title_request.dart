@@ -25,7 +25,7 @@ class SnappingSheetTitleRequest extends StatelessWidget {
           ),
         ),
         const Text(
-          'Trip Details',
+          'Trip Started',
           style: TextStyle(
               color: Color.fromARGB(255, 29, 26, 216),
               fontSize: 25,

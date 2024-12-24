@@ -52,7 +52,11 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
             alignment: Alignment.topRight,
             child: IconButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                if (mounted) {
+                  context.read<MapsCubit>().clearMarkerPolyines();
+                  setState(() {});
+                  Navigator.of(context).pop();
+                }
               },
               icon: const Icon(Icons.close, color: Colors.grey),
             ),

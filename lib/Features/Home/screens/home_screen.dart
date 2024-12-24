@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ClipRRect(
                 borderRadius: BorderRadius.circular(20.r),
                 child: GoogleMap(
+                  zoomControlsEnabled: false,
                   padding: EdgeInsets.only(bottom: 40.h, left: 100.w),
                   myLocationButtonEnabled: false,
                   initialCameraPosition: const CameraPosition(

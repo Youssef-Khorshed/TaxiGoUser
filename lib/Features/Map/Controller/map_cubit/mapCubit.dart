@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/result.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';
@@ -28,9 +31,12 @@ class MapsCubit extends Cubit<MapsState> {
   late Marker destinationMarker;
   late CameraPosition placeCameraPosition;
   LocationPosition? orginPosition;
-  late LocationPosition destinationostion;
+  LocationPosition? destinationostion;
   Timer? _debounce;
+  Timer? timer;
   LocationService locationService = LocationService();
+  bool isAccepted = false;
+
   late String destinationInfo;
 
   // these variables for getPlaceLocation
@@ -39,6 +45,11 @@ class MapsCubit extends Cubit<MapsState> {
   late Prediction placeSuggestion;
   List<Prediction> predictions = [];
   MapsCubit({required this.mapsRepository}) : super(MapsInitial());
+
+  void cancelTimer() {
+    timer?.cancel();
+    emit(TimerisClosedSuccess());
+  }
 
   /// get user location
   Future<void> getUserLocation({required String title}) async {
@@ -61,6 +72,13 @@ class MapsCubit extends Cubit<MapsState> {
       Fluttertoast.showToast(msg: error.message);
       emit(OpenLoacationFailed());
     }
+  }
+
+  /// clear marker&plolyines
+  void clearMarkerPolyines() {
+    polyLines.clear();
+    markers.clear();
+    emit(ClearMarkerPolyines());
   }
 
   /// start updating user location
@@ -158,24 +176,34 @@ class MapsCubit extends Cubit<MapsState> {
     required String sessionToken,
     required BuildContext context,
   }) async {
-    emit(PlaceDirectionsLading());
-    final response = await mapsRepository.getDrirection(
-        origin: origin,
-        destination: destination,
-        sessionToken: sessionToken,
-        context: context);
-    response.fold((onError) {}, (onSuccess) {
-      distanceTime = onSuccess.routes!.first.legs!.first;
-      emit(LegsLoaded(leg: distanceTime));
-      buildmarker(
-        title: 'des',
-        destinationInfo: 'des',
-        postion: LatLng(destination.latitude, destination.longitude),
-      );
-      updatePlaceCameraPosition(place: destination, zoom: 10);
-      drawPolyline(origin: origin, destination: destination);
-      emit(DirectionsLoaded(polyLines));
-    });
+    try {
+      emit(PlaceDirectionsLading());
+      final response = await mapsRepository.getDrirection(
+          origin: origin,
+          destination: destination,
+          sessionToken: sessionToken,
+          context: context);
+      response.fold((onError) {}, (onSuccess) {
+        distanceTime = onSuccess.routes!.first.legs!.first;
+        emit(LegsLoaded(leg: distanceTime));
+        buildmarker(
+          title: 'des',
+          destinationInfo: 'des',
+          postion: LatLng(destination.latitude, destination.longitude),
+        );
+        updatePlaceCameraPosition(place: destination, zoom: 10);
+        drawPolyline(origin: origin, destination: destination);
+        emit(DirectionsLoaded(polyLines));
+      });
+    } catch (error) {
+      Fluttertoast.showToast(msg: 'Cant find Destination');
+      emit(PlaceDirectionsFaild());
+    }
+  }
+
+  void accept() {
+    isAccepted = !isAccepted;
+    emit(Accepted());
   }
 
   /// Draw polyline between origin and destination
@@ -191,7 +219,7 @@ class MapsCubit extends Cubit<MapsState> {
         request: PolylineRequest(
           origin: PointLatLng(orginPosition!.lat!, orginPosition!.lng!),
           destination:
-              PointLatLng(destinationostion.lat!, destinationostion.lng!),
+              PointLatLng(destinationostion!.lat!, destinationostion!.lng!),
           mode: TravelMode.driving,
         ),
       );
@@ -316,5 +344,17 @@ class MapsCubit extends Cubit<MapsState> {
         (onSuccess) {
       emit(GetActiveRideRequestSuccess(activeRide: onSuccess));
     });
+  }
+
+  void getNoRideRequestTrip() {
+    emit(GetActiveRideRequestNoTrips());
+  }
+
+  void tripStarted() {
+    emit(TripStarted());
+  }
+
+  void tripFinished() {
+    emit(TripFinished());
   }
 }

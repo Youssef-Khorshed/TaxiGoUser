@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/snapping_sheet_cubit/snapping_sheet_cubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/booking_details_accepted.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/cancel_button_accepted.dart';
@@ -29,9 +29,9 @@ class RequestDialogBody extends StatefulWidget {
 class _RequestDialogBodyState extends State<RequestDialogBody> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SnappingSheetCubit, SnappingSheetState>(
+    return BlocBuilder<MapsCubit, MapsState>(
       builder: (context, state) {
-        var cubit = context.read<SnappingSheetCubit>();
+        var cubit = context.read<MapsCubit>();
         return SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,

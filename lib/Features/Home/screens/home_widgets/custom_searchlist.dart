@@ -75,8 +75,8 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
                         await mapsCubit.emitPlaceAddress(
                           isorigin: false,
                           placeLatLng: LatLng(
-                            mapsCubit.destinationostion.lat!,
-                            mapsCubit.destinationostion.lng!,
+                            mapsCubit.destinationostion!.lat!,
+                            mapsCubit.destinationostion!.lng!,
                           ),
                           sessionToken: const Uuid().v4(),
                           // ignore: use_build_context_synchronously

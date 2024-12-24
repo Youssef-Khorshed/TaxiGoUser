@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 // ignore: must_be_immutable
 class SnappingSheetTitleAccepted extends StatelessWidget {
-  String image;
-  SnappingSheetTitleAccepted(
-      {super.key, required this.width, required this.image});
+  String captinPhoneNumber;
+  String captinName;
+  ImageProvider<Object>? backgroundImage;
+  SnappingSheetTitleAccepted({
+    super.key,
+    this.backgroundImage,
+    required this.captinPhoneNumber,
+    required this.captinName,
+    required this.width,
+  });
 
   final double width;
 
@@ -37,9 +47,8 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CircleAvatar(
-                backgroundColor: AppColors.grayColor,
-                // backgroundImage: AssetImage(Assets.imagesDriverImage),
+              CircleAvatar(
+                backgroundImage: backgroundImage,
                 radius: 35,
               ),
               const SizedBox(
@@ -48,16 +57,14 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Mohamed",
-                    style: TextStyle(
+                  Text(
+                    captinName,
+                    style: const TextStyle(
                         color: AppColors.blackColor,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  verticalSpace(10.h),
                   SvgPicture.asset(
                     AppIcons.carIcon,
                     height: 20,
@@ -68,16 +75,16 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _callPhoneNumber(captinPhoneNumber);
+                    },
                     icon: SvgPicture.asset(
-                      AppIcons.carIcon,
+                      AppIcons.callIcon,
                       height: 30,
                     ),
                   ),
                   IconButton(
-                    onPressed: () {
-                      //   _callPhoneNumber('phoneNumber');
-                    },
+                    onPressed: () {},
                     icon: SvgPicture.asset(
                       AppIcons.messageIcon,
                       height: 30,
@@ -92,14 +99,16 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
     );
   }
 
-  // ignore: unused_element
   Future<void> _callPhoneNumber(String phoneNumber) async {
-    //   bool? res = await FlutterPhoneDirectCaller.callNumber(phoneNumber);
-    //   if (res != null && res) {
-    //     print("Call initiated");
-    //   } else {
-    //     print("Failed to make the call");
-    //   }
-    // }
+    final Uri phoneUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+
+    if (await canLaunchUrl(phoneUri)) {
+      await launchUrl(phoneUri);
+    } else {
+      throw 'Could not launch $phoneNumber';
+    }
   }
 }

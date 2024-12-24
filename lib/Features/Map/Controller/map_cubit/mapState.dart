@@ -25,10 +25,16 @@ class GetActiveRideRequestSuccess extends MapsState {
   GetActiveRideRequestSuccess({required this.activeRide});
 }
 
+class ClearMarkerPolyines extends MapsState {}
+
 class GetActiveRideRequestFail extends MapsState {
   final String message;
   GetActiveRideRequestFail({required this.message});
 }
+
+class TimerisClosedSuccess extends MapsState {}
+
+class GetActiveRideRequestNoTrips extends MapsState {}
 
 class GetActiveRideRequestLoading extends MapsState {}
 
@@ -104,7 +110,15 @@ class LegsLoaded extends MapsState {
 
 class PlaceDirectionsLading extends MapsState {}
 
+class PlaceDirectionsFaild extends MapsState {}
+
+class Accepted extends MapsState {}
+
 class GetAddressLoading extends MapsState {}
+
+class TripStarted extends MapsState {}
+
+class TripFinished extends MapsState {}
 
 class GetAddressSuccess extends MapsState {}
 

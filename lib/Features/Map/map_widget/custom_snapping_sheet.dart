@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/snapping_sheet_cubit/snapping_sheet_cubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/custom_mapTrip.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/requset_dialog_body.dart';
@@ -32,9 +34,9 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
 
-    return BlocBuilder<SnappingSheetCubit, SnappingSheetState>(
+    return BlocBuilder<MapsCubit, MapsState>(
       builder: (context, state) {
-        var cubit = context.read<SnappingSheetCubit>();
+        var cubit = context.read<MapsCubit>();
         return SnappingSheet(
           lockOverflowDrag: false,
           snappingPositions: const [
@@ -56,17 +58,20 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
               grabbingContentOffset: GrabbingContentOffset.bottom,
             ),
           ], // Your main screen content goes here
-          grabbingHeight: cubit.isAccepted ? 120 : 90,
+          grabbingHeight: 110.h,
           // Start fully closed
           grabbing: Container(
             color: AppColors.kBackgroundColor,
             child: Visibility(
-              replacement: SnappingSheetTitleRequest(width: width),
               visible: cubit.isAccepted,
-              child: SnappingSheetTitleAccepted(
-                image: '',
+              replacement: SnappingSheetTitleAccepted(
+                captinName:
+                    widget.nearbyRideRequest.data!.ride!.first.captain!.name!,
+                captinPhoneNumber:
+                    widget.nearbyRideRequest.data!.ride!.first.captain!.phone!,
                 width: width,
               ),
+              child: SnappingSheetTitleRequest(width: width),
             ),
           ),
           sheetBelow: SnappingSheetContent(
@@ -85,7 +90,7 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
             children: [
               Center(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * .8,
+                  height: MediaQuery.of(context).size.height * 0.9,
                   width: MediaQuery.of(context).size.width,
                   child: CustomMaptrip(
                     nearbyRideRequest: widget.nearbyRideRequest,

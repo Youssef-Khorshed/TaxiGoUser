@@ -14,7 +14,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_c
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 
 // ignore: must_be_immutable, camel_case_types
-class Custom_changeAddress_buttons_sheet extends StatelessWidget {
+class Custom_changeAddress_buttons_sheet extends StatefulWidget {
   String originTitle;
   String destinationTitle;
   String distance;
@@ -33,6 +33,14 @@ class Custom_changeAddress_buttons_sheet extends StatelessWidget {
   final int _selectedtriptype;
 
   @override
+  State<Custom_changeAddress_buttons_sheet> createState() =>
+      _Custom_changeAddress_buttons_sheetState();
+}
+
+// ignore: camel_case_types
+class _Custom_changeAddress_buttons_sheetState
+    extends State<Custom_changeAddress_buttons_sheet> {
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,27 +56,25 @@ class Custom_changeAddress_buttons_sheet extends StatelessWidget {
               final cubit = context.read<MapsCubit>();
               await cubit.calculatePrice(
                   context: context,
-                  time: convertToMinutes(widget.time),
-                  distance: widget.distance,
-                  triptype: _selectedtriptype + 1,
+                  time: convertToMinutes(widget.widget.time),
+                  distance: widget.widget.distance,
+                  triptype: widget._selectedtriptype + 1,
                   origin: LatLng(
                       cubit.orginPosition!.lat!, cubit.orginPosition!.lng!),
-                  destination: LatLng(cubit.destinationostion.lat!,
-                      cubit.destinationostion.lng!));
+                  destination: LatLng(cubit.destinationostion!.lat!,
+                      cubit.destinationostion!.lng!));
               Navigator.pop(context);
 
               customBottomSheet(
                   context: context,
                   widget: PaymentMethodSelector(
-                    originTitle: widget.originTitle,
-                    destinationTitle: widget.destinationTitle,
-                    distance: widget.distance,
-                    // convertMilesToKilometers(double.parse(widget.distance))
-                    // .toString(),
-                    time: convertToMinutes(widget.time).toString(),
-                    addressFrom: widget.originSubTitle,
-                    addressTo: widget.destinationSubTitle,
-                    tripType: _selectedtriptype + 1,
+                    originTitle: widget.widget.originTitle,
+                    destinationTitle: widget.widget.destinationTitle,
+                    distance: widget.widget.distance,
+                    time: convertToMinutes(widget.widget.time).toString(),
+                    addressFrom: widget.widget.originSubTitle,
+                    addressTo: widget.widget.destinationSubTitle,
+                    tripType: widget._selectedtriptype + 1,
                   ));
             },
           ),
@@ -81,7 +87,12 @@ class Custom_changeAddress_buttons_sheet extends StatelessWidget {
             buttonText: "Cancel",
             textColor: AppColors.redColor,
             onPressed: () {
-              Navigator.pop(context);
+              if (mounted) {
+                context.read<MapsCubit>().clearMarkerPolyines();
+                setState(() {});
+
+                Navigator.of(context).pop();
+              }
             },
           ),
         )

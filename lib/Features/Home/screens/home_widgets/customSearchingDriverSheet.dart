@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
@@ -33,11 +34,21 @@ class CustomSearchingDriverSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<MapsCubit, MapsState>(
       listener: (context, state) {
+        final state = context.read<MapsCubit>().state;
+        final cubit = context.read<MapsCubit>();
+
         if (state is GetActiveRideRequestSuccess) {
+          Fluttertoast.showToast(msg: 'Ride is Accepted');
+          Navigator.pop(context);
           Navigator.of(context).push(CupertinoPageRoute(
               builder: (_) => TripScreen(
                     activeRide: state.activeRide,
                   )));
+        }
+
+        if (state is GetActiveRideRequestNoTrips) {
+          cubit.canelRideRequest(context: context);
+          Fluttertoast.showToast(msg: 'Request Not Accepted Try Again');
         }
       },
       child: Padding(

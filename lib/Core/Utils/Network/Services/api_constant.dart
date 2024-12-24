@@ -83,7 +83,7 @@ class Constants {
         "code": code //"SAVE10"//"SUMMER2024"
       };
   static const String getactiveRide = '$baseUrl/customer/rides/active';
-  static const String cancelRide = '/customer/rides/cancel';
+  static const String cancelRide = '$baseUrl/customer/rides/cancel';
   static String rateCaptin({required String rate}) =>
       '/customer/rides/rate?rate=$rate';
   static const kModelFont = 'Medel';
