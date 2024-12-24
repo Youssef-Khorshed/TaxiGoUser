@@ -61,5 +61,10 @@
     "airport": "Airport",
     "between_country": "Between country",
     "searching_for_a_driver":"Searching for a driver",
-    "searching": "جاري البحث"
+    "searching": "جاري البحث",
+    "typeamessage": "Type a message",
+    "activeNow": "Active Now",
+    "sharelocation": "Share Location"
+
+
 }

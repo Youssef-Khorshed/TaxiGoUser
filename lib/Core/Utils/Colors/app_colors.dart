@@ -15,5 +15,6 @@ class AppColors {
   static const Color amberColor = Colors.amber;
   static const Color yellowColor = Color(0xffFFD825);
   static const Color lightGreen = Colors.lightGreen;
+  static const Color grey = Colors.grey;
   static const Color orange = Colors.orange;
 }

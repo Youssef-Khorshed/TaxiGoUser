@@ -171,7 +171,7 @@ class AppRoutes {
       case chat:
         return CupertinoPageRoute(
           builder: (context) {
-            return ChatScreen();
+            return const ChatScreen();
           },
         );
 
