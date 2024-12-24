@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo_impl.dart';
 
 import 'apiservices.dart';
 import 'cach_helper.dart';
@@ -23,6 +24,8 @@ Future<void> setup() async {
       SavedRepoImpl(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<ProfileRepoImpl>(
       ProfileRepoImpl(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<FavoriteRepoImpl>(
+      FavoriteRepoImpl(apiService: getIt.get<ApiService>()));
 
   //getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(getIt.get<ApiService>()));
 }

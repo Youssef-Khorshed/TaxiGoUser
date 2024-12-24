@@ -8,5 +8,7 @@ class Constants {
   static const String profileEndPoint = '/profile';
   static const String historyEndPoint = '/customer/rides/history?filter=';
   static const String addFavTripEndPoint = '/customer/favorites/store';
+  static const String favoriteEndPoint = '/customer/favorites';
+  static const String removefavoriteEndPoint = '/customer/favorites/delete/';
   static const kModelFont = 'Medel';
 }

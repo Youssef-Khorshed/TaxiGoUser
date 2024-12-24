@@ -11,6 +11,8 @@ import 'package:taxi_go_user_version/Features/Profile/controller/profile_view_mo
 import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
+import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo_impl.dart';
 
 import 'Core/Utils/localization/cubit/local_cubit.dart';
 
@@ -42,6 +44,9 @@ class TaxiGoUserEditionApp extends StatelessWidget {
               BlocProvider(
                   create: (context) => ProfileViewModel(
                       profileRepo: getIt.get<ProfileRepoImpl>())),
+              BlocProvider(
+                  create: (context) => FavouriteViewModel(
+                      favoriteRepo: getIt.get<FavoriteRepoImpl>()))
             ],
             child:
                 BlocBuilder<LocalCubit, LocalState>(builder: (context, state) {
