@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import '../../../../Features/Chat/data/repo/chatrepo.dart';
 import '../../../../Features/Chat/data/repo/chatrepoimp.dart';
 import '../../../../Features/Chat/model_view/manger/chat/chat_cubit.dart';
+import '../../pusher_configuration/event_bounder_manager.dart';
 import '../../pusher_configuration/pusher_consts.dart';
 import '../../pusher_configuration/pusher_consumer.dart';
 import 'apiservices.dart';
@@ -21,8 +22,9 @@ Future<void> setup() async {
   getIt.registerSingleton<ApiService>(ApiService(internetConnectivity:getIt.get<InternetConnectivity>()));
 
   getIt.registerSingleton<Chatrepo>(Chatrepoimp(getIt.get<ApiService>(), getIt.get<PusherConsumer>()));
-
-  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
+  getIt.registerSingleton<EventBindingManager>(
+      EventBindingManager());
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>(),getIt.get<EventBindingManager>()));
 
 
 

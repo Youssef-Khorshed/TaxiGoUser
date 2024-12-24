@@ -1,15 +1,7 @@
-import 'dart:developer';
+import 'package:flutter/material.dart';
 
-
-import 'package:pusher_client/pusher_client.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
-import 'package:taxi_go_user_version/Core/Utils/pusher_configuration/dynamic_listener.dart';
-import 'package:taxi_go_user_version/Core/Utils/pusher_configuration/pusher_consts.dart';
-import 'package:taxi_go_user_version/Core/app_constants.dart';
-
-import 'event_bounder_manager.dart';
-
-
+import 'dynamic_listener.dart';
+import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
 
 abstract class PusherConsumer<T> {
   Future<void> initialize();
@@ -18,23 +10,14 @@ abstract class PusherConsumer<T> {
 
   Future<void> disconnect();
 
-  //subscribe tp channel
-  void subscribe(String channelName);
+  void subscribe(String channelName, String eventName, DynamicListener onEvent);
 
   void unsubscribe(String channelName);
-
-  //bind event that listen for updates
-  void bind(String channelName, String eventName, DynamicListener onEvent);
-
-  void unbind(String channelName, String eventName);
 }
 
 class PusherConsumerImpl implements PusherConsumer {
-  // Pusher fields
-  late PusherClient _pusherClient;
-  final Map<String, Channel> _channels = {}; // Map to store channels by name
+  late PusherChannelsFlutter _pusher;
 
-  // Pusher configuration
   final String appKey;
   final String cluster;
 
@@ -46,94 +29,72 @@ class PusherConsumerImpl implements PusherConsumer {
   @override
   Future<void> initialize() async {
     try {
-      final token = AppConstants.kTokenValue;
+      _pusher = PusherChannelsFlutter.getInstance();
 
-      if (token == null) {
-        throw Exception("Access token is not available.");
-      }
-
-      _pusherClient = PusherClient(
-        appKey,
-        enableLogging: true,
-        PusherOptions(
-          cluster: cluster,
-          auth: PusherAuth(
-            PusherConsts.AUTH_URL,
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer $token',
-            },
-          ),
-        ),
-        autoConnect: false,
+      await _pusher.init(
+        apiKey: appKey,
+        cluster: cluster,
+        logToConsole: true,
+        onEvent: (event) {
+          debugPrint("Pusher event: ${event.eventName}");
+        },
+        onSubscriptionSucceeded: (channel, value) {
+          debugPrint("Pusher subscription succeeded: $value");
+        },
+        onConnectionStateChange: (currentState, previousState) {
+          debugPrint("Connection state changed: $currentState");
+        },
+        onError: (message, code, exception) {
+          debugPrint("Pusher error: $message");
+        },
       );
-      log('Pusher initialized');
+      debugPrint('Pusher initialized successfully.');
     } catch (e) {
-      log('Error whiile init pusher $e');
+      debugPrint('Error initializing Pusher: $e');
     }
   }
 
-  // Pusher methods
   @override
   Future<void> connect() async {
-    _pusherClient.connect();
+    try {
+      await _pusher.connect();
+      debugPrint('Pusher connected.');
+    } catch (e) {
+      debugPrint('Error connecting to Pusher: $e');
+    }
   }
 
   @override
   Future<void> disconnect() async {
-    await _pusherClient.disconnect();
+    try {
+      await _pusher.disconnect();
+      debugPrint('Pusher disconnected.');
+    } catch (e) {
+      debugPrint('Error disconnecting from Pusher: $e');
+    }
   }
 
   @override
-  void subscribe(String channelName) {
-    if (!_channels.containsKey(channelName)) {
-      _channels[channelName] = _pusherClient.subscribe(channelName);
+  void subscribe(
+      String channelName, String eventName, DynamicListener onEvent) {
+    try {
+      _pusher.subscribe(
+        channelName: channelName,
+        onEvent: onEvent,
+      );
+      debugPrint('Subscribed to $channelName.');
+    } catch (e) {
+      debugPrint('Error subscribing to channel $channelName: $e');
     }
   }
 
   @override
   void unsubscribe(String channelName) {
-    if (_channels.containsKey(channelName)) {
-      _pusherClient.unsubscribe(channelName);
-      _channels.remove(channelName); // Remove from map
-    }
-  }
-
-
-
-  @override
-  void bind(String channelName, String eventName, DynamicListener onEvent) {
-    final channel = _channels[channelName];
-
-    if (channel != null) {
-      if (EventBindingManager().isEventBound(channelName, eventName)) {
-        log('Event $eventName is already bound to channel $channelName');
-        return;
-      }
-
-      channel.bind(eventName, (PusherEvent? event) {
-        if (event != null) {
-          onEvent(event.data);
-        }
-      });
-
-      EventBindingManager().addBoundEvent(channelName, eventName);
-      log('Event $eventName successfully bound to channel $channelName');
-    } else {
-      throw Exception("Channel $channelName is not subscribed. Bind failed.");
-    }
-  }
-  @override
-  void unbind(String channelName, String eventName) {
-    final channel = _channels[channelName];
-
-    if (channel != null) {
-      channel.unbind(eventName);
-      EventBindingManager().removeBoundEvent(channelName, eventName);
-
-      log('Event $eventName unbound from channel $channelName');
-    } else {
-      throw Exception("Channel $channelName is not subscribed. Unbind failed.");
+    try {
+      _pusher.unsubscribe(channelName: channelName);
+      debugPrint('Unsubscribed from $channelName.');
+    } catch (e) {
+      debugPrint('Error unsubscribing from channel $channelName: $e');
     }
   }
 }
