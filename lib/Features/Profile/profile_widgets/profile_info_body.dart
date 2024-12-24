@@ -20,65 +20,71 @@ class ProfileInfoBody extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isEnglish = LocalCubit.get(context).localizationThemeState ==
         LocalizationThemeState.en;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Column(spacing: 15.h, children: [
-        verticalSpace(50.h),
-        ProfileImageWidget(
-          imagePath: userInfo.picture,
-        ),
-        Column(
-          children: [
-            AutoSizeText(
-              userInfo.name ?? 'name',
-              style: AppTextStyles.style20BlackW500
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.star,
-                  color: AppColors.amberColor,
-                  size: 20,
-                ),
-                AutoSizeText(
-                  userInfo.rate ?? '2.5',
-                  style: AppTextStyles.style16DarkgrayW500
-                      .copyWith(color: AppColors.darkgrayColor.withAlpha(180)),
-                ),
-              ],
-            ),
-          ],
-        ),
-        verticalSpace(15.h),
-        ProfileInfoItem(
-          lable: AppLocalizations.of(context)!.gender,
-          textInfo: userInfo.gender ?? 'male',
-        ),
-        ProfileInfoItem(
-          lable: AppLocalizations.of(context)!.phone_nubmer,
-          textInfo: userInfo.phone!.startsWith('+')
-              ? '${userInfo.phone!.substring(1)}+'
-              : userInfo.phone!,
-        ),
-        ProfileInfoItem(
-          lable: AppLocalizations.of(context)!.address,
-          textInfo: userInfo.address ?? '1 January 1999',
-        ),
-        ProfileInfoItem(
-          lable: AppLocalizations.of(context)!.balance,
-          textInfo: userInfo.balance ?? '"391.78',
-        ),
-        ProfileInfoItem(
-          lable: AppLocalizations.of(context)!.lang,
-          textInfo: isEnglish
-              ? AppLocalizations.of(context)!.english
-              : AppLocalizations.of(context)!.arabic,
-          toggle: const CustomChagelanguageProfile(),
-        ),
-        const Spacer()
-      ]),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
+        child: Column(children: [
+          verticalSpace(40.h),
+          ProfileImageWidget(
+            imagePath: userInfo.picture,
+          ),
+          verticalSpace(10.h),
+          Column(
+            children: [
+              AutoSizeText(
+                userInfo.name ?? 'name',
+                style: AppTextStyles.style20BlackW500
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.star,
+                    color: AppColors.amberColor,
+                    size: 20,
+                  ),
+                  AutoSizeText(
+                    userInfo.rate ?? '2.5',
+                    style: AppTextStyles.style16DarkgrayW500.copyWith(
+                        color: AppColors.darkgrayColor.withAlpha(180)),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          verticalSpace(15.h),
+          ProfileInfoItem(
+            lable: AppLocalizations.of(context)!.phone_nubmer,
+            textInfo: userInfo.phone!.startsWith('+')
+                ? '${userInfo.phone!.substring(1)}+'
+                : userInfo.phone!,
+          ),
+          verticalSpace(15.h),
+          ProfileInfoItem(
+            lable: AppLocalizations.of(context)!.address,
+            textInfo: userInfo.address ?? '1 January 1999',
+          ),
+          verticalSpace(15.h),
+          ProfileInfoItem(
+            lable: AppLocalizations.of(context)!.balance,
+            textInfo: userInfo.balance ?? '"391.78',
+          ),
+          verticalSpace(15.h),
+          ProfileInfoItem(
+            lable: AppLocalizations.of(context)!.gender,
+            textInfo: userInfo.gender ?? 'male',
+          ),
+          verticalSpace(15.h),
+          ProfileInfoItem(
+            lable: AppLocalizations.of(context)!.lang,
+            textInfo: isEnglish
+                ? AppLocalizations.of(context)!.english
+                : AppLocalizations.of(context)!.arabic,
+            toggle: const CustomChagelanguageProfile(),
+          ),
+        ]),
+      ),
     );
   }
 }
