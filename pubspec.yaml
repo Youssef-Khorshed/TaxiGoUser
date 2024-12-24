@@ -34,9 +34,9 @@ dependencies:
   lottie: ^3.2.0
   flutter_secure_storage: ^9.2.2
   dartz:
-  skeletonizer: ^1.4.2
   geocode: ^1.0.3
   shimmer: ^3.0.0
+  skeletonizer:
 
 dev_dependencies:
   flutter_launcher_icons: null

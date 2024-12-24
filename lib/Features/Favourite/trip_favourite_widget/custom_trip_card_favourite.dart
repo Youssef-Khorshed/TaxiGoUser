@@ -35,17 +35,17 @@ class FavouriteCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: const Row(
             children: [
-              Expanded(
-                  child: CustomBuildTripDetails(
-                hasIcon: true,
-                from: '',
-                to: '',
-                timeFrom: '',
-                timeTo: '',
-                driverName: '',
-                rating: '',
-                price: '',
-              )),
+              // Expanded(
+              //     child: CustomBuildTripDetails(
+              //   hasIcon: true,
+              //   from: '',
+              //   to: '',
+              //   timeFrom: '',
+              //   timeTo: '',
+              //   driverName: '',
+              //   rating: '',
+              //   price: '',
+              // )),
             ],
           ),
         ),

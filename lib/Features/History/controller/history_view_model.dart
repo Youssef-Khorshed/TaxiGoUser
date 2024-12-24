@@ -26,14 +26,27 @@ class HistoryViewModel extends Cubit<HistoryStates> {
   }
 
   saveTrip(BuildContext context, int rideId) async {
-    emit(SaveTripLoadingStates());
+    emit(AddToSaveToFavTripLoadingStates());
     var either = await historyRepo.saveTrip(context, rideId);
     either.fold(
       (savedFailure) {
-        emit(SaveTripFailureStates(errMessage: savedFailure.message));
+        emit(AddToSaveToFavFailureStates(errMessage: savedFailure.message));
       },
       (savedResponse) {
-        emit(SaveTripSuccessStates(saveTripModel: savedResponse));
+        emit(AddToSaveToFavSuccessStates(favAndsaveTripModel: savedResponse));
+      },
+    );
+  }
+
+  addToFavTrip(BuildContext context, int rideId) async {
+    emit(AddToSaveToFavTripLoadingStates());
+    var either = await historyRepo.saveTrip(context, rideId);
+    either.fold(
+      (favFailure) {
+        emit(AddToSaveToFavFailureStates(errMessage: favFailure.message));
+      },
+      (faveResponse) {
+        emit(AddToSaveToFavSuccessStates(favAndsaveTripModel: faveResponse));
       },
     );
   }

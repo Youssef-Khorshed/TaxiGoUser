@@ -12,7 +12,6 @@
    "trip_saved":"Trip Saved",
    "km": "km",
    "iqd": "IQD",
-      "empty_message": "There are no trips",
       "name": "Name",
    "phone_nubmer": "Phone Number",
    "birth_day": "Birthday",
@@ -21,5 +20,6 @@
    "arabic": "Arabic", 
    "english": "English",
    "balance": "Balance",
-   "address": "Address"
+   "address": "Address",
+      "empty_message": "There are no trips"
 }

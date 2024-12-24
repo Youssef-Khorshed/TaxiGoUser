@@ -17,9 +17,9 @@ class HistoryRepoImpl extends HistoryRepo {
   Future<Either<Failure, HistoryDataModel>> getData(BuildContext context,
       {String? tripHistory}) async {
     var response = await apiService.getRequest(
-        Constants.baseUrl + Constants.historyEndPoint,
-        context: context,
-        queryParameters: {"filter": tripHistory});
+      "${Constants.baseUrl}${Constants.historyEndPoint}$tripHistory",
+      context: context,
+    );
 
     try {
       HistoryDataModel historyDataModel = HistoryDataModel.fromJson(response);
@@ -35,7 +35,7 @@ class HistoryRepoImpl extends HistoryRepo {
   }
 
   @override
-  Future<Either<Failure, SaveTripModel>> saveTrip(
+  Future<Either<Failure, AddToSaveToFavTripModel>> saveTrip(
       BuildContext context, int rideId) async {
     var response = await apiService.postRequest(
         Constants.baseUrl + Constants.saveTripEndPoint,
@@ -44,9 +44,31 @@ class HistoryRepoImpl extends HistoryRepo {
           "ride_id": rideId,
         });
     try {
-      SaveTripModel saveTripModel = SaveTripModel.fromJson(response);
+      AddToSaveToFavTripModel saveTripModel =
+          AddToSaveToFavTripModel.fromJson(response);
 
       return Right(saveTripModel);
+    } on NoInternetException {
+      return Left(InternetConnectionFailure(message: 'No internet Connection'));
+    } on ServerException catch (e) {
+      return Left(InternetConnectionFailure(message: e.message.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AddToSaveToFavTripModel>> addToFavTrip(
+      BuildContext context, int rideId) async {
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.addFavTripEndPoint,
+        context: context,
+        body: {
+          "ride_id": rideId,
+        });
+    try {
+      AddToSaveToFavTripModel favTripModel =
+          AddToSaveToFavTripModel.fromJson(response);
+
+      return Right(favTripModel);
     } on NoInternetException {
       return Left(InternetConnectionFailure(message: 'No internet Connection'));
     } on ServerException catch (e) {
