@@ -24,19 +24,18 @@ class SavedScreen extends StatelessWidget {
         }
         if (state is SavedSuccessStates || state is UnSaveTripSuccessStates) {
           List<SavedData> savedData = SavedViewModel.get(context).savedDataList;
-          return savedData.isEmpty
-              ? CustomEmptyDataView(
-                  message: AppLocalizations.of(context)!.empty_message)
-              : Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 15.0, vertical: 10),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 10),
-                    decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Column(
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+              decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(20)),
+              child: savedData.isEmpty
+                  ? CustomEmptyDataView(
+                      message: AppLocalizations.of(context)!.empty_message)
+                  : Column(
                       children: [
                         Expanded(
                           child: ListView.builder(
@@ -56,8 +55,8 @@ class SavedScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                );
+            ),
+          );
         }
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
