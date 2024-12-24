@@ -18,7 +18,8 @@ class GetProfileModel {
       status: json['status'],
       message: json['message'],
       errors: json['errors'] ?? [],
-      data: json['data'] != null ? UserData.fromJson(json['data']['user']) : null,
+      data:
+          json['data'] != null ? UserData.fromJson(json['data']['user']) : null,
       notes: json['notes'] ?? [],
     );
   }
@@ -82,20 +83,23 @@ class UserData {
   factory UserData.fromJson(Map<String, dynamic> json) {
     return UserData(
       id: json['id'],
-      name: json['name'],
-      phone: json['phone'],
-      address: json['address'],
-      districtId: json['district_id'],
-      cityId: json['city_id'],
-      userType: json['user_type'],
+      name: json['name'] ?? "",
+      phone: json['phone'] ?? "",
+      address: json['address'] ?? "",
+      districtId: json['district_id'] ?? 0,
+      cityId: json['city_id'] ?? 0,
+      userType: json['user_type'] ?? "",
       verified: json['verified'] == 1,
       captain: json['captain'] == 1,
-      status: json['status'],
+      status: json['status'] ?? "",
       available: json['available'] == 1,
       gender: json['gender'],
-      rate: json['rate'] != null ? double.tryParse(json['rate'].toString()) : null,
+      rate: json['rate'] != null
+          ? double.tryParse(json['rate'].toString())
+          : null,
       picture: json['picture'],
-      birthday: json['birthday'] != null ? DateTime.parse(json['birthday']) : null,
+      birthday:
+          json['birthday'] != null ? DateTime.parse(json['birthday']) : null,
       lng: json['lng'] != null ? double.tryParse(json['lng'].toString()) : null,
       lat: json['lat'] != null ? double.tryParse(json['lat'].toString()) : null,
       customerFcm: json['customer_fcm'],
@@ -105,7 +109,7 @@ class UserData {
       emailVerifiedAt: json['email_verified_at'] != null
           ? DateTime.parse(json['email_verified_at'])
           : null,
-      balance: double.parse(json['balance']),
+      balance: double.parse(json['balance'] ?? ""),
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
     );

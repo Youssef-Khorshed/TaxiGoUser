@@ -14,4 +14,6 @@ final class WalletGetProfileSuccess extends WalletGetProfileInitial {
   WalletGetProfileSuccess({required this.getProfileModel});
 }
 
-final class WalletGetProfileError extends WalletGetProfileInitial {}
+final class WalletGetProfileError extends WalletGetProfileInitial {
+  
+}
