@@ -6,7 +6,6 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
-import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/data/profile_model.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_chage_language_profile.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/profile_image_widget.dart';
@@ -18,8 +17,7 @@ class ProfileInfoBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isEnglish = LocalCubit.get(context).localizationThemeState ==
-        LocalizationThemeState.en;
+    LocalizationThemeState.en;
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -68,7 +66,8 @@ class ProfileInfoBody extends StatelessWidget {
           verticalSpace(15.h),
           ProfileInfoItem(
             lable: AppLocalizations.of(context)!.balance,
-            textInfo: userInfo.balance ?? '"391.78',
+            textInfo:
+                '${userInfo.balance} ${AppLocalizations.of(context)!.iqd}',
           ),
           verticalSpace(15.h),
           ProfileInfoItem(
@@ -78,9 +77,7 @@ class ProfileInfoBody extends StatelessWidget {
           verticalSpace(15.h),
           ProfileInfoItem(
             lable: AppLocalizations.of(context)!.lang,
-            textInfo: isEnglish
-                ? AppLocalizations.of(context)!.english
-                : AppLocalizations.of(context)!.arabic,
+            textInfo: AppLocalizations.of(context)!.english,
             toggle: const CustomChagelanguageProfile(),
           ),
         ]),
