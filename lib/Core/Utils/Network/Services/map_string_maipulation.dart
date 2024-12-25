@@ -48,18 +48,33 @@ class MapStringMaipulation {
     ];
   }
 
-  static Future<Map<String, String>> parseAddress(String address) {
-    List<String> addressParts = address.split(' ');
+  static Future<Map<String, String>> parseAddress(String address) async {
+    List<String> addressParts = address.trim().split(RegExp(r'\s+'));
     Map<String, String> parsedAddress = {};
+
     if (addressParts.isNotEmpty) {
       parsedAddress['street_number'] = addressParts[0];
-      parsedAddress['street_name'] =
-          addressParts.sublist(1, addressParts.length - 5).join(' ');
-      parsedAddress['city'] = addressParts[addressParts.length - 5];
-      parsedAddress['county'] = addressParts[addressParts.length - 4];
-      parsedAddress['state'] = addressParts[addressParts.length - 3];
-      parsedAddress['country'] = addressParts[addressParts.length - 2];
-      parsedAddress['postal_code'] = addressParts[addressParts.length - 1];
+
+      if (addressParts.length >= 7) {
+        parsedAddress['street_name'] =
+            addressParts.sublist(1, addressParts.length - 6).join(' ');
+        parsedAddress['city'] = addressParts[addressParts.length - 6];
+        parsedAddress['county'] = addressParts[addressParts.length - 5];
+        parsedAddress['state'] = addressParts[addressParts.length - 4];
+        parsedAddress['country'] = addressParts[addressParts.length - 3];
+        parsedAddress['postal_code'] = addressParts[addressParts.length - 2];
+      } else {
+        parsedAddress['street_name'] = addressParts.sublist(1).join(' ');
+        parsedAddress['city'] = addressParts.length > 1
+            ? addressParts[addressParts.length - 1]
+            : 'Unknown City';
+        parsedAddress['county'] = 'Unknown County';
+        parsedAddress['state'] = 'Unknown State';
+        parsedAddress['country'] = 'Unknown Country';
+        parsedAddress['postal_code'] = addressParts.length > 1
+            ? 'Unknown Postal Code'
+            : 'Unknown Postal Code';
+      }
     }
     return Future.value(parsedAddress);
   }

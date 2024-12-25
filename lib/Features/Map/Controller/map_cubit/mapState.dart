@@ -108,6 +108,8 @@ class LegsLoaded extends MapsState {
   LegsLoaded({required this.leg});
 }
 
+class UpdateBoundsPosition extends MapsState {}
+
 class PlaceDirectionsLading extends MapsState {}
 
 class PlaceDirectionsFaild extends MapsState {}
@@ -116,9 +118,17 @@ class Accepted extends MapsState {}
 
 class GetAddressLoading extends MapsState {}
 
-class TripStarted extends MapsState {}
+class TripStarted extends MapsState {
+  bool tripStarted;
+  TripStarted({required this.tripStarted});
+}
 
 class TripFinished extends MapsState {}
+
+class ArrivedToCustomer extends MapsState {
+  bool arrivedtoCustomer;
+  ArrivedToCustomer({required this.arrivedtoCustomer});
+}
 
 class GetAddressSuccess extends MapsState {}
 

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
@@ -44,7 +45,14 @@ class TripScreenState extends State<TripScreen> {
 
           context.read<MapsCubit>().buildmarker(
               title: 'Car', destinationInfo: 'Car', postion: captinLatLng);
-          if (state.activeRide.data!.status == 'accepted') {
+          if (state.activeRide.data!.ride!.first.status == 'to_customer' &&
+              !context.read<MapsCubit>().arrivedtoCustomer) {
+            Fluttertoast.showToast(msg: 'Captin on Way');
+            context.read<MapsCubit>().arrivedToCustomer();
+          } else if (state.activeRide.data!.ride!.first.status == 'on_trip' &&
+              !context.read<MapsCubit>().onTrip) {
+            Fluttertoast.showToast(msg: 'Trip Strated');
+            context.read<MapsCubit>().startTrip();
           } else if (state.activeRide.data!.status == 'cancelled') {
           } else if (state.activeRide.data!.status == 'completed') {}
         }

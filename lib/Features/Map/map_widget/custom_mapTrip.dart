@@ -25,14 +25,19 @@ class CustomMaptrip extends StatefulWidget {
 class _CustomMaptripState extends State<CustomMaptrip> {
   Timer? _timer;
   String? mapStyle;
+  GetActiveRide? nearbyRideRequests;
+  StreamSubscription<void>? _subscription;
+
   @override
   void initState() {
-    _timer = Timer(const Duration(seconds: 10), () {
-      if (mounted) {
-        context.read<MapsCubit>().getRideRequest(context: context);
-      }
-    });
+    _startStream();
     super.initState();
+  }
+
+  void _startStream() {
+    _subscription = Stream.periodic(const Duration(seconds: 2), (_) {
+      return context.read<MapsCubit>().getRideRequestStream(context: context);
+    }).asyncExpand((stream) => stream).listen((data) {});
   }
 
   @override
@@ -82,8 +87,14 @@ class _CustomMaptripState extends State<CustomMaptrip> {
   }
 
   @override
+  void deactivate() {
+    _subscription?.cancel();
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
-    _timer?.cancel();
+    _subscription?.cancel();
     super.dispose();
   }
 }

@@ -27,6 +27,8 @@ class MapsCubit extends Cubit<MapsState> {
   late Marker orignMarker;
   late Marker destinationMarker;
   late CameraPosition placeCameraPosition;
+  bool arrivedtoCustomer = false;
+  bool onTrip = false;
   LocationPosition? orginPosition;
   LocationPosition? destinationostion;
   Timer? _debounce;
@@ -42,11 +44,6 @@ class MapsCubit extends Cubit<MapsState> {
   late Prediction placeSuggestion;
   List<Prediction> predictions = [];
   MapsCubit({required this.mapsRepository}) : super(MapsInitial());
-
-  void cancelTimer() {
-    timer?.cancel();
-    emit(TimerisClosedSuccess());
-  }
 
   /// get user location
   Future<void> getUserLocation({required String title}) async {
@@ -188,7 +185,9 @@ class MapsCubit extends Cubit<MapsState> {
           destinationInfo: 'des',
           postion: LatLng(destination.latitude, destination.longitude),
         );
-        updatePlaceCameraPosition(place: destination, zoom: 10);
+        // updatePlaceCameraPosition(place: destination, zoom: 10);
+        updateLatLngBoundPosition(
+            origin: origin, destination: destination, zoom: 12);
         drawPolyline(origin: origin, destination: destination);
         emit(DirectionsLoaded(polyLines));
       });
@@ -196,6 +195,38 @@ class MapsCubit extends Cubit<MapsState> {
       Fluttertoast.showToast(msg: 'Cant find Destination');
       emit(PlaceDirectionsFaild());
     }
+  }
+
+  void updateLatLngBoundPosition(
+      {required LatLng origin,
+      required LatLng destination,
+      double zoom = 13}) async {
+    LatLngBounds bounds = _calculateBounds(origin, destination);
+    CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
+    await mapController.animateCamera(cameraUpdate);
+    final GoogleMapController controller = mapController;
+    controller.animateCamera(cameraUpdate);
+    emit(UpdateBoundsPosition());
+  }
+
+  LatLngBounds _calculateBounds(LatLng origin, LatLng destination) {
+    double minLat = origin.latitude < destination.latitude
+        ? origin.latitude
+        : destination.latitude;
+    double minLng = origin.longitude < destination.longitude
+        ? origin.longitude
+        : destination.longitude;
+    double maxLat = origin.latitude > destination.latitude
+        ? origin.latitude
+        : destination.latitude;
+    double maxLng = origin.longitude > destination.longitude
+        ? origin.longitude
+        : destination.longitude;
+
+    return LatLngBounds(
+      southwest: LatLng(minLat, minLng),
+      northeast: LatLng(maxLat, maxLng),
+    );
   }
 
   void accept() {
@@ -343,15 +374,28 @@ class MapsCubit extends Cubit<MapsState> {
     });
   }
 
+  Stream<void> getRideRequestStream({required BuildContext context}) {
+    return Stream.periodic(const Duration(seconds: 3), (_) async {
+      final response = await mapsRepository.getActiveRide(context: context);
+      return response.fold(
+          (onError) => emit(GetActiveRideRequestFail(message: onError.message)),
+          (onSuccess) =>
+              emit(GetActiveRideRequestSuccess(activeRide: onSuccess)));
+    }).asyncMap((futureData) => futureData);
+  }
+
   void getNoRideRequestTrip() {
     emit(GetActiveRideRequestNoTrips());
   }
 
-  void tripStarted() {
-    emit(TripStarted());
+  void arrivedToCustomer() {
+    arrivedtoCustomer = true;
+
+    emit(ArrivedToCustomer(arrivedtoCustomer: arrivedtoCustomer));
   }
 
-  void tripFinished() {
-    emit(TripFinished());
+  void startTrip() {
+    onTrip = true;
+    emit(TripStarted(tripStarted: onTrip));
   }
 }

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
@@ -25,24 +24,16 @@ class RequestButtons extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            verticalSpace(10.h),
             Expanded(
               child: CustomAppBottom(
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 buttonText: "Cancel",
-                buttonColor: Colors.white,
+                buttonColor: Colors.red.withOpacity(.05),
                 textColor: Colors.red,
                 borderColor: Colors.red,
-              ),
-            ),
-            horizontalSpace(10.w),
-            Expanded(
-              child: CustomAppBottom(
-                onPressed: () async {},
-                buttonText: "Accept",
-                buttonColor: AppColors.blueColor,
-                textColor: AppColors.whiteColor,
               ),
             ),
           ],
