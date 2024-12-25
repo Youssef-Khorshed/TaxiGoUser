@@ -57,8 +57,7 @@ class ChatCubit extends Cubit<ChatState> {
 
     prefs.remove('messages');
 
-    final object = prefs.getString('messages');
-  }
+   }
 
   Future<Either<Failure, List<Message>>> getChatdata(
       BuildContext context) async {
@@ -94,7 +93,7 @@ class ChatCubit extends Cubit<ChatState> {
 
   void startMessageUpdateTimer(BuildContext context) {
     // Start a timer to update messages every second
-    _timer = Timer.periodic(Duration(milliseconds: 500), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
       getChatdata(context);
     });
   }

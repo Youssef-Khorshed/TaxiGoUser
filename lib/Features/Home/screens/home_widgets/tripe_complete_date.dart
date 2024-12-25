@@ -15,6 +15,7 @@ class TripeCompleteDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        verticalSpace(30.h),
         BuildAddressRow(
           rideDetails: rideCompleteDetailsModel,
         ),

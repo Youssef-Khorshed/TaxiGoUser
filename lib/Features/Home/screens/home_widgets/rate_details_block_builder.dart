@@ -38,7 +38,7 @@ class RateDetailsBlockBuilder extends StatelessWidget {
             }
             log("Current state: $state");
             return state is RideCompleteDetailsLoading
-                ? CustomLoading()
+                ? const CustomLoading()
                 : state is RideCompleteDetailsFailure
                     ? CustomErroranimation(
                         errormessage: state.message,
@@ -60,7 +60,7 @@ class RateDetailsBlockBuilder extends StatelessWidget {
             listener: (context, state) => () {
               if (state is RateError) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     content: Text(
                       "يجب أن يكون حقل rate على الأقل 1.",
                       style: TextStyle(color: Colors.black),

@@ -10,7 +10,6 @@ import '../../../../Core/Utils/Network/Error/failure.dart';
 import '../../../../Core/Utils/Network/Services/api_constant.dart';
 import '../../../../Core/Utils/pusher_configuration/pusher_consumer.dart';
 import '../model/message_data.dart';
-
 class Chatrepoimp implements Chatrepo {
   final ApiService apiService;
   final PusherConsumer _pusherConsumer;
@@ -41,6 +40,8 @@ class Chatrepoimp implements Chatrepo {
     }
   }
 
+
+
   @override
   Future<void> sendMessage({
     String? message,
@@ -61,4 +62,5 @@ class Chatrepoimp implements Chatrepo {
       log('Error sending message: $e');
     }
   }
+
 }

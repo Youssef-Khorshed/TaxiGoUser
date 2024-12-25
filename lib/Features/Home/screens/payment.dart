@@ -21,7 +21,7 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.whiteColor,
       body: PaymentsDetailsBlockBuilder(),
     );
@@ -43,7 +43,7 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
         }
         print("Current state: $state");
         return state is RideCompleteDetailsLoading
-            ? CustomLoading()
+            ? const CustomLoading()
             : state is RideCompleteDetailsFailure
                 ? CustomErroranimation(
                     errormessage: state.message,

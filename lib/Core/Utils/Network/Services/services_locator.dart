@@ -49,8 +49,6 @@ Future<void> setup() async {
 
   /// Pusher Services
 
-  getIt.registerFactory<PusherConsumer>(() => PusherConsumerImpl(
-      appKey: PusherConsts.PUSHER_APP_KEY, cluster: PusherConsts.CLUSTER));
   getIt.registerSingleton<Chatrepo>(
       Chatrepoimp(getIt.get<ApiService>(), getIt.get<PusherConsumer>()));
   getIt.registerSingleton<EventBindingManager>(EventBindingManager());

@@ -13,7 +13,7 @@ class LocationDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Column(
+      title: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TripDetailsMap(
@@ -30,7 +30,7 @@ class LocationDetails extends StatelessWidget {
       ),
       trailing: Text(
         "1.1 ${AppLocalizations.of(context)!.km}",
-        style: TextStyle(fontSize: 15),
+        style: const TextStyle(fontSize: 15),
       ),
     );
   }

@@ -67,12 +67,11 @@
     "activeNow": "نشط الان",
     "sharelocation": "مشاركه الموقع",
     "start_a_conversation": "بدء المحادثة",
-
     "transactions": "المعاملات :",
     "available_balance": "الرصيد المتاح",
     "deposit_processing": "عمليه الإيداع",
     "withdrawal_processing": "عمليه السحب",
-    "currency_iqd": "د.ع",
+    "currency_iqd": "دينار",
     "transaction_payment": "دفع",
     "transaction_remaining": "المتبقي",
     "transaction_charge": "شحن",
@@ -83,7 +82,6 @@
     "notification_details": "تفاصيل الإشعار",
     "system_notification": "إشعار",
     "enter_amount": "أدخل المبلغ",
-
     "add_money": "إضافة أموال",
     "error_occurred": "حدث خطأ أثناء المعالجة.",
     "zain_Cash": " زين كاش"
