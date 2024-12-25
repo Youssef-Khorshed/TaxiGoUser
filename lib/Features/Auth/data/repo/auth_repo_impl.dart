@@ -35,7 +35,12 @@ class AuthRepoImpl extends AuthRepo {
           Constants.baseUrl + Constants.login,
           body: {"identifier": phone, "password": password},
           context: context);
-      return Right(LoginModel.fromJson(response));
+      if (response["status"] == false) {
+        return Left(ServerFailure(message: response["message"]));
+      }
+      else {
+        return Right(LoginModel.fromJson(response));
+      }
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
@@ -58,8 +63,12 @@ class AuthRepoImpl extends AuthRepo {
             "password_confirmation": passwordConfirmation
           },
           context: context);
+      if (response["status"] == false) {
+        return Left(ServerFailure(message: response["message"]));
+      }
+      else{
       return Right(SetPasswordModel.fromJson(response));
-    } catch (e) {
+    } }catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
       } else {
@@ -75,10 +84,14 @@ class AuthRepoImpl extends AuthRepo {
       var response = await apiService.getRequest(
           Constants.baseUrl + Constants.sendVerification,
           context: context);
+      if (response["status"] == false) {
+        return Left(ServerFailure(message: response["message"]));
+      }
+      else{
       SendVerificationCodeModel data =
           SendVerificationCodeModel.fromJson(response);
       return Right(data);
-    } catch (e) {
+    }} catch (e) {
       if (e is DioException) {
         return Left(ServerFailure(
           message: e.response!.data["message"],

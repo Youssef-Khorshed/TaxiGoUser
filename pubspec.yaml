@@ -37,7 +37,7 @@ dependencies:
   geocode: ^1.0.3
   shimmer: ^3.0.0
   redacted:
-  skeletonizer:
+  skeletonizer: ^1.4.2
 
   image_picker: ^1.1.2
   fluttertoast: ^8.2.10

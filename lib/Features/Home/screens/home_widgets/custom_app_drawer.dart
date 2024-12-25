@@ -22,25 +22,26 @@ class CustomAppDrawer extends StatefulWidget {
   @override
   State<CustomAppDrawer> createState() => _CustomAppDrawerState();
 }
+
 String? name;
 String? image;
+
 class _CustomAppDrawerState extends State<CustomAppDrawer> {
   @override
   void initState() {
     imageAndName();
     super.initState();
   }
+
   Future<void> imageAndName() async {
-image=  await  SecureProfile.getProfileImage();
- name= await  SecureProfile.getProfileName();
- setState(() {
-
- });
-
-
+    image = await SecureProfile.getProfileImage();
+    name = await SecureProfile.getProfileName();
+    setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
@@ -62,9 +63,11 @@ image=  await  SecureProfile.getProfileImage();
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                     CircleAvatar(
+                    CircleAvatar(
                       radius: 40,
-                      backgroundImage:image!=null? NetworkImage(image!): AssetImage(AppIcons.appIcon),
+                      backgroundImage: image != null
+                          ? NetworkImage(image!)
+                          : AssetImage(AppIcons.appIcon),
                     ),
                     verticalSpace(10),
                     AutoSizeText(
@@ -95,7 +98,7 @@ image=  await  SecureProfile.getProfileImage();
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                   AppLocalizations.of(context)!.trip_history,
+                    AppLocalizations.of(context)!.trip_history,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -108,7 +111,7 @@ image=  await  SecureProfile.getProfileImage();
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                   AppLocalizations.of(context)!.trip_favorite,
+                    AppLocalizations.of(context)!.trip_favorite,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -121,7 +124,7 @@ image=  await  SecureProfile.getProfileImage();
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                   AppLocalizations.of(context)!.trip_saved,
+                    AppLocalizations.of(context)!.trip_saved,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -134,7 +137,7 @@ image=  await  SecureProfile.getProfileImage();
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                   AppLocalizations.of(context)!.wallet,
+                    AppLocalizations.of(context)!.wallet,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -146,25 +149,56 @@ image=  await  SecureProfile.getProfileImage();
                     Icons.logout,
                     color: AppColors.redColor,
                   ),
-                  title:                BlocConsumer<LogOutCubit, LogOutState>(
-    listener: (context, state) {
-      if (state is LogOutSuccess) {
-        Navigator.pushReplacementNamed(context, AppRoutes.welcome);
-      }
-    },
-    builder: (context, state) {
-    return GestureDetector(
-    onTap: () {
-      print("object");
-    LogOutCubit.get(context).logOut(context);
-    },
-                    child: Text(
-                     AppLocalizations.of(context)!.logout,
-                      style: AppTextStyles.style20BlackW500
-                          .copyWith(color: AppColors.redColor),
-                    ),
-                  );},
-                ),
+                  title: BlocConsumer<LogOutCubit, LogOutState>(
+                    listener: (context, state) {
+
+                      if (state is LogOutSuccess) {
+                        Navigator.pushReplacementNamed(
+                            context, AppRoutes.welcome);
+                      }
+                    },
+                    builder: (context, state) {
+                      final parentContext = context;
+
+                      return GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('تأكيد الخروج'),
+                                content: Text('هل تريد الخروج من التطبيق؟'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(); // إغلاق الحوار
+                                    },
+                                    child: Text('لا'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(); // إغلاق الحوار
+                                      LogOutCubit.get(parentContext).logOut(parentContext);
+                                    },
+                                    child: Text('نعم'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+
+
+                          print("object");
+                         // LogOutCubit.get(context).logOut(context);
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.logout,
+                          style: AppTextStyles.style20BlackW500
+                              .copyWith(color: AppColors.redColor),
+                        ),
+                      );
+                    },
+                  ),
                   selected: widget.selectedIndex == 5,
                   onTap: () => Navigator.pushReplacementNamed(
                       context, AppRoutes.welcome),

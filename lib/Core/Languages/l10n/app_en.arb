@@ -23,7 +23,6 @@
     "verify": "Verify",
     "verification_email_or_phone": "Verification email or phone number",
 
-    "name": "Name",
     "male": "Male",
     "female": "Female",
     "phone_required": "Phone number is required",
@@ -89,15 +88,12 @@
 
     "@@locale": "en",
    "log_in":"Log In",
-   "trip_history":"",
    "today":"Today",
    "yesterday":"Yesterday",
    "last_7_days":"Last 7 days",
    "last_30_days":"Last 30 days",
    "this_month":"This month",
    "price":"price",
-       "trip_favorite":"Trip Favorite",
-   "trip_saved":"Trip Saved",
    "km": "km",
    "iqd": "IQD",
       "name": "Name",

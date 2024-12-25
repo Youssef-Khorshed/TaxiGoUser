@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
@@ -16,9 +17,25 @@ import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo_
 
 import 'Core/Utils/localization/cubit/local_cubit.dart';
 
-class TaxiGoUserEditionApp extends StatelessWidget {
+class TaxiGoUserEditionApp extends StatefulWidget {
   const TaxiGoUserEditionApp({super.key});
 
+  @override
+  State<TaxiGoUserEditionApp> createState() => _TaxiGoUserEditionAppState();
+}
+
+class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
+  String? token;
+  @override
+  void initState() {
+    getToken();
+    super.initState();
+  }
+  getToken() async {
+    token= await SecureToken.getToken();
+
+    print("LOL${token}");
+  }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -33,7 +50,7 @@ class TaxiGoUserEditionApp extends StatelessWidget {
         builder: (context, child) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => LocalCubit()..isConnection(),
+                create: (context) => LocalCubit()..isConnection()..getLanguage(),
               ),
               BlocProvider(
                   create: (context) => HistoryViewModel(
@@ -54,7 +71,7 @@ class TaxiGoUserEditionApp extends StatelessWidget {
                 locale: LocalCubit.get(context).localization,
                 builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
-                initialRoute: AppRoutes.splash,
+                initialRoute:token!=null? AppRoutes.generalScreen:AppRoutes.splash,
                 onGenerateRoute: AppRoutes.generateRoute,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,

@@ -27,6 +27,9 @@ static LogOutCubit get(context) => BlocProvider.of(context);
       },
           (data) async {
         if (data.status??false) {
+          await SecureToken.deleteToken();
+          await SecureProfile.deleteProfileImage();
+          await SecureProfile.deleteProfileName();
 
           emit(LogOutSuccess( data: data));
 

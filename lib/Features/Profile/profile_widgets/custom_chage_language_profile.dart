@@ -9,7 +9,6 @@ class CustomChagelanguageProfile extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
   _CustomChagelanguageProfileState createState() =>
       _CustomChagelanguageProfileState();
 }
@@ -27,11 +26,8 @@ class _CustomChagelanguageProfileState
         onChanged: (value) {
           setState(() {
             isArabic = value;
-            isArabic
-                ? LocalCubit.get(context).localizationThemeState =
-                    LocalizationThemeState.ar
-                : LocalCubit.get(context).localizationThemeState =
-                    LocalizationThemeState.en;
+            LocalCubit.get(context).changeLocale();
+
           });
         },
         activeTrackColor: AppColors.blueColor2,
