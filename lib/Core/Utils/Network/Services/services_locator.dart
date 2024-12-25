@@ -34,8 +34,6 @@ Future<void> setup() async {
 
   /// For API Services
   getIt.registerLazySingleton<MapRepo>(() => Maprepoimp(apiService: getIt()));
-  getIt.registerSingleton<ApiService>(
-      ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
 
   /// For Controller
   getIt.registerFactory(() => MapsCubit(mapsRepository: getIt()));

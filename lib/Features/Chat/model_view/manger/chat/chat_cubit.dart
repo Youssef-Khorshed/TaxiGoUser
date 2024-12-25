@@ -9,7 +9,6 @@ import '../../../../../Core/Utils/Network/Error/failure.dart';
 import '../../../../../Core/Utils/pusher_configuration/event_bounder_manager.dart';
 import '../../../data/model/message_data.dart';
 import '../../../data/repo/chatrepo.dart';
-
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
