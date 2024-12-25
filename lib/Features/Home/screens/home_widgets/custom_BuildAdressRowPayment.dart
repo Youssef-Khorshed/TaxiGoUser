@@ -1,38 +1,41 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
+
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/trip_details.dart';
 
-class BuildAddressRowPayment extends StatelessWidget {
-  const BuildAddressRowPayment({
+class BuildAddressRowUpdated extends StatelessWidget {
+  const BuildAddressRowUpdated({
     super.key,
-    required this.rideDetails,
+    required this.lateFrom,
+    required this.langFrom,
+    required this.lateTo,
+    required this.langTo,
+    required this.distance,
   });
-  final RideCompleteDetailsModel rideDetails;
+
+  final String lateFrom;
+  final String langFrom;
+  final String lateTo;
+  final String langTo;
+  final double distance;
 
   @override
   Widget build(BuildContext context) {
-    if (rideDetails.latFrom == null ||
-        rideDetails.lngFrom == null ||
-        rideDetails.latTo == null ||
-        rideDetails.lngTo == null) {
-      return const Center(child: Text("Invalid location data"));
-    }
-
     return FutureBuilder<Map<String, String>>(
       future: _getFormattedAddresses(
-        fromLatitude: double.parse(rideDetails.latFrom!),
-        fromLongitude: double.parse(rideDetails.lngFrom!),
-        toLatitude: double.parse(rideDetails.latTo!),
-        toLongitude: double.parse(rideDetails.lngTo!),
+        fromLatitude: double.parse(lateFrom),
+        fromLongitude: double.parse(langFrom),
+        toLatitude: double.parse(lateTo),
+        toLongitude: double.parse(langTo),
       ),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -79,12 +82,12 @@ class BuildAddressRowPayment extends StatelessWidget {
               TripDetailsMap(
                 address: toAddress,
                 location: toCity,
-                icon: AppIcons.iconsMapBlue,
+                icon: AppIcons.mapBlueIcon,
               ),
             ],
           ),
           trailing: Text(
-            "${rideDetails.ride!.distance} ${AppLocalizations.of(context)!.km}",
+            "${distance} ${AppLocalizations.of(context)!.km}",
             style: AppTextStyles.style12DarkgrayW400,
           ),
         );
@@ -165,7 +168,7 @@ Widget simmerWidget(context) {
               height: MediaQuery.of(context).size.height * .02,
               width: MediaQuery.of(context).size.width * .05,
               child: SvgPicture.asset(
-                AppIcons.iconsMapBlue,
+                AppIcons.mapBlueIcon,
               ),
             ),
           ],

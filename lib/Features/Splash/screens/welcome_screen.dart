@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
@@ -8,7 +7,6 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -39,12 +37,13 @@ class WelcomeScreen extends StatelessWidget {
                       height: 265.h,
                       width: 410.w,
                     ),
-                    verticalSpace(20),
-                    AutoSizeText( AppLocalizations.of(context)!.welcome,
-                        style: AppTextStyles.style24WhiteW500),
-                    AutoSizeText(
-                      AppLocalizations.of(context)!.have_a_better,
-                      style: AppTextStyles.style16WhiteW500,
+                    verticalSpace(20.h),
+                    Text(AppLocalizations.of(context)!.welcome,
+                        style: AppTextStyles.style28WhiteW600),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .have_a_better_transport_experience,
+                      style: AppTextStyles.style20WhiteW600,
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -52,13 +51,13 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: EdgeInsets.only(bottom: 20.h),
               child: Column(
                 children: [
                   CustomAppBottom(
                     textColor: AppColors.blueColor,
                     buttonColor: AppColors.whiteColor,
-                    buttonText: AppLocalizations.of(context)!.create_account,
+                    buttonText: AppLocalizations.of(context)!.create_an_account,
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.signUp);
                     },
@@ -70,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                     },
                     textColor: AppColors.whiteColor,
                     buttonColor: AppColors.transparentColor,
-                    buttonText: AppLocalizations.of(context)!.log_in,
+                    buttonText: AppLocalizations.of(context)!.logIn,
                   ),
                 ],
               ),

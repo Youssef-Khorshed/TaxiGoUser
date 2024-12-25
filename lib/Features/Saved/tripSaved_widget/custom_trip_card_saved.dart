@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
 class SavedCard extends StatelessWidget {
   final String from;
@@ -36,32 +35,50 @@ class SavedCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
           child: const Row(
             children: [
-              Expanded(
-                  child: CustomBuildTripDetails(
-                hasIcon: true,
-              )),
+              // Expanded(
+              //     child: CustomBuildTripDetails(
+              //   from: '',
+              //   to: '',
+              //   timeFrom: '',
+              //   timeTo: '',
+              //   driverName: '',
+              //   rating: '',
+              //   price: '',
+              //   hasIcon: true,
+              // )),
             ],
           ),
         ),
         Positioned(
-            top: 1,
-            right: 5,
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                CircleAvatar(
-                  radius: 17.r,
-                  backgroundColor: AppColors.redColor.withOpacity(0.1),
+          top: 1,
+          right: 5,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.star_border,
                 ),
-                IconButton(
-                    iconSize: 18.sp,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.minimize,
-                      color: AppColors.redColor,
-                    ))
-              ],
-            ))
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 1,
+          left: 5,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.bookmark_outline,
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

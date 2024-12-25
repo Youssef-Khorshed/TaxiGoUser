@@ -19,6 +19,14 @@ abstract class AppTextStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+
+  static TextStyle style28WhiteW600 = TextStyle(
+    fontSize: 28,
+    color: AppColors.whiteColor,
+    fontWeight: FontWeight.w600,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
   static TextStyle style24DarkgrayW500 = TextStyle(
     fontSize: 24.sp,
     color: AppColors.darkgrayColor,
@@ -105,6 +113,13 @@ abstract class AppTextStyles {
     fontSize: 18.sp,
     color: AppColors.blueColor,
     fontWeight: FontWeight.w500,
+    height: 0,
+  );
+
+  static TextStyle style15Blue = TextStyle(
+    fontSize: 15.sp,
+    color: AppColors.blueColor,
+    fontWeight: FontWeight.bold,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
@@ -113,7 +128,7 @@ abstract class AppTextStyles {
     fontSize: 16.sp,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: "Cairo",
     height: 0,
   );
 

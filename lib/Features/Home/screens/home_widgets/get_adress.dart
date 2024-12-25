@@ -31,12 +31,12 @@ class BuildAddressRow2 extends StatelessWidget {
           TripDetailsMap(
             address: originTitle,
             location: originSubTitle,
-            icon: AppIcons.iconsMapRed,
+            icon: AppIcons.mapRedIcon,
           ),
           TripDetailsMap(
             address: destinationTitle,
             location: destinationSubTitle,
-            icon: AppIcons.iconsMapBlue,
+            icon: AppIcons.mapBlueIcon,
           ),
         ],
       ),
@@ -74,7 +74,7 @@ Widget simmerWidget(context) {
               height: MediaQuery.of(context).size.height * .02,
               width: MediaQuery.of(context).size.width * .05,
               child: SvgPicture.asset(
-                AppIcons.iconsMapBlue,
+                AppIcons.mapBlueIcon,
               ),
             ),
           ],

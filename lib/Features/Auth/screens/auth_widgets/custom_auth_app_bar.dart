@@ -7,7 +7,6 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class CustomAuthAppBar extends StatelessWidget {
   const CustomAuthAppBar({
     super.key,
@@ -16,7 +15,7 @@ class CustomAuthAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
       child: GestureDetector(
         onTap: () => Navigator.pop(context),
         child: Row(

@@ -24,7 +24,7 @@ class LocationDetails extends StatelessWidget {
           TripDetailsMap(
             address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
             location: "Office",
-            icon: AppIcons.iconsMapBlue,
+            icon: AppIcons.mapBlueIcon,
           ),
         ],
       ),

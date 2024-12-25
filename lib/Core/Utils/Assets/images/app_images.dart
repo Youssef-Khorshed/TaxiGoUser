@@ -6,4 +6,7 @@ class AppImages {
   static const String cash = 'assets/images/paymentimg.png';
   static const String zainCashImage = 'assets/images/zaincash.png';
   static const String arrowUpDoownImage = 'assets/images/right-up.png';
+  static const String user = 'assets/images/a-user.png';
+  static const String emptyData = 'assets/images/Task-amico 1.svg';
+  static const String failureData = 'assets/images/Car crash-amico.svg';
 }

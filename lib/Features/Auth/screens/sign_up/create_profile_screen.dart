@@ -6,10 +6,9 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
+import 'package:taxi_go_user_version/Features/Auth/presentation/auth_widgets/custom_set_profile_bottoms.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
-import '../auth_widgets/custom_set_profile_bottoms.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 class CreateProfileScreen extends StatefulWidget {
   const CreateProfileScreen({super.key});
@@ -46,7 +45,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       size: 25,
                     ),
                     horizontalSpace(5),
-                    AutoSizeText( AppLocalizations.of(context)!.back, style: AppTextStyles.style20BlackW500)
+                    AutoSizeText(AppLocalizations.of(context)!.back,
+                        style: AppTextStyles.style20BlackW500)
                   ]),
                 ),
                 verticalSpace(30),
@@ -84,7 +84,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
-                  hintText: AppLocalizations.of(context)!.enter_your_phone_number,
+                  hintText:
+                      AppLocalizations.of(context)!.enter_your_phone_number,
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
                   textStyle: AppTextStyles.style12DarkgrayW400,

@@ -8,7 +8,7 @@ import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_terms_check_box.dart';
+import 'package:taxi_go_user_version/Features/Auth/presentation/auth_widgets/custom_terms_check_box.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
