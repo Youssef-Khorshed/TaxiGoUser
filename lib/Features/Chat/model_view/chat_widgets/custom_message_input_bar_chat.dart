@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import '../../../../Core/Utils/Assets/icons/app_icons.dart';
 import '../manger/chat/chat_cubit.dart';
@@ -31,20 +32,17 @@ class MessageInputBar extends StatelessWidget {
         ),
         child: Row(
           children: [
-
             GestureDetector(
               child: Padding(
-                padding: EdgeInsets.all(4.sp),
+                padding: EdgeInsets.all(12.sp),
                 child: Image.asset(AppIcons.send),
               ),
-
               onTap: () {
                 final messageText = messageController.text.trim();
                 if (messageText.isNotEmpty) {
                   chatCubit.sendMessage(
                     messageText,
-                    {"message_type": "text",
-                      "message": messageText},
+                    {"message_type": "text", "message": messageText},
                     "text",
                     context,
                   );
@@ -52,11 +50,19 @@ class MessageInputBar extends StatelessWidget {
                 }
               },
             ),
+            Container(
+              height: 30.h,
+              width: 2.w,
+              decoration: BoxDecoration(
+                color: AppColors.grayColor,
+                borderRadius: BorderRadius.circular(30.r),
+              ),
+            ),
             Expanded(
               child: TextField(
                 controller: messageController,
                 decoration: InputDecoration(
-                  hintText:  AppLocalizations.of(context)!.typeamessage,
+                  hintText: AppLocalizations.of(context)!.typeamessage,
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 15.sp,

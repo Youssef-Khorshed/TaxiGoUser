@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
 import 'package:taxi_go_user_version/Core/Firebase/firebase_options.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/dependencyInjection.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
@@ -11,9 +12,7 @@ import 'package:taxi_go_user_version/taxi_go_user_edition_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final serviceLocator = ServicesLocator();
-  serviceLocator.init();
+  await setup();
 
   await getIt<CacheHelper>().cacheInit();
   await Firebase.initializeApp(

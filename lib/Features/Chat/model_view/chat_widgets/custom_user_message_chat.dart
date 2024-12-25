@@ -8,12 +8,14 @@ class UserMessage extends StatelessWidget {
   final String message;
   final String userType;
   final double widthFactor;
+  final String time;
 
   const UserMessage({
     super.key,
     required this.message,
     required this.userType,
     required this.widthFactor,
+    required this.time,
   });
 
   @override
@@ -23,11 +25,10 @@ class UserMessage extends StatelessWidget {
     return Align(
       alignment: isCaptain ? Alignment.centerLeft : Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 5),
-        padding: const EdgeInsets.all(10),
+        margin: EdgeInsets.symmetric(vertical: 5.h),
+        padding: EdgeInsets.all(10.r),
         constraints: BoxConstraints(
           maxWidth: widthFactor,
-          maxHeight: 80.h,
         ),
         decoration: BoxDecoration(
           boxShadow: const [
@@ -46,14 +47,48 @@ class UserMessage extends StatelessWidget {
             topRight: Radius.circular(16.sp),
           ),
         ),
-        child: AutoSizeText(
-          message,
-          maxLines: 100,
-          style: AppTextStyles.style14BlackW500.copyWith(
-            color: isCaptain ? AppColors.blackColor : AppColors.whiteColor,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              message,
+              maxLines: 1000,
+              style: AppTextStyles.style14BlackW500.copyWith(
+                color: isCaptain ? AppColors.blackColor : AppColors.whiteColor,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2.r),
+              child: Text(extractHourMinuteWithPeriod(time),
+                  style: AppTextStyles.style12GrayW400),
+            )
+          ],
         ),
       ),
     );
+  }
+}
+
+String extractHourMinuteWithPeriod(String apiTime) {
+  try {
+    // تحويل النص إلى كائن DateTime
+    DateTime dateTime = DateTime.parse(apiTime);
+    // استخراج الساعة والدقيقة
+    int hour = dateTime.hour;
+    String minute = dateTime.minute
+        .toString()
+        .padLeft(2, '0'); // إضافة صفر إذا كانت الدقيقة أقل من 10
+    String period = hour >= 12 ? "PM" : "AM"; // تحديد الفترة الزمنية
+
+    // تحويل الساعة إلى صيغة 12 ساعة
+    hour = hour % 12 == 0 ? 12 : hour % 12;
+
+    // تنسيق النتيجة
+    String formattedHour =
+        hour.toString().padLeft(2, '0'); // إضافة صفر إذا كانت الساعة أقل من 10
+    return "$formattedHour:$minute $period";
+  } catch (e) {
+    // في حالة وجود خطأ في النص
+    return "Invalid time format";
   }
 }

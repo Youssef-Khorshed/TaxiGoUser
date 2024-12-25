@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/custom_message_input_bar_chat.dart';
+import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/share_location.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'model_view/chat_widgets/custom_user_message_chat.dart';
 import 'model_view/chat_widgets/locationmessage.dart';
@@ -28,7 +31,6 @@ class _ChatScreenState extends State<ChatScreen> {
     _chatCubit = getIt<ChatCubit>();
     _chatCubit.getChatdata(context);
     _chatCubit.listenForMessages();
-
   }
 
   @override
@@ -39,17 +41,20 @@ class _ChatScreenState extends State<ChatScreen> {
       value: _chatCubit,
       child: Scaffold(
         backgroundColor: AppColors.whiteColor,
-
         appBar: AppBar(
           backgroundColor: AppColors.whiteColor,
           elevation: 0,
           scrolledUnderElevation: 0,
-          title: const UserNameContainer(),
+          title: const UserNameContainer(
+            image:
+                "https://firebasestorage.googleapis.com/v0/b/alexu-a9210.appspot.com/o/Vector%20(1).png?alt=media&token=e4d896a0-ec30-4944-b798-8ce0845d0bdb",
+            name: "Ahmed Saaid",
+          ),
         ),
         body: BlocBuilder<ChatCubit, ChatState>(
           builder: (context, state) {
             if (state is ChatLoad) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CustomLoading());
             }
             if (state is Chaterror) {
               return const Center(child: Text("Error"));
@@ -68,7 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   Expanded(
                     child: ListView.builder(
                       controller: _scrollController,
-                      padding: EdgeInsets.all(5.sp),
+                      padding: EdgeInsets.all(15.sp),
                       itemCount: state.messages.length,
                       itemBuilder: (context, index) {
                         final message = state.messages[index];
@@ -83,11 +88,11 @@ class _ChatScreenState extends State<ChatScreen> {
                           );
                         }
                         return UserMessage(
+                          time: message.createdAt ?? "",
                           message: message.message ?? "",
                           userType: message.senderType,
                           widthFactor: screenWidth * 0.9,
                         );
-
                       },
                     ),
                   ),
@@ -96,7 +101,9 @@ class _ChatScreenState extends State<ChatScreen> {
               );
             }
 
-            return const Center(child: Text('Start a conversation'));
+            return Center(
+                child:
+                    Text(AppLocalizations.of(context)!.start_a_conversation));
           },
         ),
       ),

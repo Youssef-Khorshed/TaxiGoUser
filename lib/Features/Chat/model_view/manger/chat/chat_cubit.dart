@@ -12,13 +12,15 @@ import '../../../data/model/message_data.dart';
 import '../../../data/repo/chatrepo.dart';
 
 part 'chat_state.dart';
+
 class ChatCubit extends Cubit<ChatState> {
   final Chatrepo chatrepo;
   final EventBindingManager _eventBindingManager;
 
   ChatCubit(this.chatrepo, this._eventBindingManager) : super(ChatInitial());
 
-  Future<void> sendMessage(String message, Map<String, dynamic> data, String type, BuildContext context) async {
+  Future<void> sendMessage(String message, Map<String, dynamic> data,
+      String type, BuildContext context) async {
     try {
       await chatrepo.sendMessage(
         data: data,
@@ -27,16 +29,21 @@ class ChatCubit extends Cubit<ChatState> {
       );
 
       // Retrieve the current message list
-      final currentMessages = (state is Chatsuccful) ? (state as Chatsuccful).messages : [];
+      final currentMessages =
+          (state is Chatsuccful) ? (state as Chatsuccful).messages : [];
 
       // Add the new message to the current list
       final newMessage = Message(
+        createdAt: "",
         messageType: type,
         message: message,
-        senderType: "user", lat: null, lng: null,
+        senderType: "user",
+        lat: null,
+        lng: null,
       );
 
-      final updatedMessages = List<Message>.from(currentMessages)..add(newMessage);
+      final updatedMessages = List<Message>.from(currentMessages)
+        ..add(newMessage);
 
       emit(Chatsuccful(updatedMessages));
     } catch (e) {
@@ -45,17 +52,17 @@ class ChatCubit extends Cubit<ChatState> {
     }
   }
 
-
-  Future<Either<Failure, List<Message>>> getChatdata(BuildContext context) async {
+  Future<Either<Failure, List<Message>>> getChatdata(
+      BuildContext context) async {
     emit(ChatLoad());
 
     final response = await chatrepo.getChatDetails(context: context);
 
     response.fold(
-          (failure) {
+      (failure) {
         emit(Chaterror());
       },
-          (messages) {
+      (messages) {
         emit(Chatsuccful(messages));
       },
     );

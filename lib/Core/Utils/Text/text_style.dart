@@ -36,7 +36,7 @@ abstract class AppTextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     color: AppColors.blackColor,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: GoogleFonts.amiri().fontFamily,
   );
   static TextStyle style24BlackW500 = TextStyle(
     fontSize: 24.sp,

@@ -49,10 +49,6 @@ class TaxiGoUserEditionApp extends StatelessWidget {
               create: (context) =>
                   RateCancelCubit(sl<RateRepo>(), sl<CancelRepo>()),
             ),
-            BlocProvider(
-              create: (context) =>
-                  ChatCubit(sl<Chatrepo>(), sl<EventBindingManager>()),
-            ),
           ],
           child: BlocBuilder<LocalCubit, LocalState>(
             builder: (context, state) {

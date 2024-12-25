@@ -8,7 +8,7 @@ class Message {
   final double? lat;
   final double? lng;
   // final String? voiceMessagePath;
-  // final DateTime createdAt;
+  final String createdAt;
   // final DateTime updatedAt;
 
   Message({
@@ -21,7 +21,7 @@ class Message {
     this.lat,
     this.lng,
     // this.voiceMessagePath,
-    // required this.createdAt,
+    required this.createdAt,
     // required this.updatedAt,
   });
 
@@ -36,7 +36,7 @@ class Message {
       lat: json['lat'] != null ? (json['lat'] as num).toDouble() : null,
       lng: json['lng'] != null ? (json['lng'] as num).toDouble() : null,
       // voiceMessagePath: json['voice_message_path'],
-      // createdAt: DateTime.parse(json['created_at']),
+      createdAt: json['created_at'],
       // updatedAt: DateTime.parse(json['updated_at']
 
       // ),

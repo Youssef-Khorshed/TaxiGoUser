@@ -32,13 +32,12 @@ Future<void> setup() async {
       ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
 
   /// Pusher Services
+
   getIt.registerFactory<PusherConsumer>(() => PusherConsumerImpl(
       appKey: PusherConsts.PUSHER_APP_KEY, cluster: PusherConsts.CLUSTER));
-  getIt.registerSingleton<EventBindingManager>(EventBindingManager());
-
-  /// Chat Services
   getIt.registerSingleton<Chatrepo>(
       Chatrepoimp(getIt.get<ApiService>(), getIt.get<PusherConsumer>()));
+  getIt.registerSingleton<EventBindingManager>(EventBindingManager());
   getIt.registerFactory<ChatCubit>(
       () => ChatCubit(getIt.get<Chatrepo>(), getIt.get<EventBindingManager>()));
 
