@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepo.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/custom_message_input_bar_chat.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
@@ -27,7 +26,9 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
 
     _chatCubit = getIt<ChatCubit>();
-    _chatCubit.fetchMessages(context);
+    _chatCubit.getChatdata(context);
+    _chatCubit.listenForMessages();
+
   }
 
   @override
@@ -105,7 +106,6 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void dispose() {
     _chatCubit.close();
-    _scrollController.dispose();
     super.dispose();
   }
 }

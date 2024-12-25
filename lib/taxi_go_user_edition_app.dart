@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/dependencyInjection.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Core/Utils/pusher_configuration/event_bounder_manager.dart';
 import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepo.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
@@ -49,7 +50,8 @@ class TaxiGoUserEditionApp extends StatelessWidget {
                   RateCancelCubit(sl<RateRepo>(), sl<CancelRepo>()),
             ),
             BlocProvider(
-              create: (context) => ChatCubit(sl<Chatrepo>()),
+              create: (context) =>
+                  ChatCubit(sl<Chatrepo>(), sl<EventBindingManager>()),
             ),
           ],
           child: BlocBuilder<LocalCubit, LocalState>(

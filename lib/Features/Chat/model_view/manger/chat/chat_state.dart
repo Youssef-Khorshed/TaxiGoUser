@@ -20,3 +20,4 @@ class Chaterror extends ChatState{
 
 
 }
+class Listenchat extends ChatState{}
