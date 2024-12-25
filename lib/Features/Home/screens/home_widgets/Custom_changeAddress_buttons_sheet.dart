@@ -12,6 +12,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_P
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_changeAddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable, camel_case_types
 class Custom_changeAddress_buttons_sheet extends StatefulWidget {
@@ -50,7 +51,7 @@ class _Custom_changeAddress_buttons_sheetState
             buttonColor: AppColors.blueColor,
             borderColor: Colors.white,
             borderCornerRadius: 40.r,
-            buttonText: "Done",
+            buttonText: AppLocalizations.of(context)!.done,
             textColor: Colors.white,
             onPressed: () async {
               final cubit = context.read<MapsCubit>();
@@ -84,7 +85,7 @@ class _Custom_changeAddress_buttons_sheetState
             buttonColor: AppColors.whiteColor,
             borderColor: AppColors.redColor,
             borderCornerRadius: 40.r,
-            buttonText: "Cancel",
+            buttonText: AppLocalizations.of(context)!.cancel_k,
             textColor: AppColors.redColor,
             onPressed: () {
               if (mounted) {

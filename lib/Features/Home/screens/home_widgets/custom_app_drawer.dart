@@ -25,16 +25,16 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      width: width * 0.7,
-      decoration: const BoxDecoration(
+      width: width * 0.7.w,
+      decoration:  BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
+              topRight: Radius.circular(20.r), bottomRight: Radius.circular(20.r))),
       child: ListView(
           padding: EdgeInsets.only(
-            top: height * 0.05,
-            right: 5,
-            left: 5,
+            top: height * 0.05.h,
+            right: 5.w,
+            left: 5.w,
           ),
           children: [
             Column(
@@ -49,7 +49,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     ),
                     verticalSpace(10),
                     AutoSizeText(
-                      'Philobater samir',
+                      AppLocalizations.of(context)!.user_name,
                       style: AppTextStyles.style16WhiteW500.copyWith(
                           color: AppColors.blackColor,
                           fontWeight: FontWeight.bold),

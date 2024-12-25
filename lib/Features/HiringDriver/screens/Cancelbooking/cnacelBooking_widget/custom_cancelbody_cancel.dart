@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -25,12 +26,12 @@ class _CustomCancelbodyCancelState extends State<CustomCancelbodyCancel> {
         // Reason Selection Container
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(size.width * 0.05),
-          decoration: const BoxDecoration(
+          padding: EdgeInsets.all(size.width * 0.05.w),
+          decoration:  BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
+              topLeft: Radius.circular(20.r),
+              topRight: Radius.circular(20.r),
             ),
           ),
           child: Column(
@@ -41,7 +42,7 @@ class _CustomCancelbodyCancelState extends State<CustomCancelbodyCancel> {
                 AppLocalizations.of(context)!.why_do_you_want_to_cancel,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: size.height * 0.022,
+                  fontSize: size.height * 0.022.sp,
                 ),
               ),
               verticalSpace(size.height * 0.01),
@@ -58,7 +59,7 @@ class _CustomCancelbodyCancelState extends State<CustomCancelbodyCancel> {
 
               AppButton(
                 text: AppLocalizations.of(context)!.send,
-                height: size.height * 0.01,
+                height: size.height * 0.01.h,
                 circlesize: 24,
                 onPressed: () {
                   // Handle button press logic here

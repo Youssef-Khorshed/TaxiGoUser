@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class CustomOngoingwayrider extends StatefulWidget {
@@ -96,15 +98,15 @@ class _CustomOngoingwayriderState extends State<CustomOngoingwayrider> {
                           child: Column(
                             children: [
                               const Icon(Icons.directions_car),
-                              Text(
-                                'data',
+                              AutoSizeText(
+                                AppLocalizations.of(context)!.data,
                                 style: AppTextStyles.style12WhiteW500,
                               )
                             ],
                           )),
                       const Icon(Icons.star_rounded,
                           color: AppColors.yellowColor),
-                      const Text('4.9'),
+                      const AutoSizeText('4.9'),
                     ],
                   ),
                 ],
@@ -149,7 +151,7 @@ class _CustomOngoingwayriderState extends State<CustomOngoingwayrider> {
           verticalSpace(20.h),
           CustomAppBottom(
             onPressed: () {},
-            buttonText: 'Cancel',
+            buttonText: AppLocalizations.of(context)!.cancel_k,
             borderCornerRadius: 30.r,
             iconColor: AppColors.amberColor,
             buttonColor: AppColors.redColor,

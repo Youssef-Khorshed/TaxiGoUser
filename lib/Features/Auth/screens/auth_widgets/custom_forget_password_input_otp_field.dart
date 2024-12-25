@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../../Core/Utils/Colors/app_colors.dart';
 
@@ -16,8 +17,8 @@ class CustomForgetPasswordInputOtpField extends StatelessWidget {
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(5),
-        fieldHeight: 50,
-        fieldWidth: 53,
+        fieldHeight: 50.h,
+        fieldWidth: 53.w,
         activeFillColor: AppColors.whiteColor,
         selectedFillColor: AppColors.whiteColor,
         inactiveFillColor: AppColors.whiteColor,

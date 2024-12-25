@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
@@ -46,7 +47,7 @@ class PaymentButton extends StatelessWidget {
             buttonColor: AppColors.blueColor,
             borderColor: Colors.white,
             borderCornerRadius: 40.r,
-            buttonText: "Done",
+            buttonText: AppLocalizations.of(context)!.done,
             textColor: Colors.white,
             onPressed: () async {
               final cubit = context.read<MapsCubit>();
@@ -83,7 +84,7 @@ class PaymentButton extends StatelessWidget {
             buttonColor: AppColors.whiteColor,
             borderColor: AppColors.redColor,
             borderCornerRadius: 40.r,
-            buttonText: "Cancel",
+            buttonText: AppLocalizations.of(context)!.cancel_k,
             textColor: AppColors.redColor,
             onPressed: () {
               Navigator.pop(context);

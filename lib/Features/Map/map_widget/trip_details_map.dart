@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,11 +17,11 @@ class TripDetailsMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(
+      title: AutoSizeText(
         location,
         style: AppTextStyles.style16BlackW600,
       ),
-      subtitle: Text(
+      subtitle: AutoSizeText(
         address,
         style: AppTextStyles.style14DarkgrayW500,
       ),

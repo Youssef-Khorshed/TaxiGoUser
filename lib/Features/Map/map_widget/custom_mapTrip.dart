@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
@@ -55,7 +56,7 @@ class _CustomMaptripState extends State<CustomMaptrip> {
 
   GoogleMap buildMap() {
     return GoogleMap(
-      padding: const EdgeInsets.only(bottom: 50, left: 100),
+      padding:  EdgeInsets.only(bottom: 50.w, left: 100.h),
       markers: context.watch<MapsCubit>().markers,
       polylines: context.watch<MapsCubit>().polyLines,
       zoomControlsEnabled: false,

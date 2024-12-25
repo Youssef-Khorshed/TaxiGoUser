@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
@@ -13,9 +14,9 @@ class CustomDriverdetailsHistory extends StatelessWidget {
 
   Widget _buildDriverDetails() {
     return ListTile(
-      leading: const CircleAvatar(
+      leading: CircleAvatar(
         backgroundColor: AppColors.grayColor,
-        radius: 20,
+        radius: 20.r,
       ),
       title: AutoSizeText(
         'Mohamed haggag',
@@ -24,7 +25,7 @@ class CustomDriverdetailsHistory extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          const Icon(Icons.star, size: 16, color: Colors.amber),
+          Icon(Icons.star, size: 16.sp, color: Colors.amber),
           AutoSizeText(
             '4.9',
             style: AppTextStyles.style14GrayW500,

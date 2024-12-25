@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +6,7 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/custom_message_input_bar_chat.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'model_view/chat_widgets/custom_user_message_chat.dart';
 import 'model_view/chat_widgets/locationmessage.dart';
 import 'model_view/chat_widgets/user_name_container.dart';
@@ -50,7 +51,9 @@ class _ChatScreenState extends State<ChatScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is Chaterror) {
-              return const Center(child: Text("Error"));
+              return Center(
+                  child: AutoSizeText(
+                      AppLocalizations.of(context)!.error_occurred));
             }
             if (state is Chatsuccful) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -93,7 +96,9 @@ class _ChatScreenState extends State<ChatScreen> {
               );
             }
 
-            return const Center(child: Text('Start a conversation'));
+            return Center(
+                child: AutoSizeText(
+                    AppLocalizations.of(context)!.start_a_conversation));
           },
         ),
       ),

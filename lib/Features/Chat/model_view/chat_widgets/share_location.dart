@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,7 +19,7 @@ class ShareLocation extends StatelessWidget {
           height: 40.h,
           decoration: BoxDecoration(
             color: const Color(0xffEEEEEE),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
           ),
           alignment: Alignment.center,
           child: Directionality(
@@ -26,7 +27,7 @@ class ShareLocation extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                AutoSizeText(
                   AppLocalizations.of(context)!.sharelocation,
                   style: AppTextStyles.sharelocation,
                 ),

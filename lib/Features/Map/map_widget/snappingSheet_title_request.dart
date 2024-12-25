@@ -1,5 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SnappingSheetTitleRequest extends StatelessWidget {
   const SnappingSheetTitleRequest({
@@ -17,18 +20,18 @@ class SnappingSheetTitleRequest extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(
-              left: width * 0.3, right: width * 0.3, bottom: 25),
-          child: const Divider(
-            height: 25,
+              left: width * 0.3.w, right: width * 0.3.w, bottom: 25.h),
+          child: Divider(
+            height: 25.h,
             thickness: 7,
             color: AppColors.kgrey,
           ),
         ),
-        const Text(
-          'Trip Started',
+        AutoSizeText(
+          AppLocalizations.of(context)!.trip_started,
           style: TextStyle(
-              color: Color.fromARGB(255, 29, 26, 216),
-              fontSize: 25,
+              color: const Color.fromARGB(255, 29, 26, 216),
+              fontSize: 25.sp,
               fontWeight: FontWeight.bold),
         ),
       ],

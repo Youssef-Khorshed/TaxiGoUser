@@ -23,8 +23,8 @@ class UserMessage extends StatelessWidget {
     return Align(
       alignment: isCaptain ? Alignment.centerLeft : Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 5),
-        padding: const EdgeInsets.all(10),
+        margin:  EdgeInsets.symmetric(vertical: 5.h),
+        padding:  EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         constraints: BoxConstraints(
           maxWidth: widthFactor,
           maxHeight: 80.h,

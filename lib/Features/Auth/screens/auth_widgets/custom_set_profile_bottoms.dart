@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomSetProfileButtoms extends StatelessWidget {
@@ -26,11 +27,11 @@ class CustomSetProfileButtoms extends StatelessWidget {
         foregroundColor: textColor,
         backgroundColor: backgroundColor,
         side: borderColor != null
-            ? BorderSide(color: borderColor!, width: 1)
+            ? BorderSide(color: borderColor!, width: 1.w)
             : null,
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding:  EdgeInsets.symmetric(vertical: 16.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.r),
         ),
         elevation: 0,
       ),
@@ -38,7 +39,7 @@ class CustomSetProfileButtoms extends StatelessWidget {
         text,
         style: GoogleFonts.cairo(
           color: textColor,
-          fontSize: 16,
+          fontSize: 16.sp,
           fontWeight: FontWeight.normal,
         ),
       ),

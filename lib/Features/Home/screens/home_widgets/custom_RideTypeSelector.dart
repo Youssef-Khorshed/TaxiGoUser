@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class CustomRidetypeselector extends StatefulWidget {
@@ -16,15 +18,26 @@ class CustomRidetypeselector extends StatefulWidget {
 class _CustomRidetypeselectorState extends State<CustomRidetypeselector> {
   int selectedRideIndex = 0; // Track the selected ride index
 
-  final List<Map<String, dynamic>> rideTypes = [
-    {'title': 'Economy', 'icon': Icons.directions_car},
-    {'title': 'VIP', 'icon': Icons.directions_car_filled},
-    {'title': 'Airport', 'icon': Icons.directions_car},
-    {'title': 'Between country', 'icon': Icons.directions_car},
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> rideTypes = [
+      {
+        'title': AppLocalizations.of(context)!.economy,
+        'icon': Icons.directions_car
+      },
+      {
+        'title': AppLocalizations.of(context)!.vip,
+        'icon': Icons.directions_car_filled
+      },
+      {
+        'title': AppLocalizations.of(context)!.airport,
+        'icon': Icons.directions_car
+      },
+      {
+        'title': AppLocalizations.of(context)!.between_country,
+        'icon': Icons.directions_car
+      },
+    ];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(rideTypes.length, (index) {
@@ -50,7 +63,7 @@ class _CustomRidetypeselectorState extends State<CustomRidetypeselector> {
                   color: isSelected ? Colors.white : Colors.black,
                 ),
                 verticalSpace(4.h),
-                Text(
+                AutoSizeText(
                   rideTypes[index]['title'],
                   style: TextStyle(
                     color: isSelected ? Colors.white : Colors.black,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_auth_app_bar.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_sms_message_box.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
@@ -25,11 +25,11 @@ class ForgetPasswordScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AutoSizeText(
-              "Forget Password",
+              AppLocalizations.of(context)!.forget_password,
               style: AppTextStyles.style24BlackW500,
             ),
             AutoSizeText(
-              "Select which contact details should we use to reset your password",
+              AppLocalizations.of(context)!.select_which,
               style: AppTextStyles.style16WhiteW500
                   .copyWith(color: AppColors.grayColor),
               textAlign: TextAlign.center,
@@ -41,7 +41,7 @@ class ForgetPasswordScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.forgetPasswordSendOtp);
               },
-              buttonText: "Continue",
+              buttonText: AppLocalizations.of(context)!.continue_k,
             ),
           ],
         ),

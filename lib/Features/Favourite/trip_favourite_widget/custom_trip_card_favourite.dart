@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
@@ -32,7 +33,7 @@ class FavouriteCard extends StatelessWidget {
           shadowColor: AppColors.blackColor,
           color: AppColors.whiteColor,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
           child: const Row(
             children: [
               Expanded(
@@ -42,13 +43,13 @@ class FavouriteCard extends StatelessWidget {
             ],
           ),
         ),
-        const Positioned(
-          top: 5,
-          right: 1,
+         Positioned(
+          top: 5.h,
+          right: 1.w,
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding:  EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             child: Icon(
-              size: 30,
+              size: 30.sp,
               Icons.star_rate_rounded,
               color: AppColors.yellowColor,
             ),

@@ -17,12 +17,6 @@ class CancelBookingScreen extends StatefulWidget {
 
 class _CancelBookingScreenState extends State<CancelBookingScreen> {
   @override
-/*************  ✨ Codeium Command 🌟  *************/
-  /// Builds the cancel booking screen
-  ///
-  /// This screen is used to cancel the booking ride
-  ///
-  /// [AppRoutes.generalScreen] is the route that is used to go back to the general screen
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.blueColor,
@@ -57,4 +51,3 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
     );
   }
 }
-/******  594953bf-ea39-40e7-88b6-1f8f030b50e6  *******/

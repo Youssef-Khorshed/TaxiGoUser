@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -72,8 +73,8 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
             ),
             verticalSpace(10.h),
             // Promo Code
-            Text(
-              'If You have promo code you can get a Discount ',
+            AutoSizeText(
+              AppLocalizations.of(context)!.if_you_have_promo_code,
               style: AppTextStyles.style14BlackW500,
             ),
             verticalSpace(10),
@@ -86,13 +87,13 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                         context.read<MapsCubit>().checkPromocode(
                             context: context, code: controller.text);
                       },
-                      buttonText: 'Apply',
+                      buttonText: AppLocalizations.of(context)!.apply,
                     )),
                 Expanded(
                   flex: 2,
                   child: CustomTextFormFiled(
                     controller: controller,
-                    hintText: 'Promo Code',
+                    hintText: AppLocalizations.of(context)!.promo_code,
                     textStyle: AppTextStyles.style12DarkgrayW400,
                     hinttextStyle: AppTextStyles.style12DarkgrayW400,
                   ),
@@ -100,7 +101,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
               ],
             ),
             verticalSpace(10.h),
-            Text('Select Payment Method',
+            AutoSizeText(AppLocalizations.of(context)!.select_payment_method,
                 style: AppTextStyles.style16BlackW600),
             verticalSpace(10.h),
             // wallet Payment
