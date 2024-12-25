@@ -50,7 +50,6 @@
     "my_wallet":"محفظتي",
     "online_payment":"الدفع عبر الانترنت",
     "payment_method":"طريقة الدفع",
-    "currency":"دينار عراقي",
     "noPromoCode": "لا يوجد",
     "please_rate_the_trip": "من فضلك قيم الرحله ",
     "thank_you_for_your_review": "\"شكرًا لتقييمك! رأيك يهمنا ويساعدنا على تحسين تجربتك معنا. نتمنى أن تكون رحلتك ممتعة ونتطلع لخدمتك مجددًا قريبًا!\"",
@@ -67,7 +66,7 @@
     "typeamessage": "اكتب رسالة",
     "activeNow": "نشط الان",
     "sharelocation": "مشاركه الموقع",
-    "start_a_conversation": "بدء محادثة",
+    "start_a_conversation": "بدء المحادثة",
 
     "transactions": "المعاملات :",
     "available_balance": "الرصيد المتاح",

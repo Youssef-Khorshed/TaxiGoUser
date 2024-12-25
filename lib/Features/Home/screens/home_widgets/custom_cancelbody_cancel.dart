@@ -1,12 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_button_hiring.dart';
 
 class CustomCancelBodyCancel extends StatefulWidget {
   final Function(String) onCancel;
@@ -75,12 +75,10 @@ class _CustomCancelBodyCancelState extends State<CustomCancelBodyCancel> {
                 (index) => _buildReasonOption(index + 1, reasons[index]),
               ),
               verticalSpace(20),
-              AppButton(
-                text: AppLocalizations.of(context)!.send,
-                height: size.height * 0.01,
-                circlesize: 24,
-                onPressed: () => _sendCancellationReason(reasons, context),
-              ),
+              CustomAppBottom(
+                  buttonText: AppLocalizations.of(context)!.send,
+                  borderCornerRadius: 8,
+                  onPressed: () => _sendCancellationReason(reasons, context)),
             ],
           ),
         ),

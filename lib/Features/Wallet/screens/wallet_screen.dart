@@ -19,13 +19,20 @@ class WalletScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            RSizedBox.vertical(30.h),
+            Center(
+              child: AutoSizeText(AppLocalizations.of(context)!.wallet,
+                  style: AppTextStyles.style16BlackW600),
+            ),
+            RSizedBox.vertical(10.h),
             const AvailableBalanceListWidget(),
-            verticalSpace(10),
+            verticalSpace(10.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: AutoSizeText(AppLocalizations.of(context)!.transactions,
                   style: AppTextStyles.style16BlackW600),
             ),
+            verticalSpace(10.h),
             const Expanded(
               child: TransactionsListWidget(),
             ),

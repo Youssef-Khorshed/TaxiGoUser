@@ -8,10 +8,10 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_button_hiring.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/tripe_complete_date.dart';
 
 class PaymentScreen extends StatelessWidget {
@@ -70,11 +70,10 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                                 state.rideCompleteDetailsModel,
                           ),
                           verticalSpace(
-                              MediaQuery.of(context).size.height * .15),
-                          AppButton(
-                            text: AppLocalizations.of(context)!.confirm,
-                            height: MediaQuery.of(context).size.height * 0.01,
-                            circlesize: 8,
+                              MediaQuery.of(context).size.height * .30),
+                          CustomAppBottom(
+                            buttonText: AppLocalizations.of(context)!.confirm,
+                            borderCornerRadius: 8,
                             onPressed: () {
                               Navigator.of(context).pushNamed(AppRoutes.rate);
                             },

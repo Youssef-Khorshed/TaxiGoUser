@@ -1,7 +1,7 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Constants {
-  static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
+  static const String baseUrl = 'https://go-taxi.codecraft1.com/api/';
   static const String userToken =
       '130|pTBzqKJZfluwlnwPXVjOhyL4lQZVpdpg9a0R7lk5317c66ec';
   static const String rateTripe =
@@ -89,7 +89,7 @@ class Constants {
         "code": code //"SAVE10"//"SUMMER2024"
       };
   static const String getactiveRide = '$baseUrl/customer/rides/active';
-  static const String cancelRide = '/customer/rides/cancel';
+  static const String cancelRide = 'customer/rides/cancel';
   static String rateCaptin({required String rate}) =>
       '/customer/rides/rate?rate=$rate';
   static const kModelFont = 'Medel';
@@ -97,7 +97,7 @@ class Constants {
       'https://go-taxi.codecraft1.com/api/customer/rides/get-messages';
   static const sendchat =
       'https://go-taxi.codecraft1.com/api/customer/rides/send-message';
-  static const String baseUrl = 'https://go-taxi.codecraft1.com/api/';
+
   static const String walletDeposit = 'deposit';
   static const String walleTransactions = 'transactions';
   static const String walleGetProfileData = 'profile';

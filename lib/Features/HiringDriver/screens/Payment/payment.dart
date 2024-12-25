@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_buildrowdetail_hiring.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment_method_list_card.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_buildrowdetail_hiring.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payment_method_list_card.dart';
 
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 

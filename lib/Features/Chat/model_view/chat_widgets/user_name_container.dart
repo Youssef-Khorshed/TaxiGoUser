@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
@@ -21,6 +23,7 @@ class UserNameContainer extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
+              BlocProvider.of<ChatCubit>(context).stopMessageUpdateTimer();
               Navigator.pop(context);
             },
             child: const Icon(
@@ -33,7 +36,7 @@ class UserNameContainer extends StatelessWidget {
             width: 40.w,
             height: 40.h,
             decoration: BoxDecoration(
-              color: Color(0xff969696),
+              color: const Color(0xff969696),
               shape: BoxShape.circle,
               image: DecorationImage(
                 image: NetworkImage(image),
@@ -52,7 +55,7 @@ class UserNameContainer extends StatelessWidget {
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                   fontFamily: GoogleFonts.cairo().fontFamily,
-                  color: Color(0xff00D75A),
+                  color: const Color(0xff00D75A),
                 ),
               ),
             ],

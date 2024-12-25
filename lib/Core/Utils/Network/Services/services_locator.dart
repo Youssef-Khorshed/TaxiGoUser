@@ -1,5 +1,4 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo_imp.dart';
@@ -17,11 +16,11 @@ import 'package:taxi_go_user_version/Features/Wallet/data/repo/wallet_repo.dart'
 import 'package:taxi_go_user_version/Features/Wallet/data/repo/wallet_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/notification/controller/cubit/get_all_notification_cubit.dart';
 
-import '../../../../Features/notification/data/repo/notification_repo.dart';
-import '../../../../Features/notification/data/repo/notification_repo_impl.dart';
 import '../../../../Features/Chat/data/repo/chatrepo.dart';
 import '../../../../Features/Chat/data/repo/chatrepoimp.dart';
 import '../../../../Features/Chat/model_view/manger/chat/chat_cubit.dart';
+import '../../../../Features/notification/data/repo/notification_repo.dart';
+import '../../../../Features/notification/data/repo/notification_repo_impl.dart';
 import '../../pusher_configuration/event_bounder_manager.dart';
 import '../../pusher_configuration/pusher_consts.dart';
 import '../../pusher_configuration/pusher_consumer.dart';
@@ -55,8 +54,9 @@ Future<void> setup() async {
   getIt.registerSingleton<Chatrepo>(
       Chatrepoimp(getIt.get<ApiService>(), getIt.get<PusherConsumer>()));
   getIt.registerSingleton<EventBindingManager>(EventBindingManager());
-  getIt.registerFactory<ChatCubit>(
-      () => ChatCubit(getIt.get<Chatrepo>(), getIt.get<EventBindingManager>()));
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(
+        getIt.get<Chatrepo>(),
+      ));
 
   /// For Controller
   getIt.registerFactory(() => WalletCubit(getIt()));

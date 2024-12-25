@@ -27,29 +27,31 @@ class AvaliableBalanceItemWidget extends StatelessWidget {
               AppLocalizations.of(context)!.available_balance,
               style: AppTextStyles.style16BlackW600,
             ),
-            Row(
-              children: [
-                AutoSizeText(
-                  amount,
-                  style: AppTextStyles.style18BlueBold,
-                ),
-                horizontalSpace(5),
-                AutoSizeText(
-                  AppLocalizations.of(context)!.currency_iqd,
-                  style: AppTextStyles.style12DarkgrayW400,
-                ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    walletDialog(context);
-                  },
-                  child: Icon(
-                    Icons.add,
-                    size: 35.sp,
-                    color: AppColors.blueColor,
+            Center(
+              child: Row(
+                children: [
+                  AutoSizeText(
+                    amount,
+                    style: AppTextStyles.style18BlueBold,
                   ),
-                ),
-              ],
+                  horizontalSpace(5.w),
+                  AutoSizeText(
+                    AppLocalizations.of(context)!.currency_iqd,
+                    style: AppTextStyles.style12DarkgrayW400,
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      walletDialog(context);
+                    },
+                    child: Icon(
+                      Icons.add,
+                      size: 35.sp,
+                      color: AppColors.blueColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

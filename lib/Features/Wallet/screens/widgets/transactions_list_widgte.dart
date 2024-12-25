@@ -21,6 +21,7 @@ class TransactionsListWidget extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TransactionSuccess) {
             return ListView.builder(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               itemCount: transactionCubit.getAllTransactionsModel?.data!.length,
               itemBuilder: (context, index) {

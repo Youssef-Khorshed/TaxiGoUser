@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-
-import '../../../Core/Utils/Colors/app_colors.dart';
+import 'package:lottie/lottie.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/lottie/lottie.dart';
 
 class CustomLoading extends StatelessWidget {
   const CustomLoading({super.key});
@@ -11,9 +10,10 @@ class CustomLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: LoadingAnimationWidget.staggeredDotsWave(
-      color: AppColors.blueColor,
-      size: 50.r,
+        child: Lottie.asset(
+      AppLottie.loading,
+      fit: BoxFit.cover,
+      width: 50.r,
     ));
   }
 }

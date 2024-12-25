@@ -1,14 +1,16 @@
 import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
-import 'package:taxi_go_user_version/Core/Utils/pusher_configuration/dynamic_listener.dart';
 import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepo.dart';
+
 import '../../../../Core/Utils/Network/Error/failure.dart';
 import '../../../../Core/Utils/Network/Services/api_constant.dart';
 import '../../../../Core/Utils/pusher_configuration/pusher_consumer.dart';
 import '../model/message_data.dart';
+
 class Chatrepoimp implements Chatrepo {
   final ApiService apiService;
   final PusherConsumer _pusherConsumer;
@@ -39,8 +41,6 @@ class Chatrepoimp implements Chatrepo {
     }
   }
 
-
-
   @override
   Future<void> sendMessage({
     String? message,
@@ -61,5 +61,4 @@ class Chatrepoimp implements Chatrepo {
       log('Error sending message: $e');
     }
   }
-
 }

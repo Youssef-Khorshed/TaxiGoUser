@@ -13,8 +13,8 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
 
 class TestSccreen extends StatelessWidget {
@@ -31,7 +33,7 @@ class TestSccreen extends StatelessWidget {
         Center(
           child: GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, AppRoutes.wallet);
+              Navigator.pushNamed(context, AppRoutes.wallet);
             },
             child: Container(
               height: 100,
@@ -47,7 +49,7 @@ class TestSccreen extends StatelessWidget {
         Center(
           child: GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, AppRoutes.chat);
+              Navigator.pushNamed(context, AppRoutes.chat);
             },
             child: Container(
               height: 100,
@@ -65,7 +67,7 @@ class TestSccreen extends StatelessWidget {
             return Center(
               child: GestureDetector(
                 onTap: () async {
-                  Navigator.pushReplacementNamed(context, AppRoutes.payment);
+                  Navigator.pushNamed(context, AppRoutes.payment);
                 },
                 child: Container(
                   height: 100,
@@ -79,6 +81,29 @@ class TestSccreen extends StatelessWidget {
               ),
             );
           },
+        ),
+        BlocProvider(
+          create: (context) => getIt<ChatCubit>(),
+          child: BlocBuilder<ChatCubit, ChatState>(
+            builder: (context, state) {
+              return Center(
+                child: GestureDetector(
+                  onTap: () async {
+                    BlocProvider.of<ChatCubit>(context).clearMessages();
+                  },
+                  child: Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(child: Text("clear")),
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ],
     ));

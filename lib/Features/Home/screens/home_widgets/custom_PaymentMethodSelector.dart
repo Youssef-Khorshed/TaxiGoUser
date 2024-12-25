@@ -106,14 +106,14 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
               context,
               method: AppLocalizations.of(context)!.wallet,
               icon: Icons.account_balance_wallet,
-              subtitle: '${AppLocalizations.of(context)!.currency} 349',
+              subtitle: '${AppLocalizations.of(context)!.currency_iqd} 349',
             ),
             verticalSpace(10.h),
             paymentOption(
               context,
               method: AppLocalizations.of(context)!.cash,
               icon: Icons.attach_money,
-              subtitle: '${AppLocalizations.of(context)!.currency} 349',
+              subtitle: '${AppLocalizations.of(context)!.currency_iqd} 349',
             ),
             verticalSpace(10.h),
             PaymentButton(

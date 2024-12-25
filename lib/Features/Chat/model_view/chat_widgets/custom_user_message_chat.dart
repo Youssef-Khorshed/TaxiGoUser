@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -71,24 +70,18 @@ class UserMessage extends StatelessWidget {
 
 String extractHourMinuteWithPeriod(String apiTime) {
   try {
-    // تحويل النص إلى كائن DateTime
-    DateTime dateTime = DateTime.parse(apiTime);
-    // استخراج الساعة والدقيقة
+    final regex = RegExp(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}Z$');
+    if (!regex.hasMatch(apiTime)) {
+      return "Invalid time format";
+    }
+    DateTime dateTime = DateTime.parse(apiTime).toLocal();
     int hour = dateTime.hour;
-    String minute = dateTime.minute
-        .toString()
-        .padLeft(2, '0'); // إضافة صفر إذا كانت الدقيقة أقل من 10
-    String period = hour >= 12 ? "PM" : "AM"; // تحديد الفترة الزمنية
-
-    // تحويل الساعة إلى صيغة 12 ساعة
+    String minute = dateTime.minute.toString().padLeft(2, '0');
+    String period = hour >= 12 ? "PM" : "AM";
     hour = hour % 12 == 0 ? 12 : hour % 12;
-
-    // تنسيق النتيجة
-    String formattedHour =
-        hour.toString().padLeft(2, '0'); // إضافة صفر إذا كانت الساعة أقل من 10
+    String formattedHour = hour.toString().padLeft(2, '0');
     return "$formattedHour:$minute $period";
   } catch (e) {
-    // في حالة وجود خطأ في النص
     return "Invalid time format";
   }
 }

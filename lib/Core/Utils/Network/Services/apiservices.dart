@@ -1,10 +1,10 @@
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
 import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
@@ -110,27 +110,6 @@ class ApiService {
       throw NoInternetException(message: 'No internet Connection');
     }
     throw UnExpectedException(message: 'Un Expected error occurs');
-    try {
-      if (await internetConnectivity.isConnected) {
-        // ignore: use_build_context_synchronously
-        _dio = await getDio(context);
-        final response = await _dio!.post(url, data: body);
-        if (response.statusCode != null) {
-          if (response.statusCode == 200) {
-            return response.data;
-          } else {
-            throw ServerException(
-              message: response.toString(),
-            );
-          }
-        }
-      } else {
-        throw NoInternetException(message: 'No internet Connection');
-      }
-      throw UnExpectedException(message: 'Un Expected error occurs');
-    } on DioException catch (e) {
-      throw ServerException(message: e.toString());
-    }
   }
 
   // Function to make PUT requests
