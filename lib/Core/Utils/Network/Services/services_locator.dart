@@ -9,12 +9,16 @@ import '../../../../Features/Auth/presentation/controller/otp_cubit/otp_cubit.da
 import '../../../../Features/Auth/presentation/controller/set_new_password/set_new_password_cubit.dart';
 import '../../../../Features/Auth/presentation/controller/set_password_cubit/set_password_cubit.dart';
 import '../../../../Features/Auth/presentation/controller/sign_up_cubit.dart';
+import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo_impl.dart';
+
 import 'apiservices.dart';
 import 'cach_helper.dart';
 import 'internetconnection.dart';
 
 final getIt = GetIt.instance;
-
 Future<void> setup() async {
   // Services
   getIt.registerLazySingleton<CacheHelper>(() => CacheHelper());
@@ -26,6 +30,14 @@ Future<void> setup() async {
 
   // Repositories
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<HistoryRepoImpl>(
+      HistoryRepoImpl(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<SavedRepoImpl>(
+      SavedRepoImpl(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<ProfileRepoImpl>(
+      ProfileRepoImpl(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<FavoriteRepoImpl>(
+      FavoriteRepoImpl(apiService: getIt.get<ApiService>()));
 
   // Cubits
   getIt.registerFactory<CreateProfileCubit>(() => CreateProfileCubit(getIt.get<AuthRepo>()));

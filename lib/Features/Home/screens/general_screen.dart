@@ -12,6 +12,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_a
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../Auth/presentation/screens/log_in/log_in_screen.dart';
 
@@ -35,14 +36,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
   ];
 
   // Corrected screen names to match the number of screens
-  List<String> screensName = const [
-    "Home",
-    "Trip History",
-    "Trip Favourite",
-    "Trip Saved",
-    "Wallet",
-    "Logout",
-  ];
+
   void onItemTap(int index) {
     setState(() {
       selctedIndex = index;
@@ -52,6 +46,14 @@ class _GeneralScreenState extends State<GeneralScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> screensName = [
+      "Home",
+      AppLocalizations.of(context)!.trip_history,
+      AppLocalizations.of(context)!.trip_favorite,
+      AppLocalizations.of(context)!.trip_saved,
+      "Wallet",
+      "Logout",
+    ];
     return SafeArea(
         child: Scaffold(
       backgroundColor: AppColors.blueColor,

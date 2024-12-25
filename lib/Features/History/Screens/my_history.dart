@@ -1,71 +1,105 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_empty_data_view.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_failure_view.dart';
+import 'package:taxi_go_user_version/Features/History/controller/history_states.dart';
+import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
+import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_details_filter_dropdown.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
-
-import '../../../Core/Utils/Text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-        decoration: BoxDecoration(
-            color: AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(20)),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                    child: Text("History",
-                        style: AppTextStyles.style20WhiteW600
-                            .copyWith(color: AppColors.blackColor))),
-                Expanded(child: const CustomDetailsfilterdropdown()),
-              ],
+    return BlocBuilder<HistoryViewModel, HistoryStates>(
+      bloc: HistoryViewModel.get(context)..getHistoryData(context),
+      builder: (context, state) {
+        if (state is HistorySuccessStates ||
+            state is AddToSaveToFavSuccessStates) {
+          List<HistoryData> historyData =
+              HistoryViewModel.get(context).historyData;
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(20.r)),
+              child: historyData.isEmpty
+                  ? CustomEmptyDataView(
+                      message: AppLocalizations.of(context)!.empty_message)
+                  : Column(
+                      children: [
+                        const Row(
+                          children: [
+                            Expanded(child: CustomDetailsfilterdropdown()),
+                          ],
+                        ),
+                        verticalSpace(16.h),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: historyData.length,
+                            itemBuilder: (context, index) {
+                              return HistoryTripCard(
+                                onStarPressed: () {
+                                  HistoryViewModel.get(context).addToFavTrip(
+                                      context, historyData[index].ride![0].id!);
+                                  HistoryViewModel.get(context)
+                                      .getHistoryData(context);
+                                },
+                                onSavedPressed: () {
+                                  HistoryViewModel.get(context).saveTrip(
+                                      context, historyData[index].ride![0].id!);
+                                  HistoryViewModel.get(context)
+                                      .getHistoryData(context);
+                                },
+                                historyData: historyData[index],
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
             ),
-            verticalSpace(16),
-            Expanded(
-              child: ListView(
-                children: const [
-                  TripCard(
-                    from: 'State Park',
-                    to: 'Home',
-                    timeFrom: '7:34 AM',
-                    timeTo: '7:48 AM',
-                    driverName: 'Mohamed Haggag',
-                    rating: 4.9,
-                    price: '\$9.00',
+          );
+        }
+        if (state is HistoryFailureStates) {
+          return CustomFailureView(message: state.errMessage);
+        }
+        return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+            child: Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+                decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(20.r)),
+                child: Skeletonizer(
+                  child: Column(
+                    children: [
+                      const Row(
+                        children: [
+                          Expanded(child: CustomDetailsfilterdropdown()),
+                        ],
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: 10,
+                            itemBuilder: (context, index) =>
+                                const CustomDummyWidget()),
+                      ),
+                    ],
                   ),
-                  TripCard(
-                    from: 'Home',
-                    to: 'Office',
-                    timeFrom: '6:30 AM',
-                    timeTo: '6:47 AM',
-                    driverName: 'Mohamed Haggag',
-                    rating: 4.9,
-                    price: '\$9.00',
-                  ),
-                  TripCard(
-                    from: 'OM University',
-                    to: 'Home',
-                    timeFrom: '11:24 AM',
-                    timeTo: '11:52 AM',
-                    driverName: 'Mohamed Haggag',
-                    rating: 4.9,
-                    price: '\$9.00',
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                )));
+      },
     );
   }
 }

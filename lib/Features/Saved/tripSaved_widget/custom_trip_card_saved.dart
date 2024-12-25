@@ -35,32 +35,50 @@ class SavedCard extends StatelessWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: const Row(
             children: [
-              Expanded(
-                  child: CustomBuildTripDetails(
-                hasIcon: true,
-              )),
+              // Expanded(
+              //     child: CustomBuildTripDetails(
+              //   from: '',
+              //   to: '',
+              //   timeFrom: '',
+              //   timeTo: '',
+              //   driverName: '',
+              //   rating: '',
+              //   price: '',
+              //   hasIcon: true,
+              // )),
             ],
           ),
         ),
         Positioned(
-            top: 1,
-            right: 5,
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                CircleAvatar(
-                  radius: 17,
-                  backgroundColor: AppColors.redColor.withOpacity(0.1),
+          top: 1,
+          right: 5,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.star_border,
                 ),
-                IconButton(
-                    iconSize: 18,
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.minimize,
-                      color: AppColors.redColor,
-                    ))
-              ],
-            ))
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 1,
+          left: 5,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.bookmark_outline,
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

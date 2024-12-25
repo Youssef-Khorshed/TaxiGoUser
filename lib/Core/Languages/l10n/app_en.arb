@@ -83,8 +83,31 @@
     "please_enter_your_phone_number": "Please enter your phone number",
     "phone_number_must_be_exactly_10_digits": "Phone number must be exactly 10 digits",
     "error": "Error",
-    "countryCode": "+964"
+    "countryCode": "+964",
 
 
 
+    "@@locale": "en",
+   "log_in":"Log In",
+   "trip_history":"",
+   "today":"Today",
+   "yesterday":"Yesterday",
+   "last_7_days":"Last 7 days",
+   "last_30_days":"Last 30 days",
+   "this_month":"This month",
+   "price":"price",
+       "trip_favorite":"Trip Favorite",
+   "trip_saved":"Trip Saved",
+   "km": "km",
+   "iqd": "IQD",
+      "name": "Name",
+   "phone_nubmer": "Phone Number",
+   "birth_day": "Birthday",
+   "gender":"Gender",
+   "lang" : "Language",
+   "arabic": "Arabic",
+   "english": "English",
+   "balance": "Balance",
+   "address": "Address",
+      "empty_message": "There are no trips"
 }
