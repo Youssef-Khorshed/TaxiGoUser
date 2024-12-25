@@ -50,16 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        body: BlocConsumer<SignUpCubit, SignUpState>(
-          listener: (context, state) {
-            if (state is SignUpSuccess) {
-              Navigator.pushReplacementNamed(context, AppRoutes.otp);
-            } else if (state is SignUpFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(state.message),
-              ));
-            }
-          },
+        body: BlocBuilder<SignUpCubit, SignUpState>(
           builder: (context, state) {
             SignUpCubit cubit = SignUpCubit.get(context);
 
@@ -165,12 +156,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           return CustomAppBottom(
                               buttonText: AppLocalizations.of(context)!.sign_up,
                               onPressed: () async {
-                                Navigator.pushNamed(context, AppRoutes.otp);
+                                // Navigator.pushNamed(context, AppRoutes.otp);
                                 if (!_isChecked) {
                                   Fluttertoast.showToast(
                                     msg: "Please accept terms",
                                   );
                                 }
+                                SignUpCubit.get(context).validate(context);
+
                                 // Navigator.pushNamed(context, AppRoutes.otp);
 
                                 setState(() {});

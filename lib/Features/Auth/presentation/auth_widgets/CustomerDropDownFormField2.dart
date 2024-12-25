@@ -6,18 +6,20 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/models/get_cities_model/Cities.dart';
 
-import '../../data/models/get_districts_by_cities/Cities.dart';
+import '../../data/models/get_districts_by_cities/Districts.dart';
+
+
 
 // ignore: must_be_immutable
 class CustomDropDownFormField2 extends StatefulWidget {
-  final List<DistricCities> items;
+  final List<Districts> items;
   final String name;
   final Color? backgroundcolor;
   final Color bordercolor;
   final Color? iconEnabledColor;
   final Gradient? gradient;
   final TextStyle? nameTextStyle;
-  void Function(DistricCities?)? onChanged;
+  void Function(Districts?)? onChanged;
   CustomDropDownFormField2(
       {super.key,
       this.onChanged,

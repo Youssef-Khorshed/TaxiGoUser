@@ -1,14 +1,14 @@
 import 'Data.dart';
 
-class GetDistrictsByCitiesModel {
-  GetDistrictsByCitiesModel({
+class GetDistrictsModel {
+  GetDistrictsModel({
       this.status, 
       this.message, 
       this.errors, 
       this.data, 
       this.notes,});
 
-  GetDistrictsByCitiesModel.fromJson(dynamic json) {
+  GetDistrictsModel.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
     if (json['errors'] != null) {

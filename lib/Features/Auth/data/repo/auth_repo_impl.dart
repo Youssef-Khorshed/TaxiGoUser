@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/models/get_cities_model/GetCitiesModel.dart';
-import 'package:taxi_go_user_version/Features/Auth/data/models/get_districts_by_cities/GetDistrictsByCities.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/models/log_out/Log_out_model.dart';
 
 import '../../../../Core/Utils/Network/Error/failure.dart';
@@ -12,6 +11,7 @@ import '../../../../Core/Utils/Network/Services/apiservices.dart';
 import '../../../../Core/Utils/Network/Services/secure_token.dart';
 import '../models/create_profile_model/create_profile_model.dart';
 import '../models/forget_password_model/Forget_password_model.dart';
+import '../models/get_districts_by_cities/GetDistrictsModel.dart';
 import '../models/login_model/LoginModel.dart';
 
 import '../models/login_model/set_password_model.dart';
@@ -265,15 +265,17 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, GetDistrictsByCitiesModel>> getDistricts(
+  Future<Either<Failure, GetDistrictsModel>> getDistricts(
       BuildContext context, int cityId) async {
     try {
       var response = await apiService.getRequest(
           Constants.baseUrl + Constants.districts,
           context: context,
           queryParameters: {"city_id": cityId});
-      GetDistrictsByCitiesModel data =
-          GetDistrictsByCitiesModel.fromJson(response);
+      GetDistrictsModel data =
+      GetDistrictsModel.fromJson(response);
+      print("EEEEEEWWWWWWss${data.data?.districts?.length}");
+
       return Right(data);
     } catch (e) {
       if (e is DioException) {

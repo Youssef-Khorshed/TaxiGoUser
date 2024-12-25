@@ -40,11 +40,11 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     verticalSpace(20.h),
                     Text(AppLocalizations.of(context)!.welcome,
-                        style: AppTextStyles.style24WhiteW500),
+                        style: AppTextStyles.style28WhiteW600),
                     Text(
                       AppLocalizations.of(context)!
                           .have_a_better_transport_experience,
-                      style: AppTextStyles.style16WhiteW500,
+                      style: AppTextStyles.style20WhiteW600,
                       textAlign: TextAlign.center,
                     ),
                   ],

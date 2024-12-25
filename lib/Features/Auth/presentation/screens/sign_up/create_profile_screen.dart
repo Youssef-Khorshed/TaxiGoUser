@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
@@ -49,19 +50,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: BlocConsumer<CreateProfileCubit, CreateProfileState>(
-          listener: (context, state) {
-            if (state is CreateProfileSuccess) {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, AppRoutes.generalScreen, (route) => false);
-            }
-          },
-          builder: (context, state) {
-            print(state);
-            if (state is CreateProfileLoading) {
-              return const CustomLoading();
-            }
-            return Padding(
+        body:BlocBuilder<CreateProfileCubit, CreateProfileState>(
+  builder: (context, state) {
+    return Padding(
               padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
               child: Form(
                 key: CreateProfileCubit.get(context).formKey,
@@ -107,11 +98,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                                   } else {
                                     avatarContent = CircleAvatar(
                                       radius: 65.r,
-                                      backgroundColor: Colors.grey[300],
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 60.h,
-                                        color: Colors.grey[600],
+                                      backgroundColor: Colors.white,
+                                      child: Image.asset(
+                                        AppImages.user
                                       ),
                                     );
                                   }
@@ -128,9 +117,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                                               .pickImage(),
                                           child: CircleAvatar(
                                             radius: 20.r,
-                                            backgroundColor: Colors.blue,
+                                            backgroundColor: AppColors.blueColor,
                                             child: Icon(
-                                              Icons.camera_alt,
+                                              Icons.camera_enhance_outlined,
                                               color: Colors.white,
                                               size: 18.r,
                                             ),
@@ -190,7 +179,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
                       CustomDropDownFormField3(
                         nameTextStyle: AppTextStyles.style14BlackW500,
-                        bordercolor: AppColors.blackColor.withAlpha(200),
+                        bordercolor: AppColors.grayColor,
                         onChanged: (p0) async {
                           CreateProfileCubit.get(context).selectedDistrictId =
                               p0!.id!.toString();
@@ -207,9 +196,10 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       ),
                       verticalSpace(10.h),
 
-                      CustomDropDownFormField2(
+                      CreateProfileCubit.get(context)
+                          .selectedCityId!=null&&CreateProfileCubit.get(context).directionModel!="" ?  CustomDropDownFormField2(
                         nameTextStyle: AppTextStyles.style14BlackW500,
-                        bordercolor: AppColors.blackColor.withAlpha(200),
+                        bordercolor:AppColors.grayColor,
                         onChanged: (p0) {
                           CreateProfileCubit.get(context).selectedDistrictId =
                               p0!.id!.toString();
@@ -217,12 +207,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                               "EEEEEEEEEEEEEEEE${CreateProfileCubit.get(context).selectedDistrictId}");
                         },
                         items: CreateProfileCubit.get(context)
-                                .directionModel
-                                ?.data
-                                ?.cities ??
-                            [],
+                                .directionModel!.data!.districts!,
                         name: AppLocalizations.of(context)!.district,
-                      ),
+                      ): Container(),
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.31),
                       Row(
@@ -241,7 +228,12 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       ),*/
                           /*        horizontalSpace(10),*/
                           Expanded(
-                            child: CustomSetProfileButtoms(
+                            child: BlocBuilder<CreateProfileCubit, CreateProfileState>(
+  builder: (context, state) {
+    if (state is CreateProfileLoading) {
+      return const CustomLoading();
+    }
+    return CustomSetProfileButtoms(
                               text: AppLocalizations.of(context)!.save,
                               backgroundColor: AppColors.blueColor,
                               textColor: AppColors.whiteColor,
@@ -251,7 +243,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                                 setState(() {});
                                 // Navigator.pushNamed(context, AppRoutes.generalScreen);
                               },
-                            ),
+                            );
+  },
+),
                           ),
                         ],
                       ),
@@ -260,9 +254,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 ),
               ),
             );
-          },
-        ),
-      ),
-    );
+  },
+),
+          )
+        );
   }
 } /**/

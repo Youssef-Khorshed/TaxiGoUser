@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/models/create_profile_model/create_profile_model.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/models/get_cities_model/GetCitiesModel.dart';
-import 'package:taxi_go_user_version/Features/Auth/data/models/get_districts_by_cities/GetDistrictsByCities.dart';
 
 import '../../../../Core/Utils/Network/Error/failure.dart';
 
 import '../models/forget_password_model/Forget_password_model.dart';
+import '../models/get_districts_by_cities/GetDistrictsModel.dart';
 import '../models/log_out/Log_out_model.dart';
 import '../models/login_model/LoginModel.dart';
 
@@ -51,7 +51,7 @@ abstract class AuthRepo {
 
 //create profile
   Future<Either<Failure, GetCitiesModel>> getCities(BuildContext context);
-  Future<Either<Failure, GetDistrictsByCitiesModel>> getDistricts(
+  Future<Either<Failure, GetDistrictsModel>> getDistricts(
       BuildContext context, int cityId);
   Future<Either<Failure, CreateProfileModel>> createProfile(
       BuildContext context, FormData formData);

@@ -1,31 +1,39 @@
-class DistricCities {
-  DistricCities({
+class Districts {
+  Districts({
       this.id, 
       this.cityId, 
-      this.district, 
+      this.districtEn, 
+      this.districtAr, 
       this.createdAt, 
-      this.updatedAt,});
+      this.updatedAt, 
+      this.district,});
 
-  DistricCities.fromJson(dynamic json) {
+  Districts.fromJson(dynamic json) {
     id = json['id'];
     cityId = json['city_id'];
-    district = json['district'];
+    districtEn = json['district_en'];
+    districtAr = json['district_ar'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    district = json['district'];
   }
   int? id;
   int? cityId;
-  String? district;
+  String? districtEn;
+  String? districtAr;
   String? createdAt;
   String? updatedAt;
+  String? district;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['city_id'] = cityId;
-    map['district'] = district;
+    map['district_en'] = districtEn;
+    map['district_ar'] = districtAr;
     map['created_at'] = createdAt;
     map['updated_at'] = updatedAt;
+    map['district'] = district;
     return map;
   }
 
