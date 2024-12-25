@@ -1,7 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/dependencyInjection.dart'
-    as db;
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
@@ -11,6 +8,7 @@ import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_p
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
+import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
@@ -23,6 +21,8 @@ import 'package:taxi_go_user_version/Features/Map/Controller/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
+import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 
 import '../../../Features/Map/screens/map_screens.dart';
@@ -44,6 +44,7 @@ class AppRoutes {
   static const String rate = '/rate';
   static const String cancelbooing = '/cancelbooing';
   static const String wallet = '/wallet';
+  static const String notificationScreen = '/notificationScreen';
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
   static const String mapScreen = '/MapScreen';
@@ -69,12 +70,12 @@ class AppRoutes {
             return const WelcomeScreen();
           },
         );
-      // case signUp:
-      //   return CupertinoPageRoute(
-      //     builder: (context) {
-      //       return const SignUpScreen();
-      //     },
-      //   );
+      case signUp:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const SignUpScreen();
+          },
+        );
       case otp:
         return CupertinoPageRoute(
           builder: (context) {
@@ -126,8 +127,7 @@ class AppRoutes {
       case generalScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            // return const GeneralScreen();
-            return GeneralScreen();
+            return const GeneralScreen();
           },
         );
 
@@ -158,6 +158,12 @@ class AppRoutes {
             return const WalletScreen();
           },
         );
+      case notificationScreen:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const NotificationScreen();
+          },
+        );
       case mapScreen:
         return CupertinoPageRoute(
           builder: (context) {
@@ -171,7 +177,7 @@ class AppRoutes {
       case chat:
         return CupertinoPageRoute(
           builder: (context) {
-            return const ChatScreen();
+            return ChatScreen();
           },
         );
 

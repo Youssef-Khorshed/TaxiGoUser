@@ -3,4 +3,6 @@ class AppImages {
   static const String welcomeCarImage = 'assets/images/welcome_car.png';
   static const String mapTest = 'assets/images/map_test.png';
   static const String cash = 'assets/images/paymentimg.png';
+  static const String zainCashImage = 'assets/images/zaincash.png';
+  static const String arrowUpDoownImage = 'assets/images/right-up.png';
 }

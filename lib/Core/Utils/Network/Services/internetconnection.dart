@@ -21,3 +21,4 @@ class MobileConnectivity implements InternetConnectivity {
   Stream<List<ConnectivityResult>> get onConnectivityChanged =>
       connectivity.onConnectivityChanged;
 }
+

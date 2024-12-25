@@ -44,7 +44,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer ${Constants.userToken}', //$token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -94,6 +94,22 @@ class ApiService {
   // Function to make POST requests
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
+    if (await internetConnectivity.isConnected) {
+      _dio = await getDio(context);
+      final response = await _dio!.post(url, data: body);
+      if (response.statusCode != null) {
+        if (response.statusCode == 200) {
+          return response.data;
+        } else {
+          throw ServerException(
+            message: response.toString(),
+          );
+        }
+      }
+    } else {
+      throw NoInternetException(message: 'No internet Connection');
+    }
+    throw UnExpectedException(message: 'Un Expected error occurs');
     try {
       if (await internetConnectivity.isConnected) {
         // ignore: use_build_context_synchronously
@@ -121,7 +137,6 @@ class ApiService {
   Future<T> putRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      // ignore: use_build_context_synchronously
       _dio = await getDio(context);
       final response = await _dio!.put(
         url,
@@ -147,7 +162,6 @@ class ApiService {
   Future<T> deleteRequest<T>(String url,
       {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
-      // ignore: use_build_context_synchronously
       _dio = await getDio(context);
       final response = await _dio!.delete(url);
       if (response.statusCode != null) {
