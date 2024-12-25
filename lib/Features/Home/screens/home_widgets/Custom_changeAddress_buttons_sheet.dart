@@ -83,7 +83,7 @@ class _Custom_changeAddress_buttons_sheetState
         Expanded(
           child: CustomAppBottom(
             buttonColor: AppColors.whiteColor,
-            borderColor: AppColors.redColor,
+            borderColor: AppColors.redLight,
             borderCornerRadius: 40.r,
             buttonText: AppLocalizations.of(context)!.cancel_k,
             textColor: AppColors.redColor,

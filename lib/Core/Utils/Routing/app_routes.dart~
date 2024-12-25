@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+<<<<<<< HEAD
+import 'package:flutter_bloc/flutter_bloc.dart';
+=======
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
@@ -9,6 +12,7 @@ import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profil
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
@@ -20,8 +24,32 @@ import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+<<<<<<< HEAD
+
+import '../../../Features/Auth/presentation/controller/create_profile_cubit/create_profile_cubit.dart';
+import '../../../Features/Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
+import '../../../Features/Auth/presentation/controller/login_cubit/login_cubit.dart';
+import '../../../Features/Auth/presentation/controller/otp_cubit/otp_cubit.dart';
+import '../../../Features/Auth/presentation/controller/set_new_password/set_new_password_cubit.dart';
+import '../../../Features/Auth/presentation/controller/set_password_cubit/set_password_cubit.dart';
+import '../../../Features/Auth/presentation/controller/sign_up_cubit.dart';
+import '../../../Features/Auth/presentation/screens/log_in/forget_password_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/forget_password_send_otp_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/log_in_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/login_otp_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/set_new_password_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/verification_phone_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/create_profile_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/otp_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/set_password_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/sign_up_screen.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
+import '../Network/Services/services_locator.dart';
+=======
+import '../../../Features/Map/screens/map_screens.dart';
+import '../../../Features/Splash/screens/splash_screen.dart';
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
 
 class AppRoutes {
   static const String splash = '/';
@@ -66,6 +94,23 @@ class AppRoutes {
       case signUp:
         return CupertinoPageRoute(
           builder: (context) {
+<<<<<<< HEAD
+            return BlocProvider(
+              create: (context) => getIt.get<SignUpCubit>(),
+              child: SignUpScreen(),
+            );
+          },
+        );
+      case otp:
+        var phone =
+            settings.arguments != null ? settings.arguments as String : null;
+        return CupertinoPageRoute(
+          builder: (context) {
+            return BlocProvider(
+              create: (context) => getIt.get<OtpCubit>(),
+              child: OtpScreen(phone: phone),
+            );
+=======
             return const SignUpScreen();
           },
         );
@@ -73,30 +118,59 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return const OtpScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
       case setPassword:
         return CupertinoPageRoute(
           builder: (context) {
+<<<<<<< HEAD
+            return BlocProvider(
+              create: (context) => getIt.get<SetPasswordCubit>(),
+              child: SetPasswordScreen(),
+            );
+=======
             return const SetPasswordScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
       case setProfile:
         return CupertinoPageRoute(
           builder: (context) {
+<<<<<<< HEAD
+            return BlocProvider(
+              create: (context) => getIt.get<CreateProfileCubit>(),
+              child: CreateProfileScreen(),
+            );
+=======
             return const CreateProfileScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
       case logIn:
         return CupertinoPageRoute(
           builder: (context) {
+<<<<<<< HEAD
+            return BlocProvider(
+              create: (context) => getIt.get<LoginCubit>(),
+              child: LogInScreen(),
+            );
+=======
             return const LogInScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
       case verificationPhoneAndPassword:
         return CupertinoPageRoute(
           builder: (context) {
+<<<<<<< HEAD
+            return BlocProvider(
+              create: (context) => getIt.get<OtpCubit>(),
+              child: VerificationPhoneAndPasswordScreen(),
+            );
+=======
             return const VerificationPhoneAndPasswordScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
       case forgetPassword:
@@ -112,15 +186,33 @@ class AppRoutes {
           },
         );
       case setNewPassword:
+<<<<<<< HEAD
+        var phone =
+            settings.arguments != null ? settings.arguments as String : null;
+        return CupertinoPageRoute(
+          builder: (context) {
+            return BlocProvider(
+              create: (context) => getIt.get<SetNewPasswordCubit>(),
+              child: SetNewPasswordScreen(phone: phone),
+            );
+=======
         return CupertinoPageRoute(
           builder: (context) {
             return const SetNewPasswordScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
       case generalScreen:
         return CupertinoPageRoute(
           builder: (context) {
+<<<<<<< HEAD
+            return BlocProvider(
+              create: (context) => getIt.get<LogOutCubit>(),
+              child: GeneralScreen(),
+            );
+=======
             return const GeneralScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
 
@@ -191,9 +283,19 @@ class AppRoutes {
           },
         );
       case loginOtpScreen:
+<<<<<<< HEAD
+        String phone = settings.arguments as String;
+        return CupertinoPageRoute(
+          builder: (context) {
+            return BlocProvider(
+              create: (context) => getIt.get<OtpCubit>(),
+              child: LoginOtpScreen(phone: phone),
+            );
+=======
         return CupertinoPageRoute(
           builder: (context) {
             return const LoginOtpScreen();
+>>>>>>> 51b983652bac8608f16a3bd59bee0b498347ebaa
           },
         );
 

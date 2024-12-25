@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geocode/geocode.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 
 // ignore: must_be_immutable
@@ -50,44 +49,5 @@ class BuildAddressRow extends StatelessWidget {
         icon
       ],
     );
-  }
-
-  Future<List<String>> formatAddress(
-      {required double latitude, required double longitude}) async {
-    final address = await GeoCode()
-        .reverseGeocoding(latitude: latitude, longitude: longitude);
-
-    List<String> parts = address.toString().split(',');
-    String streetNumber = '';
-    String streetAddress = '';
-    String city = '';
-    String region = '';
-    String postalCode = '';
-    String countryName = '';
-
-    for (var part in parts) {
-      if (part.contains('streetNumber=')) {
-        streetNumber = part.split('=')[1].trim();
-      } else if (part.contains('streetAddress=')) {
-        streetAddress = part.split('=')[1].trim();
-      } else if (part.contains('city=')) {
-        city = part.split('=')[1].trim();
-      } else if (part.contains('region=')) {
-        region = part.split('=')[1].trim();
-      } else if (part.contains('postal=')) {
-        postalCode = part.split('=')[1].trim();
-      } else if (part.contains('countryName=')) {
-        countryName = part.split('=')[1].trim();
-      }
-    }
-
-    return [
-      streetNumber,
-      streetAddress,
-      city,
-      region,
-      postalCode,
-      countryName,
-    ];
   }
 }

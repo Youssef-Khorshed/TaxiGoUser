@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,16 +13,16 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_p
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 
-// ignore: must_be_immutable
 class PaymentMethodSelector extends StatefulWidget {
-  String addressFrom;
-  String addressTo;
-  int tripType;
-  String originTitle;
-  String destinationTitle;
-  String distance;
-  String time;
-  PaymentMethodSelector({
+  final String addressFrom;
+  final String addressTo;
+  final int tripType;
+  final String originTitle;
+  final String destinationTitle;
+  final String distance;
+  final String time;
+
+  const PaymentMethodSelector({
     super.key,
     required this.addressFrom,
     required this.addressTo,
@@ -40,7 +39,7 @@ class PaymentMethodSelector extends StatefulWidget {
 }
 
 class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
-  String selectedMethod = "wallet";
+  String selectedMethod = "";
   TextEditingController controller = TextEditingController();
 
   @override
@@ -72,9 +71,9 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
               width: 134.w,
             ),
             verticalSpace(10.h),
-            // Promo Code
-            AutoSizeText(
-              AppLocalizations.of(context)!.if_you_have_promo_code,
+            Text(
+              AppLocalizations.of(context)!
+                  .if_you_have_promo_code_you_can_get_a_discount,
               style: AppTextStyles.style14BlackW500,
             ),
             verticalSpace(10),
@@ -101,90 +100,65 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
               ],
             ),
             verticalSpace(10.h),
-            AutoSizeText(AppLocalizations.of(context)!.select_payment_method,
+            Text(AppLocalizations.of(context)!.select_payment_method,
                 style: AppTextStyles.style16BlackW600),
             verticalSpace(10.h),
-            // wallet Payment
-            walletpayment(),
+            paymentOption(
+              context,
+              method: AppLocalizations.of(context)!.wallet,
+              icon: Icons.account_balance_wallet,
+              subtitle: '${AppLocalizations.of(context)!.currency_iqd} 349',
+            ),
             verticalSpace(10.h),
-            // cash Payment
-            cashpayment(),
+            paymentOption(
+              context,
+              method: AppLocalizations.of(context)!.cash,
+              icon: Icons.attach_money,
+              subtitle: '${AppLocalizations.of(context)!.currency_iqd} 349',
+            ),
             verticalSpace(10.h),
-
-            // Buttons
             PaymentButton(
-                originSubTitle: widget.addressFrom,
-                originTitle: widget.originTitle,
-                destinationSubTitle: widget.addressTo,
-                destinationTitle: widget.destinationTitle,
-                distance: widget.distance,
-                time: widget.time,
-                controller: controller,
-                widget: widget,
-                selectedMethod: selectedMethod)
+              originSubTitle: widget.addressFrom,
+              originTitle: widget.originTitle,
+              destinationSubTitle: widget.addressTo,
+              destinationTitle: widget.destinationTitle,
+              distance: widget.distance,
+              time: widget.time,
+              controller: controller,
+              widget: widget,
+              selectedMethod: selectedMethod == "المحفظه" ? "wallet" : "cash",
+            )
           ],
         ),
       ),
     );
   }
 
-  Container walletpayment() {
+  Widget paymentOption(BuildContext context,
+      {required String method, required IconData icon, String? subtitle}) {
+    final isSelected = selectedMethod == method;
     return Container(
       decoration: BoxDecoration(
-        color: selectedMethod == "wallet"
-            ? AppColors.blueColor
-            : AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(10.r),
-      ),
-      child: ListTile(
-        leading: Icon(Icons.account_balance_wallet,
-            color: selectedMethod == "wallet"
-                ? AppColors.whiteColor
-                : Colors.black),
-        title: Text(
-          'My wallet',
-          style: TextStyle(
-              color: selectedMethod == "wallet"
-                  ? AppColors.whiteColor
-                  : Colors.black),
-        ),
-        subtitle: Text('\$349',
-            style: TextStyle(
-                color: selectedMethod == "wallet"
-                    ? AppColors.whiteColor
-                    : Colors.grey)),
-        onTap: () {
-          setState(() {
-            selectedMethod = "wallet";
-          });
-        },
-      ),
-    );
-  }
-
-  Container cashpayment() {
-    return Container(
-      decoration: BoxDecoration(
-        color: selectedMethod == "cash"
-            ? AppColors.blueColor
-            : AppColors.whiteColor,
+        color: isSelected ? AppColors.blueColor : AppColors.whiteColor,
         border: Border.all(color: AppColors.blueColor2, width: 1),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: ListTile(
-        leading: Icon(Icons.attach_money,
-            color:
-                selectedMethod == "cash" ? AppColors.whiteColor : Colors.black),
+        leading:
+            Icon(icon, color: isSelected ? AppColors.whiteColor : Colors.black),
         title: Text(
-          'cash',
+          method,
           style: TextStyle(
-              color: selectedMethod == "cash"
-                  ? AppColors.whiteColor
-                  : Colors.black),
+              color: isSelected ? AppColors.whiteColor : Colors.black),
         ),
+        subtitle: subtitle != null
+            ? Text(subtitle,
+                style: TextStyle(
+                    color: isSelected ? AppColors.whiteColor : Colors.grey))
+            : null,
         onTap: () {
           setState(() {
-            selectedMethod = "cash";
+            selectedMethod = method;
           });
         },
       ),

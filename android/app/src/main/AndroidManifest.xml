@@ -6,12 +6,13 @@
 <uses-permission android:name="android.permission.RECORD_AUDIO" />
 <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.INTERNET" />
     <application
         android:label="GO TAXI"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyCmrk6YbjdCAlwichSDNyyfxlA7zwXhVwc"/>
+               android:value="API KEY"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -29,6 +30,8 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+                <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyD0wUQ43jOKDFyyh7ILEE7HzImVAOjVKYA"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -50,6 +53,9 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
+        <intent>
+    <action android:name="android.support.customtabs.action.CustomTabsService" />
+  </intent>
     </queries>
     
 <queries>

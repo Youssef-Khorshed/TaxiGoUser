@@ -1,5 +1,23 @@
 {
     "log_in": "Log In",
+    "transactions": "Transactions",
+    "available_balance": "Available Balance",
+    "deposit_processing": "Deposit Processing",
+    "withdrawal_processing": "Withdrawal Processing",
+    "currency_iqd": "IQD",
+    "transaction_payment": "Payment",
+    "transaction_remaining": "Remaining",
+    "transaction_charge": "Charge",
+    "transaction_payout": "Payout",
+    "transaction_adjustment": "Adjustment",
+    "transaction_withdraw": "Withdraw",
+    "notifications": "Notifications",
+    "notification_details": "Notification Details",
+    "system_notification": "System Notification",
+    "enter_amount": "Enter Amount",
+    "add_money": "Add Money",
+    "error_occurred": "An error occurred while processing.",
+    "zain_Cash": "Zain Cash",
     "payment": "Payment",
     "current_location": "Current Location",
     "payment_details": "Payment Details",
@@ -142,8 +160,25 @@
     "if_you_have_promo_code" :"If You have promo code you can get a Discount",
     "apply" :"Apply",
     "apply_promo_code" :"Apply Promo Code",
-    "data" :"Data"
-    
-    
+    "data" :"Data",
+    "online_payment":"Online Payment", "payment_method":"Payment Method",
+    "noPromoCode": "No Promo Code",
+    "please_rate_the_trip": "Please rate the trip",
+    "thank_you_for_your_review": "\"Thank you for your review! Your opinion matters to us and helps us improve your experience with us. We hope your trip was enjoyable and we look forward to serving you again soon!\""
+    ,"canceled": "\"Request Canceled!\"",
+    "cancel": "Cancel","if__you_have_promo_code_you_can_get_a__discount": "If You have promo code you can get a Discount",
+    "apply": "Apply",
+    "economy": "Economy",
+    "vip": "VIP",
+    "airport": "Airport",
+    "between_country": "Between country",
+    "searching_for_a_driver":"Searching for a driver",
+    "searching": "جاري البحث",
+    "typeamessage": "Type a message",
+    "activeNow": "Active Now",
+    "sharelocation": "Share Location",
+    "start_a_conversation": "Start a conversation"
+
+
 
 }

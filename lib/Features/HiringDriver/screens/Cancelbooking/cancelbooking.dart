@@ -5,7 +5,6 @@ import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cnacelBooking_widget/custom_cancelbody_cancel.dart';
 
 class CancelBookingScreen extends StatefulWidget {
   const CancelBookingScreen({super.key});
@@ -45,7 +44,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
             backgroundImage: const AssetImage(AppImages.appImage),
           ),
           const Spacer(),
-          const CustomCancelbodyCancel()
+          //  const CustomCancelbodyCancel()
         ],
       ),
     );

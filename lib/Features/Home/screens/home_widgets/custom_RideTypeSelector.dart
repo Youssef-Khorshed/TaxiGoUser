@@ -53,14 +53,14 @@ class _CustomRidetypeselectorState extends State<CustomRidetypeselector> {
             padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),
             decoration: BoxDecoration(
               color: isSelected ? AppColors.blueColor : AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(color: AppColors.grayColor),
             ),
             child: Column(
               children: [
                 Icon(
                   rideTypes[index]['icon'],
-                  color: isSelected ? Colors.white : Colors.black,
+                  color: isSelected ? Colors.white : Colors.grey,
                 ),
                 verticalSpace(4.h),
                 AutoSizeText(

@@ -65,6 +65,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
             AppLocalizations.of(context)!.select_address,
             style: AppTextStyles.style18BlueBold,
           ),
+          verticalSpace(15.h),
           CustomTextFormFiled(
             textStyle: AppTextStyles.style16DarkgrayW500,
             hinttextStyle: AppTextStyles.style16DarkgrayW500,

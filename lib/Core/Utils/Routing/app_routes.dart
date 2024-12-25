@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
@@ -8,18 +10,20 @@ import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_p
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/sign_up_screen.dart';
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cancelbooking.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Rating/rate.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/cancelbooking.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/rate.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
+import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
+
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
 
@@ -39,6 +43,7 @@ class AppRoutes {
   static const String rate = '/rate';
   static const String cancelbooing = '/cancelbooing';
   static const String wallet = '/wallet';
+  static const String notificationScreen = '/notificationScreen';
   static const String verificationPhoneAndPassword =
       '/verificationPhoneAndPassword';
   static const String mapScreen = '/MapScreen';
@@ -66,7 +71,7 @@ class AppRoutes {
       case signUp:
         return CupertinoPageRoute(
           builder: (context) {
-            return const SignUpScreen();
+            return const LogInScreen();
           },
         );
       case otp:
@@ -151,17 +156,28 @@ class AppRoutes {
             return const WalletScreen();
           },
         );
+      case notificationScreen:
+        return CupertinoPageRoute(
+          builder: (context) {
+            return const NotificationScreen();
+          },
+        );
       case mapScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            return const MapScreen();
+            return Center(
+              child: BlocProvider(
+                create: (context) => getIt<MapsCubit>(),
+                child: const MapScreen(),
+              ),
+            );
           },
         );
 
       case chat:
         return CupertinoPageRoute(
           builder: (context) {
-            return const ChatScreen();
+            return ChatScreen();
           },
         );
 

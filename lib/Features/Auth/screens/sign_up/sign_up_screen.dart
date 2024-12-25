@@ -47,7 +47,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       size: 25,
                     ),
                     horizontalSpace(5),
-                    AutoSizeText(AppLocalizations.of(context)!.back, style: AppTextStyles.style20BlackW500)
+                    AutoSizeText(AppLocalizations.of(context)!.back,
+                        style: AppTextStyles.style20BlackW500)
                   ]),
                 ),
                 verticalSpace(10),
@@ -100,9 +101,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Center(
                   child: RichText(
                     text: TextSpan(
-                      text: AppLocalizations.of(context)!.already_have_an_account,
-                      style:
-                          AppTextStyles.style20BlackW500.copyWith(fontSize: 16.sp),
+                      text:
+                          AppLocalizations.of(context)!.already_have_an_account,
+                      style: AppTextStyles.style20BlackW500
+                          .copyWith(fontSize: 16.sp),
                       children: [
                         TextSpan(
                           text: AppLocalizations.of(context)!.log_in,

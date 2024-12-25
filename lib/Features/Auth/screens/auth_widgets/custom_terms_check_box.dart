@@ -76,6 +76,5 @@ class TermsText extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

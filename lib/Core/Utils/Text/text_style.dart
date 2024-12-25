@@ -31,7 +31,7 @@ abstract class AppTextStyles {
     fontSize: 24.sp,
     color: AppColors.whiteColor,
     fontWeight: FontWeight.w500,
-    fontFamily: "Amiri",
+    fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
   static TextStyle sendmessgeformW500 = TextStyle(
@@ -44,7 +44,7 @@ abstract class AppTextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     color: AppColors.blackColor,
-    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontFamily: GoogleFonts.amiri().fontFamily,
   );
   static TextStyle style24BlackW500 = TextStyle(
     fontSize: 24.sp,
@@ -93,10 +93,18 @@ abstract class AppTextStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+
   static TextStyle style18BlueBold = TextStyle(
     fontSize: 18.sp,
     color: AppColors.blueColor,
     fontWeight: FontWeight.bold,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+  static TextStyle style18BlueW500 = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.blueColor,
+    fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
@@ -110,9 +118,16 @@ abstract class AppTextStyles {
   );
 
   static TextStyle style16BlackW600 = TextStyle(
-    fontSize: 16.sp,
+    fontSize: 15.sp,
     color: AppColors.blackColor,
     fontWeight: FontWeight.w600,
+    fontFamily: "Cairo",
+    height: 0,
+  );
+  static TextStyle style16BlackW700 = TextStyle(
+    fontSize: 16.sp,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w700,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
@@ -158,7 +173,7 @@ abstract class AppTextStyles {
   );
 
   static TextStyle style12DarkgrayW400 = TextStyle(
-    fontSize: 12.sp,
+    fontSize: 10.sp,
     color: AppColors.darkgrayColor,
     fontWeight: FontWeight.w400,
     fontFamily: GoogleFonts.cairo().fontFamily,
@@ -172,6 +187,7 @@ abstract class AppTextStyles {
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
+
   static TextStyle style12GrayW400 = TextStyle(
     fontSize: 12.sp,
     color: AppColors.grayColor,

@@ -14,8 +14,8 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
-import 'package:taxi_go_user_version/Features/Wallet/screens/wallet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});
@@ -49,11 +49,11 @@ class _GeneralScreenState extends State<GeneralScreen> {
   Widget build(BuildContext context) {
     List<String> screensName = [
       AppLocalizations.of(context)!.home,
-      AppLocalizations.of(context)!.trip_history,
-      AppLocalizations.of(context)!.trip_favourite,
-      AppLocalizations.of(context)!.trip_saved,
+      AppLocalizations.of(context)!.trips_history,
+      AppLocalizations.of(context)!.trip_favorites,
+      AppLocalizations.of(context)!.saved_Trips,
       AppLocalizations.of(context)!.wallet,
-      AppLocalizations.of(context)!.log_out
+      AppLocalizations.of(context)!.log_out,
     ];
     return Scaffold(
       backgroundColor: AppColors.blueColor,

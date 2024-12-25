@@ -7,7 +7,6 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -115,21 +114,21 @@ class _CustomOngoingwayriderState extends State<CustomOngoingwayrider> {
           ),
           const Divider(),
           verticalSpace(10.h),
-          BuildAddressRow(
-            title: 'originTitle',
-            traling: false,
-            icon: const Icon(Icons.location_on, color: AppColors.redColor),
-            subtitle: 'originSubTitle',
-          ),
-          verticalSpace(10.h),
-          BuildAddressRow(
-            traling: true,
-            title: 'destinationTitle',
-            icon: const Icon(Icons.location_on, color: AppColors.blueColor),
-            subtitle: 'destinationSubTitle',
-            distance: 'distance',
-            time: 'time',
-          ),
+          // BuildAddressRow(
+          //   title: 'originTitle',
+          //   traling: false,
+          //   icon: const Icon(Icons.location_on, color: AppColors.redColor),
+          //   subtitle: 'originSubTitle',
+          // ),
+          // verticalSpace(10.h),
+          // BuildAddressRow(
+          //   traling: true,
+          //   title: 'destinationTitle',
+          //   icon: const Icon(Icons.location_on, color: AppColors.blueColor),
+          //   subtitle: 'destinationSubTitle',
+          //   distance: 'distance',
+          //   time: 'time',
+          // ),
           verticalSpace(10.h),
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

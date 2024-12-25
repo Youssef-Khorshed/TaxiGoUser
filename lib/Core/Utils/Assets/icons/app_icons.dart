@@ -9,4 +9,6 @@ class AppIcons {
   static const String cancelIcon = 'assets/icons/cancel.svg';
   static const String shareLocation = 'assets/images/Group.png';
   static const String send = 'assets/images/send.png';
+  static const String iconsMapBlue = 'assets/icons/map_blue.svg';
+  static const String iconsMapRed = 'assets/icons/map_red.svg';
 }

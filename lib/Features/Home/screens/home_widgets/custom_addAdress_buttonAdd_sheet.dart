@@ -55,23 +55,20 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
                   context: context);
 
               Navigator.of(context).pop();
-              final destinationAddress =
-                  mapsCubit.destinationAddress.addressComponents!;
 
-              final originAddress = mapsCubit.originAddress.addressComponents!;
               customBottomSheet(
                   context: context,
                   widget: CustomChangeaddressSheet(
                       originSubTitle:
                           MapStringMaipulation.concatenateShortNames(
                               mapsCubit.originAddress.addressComponents),
-                      destinationTitle:
-                          "${destinationAddress[0].shortName!} ${destinationAddress[1].shortName!}",
+                      destinationTitle: mapsCubit
+                          .destinationAddress.addressComponents![3].longName!,
                       destinationSubTitle:
                           MapStringMaipulation.concatenateShortNames(
                               mapsCubit.destinationAddress.addressComponents),
-                      originTitle:
-                          "${originAddress[0].shortName!} ${originAddress[1].shortName!} ",
+                      originTitle: mapsCubit
+                          .originAddress.addressComponents![3].longName!,
                       distance: mapsCubit.distanceTime.distance!.text!,
                       time: mapsCubit.distanceTime.duration!.text!));
             },

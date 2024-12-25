@@ -1,4 +1,4 @@
-import '../Network/Services/api_constant.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 
 sealed class PusherConsts {
   // ignore: constant_identifier_names

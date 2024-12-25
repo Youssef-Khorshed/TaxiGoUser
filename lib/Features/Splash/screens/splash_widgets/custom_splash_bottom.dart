@@ -25,7 +25,7 @@ class CustomSplashBottom extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.r),
               color: buttonColor,
-              border: Border.all(color: Colors.white, width: 1.w)),
+              border: Border.all(color: Colors.white, width: 2.w)),
           width: double.infinity,
           height: 60.h,
           child: Center(

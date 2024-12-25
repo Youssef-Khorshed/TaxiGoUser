@@ -20,6 +20,8 @@ class CustomAuthAppBar extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.pop(context),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Icon(
               FontAwesomeIcons.angleLeft,
