@@ -41,7 +41,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
             buttonColor: AppColors.blueColor,
             textColor: AppColors.whiteColor,
             buttonText: state is PlaceDirectionsLading
-                ? "Loading ..."
+                ? AppLocalizations.of(context)!.loading
                 : AppLocalizations.of(context)!.go,
             onPressed: () async {
               await mapsCubit.emitPlaceDirections(

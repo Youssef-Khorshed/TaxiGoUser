@@ -1,40 +1,44 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void showBookingBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    shape: const RoundedRectangleBorder(
+    shape:  RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
+        topLeft: Radius.circular(20.r),
+        topRight: Radius.circular(20.r),
       ),
     ),
     builder: (context) {
       return Padding(
-        padding: const EdgeInsets.all(20),
+        padding:  EdgeInsets.all(20.sp),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
-                  backgroundImage: AssetImage(AppImages.mapTest),
-                  radius: 25,
+                 CircleAvatar(
+                  backgroundImage:const  AssetImage(AppImages.mapTest),
+                  radius: 25.r,
                 ),
-                const SizedBox(width: 12),
-                const Expanded(
+                horizontalSpace(10),
+                Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Mohamed haggag",
-                        style: TextStyle(
+                      AutoSizeText(
+                        AppLocalizations.of(context)!.user_name,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Icon(Icons.star, color: Colors.yellow, size: 16),
                           SizedBox(width: 4),
@@ -70,8 +74,8 @@ void showBookingBottomSheet(BuildContext context) {
                 onPressed: () {
                   Navigator.pop(context); // Close bottom sheet
                 },
-                child: const Text("Book Now",
-                    style: TextStyle(color: Colors.white)),
+                child: Text( AppLocalizations.of(context)!.book_now,
+                    style: const TextStyle(color: Colors.white)),
               ),
             ),
           ],

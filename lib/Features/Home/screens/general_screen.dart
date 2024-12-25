@@ -49,11 +49,11 @@ class _GeneralScreenState extends State<GeneralScreen> {
   Widget build(BuildContext context) {
     List<String> screensName = [
       AppLocalizations.of(context)!.home,
-      "Trip History",
-      "Trip Favourite",
-      "Trip Saved",
-      "Wallet",
-      "Logout",
+      AppLocalizations.of(context)!.trip_history,
+      AppLocalizations.of(context)!.trip_favourite,
+      AppLocalizations.of(context)!.trip_saved,
+      AppLocalizations.of(context)!.wallet,
+      AppLocalizations.of(context)!.log_out
     ];
     return Scaffold(
       backgroundColor: AppColors.blueColor,

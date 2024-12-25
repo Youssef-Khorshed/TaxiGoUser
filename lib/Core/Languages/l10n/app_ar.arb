@@ -121,5 +121,20 @@
     "ar_key" : "العربية",
     "en_k" : "الانجليزية",
     "welcome" : "مرحبا",
-    "have_a_better" : "افضل تجربة نقل"
+    "have_a_better" : "افضل تجربة نقل",
+    "trip_history": "تاريخ الرحلات",
+    "trip_favourite": "الرحلات المفضلة",
+    "trip_saved": "الرحلات المحفوظة",
+    "logout": "تسجيل خروج",
+    "ride_is_accepted" :"تم قبول الرحلة",
+    "request_not_accepted_try_again" :"الطلب لم يتم قبوله، حاول مرة اخرى",
+    "searching_for_a_driver" :" بحث عن قائد",
+    "loading" :"...جاري التحميل",
+    "between_country" :"بين الدول",
+    "economy" :"اقتصادي",
+    "vip":"VIP",
+    "airport"   :"مطار",
+    "if_you_have_promo_code"    :"  اذا كان لديك كود خصم يمكنك الحصول على خصم",
+    "apply" :"تطبيق",
+    "data" :"البيانات"
 }

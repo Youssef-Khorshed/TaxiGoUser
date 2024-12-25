@@ -54,7 +54,6 @@
     "sharelocation": "Share Location",
     "error_occurred": "An error occurred",
     "check_internet_connection": "Please check your internet connection",
-   
     "field_is_required" : "Field is required",
     "your_mobile_number": "Your Mobile Number",
     "via_sms": "Via SMS",
@@ -127,6 +126,24 @@
     "ar_key" : "Arabic",
     "en_k" : "English",
     "welcome" : "Welcome",
-    "have_a_better" : "Have a better experience with us"
+    "have_a_better" : "Have a better experience with us",
+    "trip_history": "Trip History",
+    "trip_favourite": "Trip Favourite",
+    "trip_saved": "Trip Saved",
+    "logout": "Logout",
+    "ride_is_accepted" :"Ride is accepted",
+    "request_not_accepted_try_again" :"Request not accepted try again",
+    "searching_for_a_driver" :"Searching for a driver",
+    "loading" :"...Loading",
+    "between_country" :"Between Country",
+    "economy" :"Economy",
+    "vip":"VIP",
+    "airport"   :"Airport",
+    "if_you_have_promo_code" :"If You have promo code you can get a Discount",
+    "apply" :"Apply",
+    "apply_promo_code" :"Apply Promo Code",
+    "data" :"Data"
+    
+    
 
 }

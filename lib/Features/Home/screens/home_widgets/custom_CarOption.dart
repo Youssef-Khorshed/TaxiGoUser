@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 
 class CarOption extends StatelessWidget {
   final IconData icon;
@@ -14,11 +16,11 @@ class CarOption extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: Colors.blue.shade100,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
           ),
-          child: Icon(icon, color: Colors.blue, size: 24),
+          child: Icon(icon, color: Colors.blue, size: 24.sp),
         ),
-        const SizedBox(height: 8),
+        verticalSpace(8),
         Text(label,
             style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
       ],

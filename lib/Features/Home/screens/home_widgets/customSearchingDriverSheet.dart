@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -38,7 +39,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
         final cubit = context.read<MapsCubit>();
 
         if (state is GetActiveRideRequestSuccess) {
-          Fluttertoast.showToast(msg: 'Ride is Accepted');
+          Fluttertoast.showToast(msg: AppLocalizations.of(context)!.ride_is_accepted);
           Navigator.pop(context);
           Navigator.of(context).push(CupertinoPageRoute(
               builder: (_) => TripScreen(
@@ -48,7 +49,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
 
         if (state is GetActiveRideRequestNoTrips) {
           cubit.canelRideRequest(context: context);
-          Fluttertoast.showToast(msg: 'Request Not Accepted Try Again');
+          Fluttertoast.showToast(msg: AppLocalizations.of(context)!.request_not_accepted_try_again);
         }
       },
       child: Padding(
@@ -66,8 +67,8 @@ class CustomSearchingDriverSheet extends StatelessWidget {
           Row(
             children: [
               const Spacer(),
-              Text(
-                "Searching for a driver",
+              AutoSizeText(
+                AppLocalizations.of(context)!.searching_for_a_driver,
                 style: AppTextStyles.style18BlueBold,
               ),
               const Spacer(),
@@ -76,8 +77,8 @@ class CustomSearchingDriverSheet extends StatelessWidget {
           verticalSpace(20.h),
           const CustomCountdowntimer(),
           verticalSpace(20.h),
-          Text(
-            "...Loading",
+          AutoSizeText(
+            AppLocalizations.of(context)!.loading,
             style: AppTextStyles.style18BlueBold,
           ),
           verticalSpace(20.h),
