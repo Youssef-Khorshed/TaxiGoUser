@@ -34,7 +34,18 @@ abstract class AppTextStyles {
     fontFamily: "Amiri",
     height: 0,
   );
-
+  static TextStyle sendmessgeformW500 = TextStyle(
+    color: Colors.grey,
+    fontSize: 16.sp,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    fontWeight: FontWeight.w500,
+  );
+  static TextStyle taxidrivername = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.blackColor,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+  );
   static TextStyle style24BlackW500 = TextStyle(
     fontSize: 24.sp,
     color: AppColors.blackColor,
@@ -175,5 +186,11 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
+  );
+  static TextStyle sharelocation = TextStyle(
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+    fontFamily: GoogleFonts.cairo().fontFamily,
   );
 }

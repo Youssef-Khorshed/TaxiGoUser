@@ -1,17 +1,14 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/exception.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
-import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/result.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';

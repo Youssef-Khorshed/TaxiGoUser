@@ -87,4 +87,8 @@ class Constants {
   static String rateCaptin({required String rate}) =>
       '/customer/rides/rate?rate=$rate';
   static const kModelFont = 'Medel';
+  static const rooms =
+      'https://go-taxi.codecraft1.com/api/customer/rides/get-messages';
+  static const sendchat =
+      'https://go-taxi.codecraft1.com/api/customer/rides/send-message';
 }

@@ -48,6 +48,9 @@
     "write_your_feedback":"Write your feedback",
     "submit":"Submit",
     "my_wallet":"My Wallet",
-    "online_payment":"Online Payment"
+    "online_payment":"Online Payment",
+    "typeamessage": "Type a message",
+    "activeNow": "Active Now",
+    "sharelocation": "Share Location"
 
 }

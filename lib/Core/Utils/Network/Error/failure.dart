@@ -7,7 +7,6 @@ abstract class Failure {
   List<Object?> get props => [message];
 }
 
-/// server Error
 class ServerFailure extends Failure {
   ServerFailure({required super.message});
   static String fromDioError(DioException dioError) {
