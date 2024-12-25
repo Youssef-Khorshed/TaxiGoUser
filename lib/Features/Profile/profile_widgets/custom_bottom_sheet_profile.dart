@@ -1,7 +1,8 @@
 import 'dart:developer';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -13,18 +14,18 @@ void customProfileBottomsheet(BuildContext context) {
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
     builder: (_) => Container(
-      padding: const EdgeInsets.all(20),
+      padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         color: AppColors.whiteColor,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AutoSizeText(
-            'Select Language',
+            AppLocalizations.of(context)!.select_language,
             style: AppTextStyles.style18BlackW600
                 .copyWith(color: AppColors.blackColor),
             maxLines: 1,
@@ -40,9 +41,9 @@ void customProfileBottomsheet(BuildContext context) {
               Navigator.pop(context); // Close bottom sheet after selection
             },
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding:  EdgeInsets.symmetric(vertical: 8.h),
               child: AutoSizeText(
-                'Ar',
+                AppLocalizations.of(context)!.ar_key,
                 style: AppTextStyles.style18BlackW500
                     .copyWith(color: AppColors.blueColor),
                 maxLines: 1,
@@ -56,9 +57,9 @@ void customProfileBottomsheet(BuildContext context) {
               Navigator.pop(context); // Close bottom sheet after selection
             },
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: EdgeInsets.symmetric(vertical: 8.h),
               child: AutoSizeText(
-                'EN',
+                AppLocalizations.of(context)!.en_k,
                 style: AppTextStyles.style18BlackW500
                     .copyWith(color: AppColors.blueColor),
                 maxLines: 1,

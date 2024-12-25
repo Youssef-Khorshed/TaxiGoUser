@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
 
@@ -24,8 +26,7 @@ class UserNameContainer extends StatelessWidget {
               color: AppColors.blackColor,
             ),
           ),
-          SizedBox(width: 5.w),
-
+          horizontalSpace(5),
           Container(
             width: 40.w,
             height: 40.h,
@@ -37,18 +38,15 @@ class UserNameContainer extends StatelessWidget {
                   "https://firebasestorage.googleapis.com/v0/b/alexu-a9210.appspot.com/o/Vector%20(1).png?alt=media&token=e4d896a0-ec30-4944-b798-8ce0845d0bdb",
                 ),
                 fit: BoxFit.contain,
-
               ),
             ),
           ),
-          SizedBox(width: 10.w),
+          horizontalSpace(10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                  "Captain_name",
-                  style:AppTextStyles.taxidrivername
-              ),
+              AutoSizeText(AppLocalizations.of(context)!.captain_name,
+                  style: AppTextStyles.taxidrivername),
               // Text(
               //   AppLocalizations.of(context)!.activeNow,
               //   style: TextStyle(

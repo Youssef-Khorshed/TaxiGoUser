@@ -8,6 +8,7 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bo
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class RequestButtons extends StatelessWidget {
@@ -30,7 +31,7 @@ class RequestButtons extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                buttonText: "Cancel",
+                buttonText: AppLocalizations.of(context)!.cancel_k,
                 buttonColor: Colors.white,
                 textColor: Colors.red,
                 borderColor: Colors.red,
@@ -40,7 +41,7 @@ class RequestButtons extends StatelessWidget {
             Expanded(
               child: CustomAppBottom(
                 onPressed: () async {},
-                buttonText: "Accept",
+                buttonText: AppLocalizations.of(context)!.accept_k,
                 buttonColor: AppColors.blueColor,
                 textColor: AppColors.whiteColor,
               ),

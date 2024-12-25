@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
@@ -10,6 +11,7 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_d
 import 'package:taxi_go_user_version/Features/Auth/screens/auth_widgets/custom_terms_check_box.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -45,28 +47,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       size: 25,
                     ),
                     horizontalSpace(5),
-                    AutoSizeText('Back', style: AppTextStyles.style20BlackW500)
+                    AutoSizeText(AppLocalizations.of(context)!.back, style: AppTextStyles.style20BlackW500)
                   ]),
                 ),
                 verticalSpace(10),
                 AutoSizeText(
-                  'Create Account',
+                  AppLocalizations.of(context)!.create_account,
                   style: AppTextStyles.style24WhiteW500
                       .copyWith(color: Colors.black),
                 ),
                 verticalSpace(10),
                 CustomTextFormFiled(
-                  hintText: 'Name',
+                  hintText: AppLocalizations.of(context)!.name,
                   controller: nameController,
                 ),
                 verticalSpace(10),
                 CustomTextFormFiled(
-                  hintText: 'Email',
+                  hintText: AppLocalizations.of(context)!.email,
                   controller: emailController,
                 ),
                 verticalSpace(10),
                 CustomTextFormFiled(
-                  hintText: 'phone',
+                  hintText: AppLocalizations.of(context)!.phone,
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
                 ),
@@ -74,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 CustomDropDownFormField(
                   items: genders,
                   nameTextStyle: AppTextStyles.style14BlackW500,
-                  name: 'Gender',
+                  name: AppLocalizations.of(context)!.gender,
                 ),
                 verticalSpace(10),
                 CustomTermsCheckBox(
@@ -87,7 +89,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 verticalSpace(20),
                 CustomAppBottom(
-                  buttonText: 'Sign Up',
+                  buttonText: AppLocalizations.of(context)!.sign_up,
                   onPressed: _isChecked
                       ? () {
                           Navigator.pushNamed(context, AppRoutes.otp);
@@ -98,12 +100,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Center(
                   child: RichText(
                     text: TextSpan(
-                      text: 'Already have an account ? ',
+                      text: AppLocalizations.of(context)!.already_have_an_account,
                       style:
-                          AppTextStyles.style20BlackW500.copyWith(fontSize: 16),
+                          AppTextStyles.style20BlackW500.copyWith(fontSize: 16.sp),
                       children: [
                         TextSpan(
-                          text: 'Log in now',
+                          text: AppLocalizations.of(context)!.log_in,
                           style: AppTextStyles.style16WhiteW500
                               .copyWith(color: AppColors.blueColor),
                           recognizer: TapGestureRecognizer()

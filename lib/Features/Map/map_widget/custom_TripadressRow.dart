@@ -1,9 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/trip_details_map.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomTripadressrow extends StatelessWidget {
   const CustomTripadressrow({
@@ -50,8 +52,8 @@ class CustomTripadressrow extends StatelessWidget {
         }
 
         if (snapshot.hasError || !snapshot.hasData) {
-          return const ListTile(
-            title: Text("حدث خطأ أثناء جلب البيانات"),
+          return  ListTile(
+            title: AutoSizeText(AppLocalizations.of(context)!.something_went_wrong),
           );
         }
 

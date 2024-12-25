@@ -1,9 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomPhoneFormField extends StatelessWidget {
   const CustomPhoneFormField({
@@ -15,35 +18,35 @@ class CustomPhoneFormField extends StatelessWidget {
     return TextFormField(
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(
-        labelText: 'Your mobile number',
+        labelText: AppLocalizations.of(context)!.your_mobile_number,
         labelStyle: AppTextStyles.style16WhiteW500
-            .copyWith(fontSize: 14, color: AppColors.grayColor),
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.blackColor, width: 1),
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.blueColor, width: 2),
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.redColor, width: 2),
-            borderRadius: BorderRadius.all(Radius.circular(8))),
+            .copyWith(fontSize: 14.sp, color: AppColors.grayColor),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.blackColor, width: 1.w),
+            borderRadius: BorderRadius.all(Radius.circular(8.r))),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.blueColor, width: 1.w),
+            borderRadius: BorderRadius.all(Radius.circular(8.r))),
+        errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.redColor, width: 1.w),
+            borderRadius: BorderRadius.all(Radius.circular(8.r))),
         errorMaxLines: 1,
         errorStyle: AppTextStyles.style16WhiteW500
-            .copyWith(fontSize: 14, color: AppColors.redColor),
+            .copyWith(fontSize: 14.sp, color: AppColors.redColor),
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(right: 8.0, left: 12),
+          padding: EdgeInsets.only(right: 8.w, left: 12.w),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                width: 24,
-                height: 16,
+                width: 24.w,
+                height: 16.h,
                 child: SvgPicture.asset(
                   AppIcons.iraqiFlagIcon,
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(width: 8),
+              horizontalSpace(5),
               AutoSizeText('+964',
                   style: AppTextStyles.style16WhiteW500
                       .copyWith(color: AppColors.blackColor)),

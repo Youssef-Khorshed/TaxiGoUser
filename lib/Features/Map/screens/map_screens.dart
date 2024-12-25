@@ -72,19 +72,19 @@ class _MapScreenState extends State<MapScreen> {
                     children: [
                       CustomEnableDilaog(mounted: mounted, mapcubit: mapcubit),
                       Padding(
-                        padding: const EdgeInsets.only(right: 10),
+                        padding:  EdgeInsets.only(right: 10.h),
                         child: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: const BoxDecoration(
+                          height: 50.h,
+                          width: 50.w,
+                          decoration:  BoxDecoration(
                               color: AppColors.whiteColor,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
+                                  BorderRadius.all(Radius.circular(10.r))),
                           child: IconButton(
                               onPressed: () {},
-                              icon: const Icon(
+                              icon:  Icon(
                                 Icons.my_location_outlined,
-                                size: 30,
+                                size: 30.sp,
                               )),
                         ),
                       ),

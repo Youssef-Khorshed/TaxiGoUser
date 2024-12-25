@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
@@ -40,7 +41,7 @@ class _CustomMapState extends State<CustomMap> {
 
   GoogleMap buildMap() {
     return GoogleMap(
-      padding: const EdgeInsets.only(bottom: 50, left: 100),
+      padding: EdgeInsets.only(bottom: 50.w, left: 100.h),
       markers: context.read<MapsCubit>().markers,
       polylines: context.read<MapsCubit>().polyLines,
       zoomControlsEnabled: false,

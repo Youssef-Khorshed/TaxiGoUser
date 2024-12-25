@@ -8,6 +8,8 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_drop_down.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import '../auth_widgets/custom_set_profile_bottoms.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class CreateProfileScreen extends StatefulWidget {
   const CreateProfileScreen({super.key});
@@ -44,7 +46,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       size: 25,
                     ),
                     horizontalSpace(5),
-                    AutoSizeText('Back', style: AppTextStyles.style20BlackW500)
+                    AutoSizeText( AppLocalizations.of(context)!.back, style: AppTextStyles.style20BlackW500)
                   ]),
                 ),
                 verticalSpace(30),
@@ -73,7 +75,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
-                  hintText: "Enter Your Name",
+                  hintText: AppLocalizations.of(context)!.enter_your_name,
                   controller: nameController,
                   textStyle: AppTextStyles.style12DarkgrayW400,
                   hinttextStyle: AppTextStyles.style12DarkgrayW400,
@@ -82,7 +84,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
-                  hintText: "Enter Your Phone Number",
+                  hintText: AppLocalizations.of(context)!.enter_your_phone_number,
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
                   textStyle: AppTextStyles.style12DarkgrayW400,
@@ -92,7 +94,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
-                  hintText: "Enter Your Email",
+                  hintText: AppLocalizations.of(context)!.enter_your_email,
                   controller: emailController,
                   textStyle: AppTextStyles.style12DarkgrayW400,
                   hinttextStyle: AppTextStyles.style12DarkgrayW400,
@@ -101,7 +103,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 CustomTextFormFiled(
                   isPassword: false,
                   obscureText: false,
-                  hintText: "Enter Your street",
+                  hintText: AppLocalizations.of(context)!.enter_your_street,
                   controller: streetNameController,
                   textStyle: AppTextStyles.style12DarkgrayW400,
                   hinttextStyle: AppTextStyles.style12DarkgrayW400,
@@ -109,19 +111,19 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 verticalSpace(10),
                 CustomDropDownFormField(
                   items: city,
-                  name: 'City',
+                  name: AppLocalizations.of(context)!.city_k,
                 ),
                 verticalSpace(10),
                 CustomDropDownFormField(
                   items: district,
-                  name: 'District',
+                  name: AppLocalizations.of(context)!.district_k,
                 ),
                 verticalSpace(20),
                 Row(
                   children: [
                     Expanded(
                       child: CustomSetProfileButtoms(
-                        text: "Cancel",
+                        text: AppLocalizations.of(context)!.cancel_k,
                         backgroundColor: AppColors.whiteColor,
                         textColor: AppColors.blackColor,
                         borderColor: AppColors.blueColor,
@@ -131,7 +133,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     horizontalSpace(10),
                     Expanded(
                       child: CustomSetProfileButtoms(
-                        text: "Save",
+                        text: AppLocalizations.of(context)!.save_k,
                         backgroundColor: AppColors.blueColor,
                         textColor: AppColors.whiteColor,
                         onPressed: () {

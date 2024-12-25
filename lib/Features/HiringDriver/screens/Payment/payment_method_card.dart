@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -35,15 +36,15 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
             !widget.isSelected); // Notify the parent to change the selection
       },
       child: Container(
-        width: size.width * 0.7,
+        width: size.width * 0.7.w,
         // margin: EdgeInsets.symmetric(vertical: size.height * 0.01),
-        padding: EdgeInsets.all(size.width * 0.03),
+        padding: EdgeInsets.all(size.width * 0.03.w),
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
           border: Border.all(
             color: widget.isSelected ? Colors.blue : Colors.transparent,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(8.r),
         ),
         child: Row(
           children: [

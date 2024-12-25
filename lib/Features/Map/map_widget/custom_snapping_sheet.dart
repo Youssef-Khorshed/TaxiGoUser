@@ -77,7 +77,7 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
           sheetBelow: SnappingSheetContent(
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding:  EdgeInsets.symmetric(horizontal: 10.w),
               color: AppColors.kBackgroundColor,
               child: RequestDialogBody(
                 nearbyRideRequest: widget.nearbyRideRequest,
@@ -90,7 +90,7 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
             children: [
               Center(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.9.h,
                   width: MediaQuery.of(context).size.width,
                   child: CustomMaptrip(
                     nearbyRideRequest: widget.nearbyRideRequest,

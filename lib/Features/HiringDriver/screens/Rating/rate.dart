@@ -43,7 +43,8 @@ class RateScreen extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: size.width * 0.05.w),
                   height: size.height,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -64,7 +65,7 @@ class RateScreen extends StatelessWidget {
                         minRating: 1,
                         direction: Axis.horizontal,
                         itemCount: 5,
-                        itemSize: size.height * 0.04,
+                        itemSize: size.height * 0.04.h,
                         itemPadding: EdgeInsets.symmetric(horizontal: 4.0.h),
                         itemBuilder: (context, _) => const Icon(
                           Icons.star_rounded,
@@ -82,7 +83,7 @@ class RateScreen extends StatelessWidget {
                           filled: true,
                           fillColor: Colors.grey.shade100,
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10.r),
                             borderSide: BorderSide.none,
                           ),
                         ),
@@ -105,13 +106,13 @@ class RateScreen extends StatelessWidget {
                                   const Icon(Icons.location_pin,
                                       color: Colors.red),
                                   Container(
-                                    height: size.height * 0.06,
+                                    height: size.height * 0.06.h,
                                   ),
                                   const Icon(Icons.location_pin,
                                       color: Colors.blue),
                                 ],
                               ),
-                              verticalSpace(size.width * 0.01),
+                              verticalSpace(size.width * 0.01.w),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +128,7 @@ class RateScreen extends StatelessWidget {
                                     ),
                                     verticalSpace(size.height * 0.02),
                                     AutoSizeText(
-                                      'Office',
+                                      AppLocalizations.of(context)!.office,
                                       style: AppTextStyles.style16DarkgrayW500,
                                     ),
                                     Row(

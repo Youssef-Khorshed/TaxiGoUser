@@ -24,7 +24,7 @@ class MessageInputBar extends StatelessWidget {
               offset: Offset(0, 4),
             ),
           ],
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.r),
           color: Colors.white,
         ),
         child: Row(

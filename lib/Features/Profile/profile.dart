@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_chage_language_profile.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/custom_raw_profile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -25,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0,
         centerTitle: true,
         title: AutoSizeText(
-          'Profile',
+          AppLocalizations.of(context)!.profile_k,
           style: AppTextStyles.style20WhiteW600,
         ),
         leading: IconButton(
@@ -46,20 +48,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
             alignment: Alignment.bottomRight,
             children: [
               Container(
-                width: size.width * 0.3,
-                height: size.width * 0.3,
+                width: size.width * 0.3.w,
+                height: size.width * 0.3.h,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
               ),
               CircleAvatar(
-                radius: size.width * 0.06,
+                radius: size.width * 0.06.r,
                 backgroundColor: AppColors.blueColor.withOpacity(0.5),
                 child: Icon(
                   Icons.camera_alt_outlined,
                   color: Colors.white,
-                  size: size.width * 0.06,
+                  size: size.width * 0.06.sp,
                 ),
               ),
             ],
@@ -67,22 +69,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const Spacer(),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(size.width * 0.05),
-            decoration: const BoxDecoration(
+            padding: EdgeInsets.all(size.width * 0.05.sp),
+            decoration:  BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+                topLeft: Radius.circular(20.r),
+                topRight: Radius.circular(20.r),
               ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomRawProfile(title: 'Name', content: 'Mohamed'),
-                CustomRawProfile(title: 'Gender', content: 'Male'),
-                CustomRawProfile(title: 'Email', content: 'Mohamed@gmail.com'),
-                CustomRawProfile(title: 'Phone', content: '+994 012344'),
-                CustomRawProfile(title: 'BirthDate', content: '1-1-1999'),
+                CustomRawProfile(title: AppLocalizations.of(context)!.name, content: 'Mohamed'),
+                CustomRawProfile(title: AppLocalizations.of(context)!.gender, content: 'Male'),
+                CustomRawProfile(title: AppLocalizations.of(context)!.email, content: 'Mohamed@gmail.com'),
+                CustomRawProfile(title: AppLocalizations.of(context)!.phone, content: '+994 012344'),
+                CustomRawProfile(title: AppLocalizations.of(context)!.birth_date, content: '1-1-1999'),
                 // CustomRawProfile(title: 'Language', content: 'Ar')
                 CustomChagelanguageProfile(
                   toggleLanguage: () {},

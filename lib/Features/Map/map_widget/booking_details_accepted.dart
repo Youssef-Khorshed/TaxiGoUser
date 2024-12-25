@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class BookingDetailsAccepted extends StatefulWidget {
@@ -30,8 +32,8 @@ class _BookingDetailsAcceptedState extends State<BookingDetailsAccepted> {
         children: [
           Column(
             children: [
-              const Text(
-                "Distance",
+              AutoSizeText(
+                AppLocalizations.of(context)!.distance,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
@@ -42,8 +44,8 @@ class _BookingDetailsAcceptedState extends State<BookingDetailsAccepted> {
           ),
           Column(
             children: [
-              Text(
-                "Time",
+              AutoSizeText(
+                AppLocalizations.of(context)!.time,
                 style: AppTextStyles.style25BlackW400,
               ),
               Text(

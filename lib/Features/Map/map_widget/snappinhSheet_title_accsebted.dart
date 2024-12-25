@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,43 +32,44 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: width / 3),
-          child: const Divider(
-            height: 25,
+          padding: EdgeInsets.symmetric(horizontal: width / 3.w),
+          child: Divider(
+            height: 25.h,
             thickness: 7,
             color: AppColors.kgrey,
           ),
         ),
         Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 10,
+          margin: EdgeInsets.symmetric(
+            horizontal: 10.w,
           ),
-          padding: const EdgeInsets.all(10),
-          width: 100,
+          padding: EdgeInsets.symmetric(
+            horizontal: 10.w,
+            vertical: 10.h,
+          ),
+          width: 100.w,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
                 backgroundImage: backgroundImage,
-                radius: 35,
+                radius: 35.r,
               ),
-              const SizedBox(
-                width: 15,
-              ),
+              horizontalSpace(15.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  AutoSizeText(
                     captinName,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: AppColors.blackColor,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold),
                   ),
                   verticalSpace(10.h),
                   SvgPicture.asset(
                     AppIcons.carIcon,
-                    height: 20,
+                    height: 20.h,
                   ),
                 ],
               ),
@@ -80,14 +82,14 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                     },
                     icon: SvgPicture.asset(
                       AppIcons.callIcon,
-                      height: 30,
+                      height: 30.h,
                     ),
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: SvgPicture.asset(
                       AppIcons.messageIcon,
-                      height: 30,
+                      height: 30.h,
                     ),
                   ),
                 ],
