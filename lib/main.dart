@@ -11,7 +11,7 @@ import 'Core/Utils/Network/Services/services_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  InternetChecker.instance.init();
   await setup();
   await getIt<CacheHelper>().cacheInit();
 
