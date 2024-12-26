@@ -94,7 +94,7 @@ class AppRoutes {
           builder: (context) {
             return BlocProvider(
               create: (context) => getIt.get<OtpCubit>(),
-              child:  OtpScreen(),
+              child:  OtpScreen(phone: phone,),
             );
           },
         );

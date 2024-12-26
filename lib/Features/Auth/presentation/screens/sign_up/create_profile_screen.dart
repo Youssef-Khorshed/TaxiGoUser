@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/validation.dart';
@@ -181,7 +182,17 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: BlocBuilder<CreateProfileCubit,
+                          child: BlocConsumer<CreateProfileCubit, CreateProfileState>(
+  listener: (context, state) {
+if(state is CreateProfileSuccess)
+
+  {
+Navigator.pushReplacementNamed(context, AppRoutes.generalScreen);
+  }
+  },
+
+  builder: (context, state) {
+    return BlocBuilder<CreateProfileCubit,
                               CreateProfileState>(
                             builder: (context, state) {
                               if (state is CreateProfileLoading) {
@@ -199,7 +210,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                                 },
                               );
                             },
-                          ),
+                          );
+  },
+),
                         ),
                       ],
                     ),
