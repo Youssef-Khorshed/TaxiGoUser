@@ -11,25 +11,25 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class BuildAddressRow extends StatelessWidget {
   const BuildAddressRow({
     super.key,
-    required this.rideDetails,
+    required this.historyData,
   });
-  final HistoryData rideDetails;
+  final HistoryData historyData;
 
   @override
   Widget build(BuildContext context) {
-    if (rideDetails.latFrom == null ||
-        rideDetails.lngFrom == null ||
-        rideDetails.latTo == null ||
-        rideDetails.lngTo == null) {
+    if (historyData.latFrom == null ||
+        historyData.lngFrom == null ||
+        historyData.latTo == null ||
+        historyData.lngTo == null) {
       return const Center(child: Text("Invalid location data"));
     }
 
     return FutureBuilder<Map<String, String>>(
       future: _getFormattedAddresses(
-        fromLatitude: double.parse(rideDetails.latFrom!),
-        fromLongitude: double.parse(rideDetails.lngFrom!),
-        toLatitude: double.parse(rideDetails.latTo!),
-        toLongitude: double.parse(rideDetails.lngTo!),
+        fromLatitude: double.parse(historyData.latFrom!),
+        fromLongitude: double.parse(historyData.lngFrom!),
+        toLatitude: double.parse(historyData.latTo!),
+        toLongitude: double.parse(historyData.lngTo!),
       ),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -89,7 +89,7 @@ class BuildAddressRow extends StatelessWidget {
             ],
           ),
           trailing: Text(
-            '${rideDetails.ride![0].distance} ${AppLocalizations.of(context)!.km}',
+            '${historyData.ride![0].distance} ${AppLocalizations.of(context)!.km}',
             style: TextStyle(fontSize: 15.sp),
           ),
         );

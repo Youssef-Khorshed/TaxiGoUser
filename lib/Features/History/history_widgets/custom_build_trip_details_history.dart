@@ -11,23 +11,21 @@ class CustomBuildTripDetails extends StatelessWidget {
 
   const CustomBuildTripDetails({super.key, required this.historyData});
 
-  get hasIcon => null;
-
   @override
   Widget build(BuildContext context) {
     return TripDetails(
-      hasIcon: hasIcon,
+      historyData: historyData,
     );
   }
 }
 
 // ignore: must_be_immutable
 class TripDetails extends StatelessWidget {
-  bool hasIcon;
-
-  TripDetails({super.key, required this.hasIcon});
-
-  get historyData => null;
+  TripDetails({
+    super.key,
+    required this.historyData,
+  });
+  final HistoryData historyData;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ class TripDetails extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 5.h, right: 10.w, left: 10.w),
           color: AppColors.whiteColor2,
           child: BuildAddressRow(
-            rideDetails: historyData,
+            historyData: historyData,
           ),
         ),
         Container(

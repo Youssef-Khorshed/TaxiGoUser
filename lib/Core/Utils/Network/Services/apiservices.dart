@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -15,8 +16,9 @@ class ApiService {
   static Dio? _dio;
   // Singleton Dio instance
   Future<Dio> getDio(context) async {
-    String? token = await SecureToken.getToken();
-    print("EEEEEEEEEWWWWWWW${token}");
+    // String? token = await SecureToken.getToken();
+    String token = '130|pTBzqKJZfluwlnwPXVjOhyL4lQZVpdpg9a0R7lk5317c66ec';
+    log("EEEEEEEEEWWWWWWW${token}");
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {

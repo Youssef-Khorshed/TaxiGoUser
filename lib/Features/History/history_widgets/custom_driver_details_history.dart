@@ -56,9 +56,9 @@ class CustomDriverdetailsHistory extends StatelessWidget {
           style: AppTextStyles.style14DarkgrayW500,
         ),
         verticalSpace(3),
-        AutoSizeText(
+        Text(
           ' $price ${AppLocalizations.of(context)!.iqd}',
-          style: AppTextStyles.style14BlackW500,
+          style: AppTextStyles.style14BlackW500.copyWith(fontSize: 12.sp),
         ),
       ],
     );

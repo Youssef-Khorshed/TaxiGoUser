@@ -96,7 +96,7 @@ class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
                 builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
                 initialRoute:
-                    token != null ? AppRoutes.generalScreen : AppRoutes.splash,
+                    token != null ? AppRoutes.generalScreen : AppRoutes.history,
                 onGenerateRoute: AppRoutes.generateRoute,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,

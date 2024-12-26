@@ -56,7 +56,7 @@ class HistoryData {
 
 class HistoryRide {
   int? id;
-  int? distance;
+  dynamic distance;
   String? distancePrice;
   String? total;
   String? rate;

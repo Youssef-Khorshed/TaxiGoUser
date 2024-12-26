@@ -20,87 +20,92 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HistoryViewModel, HistoryStates>(
-      bloc: HistoryViewModel.get(context)..getHistoryData(context),
-      builder: (context, state) {
-        if (state is HistorySuccessStates ||
-            state is AddToSaveToFavSuccessStates) {
-          List<HistoryData> historyData =
-              HistoryViewModel.get(context).historyData;
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
-            child: Container(
+    return Scaffold(
+      body: BlocBuilder<HistoryViewModel, HistoryStates>(
+        bloc: HistoryViewModel.get(context)..getHistoryData(context),
+        builder: (context, state) {
+          if (state is HistorySuccessStates ||
+              state is AddToSaveToFavSuccessStates) {
+            List<HistoryData> historyData =
+                HistoryViewModel.get(context).historyData;
+            return Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
-              decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(20.r)),
-              child: historyData.isEmpty
-                  ? CustomEmptyDataView(
-                      message: AppLocalizations.of(context)!.empty_message)
-                  : Column(
+              child: Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+                decoration: BoxDecoration(
+                    color: AppColors.whiteColor,
+                    borderRadius: BorderRadius.circular(20.r)),
+                child: historyData.isEmpty
+                    ? CustomEmptyDataView(
+                        message: AppLocalizations.of(context)!.empty_message)
+                    : Column(
+                        children: [
+                          const Row(
+                            children: [
+                              Expanded(child: CustomDetailsfilterdropdown()),
+                            ],
+                          ),
+                          verticalSpace(16.h),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: historyData.length,
+                              itemBuilder: (context, index) {
+                                return HistoryTripCard(
+                                  onStarPressed: () {
+                                    HistoryViewModel.get(context).addToFavTrip(
+                                        context,
+                                        historyData[index].ride![0].id!);
+                                    HistoryViewModel.get(context)
+                                        .getHistoryData(context);
+                                  },
+                                  onSavedPressed: () {
+                                    HistoryViewModel.get(context).saveTrip(
+                                        context,
+                                        historyData[index].ride![0].id!);
+                                    HistoryViewModel.get(context)
+                                        .getHistoryData(context);
+                                  },
+                                  historyData: historyData[index],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
+            );
+          }
+          if (state is HistoryFailureStates) {
+            return CustomFailureView(message: state.errMessage);
+          }
+          return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+              child: Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
+                  decoration: BoxDecoration(
+                      color: AppColors.whiteColor,
+                      borderRadius: BorderRadius.circular(20.r)),
+                  child: Skeletonizer(
+                    child: Column(
                       children: [
                         const Row(
                           children: [
                             Expanded(child: CustomDetailsfilterdropdown()),
                           ],
                         ),
-                        verticalSpace(16.h),
                         Expanded(
                           child: ListView.builder(
-                            itemCount: historyData.length,
-                            itemBuilder: (context, index) {
-                              return HistoryTripCard(
-                                onStarPressed: () {
-                                  HistoryViewModel.get(context).addToFavTrip(
-                                      context, historyData[index].ride![0].id!);
-                                  HistoryViewModel.get(context)
-                                      .getHistoryData(context);
-                                },
-                                onSavedPressed: () {
-                                  HistoryViewModel.get(context).saveTrip(
-                                      context, historyData[index].ride![0].id!);
-                                  HistoryViewModel.get(context)
-                                      .getHistoryData(context);
-                                },
-                                historyData: historyData[index],
-                              );
-                            },
-                          ),
+                              itemCount: 10,
+                              itemBuilder: (context, index) =>
+                                  const CustomDummyWidget()),
                         ),
                       ],
                     ),
-            ),
-          );
-        }
-        if (state is HistoryFailureStates) {
-          return CustomFailureView(message: state.errMessage);
-        }
-        return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
-            child: Container(
-                padding:
-                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
-                decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(20.r)),
-                child: Skeletonizer(
-                  child: Column(
-                    children: [
-                      const Row(
-                        children: [
-                          Expanded(child: CustomDetailsfilterdropdown()),
-                        ],
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                            itemCount: 10,
-                            itemBuilder: (context, index) =>
-                                const CustomDummyWidget()),
-                      ),
-                    ],
-                  ),
-                )));
-      },
+                  )));
+        },
+      ),
     );
   }
 }
