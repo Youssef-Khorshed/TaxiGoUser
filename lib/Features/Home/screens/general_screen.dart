@@ -15,6 +15,7 @@ import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.d
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
+import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
 
 import '../../Auth/presentation/screens/log_in/log_in_screen.dart';
 
@@ -34,7 +35,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
     const FavouriteScreen(),
     const SavedScreen(),
     const WalletScreen(),
-    const LogInScreen(),
+    const NotificationScreen(),
   ];
 
   // Corrected screen names to match the number of screens

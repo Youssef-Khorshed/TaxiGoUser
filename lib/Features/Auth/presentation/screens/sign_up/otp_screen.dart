@@ -184,10 +184,9 @@ class _OtpScreenState extends State<OtpScreen> {
                     textColor: AppColors.whiteColor,
                     buttonText: AppLocalizations.of(context)!.verify,
                     onPressed: () async {
-                      Navigator.pushNamed(context, AppRoutes.setPassword,arguments: widget.phone);
+                      // Navigator.pushNamed(context, AppRoutes.setPassword,arguments: widget.phone);
 _seconds = 0;setState(() {
-  Navigator.pushReplacementNamed(
-      context, AppRoutes.setPassword);
+
 });
                       if (widget.phone == "" || widget.phone == null) {
                         await OtpCubit.get(context)
