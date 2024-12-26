@@ -185,16 +185,9 @@ class _OtpScreenState extends State<OtpScreen> {
                     buttonText: AppLocalizations.of(context)!.verify,
                     onPressed: () async {
 
-
-                        if (widget.phone == "" || widget.phone == null) {
-                          Navigator.pushReplacementNamed(
-                              context, AppRoutes.setPassword);
-                        } else {
-                          Navigator.pushReplacementNamed(
-                              context, AppRoutes.setNewPassword,
-                              arguments: widget.phone);
-                        }
-
+                      Navigator.pushReplacementNamed(
+                          context, AppRoutes.setNewPassword,
+                          arguments: widget.phone);
                       // Navigator.pushNamed(context, AppRoutes.setPassword,arguments: widget.phone);
 _seconds = 0;setState(() {
 

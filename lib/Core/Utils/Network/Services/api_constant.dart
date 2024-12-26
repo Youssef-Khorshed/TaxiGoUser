@@ -152,4 +152,5 @@ class Constants {
   static const String addFavTripEndPoint = '/customer/favorites/store';
   static const String favoriteEndPoint = '/customer/favorites';
   static const String removefavoriteEndPoint = '/customer/favorites/delete/';
+
 }

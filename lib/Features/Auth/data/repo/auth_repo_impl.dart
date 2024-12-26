@@ -317,7 +317,7 @@ class AuthRepoImpl extends AuthRepo {
       required BuildContext context}) async {
     try {
       var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.setPassword,
+          Constants.baseUrl + Constants.forgotPasswordSet,
           body: {
             "password": password,
             "password_confirmation": passwordConfirmation,

@@ -69,7 +69,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                     listener: (context, state) {
                       if (state is SetNewPasswordSuccess) {
                         Navigator.pushReplacementNamed(
-                            context, AppRoutes.generalScreen);
+                            context, AppRoutes.logIn);
                       } else if (state is SetNewPasswordError) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(state.message),
@@ -79,12 +79,12 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                     },
                     builder: (context, state) {
                       if (state is SetNewPasswordLoading) {
-                        return CustomLoading();
+                        return const CustomLoading();
                       }
                       return CustomAppBottom(
                         onPressed: () async {
                           await SetNewPasswordCubit.get(context)
-                              .setPasswordValidate(context, widget.phone!);
+                              .setPasswordValidate(context,widget.phone!);
                           setState(() {});
                           // Navigator.pushReplacementNamed(
                           //     context, AppRoutes.generalScreen);
