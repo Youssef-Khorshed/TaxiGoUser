@@ -40,7 +40,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
   void _startTimer() {
     _seconds = 60;
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_seconds > 0) {
         setState(() {
           _seconds--;
@@ -76,7 +76,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_back_ios_new,
                     color: AppColors.blackColor,
                   ),
@@ -184,6 +184,17 @@ class _OtpScreenState extends State<OtpScreen> {
                     textColor: AppColors.whiteColor,
                     buttonText: AppLocalizations.of(context)!.verify,
                     onPressed: () async {
+
+
+                        if (widget.phone == "" || widget.phone == null) {
+                          Navigator.pushReplacementNamed(
+                              context, AppRoutes.setPassword);
+                        } else {
+                          Navigator.pushReplacementNamed(
+                              context, AppRoutes.setNewPassword,
+                              arguments: widget.phone);
+                        }
+
                       // Navigator.pushNamed(context, AppRoutes.setPassword,arguments: widget.phone);
 _seconds = 0;setState(() {
 
