@@ -5,12 +5,7 @@ import 'package:taxi_go_user_version/Features/Auth/presentation/screens/log_in/f
 import 'package:taxi_go_user_version/Features/Auth/presentation/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/presentation/screens/log_in/login_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/presentation/screens/sign_up/sign_up_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/log_in_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/set_new_password_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/log_in/verification_phone_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/create_profile_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/otp_screen.dart';
-import 'package:taxi_go_user_version/Features/Auth/screens/sign_up/set_password_screen.dart';
+
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
@@ -32,6 +27,12 @@ import '../../../Features/Auth/presentation/controller/otp_cubit/otp_cubit.dart'
 import '../../../Features/Auth/presentation/controller/set_new_password/set_new_password_cubit.dart';
 import '../../../Features/Auth/presentation/controller/set_password_cubit/set_password_cubit.dart';
 import '../../../Features/Auth/presentation/controller/sign_up_cubit.dart';
+import '../../../Features/Auth/presentation/screens/log_in/log_in_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/set_new_password_screen.dart';
+import '../../../Features/Auth/presentation/screens/log_in/verification_phone_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/create_profile_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/otp_screen.dart';
+import '../../../Features/Auth/presentation/screens/sign_up/set_password_screen.dart';
 import '../../../Features/Map/screens/map_screens.dart';
 import '../../../Features/Splash/screens/splash_screen.dart';
 import '../Network/Services/services_locator.dart';
@@ -93,7 +94,7 @@ class AppRoutes {
           builder: (context) {
             return BlocProvider(
               create: (context) => getIt.get<OtpCubit>(),
-              child: const OtpScreen(),
+              child:  OtpScreen(),
             );
           },
         );
@@ -111,7 +112,7 @@ class AppRoutes {
           builder: (context) {
             return BlocProvider(
               create: (context) => getIt.get<CreateProfileCubit>(),
-              child: CreateProfileScreen(),
+              child: const CreateProfileScreen(),
             );
           },
         );
@@ -120,7 +121,7 @@ class AppRoutes {
           builder: (context) {
             return BlocProvider(
               create: (context) => getIt.get<LoginCubit>(),
-              child: LogInScreen(),
+              child: const LogInScreen(),
             );
           },
         );
@@ -129,7 +130,7 @@ class AppRoutes {
           builder: (context) {
             return BlocProvider(
               create: (context) => getIt.get<OtpCubit>(),
-              child: VerificationPhoneAndPasswordScreen(),
+              child: const VerificationPhoneAndPasswordScreen(),
             );
           },
         );
@@ -146,13 +147,14 @@ class AppRoutes {
           },
         );
       case setNewPassword:
-        var phone =
-            settings.arguments != null ? settings.arguments as String : null;
+        var phone = settings.arguments != null
+            ? settings.arguments as String
+            : null;
         return CupertinoPageRoute(
           builder: (context) {
             return BlocProvider(
               create: (context) => getIt.get<SetNewPasswordCubit>(),
-              child: const SetNewPasswordScreen(),
+              child: SetNewPasswordScreen(phone: phone),
             );
           },
         );
