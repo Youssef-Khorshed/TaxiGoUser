@@ -190,8 +190,11 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                                   ),
                                   TextButton(
                                     onPressed: () {
+
+
+
                                       Navigator.of(context)
-                                          .pop(); // إغلاق الحوار
+                                          .pop();
                                       LogOutCubit.get(parentContext)
                                           .logOut(parentContext);
                                     },

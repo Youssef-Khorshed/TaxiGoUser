@@ -16,6 +16,9 @@ class ApiService {
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
   Future<Dio> getDio(context) async {
+    // String? token = await SecureToken.getToken();
+    String token = '309|dPPml9L1LFKMj6gi0vW6GMj5QPb53G84pT6gY2JK8c8b9445';
+    log("EEEEEEEEEWWWWWWW${token}");
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -33,7 +36,7 @@ class ApiService {
             LocalizationThemeState.ar
         ? "ar"
         : "en";
-    var token = await SecureToken.getToken();
+    // var token = await SecureToken.getToken();
     _addDioHeaders(language: language, token: token);
 
     return _dio!;
