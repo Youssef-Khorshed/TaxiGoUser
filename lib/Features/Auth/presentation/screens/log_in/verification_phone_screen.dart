@@ -107,7 +107,7 @@ class _VerificationPhoneAndPasswordScreenState
                       // );
                       await OtpCubit.get(context)
                           .validateForgetPassword(context);
-                      setState(() {});
+                      // setState(() {});
                       //   Navigator.pushNamed(context, AppRoutes.otp,arguments: OtpCubit.get(context).controller?.text
                       //   );
                     },
