@@ -58,7 +58,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
       AppLocalizations.of(context)!.log_out,
     ];
     return Scaffold(
-      backgroundColor: AppColors.blueColor,
+      backgroundColor: AppColors.whiteColor,
       drawer: CustomAppDrawer(
         onItemTap: (index) => onItemTap(index),
         selectedIndex: selctedIndex,
@@ -76,7 +76,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
                   Builder(builder: (context) {
                     return InkWell(
                         onTap: () => Scaffold.of(context).openDrawer(),
-                        child: SvgPicture.asset(AppIcons.menuIcon));
+                        child: SvgPicture.asset(AppIcons.menuIcon,colorFilter: ColorFilter.mode(AppColors.blackColor, BlendMode.srcIn),));
                   }),
                   AutoSizeText(screensName[selctedIndex],
                       style: AppTextStyles.style24WhiteW500),

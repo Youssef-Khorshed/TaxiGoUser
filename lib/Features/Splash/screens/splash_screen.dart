@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   navigateToHome() async {
     var token = await SecureToken.getToken();
     if (token != null) {
-
+      Navigator.pushReplacementNamed(context, AppRoutes.generalScreen);
     }
     else {
       Future.delayed(const Duration(seconds: 5), () {

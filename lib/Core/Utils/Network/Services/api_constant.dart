@@ -100,7 +100,7 @@ class Constants {
       'https://go-taxi.codecraft1.com/api/customer/rides/get-last';
 
   static const String walletDeposit = 'deposit';
-  static const String walleTransactions = 'transactions';
+  static const String walleTransactions = '/transactions';
   static const String walleGetProfileData = 'profile';
   static const String getAllNotification = 'notifications';
 
