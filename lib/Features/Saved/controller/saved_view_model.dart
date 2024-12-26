@@ -32,6 +32,7 @@ class SavedViewModel extends Cubit<SavedStates> {
         emit(UnSaveTripFailureStates(errMessage: unSavedFailure.message));
       },
       (unSavedResponse) {
+        getSavedData(context);
         emit(UnSaveTripSuccessStates(unSaveModel: unSavedResponse));
       },
     );

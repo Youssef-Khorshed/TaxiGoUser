@@ -40,7 +40,7 @@ class HistoryViewModel extends Cubit<HistoryStates> {
 
   addToFavTrip(BuildContext context, int rideId) async {
     emit(AddToSaveToFavTripLoadingStates());
-    var either = await historyRepo.saveTrip(context, rideId);
+    var either = await historyRepo.addToFavTrip(context, rideId);
     either.fold(
       (favFailure) {
         emit(AddToSaveToFavFailureStates(errMessage: favFailure.message));

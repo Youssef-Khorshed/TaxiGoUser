@@ -38,11 +38,12 @@ class FavouriteCard extends StatelessWidget {
           right: 1.w,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-            child: Icon(
-              size: 30.sp,
-              Icons.star_rate_rounded,
-              color: AppColors.yellowColor,
-            ),
+            child: IconButton(
+                onPressed: onPressed,
+                icon: const Icon(
+                  Icons.star_rate_rounded,
+                  color: AppColors.yellowColor,
+                )),
           ),
         )
       ],

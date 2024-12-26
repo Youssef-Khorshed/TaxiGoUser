@@ -53,18 +53,26 @@ class HistoryScreen extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return HistoryTripCard(
                                   onStarPressed: () {
-                                    HistoryViewModel.get(context).addToFavTrip(
-                                        context,
-                                        historyData[index].ride![0].id!);
-                                    HistoryViewModel.get(context)
-                                        .getHistoryData(context);
+                                    if (historyData[index].isFavorite == true) {
+                                      return;
+                                    } else {
+                                      HistoryViewModel.get(context)
+                                          .addToFavTrip(context,
+                                              historyData[index].ride![0].id!);
+                                      HistoryViewModel.get(context)
+                                          .getHistoryData(context);
+                                    }
                                   },
                                   onSavedPressed: () {
-                                    HistoryViewModel.get(context).saveTrip(
-                                        context,
-                                        historyData[index].ride![0].id!);
-                                    HistoryViewModel.get(context)
-                                        .getHistoryData(context);
+                                    if (historyData[index].isSaved == true) {
+                                      return;
+                                    } else {
+                                      HistoryViewModel.get(context).saveTrip(
+                                          context,
+                                          historyData[index].ride![0].id!);
+                                      HistoryViewModel.get(context)
+                                          .getHistoryData(context);
+                                    }
                                   },
                                   historyData: historyData[index],
                                 );

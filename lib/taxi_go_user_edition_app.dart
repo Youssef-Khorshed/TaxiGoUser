@@ -95,8 +95,9 @@ class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
                 locale: LocalCubit.get(context).localization,
                 builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
-                initialRoute:
-                    token != null ? AppRoutes.generalScreen : AppRoutes.history,
+                initialRoute: token != null
+                    ? AppRoutes.generalScreen
+                    : AppRoutes.generalScreen,
                 onGenerateRoute: AppRoutes.generateRoute,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,

@@ -33,8 +33,8 @@ class CustomFavoriteBuildTripDetails extends StatelessWidget {
           color: AppColors.darkgrayColor,
         ),
         CustomDriverDetailsFavorite(
-          price: favoriteRide.total!,
-          rating: favoriteRide.rate!,
+          price: favoriteRide.total ?? '200',
+          rating: favoriteRide.rate ?? '3.5',
           favoriteCaptain: favoriteRide.favoriteCaptain!,
         ),
       ],

@@ -45,8 +45,6 @@ class SavedScreen extends StatelessWidget {
                                 onSavedPressed: () {
                                   SavedViewModel.get(context).unSaveTrip(
                                       context, savedData[index].id!);
-                                  SavedViewModel.get(context)
-                                      .getSavedData(context);
                                 },
                                 savedData: savedData[index],
                               );
