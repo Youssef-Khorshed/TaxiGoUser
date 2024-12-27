@@ -18,13 +18,14 @@ import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
   const Custom_addAdress_buttonAdd_sheet({
     super.key,
-    required this.mapsCubit,
   });
 
-  final MapsCubit mapsCubit;
+
 
   @override
   Widget build(BuildContext context) {
+
+
     return BlocConsumer<MapsCubit, MapsState>(
       listener: (context, state) {
         if (state is PlaceDirectionsFaild) {
@@ -32,6 +33,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        MapsCubit mapsCubit=MapsCubit.get(context);
         if (state is PlaceAddressLoading) {
           return const CustomLoading();
         }
@@ -44,6 +46,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
                 ? AppLocalizations.of(context)!.loading
                 : AppLocalizations.of(context)!.go,
             onPressed: () async {
+              await mapsCubit.getUserLocation(title: 'origin');
               await mapsCubit.emitPlaceDirections(
                   origin: LatLng(mapsCubit.orginPosition!.lat!,
                       mapsCubit.orginPosition!.lng!),

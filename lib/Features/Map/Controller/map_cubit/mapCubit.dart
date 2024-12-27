@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -20,7 +21,14 @@ class MapsCubit extends Cubit<MapsState> {
   // for map intialization
   late GoogleMapController mapController;
 
+static MapsCubit get(context)=>BlocProvider.of(context);
   // for origin & destination
+
+  mapControllerInit(GoogleMapController map){
+    mapController=map;
+    print("object${map}");
+
+  }
   GeocodeResult originAddress = GeocodeResult();
   GeocodeResult destinationAddress = GeocodeResult();
   Leg distanceTime = Leg();
@@ -54,6 +62,7 @@ class MapsCubit extends Cubit<MapsState> {
         lat: userLocation.latitude,
         lng: userLocation.longitude,
       );
+
       emit(UpdateOriginLocatoin());
       buildmarker(
         title: title,
@@ -204,8 +213,7 @@ class MapsCubit extends Cubit<MapsState> {
     LatLngBounds bounds = _calculateBounds(origin, destination);
     CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
     await mapController.animateCamera(cameraUpdate);
-    final GoogleMapController controller = mapController;
-    controller.animateCamera(cameraUpdate);
+     mapController.animateCamera(cameraUpdate);
     emit(UpdateBoundsPosition());
   }
 
@@ -274,11 +282,8 @@ class MapsCubit extends Cubit<MapsState> {
       zoom: zoom,
     );
 
-    final GoogleMapController controller = mapController;
-    controller
-        .animateCamera(CameraUpdate.newCameraPosition(placeCameraPosition));
+    mapController.animateCamera(CameraUpdate.newCameraPosition(placeCameraPosition));
 
-    emit(UpdatePlaceCameraPosition());
   }
 
   /// build markers between origin and destination

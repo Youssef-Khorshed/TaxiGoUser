@@ -73,8 +73,9 @@ Future<void> setup() async {
 
   getIt.registerLazySingleton<MapRepo>(
       () => Maprepoimp(apiService: getIt.get<ApiService>()));
-  getIt.registerFactory<MapsCubit>(
-      () => MapsCubit(mapsRepository: getIt.get<MapRepo>()));
+  getIt.registerSingleton<MapsCubit>(
+      MapsCubit(mapsRepository: getIt.get<MapRepo>()));
+
 
   getIt.registerLazySingleton<WalletRepo>(
       () => WalletRepoImpl(apiService: getIt.get<ApiService>()));

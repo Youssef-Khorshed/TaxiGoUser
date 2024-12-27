@@ -37,9 +37,11 @@ class CustomEnableDilaog extends StatelessWidget {
             builder: (context) => EnableLocationDialog(
               onUseMyLocationPressed: () async {
                 if (mounted) {
+
                   InternetConnectivity internetConnectivity =
                       MobileConnectivity(connectivity: Connectivity());
                   if (await internetConnectivity.isConnected) {
+
                     await mapcubit.getUserLocation(title: 'origin');
                     mapcubit.polyLines.clear();
                     if (mapcubit.state is OpenLoacationFailed) {

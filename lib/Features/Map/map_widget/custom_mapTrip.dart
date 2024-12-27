@@ -31,6 +31,7 @@ class _CustomMaptripState extends State<CustomMaptrip> {
 
   @override
   void initState() {
+    print("HACK");
     _startStream();
     super.initState();
   }
@@ -63,8 +64,9 @@ class _CustomMaptripState extends State<CustomMaptrip> {
       myLocationButtonEnabled: false,
       //style: mapStyle, // to control theme (Dark/Light)
       onMapCreated: (controller) {
+        print("QQQQQQQQQQQQq");
         final cubit = context.read<MapsCubit>();
-        cubit.mapController = controller;
+        // cubit.mapController = controller;
         final source = LatLng(
             double.parse(widget.nearbyRideRequest.data!.latFrom!),
             double.parse(widget.nearbyRideRequest.data!.lngFrom!));

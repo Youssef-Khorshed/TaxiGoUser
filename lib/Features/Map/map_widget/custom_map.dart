@@ -40,6 +40,7 @@ class _CustomMapState extends State<CustomMap> {
   }
 
   GoogleMap buildMap() {
+
     return GoogleMap(
       padding: EdgeInsets.only(bottom: 50.w, left: 100.h),
       markers: context.read<MapsCubit>().markers,
@@ -48,7 +49,8 @@ class _CustomMapState extends State<CustomMap> {
       myLocationButtonEnabled: false,
       // style: mapStyle, // to control theme (Dark/Light)
       onMapCreated: (controller) {
-        context.read<MapsCubit>().mapController = controller;
+
+       MapsCubit.get(context).mapControllerInit(controller);
         setState(() {});
       },
       initialCameraPosition: const CameraPosition(

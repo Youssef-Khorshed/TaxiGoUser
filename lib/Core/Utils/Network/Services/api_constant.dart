@@ -4,7 +4,7 @@ class Constants {
   static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
   static const String userToken =
       '130|pTBzqKJZfluwlnwPXVjOhyL4lQZVpdpg9a0R7lk5317c66ec';
-  static const String mapToken = 'AIzaSyCmrk6YbjdCAlwichSDNyyfxlA7zwXhVwc';
+  static const String mapToken = 'AIzaSyCvEmmGgl31UwZ5Cx58oG7UikqM4TVC5q4';
   static String kToken = "kToken";
 
   /// Routes
