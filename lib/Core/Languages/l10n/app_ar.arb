@@ -26,7 +26,7 @@
     "min":"دقيقة",
     "change_address":"تغيير العنوان",
     "book_now":"حجز الأن",
-    "trips_history":"تاريخ الرحللات",
+    "trips_history":"تاريخ الرحلات",
     "trip_favorites":"الرحلات المفضلة",
     "saved_Trips":"الرحلات المحفوظة",
     "wallet":"المحفظة",
@@ -54,7 +54,7 @@
     "sharelocation": "مشاركه الموقع",
     "error_occurred": "حدث خطأ",
     "check_internet_connection": "يرجى التحقق من اتصالك بالإنترنت",
-    
+
     "field_is_required" : "الحقل مطلوب",
     "your_mobile_number": "رقم الجوال",
     "via_sms": "بواسطة الرسالة",
@@ -265,7 +265,7 @@
    "trip_favorite":"الرحلات المفضلة",
    "trip_saved":"الرحلات المحفوظة",
    "km": "كم",
-   "iqd": "د.ع",
+   "iqd": "دينار",
    "name": "الاسم",
    "phone_nubmer": "رقم الهاتف",
    "birth_day": "يوم الميلاد",
@@ -275,5 +275,10 @@
    "english": "الانجليزية",
    "balance": "المحفظة",
    "address": "العنوان",
-   "empty_message": "لا توجد اى رحلات"
+   "empty_message": "لا توجد اى رحلات",
+    "empty_notification": "لا توجد اى اشعارات",
+    "amount_must_be_at_least_1001_IQD": "المبلغ يجب ان يكون على الاقل 1001 دينار",
+    "field_required": "حقل مطلوب",
+    "profile": "الملف الشخصي"
+
 }

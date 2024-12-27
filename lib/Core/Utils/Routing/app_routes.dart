@@ -94,7 +94,9 @@ class AppRoutes {
           builder: (context) {
             return BlocProvider(
               create: (context) => getIt.get<OtpCubit>(),
-              child:  OtpScreen(phone: phone,),
+              child: OtpScreen(
+                phone: phone,
+              ),
             );
           },
         );
@@ -147,9 +149,8 @@ class AppRoutes {
           },
         );
       case setNewPassword:
-        var phone = settings.arguments != null
-            ? settings.arguments as String
-            : null;
+        var phone =
+            settings.arguments != null ? settings.arguments as String : null;
         return CupertinoPageRoute(
           builder: (context) {
             return BlocProvider(
@@ -206,7 +207,8 @@ class AppRoutes {
           builder: (context) {
             return Center(
               child: BlocProvider(
-                create: (context) => getIt<MapsCubit>(),
+                create: (context) =>
+                    getIt<MapsCubit>()..getUserLocation(title: 'Origin'),
                 child: const MapScreen(),
               ),
             );

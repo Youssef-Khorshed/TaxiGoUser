@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -25,9 +27,6 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size(MediaQuery.of(context).size.width, 80),
-            child: const CustomAuthAppBar()),
         body: Form(
           key: SetNewPasswordCubit.get(context).setNewPasswordFormKey,
           autovalidateMode:
@@ -35,34 +34,56 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  verticalSpace(10),
-                  AutoSizeText(
-                    AppLocalizations.of(context)!.setYourPassword,
-                    style: AppTextStyles.style24BlackW500,
-                    textAlign: TextAlign.left,
+                  verticalSpace(30.h),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios_new,
+                        color: AppColors.blackColor,
+                      ),
+                    ),
                   ),
-                  verticalSpace(10),
-                  CustomAppFormField(
-                    validator: (p0) =>
-                        Validation.validatePassword(p0!, context),
-                    isPassword: true,
-                    obscureText: true,
-                    hintText: AppLocalizations.of(context)!.enterYourPassword,
-                    controller:
-                        SetNewPasswordCubit.get(context).setPasswordController,
-                    isNumbers: false,
-                  ),
-                  CustomAppFormField(
-                    validator: (p0) =>
-                        Validation.validatePassword(p0!, context),
-                    isPassword: true,
-                    obscureText: true,
-                    hintText: AppLocalizations.of(context)!.confirmPassword,
-                    controller: SetNewPasswordCubit.get(context)
-                        .setPasswordConfirmationController,
-                    isNumbers: false,
+                  verticalSpace(30.h),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      AutoSizeText(
+                        AppLocalizations.of(context)!.setYourPassword,
+                        style: AppTextStyles.style24BlackW500,
+                        textAlign: TextAlign.left,
+                      ),
+                      verticalSpace(20.h),
+                      CustomAppFormField(
+                        hintStyle: AppTextStyles.style16DarkgrayW500,
+                        validator: (p0) =>
+                            Validation.validatePassword(p0!, context),
+                        isPassword: true,
+                        obscureText: true,
+                        hintText:
+                            AppLocalizations.of(context)!.enterYourPassword,
+                        controller: SetNewPasswordCubit.get(context)
+                            .setPasswordController,
+                        isNumbers: false,
+                      ),
+                      verticalSpace(10.h),
+                      CustomAppFormField(
+                        hintStyle: AppTextStyles.style16DarkgrayW500,
+                        validator: (p0) =>
+                            Validation.validatePassword(p0!, context),
+                        isPassword: true,
+                        obscureText: true,
+                        hintText: AppLocalizations.of(context)!.confirmPassword,
+                        controller: SetNewPasswordCubit.get(context)
+                            .setPasswordConfirmationController,
+                        isNumbers: false,
+                      ),
+                    ],
                   ),
                   const Spacer(),
                   BlocConsumer<SetNewPasswordCubit, SetNewPasswordState>(
@@ -84,7 +105,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
                       return CustomAppBottom(
                         onPressed: () async {
                           await SetNewPasswordCubit.get(context)
-                              .setPasswordValidate(context,widget.phone!);
+                              .setPasswordValidate(context, widget.phone!);
                           setState(() {});
                           // Navigator.pushReplacementNamed(
                           //     context, AppRoutes.generalScreen);

@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
-
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
 import '../Error/exception.dart';
 import 'internetconnection.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 
 class ApiService {
   InternetConnectivity internetConnectivity;
@@ -15,7 +15,9 @@ class ApiService {
   static Dio? _dio;
   // Singleton Dio instance
   Future<Dio> getDio(context) async {
-    String? token=await   SecureToken.getToken();
+    // String? token = await SecureToken.getToken();
+    String? token = "337|W1jRQnyFGJqA6FOeYfBkUGjwCdPwO4Cz3rKx1J2z730d8dfb";
+
     print("EEEEEEEEEWWWWWWW${token}");
     Duration timeOut = const Duration(seconds: 30);
 
@@ -27,20 +29,16 @@ class ApiService {
         ..options.receiveTimeout = timeOut;
 
       _addDioInterceptor();
-
-
     }
 
-
     String language = LocalCubit.get(context).localizationThemeState ==
-        LocalizationThemeState.ar
+            LocalizationThemeState.ar
         ? "ar"
         : "en";
 
     print("EEEEEE${token}");
 
-    _addDioHeaders(language: language,token: token);
-
+    _addDioHeaders(language: language, token: token);
 
     return _dio!;
   }
@@ -51,7 +49,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-      'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -71,54 +69,60 @@ class ApiService {
   // Function to make GET requests
   Future<T> getRequest<T>(String url,
       {Map<String, dynamic>? queryParameters,
-        required BuildContext context}) async {
-    if (await internetConnectivity.isConnected) {
-    await  getDio(context);
-      final response =
-
-      await _dio!.get(url, data: queryParameters,);
-      if (response.statusCode != null) {
-        if (response.statusCode == 200) {
-          return response.data;
-        } else {
-          throw ServerException(
-            message: response.toString(),
-          );
+      required BuildContext context}) async {
+    try {
+      if (await internetConnectivity.isConnected) {
+        getDio(context);
+        final response = await _dio!.get(
+          url,
+          data: queryParameters,
+        );
+        if (response.statusCode != null) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            return response.data;
+          } else {
+            throw ServerException(
+              message: response.toString(),
+            );
+          }
         }
+      } else {
+        throw NoInternetException(message: 'No internet Connection');
       }
-    } else {
-      throw NoInternetException(message: 'No internet Connection');
+      throw UnExpectedException(message: 'Un Expected error occurs');
+    } on DioException catch (dioE) {
+      throw ServerException(message: ServerFailure.fromDioError(dioE));
     }
-    throw UnExpectedException(message: 'Un Expected error occurs');
   }
 
   // Function to make POST requests
   Future<T> postRequest<T>(String url,
       {dynamic body, required BuildContext context}) async {
-    if (await internetConnectivity.isConnected) {
-      await getDio(context);
+    try {
+      if (await internetConnectivity.isConnected) {
+        await getDio(context);
 
-      final response = await _dio!.post(url, data: body);
-      if (response.statusCode != null) {
-        if (response.statusCode == 200) {
-          return response.data;
-
+        final response = await _dio!.post(url, data: body);
+        if (response.statusCode != null) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            return response.data;
+          }
+          if (response.statusCode == 302) {
+            var redirectedUrl = response.headers['location'];
+            print('Redirected to: $redirectedUrl');
+          } else {
+            throw ServerException(
+              message: response.toString(),
+            );
+          }
         }
-        if (response.statusCode == 302) {
-          var redirectedUrl = response.headers['location'];
-          print('Redirected to: $redirectedUrl');
-        }
-
-        else {
-          throw ServerException(
-            message: response.toString(),
-          );
-        }
+      } else {
+        throw NoInternetException(message: 'No internet Connection');
       }
-    } else {
-      throw NoInternetException(message: 'No internet Connection');
+      throw UnExpectedException(message: 'Un Expected error occurs');
+    } on DioException catch (dioE) {
+      throw ServerException(message: ServerFailure.fromDioError(dioE));
     }
-    throw UnExpectedException(message: 'Un Expected error occurs');
   }
 
   // Function to make PUT requests

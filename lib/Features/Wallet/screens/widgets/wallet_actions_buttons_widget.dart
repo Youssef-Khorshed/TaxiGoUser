@@ -14,34 +14,37 @@ class WalletActionsButtonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      CustomAppBottom(
-                        buttonText: AppLocalizations.of(context)!.add_money,
-                        width: 100.w,
-                        borderCornerRadius: 12.r,
-                        onPressed: () async {
-                          if (walletCubit.formKey.currentState!.validate()) {
-                            await walletCubit.handleAddMoney(
-                              context: context,
-                              amount: walletCubit.amountController.text.trim(),
-                            );
-                          }
-                        },
-                      ),
-                      horizontalSpace(10),
-                      CustomAppBottom(
-                        buttonText: AppLocalizations.of(context)!.cancel,
-                        width: 100.w,
-                        borderCornerRadius: 12.r,
-                        borderColor: AppColors.redColor,
-                        buttonColor: AppColors.redColor.withAlpha(20),
-                        textColor: AppColors.redColor,
-                        onPressed: () async {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Expanded(
+          child: CustomAppBottom(
+            fontSize: 16.sp,
+            buttonText: AppLocalizations.of(context)!.add_money,
+            borderCornerRadius: 20.r,
+            onPressed: () async {
+              if (walletCubit.formKey.currentState!.validate()) {
+                await walletCubit.handleAddMoney(
+                  context: context,
+                  amount: walletCubit.amountController.text.trim(),
+                );
+              }
+            },
+          ),
+        ),
+        horizontalSpace(10.h),
+        Expanded(
+          child: CustomAppBottom(
+            buttonText: AppLocalizations.of(context)!.cancel,
+            borderCornerRadius: 20.r,
+            borderColor: AppColors.redColor,
+            buttonColor: AppColors.redColor.withAlpha(10),
+            textColor: AppColors.redColor,
+            onPressed: () async {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

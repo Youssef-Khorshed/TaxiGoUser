@@ -11,4 +11,5 @@ class AppIcons {
   static const String send = 'assets/images/send.png';
   static const String iconsMapBlue = 'assets/icons/map_blue.svg';
   static const String iconsMapRed = 'assets/icons/map_red.svg';
+  static const String logo = 'assets/images/logo.png';
 }

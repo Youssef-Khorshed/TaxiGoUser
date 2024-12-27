@@ -54,12 +54,12 @@ class _HomeScreenState extends State<HomeScreen> {
               left: 15.w,
               child: CustomAppBottom(
                 iconColor: AppColors.blackColor,
-                buttonColor: AppColors.whiteColor2,
+                buttonColor: AppColors.blueColor,
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, AppRoutes.mapScreen);
                 },
                 buttonText: AppLocalizations.of(context)!.where_are_you_going,
-                textColor: AppColors.blackColor,
+                textColor: AppColors.whiteColor,
                 borderCornerRadius: 200.r,
               ),
             )

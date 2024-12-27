@@ -34,7 +34,7 @@ class TripDetails extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(bottom: 5.h, right: 10.w, left: 10.w),
-          color: AppColors.whiteColor2,
+          color: AppColors.whiteColor,
           child: BuildAddressRow(
             historyData: historyData,
           ),

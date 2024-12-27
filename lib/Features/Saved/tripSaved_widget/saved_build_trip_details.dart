@@ -24,7 +24,7 @@ class SavedBuildTripDetails extends StatelessWidget {
         Container(
           padding:
               EdgeInsets.only(top: 30, bottom: 5.h, right: 10.w, left: 10.w),
-          color: AppColors.whiteColor2,
+          color: AppColors.whiteColor,
           child: CustomSavedBuildAddressRow(
             savedRide: savedData.ride!,
             rideRequest: savedData.ride!.rideRequest!,
@@ -33,7 +33,7 @@ class SavedBuildTripDetails extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 1,
-          color: AppColors.darkgrayColor,
+          color: AppColors.grayColor,
         ),
         CustomDriverDetailsSaved(
           rate: savedData.ride?.rate ?? '4.5',

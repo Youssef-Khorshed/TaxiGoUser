@@ -12,14 +12,6 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.whiteColor,
-        title: AutoSizeText(
-          AppLocalizations.of(context)!.notifications,
-          style: AppTextStyles.style20BlackW500,
-        ),
-        centerTitle: true,
-      ),
       backgroundColor: AppColors.whiteColor,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),

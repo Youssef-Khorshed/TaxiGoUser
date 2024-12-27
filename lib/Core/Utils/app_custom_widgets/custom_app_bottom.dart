@@ -10,9 +10,11 @@ class CustomAppBottom extends StatelessWidget {
   final Color? textColor, buttonColor, borderColor, iconColor;
   final bool hasIcon;
   final IconData? icon;
+  final double? fontSize;
 
   final double? borderCornerRadius;
   const CustomAppBottom({
+    this.fontSize,
     this.borderColor,
     this.textColor,
     this.hasIcon = false,
@@ -35,7 +37,7 @@ class CustomAppBottom extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               color: buttonColor ?? AppColors.blueColor,
-              borderRadius: BorderRadius.circular(borderCornerRadius ?? 20.r),
+              borderRadius: BorderRadius.circular(borderCornerRadius ?? 10.r),
               border: Border.all(
                   color: borderColor ?? Colors.transparent, width: .6.w)),
           height: 52.h,
@@ -56,8 +58,8 @@ class CustomAppBottom extends StatelessWidget {
                   : Container(),
               Text(
                 buttonText ?? "",
-                style:
-                    AppTextStyles.style16WhiteW500.copyWith(color: textColor),
+                style: AppTextStyles.style16WhiteW500
+                    .copyWith(color: textColor, fontSize: fontSize ?? 20.sp),
               ),
             ],
           ),

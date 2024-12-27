@@ -30,7 +30,8 @@ class _CustomDetailsfilterdropdownState
     return CustomHistoryDropDown(
       items: dateFilters,
       iconEnabledColor: AppColors.whiteColor,
-      bordercolor: AppColors.transparentColor,
+      backgroundcolor: AppColors.whiteColor,
+      bordercolor: AppColors.whiteColor,
       nameTextStyle: AppTextStyles.style16WhiteW500,
       gradient: const LinearGradient(
           colors: [AppColors.blueColor, AppColors.blueColor2]),

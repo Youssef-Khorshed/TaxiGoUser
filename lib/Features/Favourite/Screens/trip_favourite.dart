@@ -8,6 +8,7 @@ import 'package:taxi_go_user_version/Features/App/app_widgets/custom_failure_vie
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_states.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/favorite_data_model.dart';
+import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 import '../trip_favourite_widget/custom_trip_card_favourite.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

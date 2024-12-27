@@ -43,7 +43,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      width: width * 0.7.w,
+      width: width * 0.9.w,
       decoration: BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.only(
@@ -62,22 +62,24 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    verticalSpace(40.h),
                     CircleAvatar(
                       radius: 40,
                       backgroundImage: image != null
                           ? NetworkImage(image!)
                           : const AssetImage(AppImages.appImage),
                     ),
-                    verticalSpace(10),
+                    verticalSpace(10.h),
                     AutoSizeText(
                       name ?? AppLocalizations.of(context)!.user,
                       style: AppTextStyles.style16WhiteW500.copyWith(
-                          color: AppColors.blackColor,
-                          fontWeight: FontWeight.bold),
+                        color: AppColors.blackColor,
+                        fontSize: 20.sp,
+                      ),
                     )
                   ],
                 ),
-                verticalSpace(10),
+                verticalSpace(10.h),
                 ListTile(
                   leading: const Icon(
                     FontAwesomeIcons.houseChimney,
@@ -149,7 +151,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     color: AppColors.blueColor,
                   ),
                   title: Text(
-                    'Notification',
+                    AppLocalizations.of(context)!.notifications,
                     style: AppTextStyles.style20BlackW500
                         .copyWith(color: AppColors.blueColor),
                   ),
@@ -190,11 +192,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-
-
-
-                                      Navigator.of(context)
-                                          .pop();
+                                      Navigator.of(context).pop();
                                       LogOutCubit.get(parentContext)
                                           .logOut(parentContext);
                                     },

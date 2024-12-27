@@ -55,7 +55,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
       AppLocalizations.of(context)!.trip_favorites,
       AppLocalizations.of(context)!.saved_Trips,
       AppLocalizations.of(context)!.wallet,
-      AppLocalizations.of(context)!.log_out,
+      AppLocalizations.of(context)!.notifications,
     ];
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
@@ -76,10 +76,16 @@ class _GeneralScreenState extends State<GeneralScreen> {
                   Builder(builder: (context) {
                     return InkWell(
                         onTap: () => Scaffold.of(context).openDrawer(),
-                        child: SvgPicture.asset(AppIcons.menuIcon,colorFilter: ColorFilter.mode(AppColors.blackColor, BlendMode.srcIn),));
+                        child: SvgPicture.asset(
+                          AppIcons.menuIcon,
+                          colorFilter: ColorFilter.mode(
+                              AppColors.blackColor, BlendMode.srcIn),
+                        ));
                   }),
                   AutoSizeText(screensName[selctedIndex],
-                      style: AppTextStyles.style24WhiteW500),
+                      style: AppTextStyles.style28BlackW400.copyWith(
+                        fontSize: 22.sp,
+                      )),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, AppRoutes.profile);
@@ -88,7 +94,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
                       radius: 18.r,
                       backgroundImage: const AssetImage(AppImages.appImage),
                     ),
-                  )
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(3.0),
+                  //   child: Image.asset(
+                  //     AppIcons.logo, width: 100.w, height: 30.h,
+                  //
+                  //   ),)
                 ],
               ),
             ),

@@ -22,7 +22,7 @@ class CustomFavoriteBuildTripDetails extends StatelessWidget {
         Container(
           padding:
               EdgeInsets.only(top: 20.h, bottom: 5.h, right: 10.w, left: 10.w),
-          color: AppColors.whiteColor2,
+          color: AppColors.whiteColor,
           child: CustomFavBuildAddressRow(
               rideDetails: favoriteRide.rideRequest!,
               distance: favoriteRide.distance!),
@@ -30,7 +30,7 @@ class CustomFavoriteBuildTripDetails extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 1,
-          color: AppColors.darkgrayColor,
+          color: AppColors.grayColor,
         ),
         CustomDriverDetailsFavorite(
           price: favoriteRide.total ?? '200',

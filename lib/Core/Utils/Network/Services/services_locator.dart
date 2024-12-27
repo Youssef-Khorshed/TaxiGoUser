@@ -59,6 +59,7 @@ Future<void> setup() async {
       ProfileRepoImpl(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<FavoriteRepoImpl>(
       FavoriteRepoImpl(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<Chatrepo>(Chatrepoimp(getIt.get<ApiService>()));
 
   getIt.registerFactory<CreateProfileCubit>(
       () => CreateProfileCubit(getIt.get<AuthRepo>()));
@@ -75,7 +76,6 @@ Future<void> setup() async {
       () => Maprepoimp(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<MapsCubit>(
       MapsCubit(mapsRepository: getIt.get<MapRepo>()));
-
 
   getIt.registerLazySingleton<WalletRepo>(
       () => WalletRepoImpl(apiService: getIt.get<ApiService>()));

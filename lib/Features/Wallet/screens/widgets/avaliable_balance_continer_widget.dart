@@ -25,19 +25,23 @@ class AvaliableBalanceItemWidget extends StatelessWidget {
           children: [
             AutoSizeText(
               AppLocalizations.of(context)!.available_balance,
-              style: AppTextStyles.style16BlackW600,
+              style: AppTextStyles.style16BlackW600.copyWith(fontSize: 20.sp),
             ),
             Center(
               child: Row(
                 children: [
                   AutoSizeText(
                     amount,
-                    style: AppTextStyles.style18BlueBold,
+                    style: AppTextStyles.style18BlueBold.copyWith(
+                      fontSize: 22.sp,
+                    ),
                   ),
-                  horizontalSpace(5.w),
+                  horizontalSpace(10.w),
                   AutoSizeText(
                     AppLocalizations.of(context)!.currency_iqd,
-                    style: AppTextStyles.style12DarkgrayW400,
+                    style: AppTextStyles.style12DarkgrayW400.copyWith(
+                      fontSize: 16.sp,
+                    ),
                   ),
                   const Spacer(),
                   GestureDetector(

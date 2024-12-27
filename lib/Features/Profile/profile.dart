@@ -9,6 +9,7 @@ import 'package:taxi_go_user_version/Features/Profile/controller/profile_states.
 import 'package:taxi_go_user_version/Features/Profile/controller/profile_view_model.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/dummy_profile_body.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/profile_info_body.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -25,11 +26,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor2,
         centerTitle: true,
-        title: AutoSizeText(
-          'My Profile',
-          style: AppTextStyles.style20BlackW500
-              .copyWith(fontWeight: FontWeight.w700),
-        ),
+        title: Text(AppLocalizations.of(context)!.profile,
+            style: AppTextStyles.style16BlackW600),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

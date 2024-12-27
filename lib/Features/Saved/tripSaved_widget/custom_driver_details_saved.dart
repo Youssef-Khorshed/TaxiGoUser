@@ -24,7 +24,7 @@ class CustomDriverDetailsSaved extends StatelessWidget {
   Widget _buildDriverDetails(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        radius: 20.r,
+        radius: 25.r,
         backgroundImage: NetworkImage(
           saveCaptain.picture ??
               'https://r2-us-west.photoai.com/1725044540-0740bf41f0465a6d0ef030a85d1f270a-1.png',
@@ -54,11 +54,11 @@ class CustomDriverDetailsSaved extends StatelessWidget {
       children: [
         AutoSizeText(
           AppLocalizations.of(context)!.price,
-          style: AppTextStyles.style14DarkgrayW500,
+          style: AppTextStyles.style14BlackW500,
         ),
         AutoSizeText(
           '$price ${AppLocalizations.of(context)!.iqd}',
-          style: AppTextStyles.style14BlackW500,
+          style: AppTextStyles.style14DarkgrayW500,
         ),
       ],
     );

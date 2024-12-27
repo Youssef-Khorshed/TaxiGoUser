@@ -132,6 +132,10 @@ class _LogInScreenState extends State<LogInScreen> {
                 return const CustomLoading();
               }
               return CustomAppBottom(
+                width: MediaQuery.of(context).size.width * 0.9,
+                textColor: AppColors.whiteColor,
+                buttonColor: AppColors.blueColor,
+                borderCornerRadius: 10.r,
                 onPressed: () async {
                   await LoginCubit.get(context).loginValidate(context);
                   setState(() {});
