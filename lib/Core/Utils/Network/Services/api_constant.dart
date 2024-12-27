@@ -105,6 +105,7 @@ class Constants {
   static const String getAllNotification = 'notifications';
 
   static String depositURL({
+
     required String amount,
   }) =>
       '$baseUrl$walletDeposit?amount=$amount';
