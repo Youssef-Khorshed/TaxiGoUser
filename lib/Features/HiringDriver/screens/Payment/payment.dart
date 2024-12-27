@@ -1,11 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_buildrowdetail_hiring.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/hiring_widgets/custom_button_hiring.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment_method_list_card.dart';
+import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_buildrowdetail_hiring.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payment_method_list_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -30,8 +32,8 @@ class PaymentScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.05,
-          vertical: size.height * 0.02,
+          horizontal: size.width * 0.05.h,
+          vertical: size.height * 0.02.w,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,14 +46,14 @@ class PaymentScreen extends StatelessWidget {
                   children: [
                     const Icon(Icons.location_pin, color: Colors.red),
                     Container(
-                      height: 60,
-                      width: 1,
+                      height: 60.h,
+                      width: 1.w,
                       color: Colors.grey,
                     ),
                     const Icon(Icons.location_pin, color: Colors.blue),
                   ],
                 ),
-                verticalSpace(size.width * 0.03),
+                verticalSpace(size.width * 0.03.w),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,9 +66,9 @@ class PaymentScreen extends StatelessWidget {
                         '2972 Westheimer Rd. Santa Ana, Illinois 85486',
                         style: AppTextStyles.style14GrayW500,
                       ),
-                      verticalSpace(size.height * 0.02),
+                      verticalSpace(size.height * 0.02.h),
                       AutoSizeText(
-                        'Office',
+                        AppLocalizations.of(context)!.office,
                         style: AppTextStyles.style16DarkgrayW500,
                       ),
                       Row(
@@ -88,14 +90,14 @@ class PaymentScreen extends StatelessWidget {
               ],
             ),
 
-            verticalSpace(size.height * 0.03),
+            verticalSpace(size.height * 0.03.h),
 
             // Payment Details
             AutoSizeText(
               'Payment Detail',
               style: AppTextStyles.style16BlackW600,
             ),
-            verticalSpace(size.height * 0.01),
+            verticalSpace(size.height * 0.01.h),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -110,7 +112,7 @@ class PaymentScreen extends StatelessWidget {
               ],
             ),
 
-            verticalSpace(size.height * 0.02),
+            verticalSpace(size.height * 0.02.h),
 
             // Payment Method Section
             Row(
@@ -125,10 +127,8 @@ class PaymentScreen extends StatelessWidget {
             ),
             verticalSpace(10),
             const PaymentMethodList(),
-            AppButton(
-                text: 'Confirm',
-                height: size.height * 0.01,
-                circlesize: 8,
+            CustomAppBottom(
+                buttonText: AppLocalizations.of(context)!.confirm,
                 onPressed: () {
                   Navigator.of(context).pushNamed(AppRoutes.rate);
                 })

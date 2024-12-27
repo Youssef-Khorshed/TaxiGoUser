@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Cancelbooking/cnacelBooking_widget/custom_cancelbody_cancel.dart';
 
 class CancelBookingScreen extends StatefulWidget {
   const CancelBookingScreen({super.key});
@@ -16,8 +17,6 @@ class CancelBookingScreen extends StatefulWidget {
 class _CancelBookingScreenState extends State<CancelBookingScreen> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: AppColors.blueColor,
       appBar: AppBar(
@@ -30,7 +29,7 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
             )),
         backgroundColor: AppColors.blueColor,
         title: Text(
-          "Cancel Booking",
+          AppLocalizations.of(context)!.cancel_booking,
           style: AppTextStyles.style20WhiteW600,
         ),
         elevation: 0,
@@ -39,36 +38,13 @@ class _CancelBookingScreenState extends State<CancelBookingScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          verticalSpace(20),
-          Stack(
-            alignment: Alignment.topRight,
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                width: size.width * 0.3,
-                height: size.height * 0.3,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              const Positioned(
-                top: 70,
-                right: -5,
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.red,
-                  child: Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                ),
-              ),
-            ],
+          const Spacer(),
+          CircleAvatar(
+            radius: 50.r,
+            backgroundImage: const AssetImage(AppImages.appImage),
           ),
           const Spacer(),
-          const CustomCancelbodyCancel()
+          //  const CustomCancelbodyCancel()
         ],
       ),
     );

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+// ignore: must_be_immutable
 class EnableLocationDialog extends StatelessWidget {
   final VoidCallback onUseMyLocationPressed;
   final VoidCallback onSkipPressed;
@@ -16,56 +23,56 @@ class EnableLocationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-      title: Column(
-        children: [
-          const CircleAvatar(
-            radius: 30,
-            backgroundColor: AppColors.blueColor,
-            child: Icon(
-              Icons.location_on,
-              color: AppColors.whiteColor,
-              size: 30,
-            ),
+    return BlocBuilder<MapsCubit, MapsState>(
+      builder: (context, state) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+          title: Column(
+            children: [
+              CircleAvatar(
+                radius: 30.w,
+                backgroundColor: AppColors.blueColor,
+                child: Icon(
+                  Icons.location_on,
+                  color: AppColors.whiteColor,
+                  size: 30.r,
+                ),
+              ),
+              verticalSpace(10.h),
+              Text(
+                AppLocalizations.of(context)!.enable_location,
+                style: AppTextStyles.style18BlackW600,
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                AppLocalizations.of(context)!.chose_your_location_to_start,
+                style: AppTextStyles.style14DarkgrayW500,
+                textAlign: TextAlign.center,
+              )
+            ],
           ),
-          verticalSpace(10),
-          Text(
-            'Enable your location',
-            style: AppTextStyles.style18BlackW600,
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            'Choose your location to start finding requests around you',
-            style: AppTextStyles.style14GrayW500,
-            textAlign: TextAlign.center,
-          )
-        ],
-      ),
-      actionsOverflowAlignment: OverflowBarAlignment.center,
-      actions: [
-        ElevatedButton(
-          onPressed: onUseMyLocationPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.blueColor,
-            minimumSize: const Size(double.infinity, 48),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-          ),
-          child: Text(
-            'Use my location',
-            style: AppTextStyles.style16WhiteW500,
-          ),
-        ),
-        // TextButton(
-        //   onPressed: onSkipPressed,
-        //   child: Text(
-        //     'Skip for now',
-        //     style: AppTextStyles.style12GrayW400,
-        //   ),
-        // ),
-      ],
+          actionsOverflowAlignment: OverflowBarAlignment.center,
+          actions: [
+            state is PlaceAddressLoading
+                ? const CustomLoading()
+                : ElevatedButton(
+                    onPressed: onUseMyLocationPressed,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.blueColor,
+                      minimumSize: Size(double.infinity, 48.h),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0.r),
+                      ),
+                    ),
+                    child: Text(
+                      AppLocalizations.of(context)!.use_my_location,
+                      style: AppTextStyles.style16WhiteW500,
+                    ),
+                  ),
+          ],
+        );
+      },
     );
   }
 }

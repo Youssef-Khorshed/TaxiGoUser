@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 
+import '../../../Core/Utils/Network/Services/secure_token.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -32,10 +34,14 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  navigateToHome() {
-    Future.delayed(const Duration(seconds: 5), () {
-      // ignore: use_build_context_synchronously
+  navigateToHome() async {
+    var token = await SecureToken.getToken();
+    if (token != null) {
       Navigator.pushReplacementNamed(context, AppRoutes.generalScreen);
-    });
+    } else {
+      Future.delayed(const Duration(seconds: 5), () {
+        Navigator.pushReplacementNamed(context, AppRoutes.welcome);
+      });
+    }
   }
 }

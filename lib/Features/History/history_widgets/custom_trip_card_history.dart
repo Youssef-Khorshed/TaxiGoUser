@@ -1,48 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
 
-class TripCard extends StatelessWidget {
-  final String from;
-  final String to;
-  final String timeFrom;
-  final String timeTo;
-  final String driverName;
-  final double rating;
-  final String price;
+// ignore: must_be_immutable
+class HistoryTripCard extends StatelessWidget {
+  final void Function() onStarPressed;
+  final void Function() onSavedPressed;
+  final HistoryData historyData;
 
-  const TripCard({
+  const HistoryTripCard({
     super.key,
-    required this.from,
-    required this.to,
-    required this.timeFrom,
-    required this.timeTo,
-    required this.driverName,
-    required this.rating,
-    required this.price,
+    required this.onStarPressed,
+    required this.onSavedPressed,
+    required this.historyData,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topRight,
-      children: [
-        Card(
-          elevation: 2,
-          shadowColor: AppColors.blackColor,
-          color: AppColors.whiteColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          child: const Row(
-            children: [
-              Expanded(
-                  child: CustomBuildTripDetails(
-                hasIcon: false,
-              )),
-            ],
+    return Card(
+      elevation: 8,
+      shadowColor: AppColors.grayColor,
+      color: AppColors.whiteColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+      child: Column(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              color: AppColors.whiteColor2,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: onStarPressed,
+                  icon: Icon(
+                    historyData.isFavorite == true
+                        ? Icons.star
+                        : Icons.star_border_outlined,
+                    color: AppColors.amberColor,
+                  ),
+                ),
+                IconButton(
+                    onPressed: onSavedPressed,
+                    icon: Icon(
+                      historyData.isSaved == true
+                          ? Icons.bookmark
+                          : Icons.bookmark_add_outlined,
+                      color: AppColors.blueColor,
+                    ))
+              ],
+            ),
           ),
-        ),
-      ],
+          CustomBuildTripDetails(
+            historyData: historyData,
+          ),
+        ],
+      ),
     );
   }
 }

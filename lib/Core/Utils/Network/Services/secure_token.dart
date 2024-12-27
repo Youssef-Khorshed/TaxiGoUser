@@ -3,17 +3,18 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_storage_
 import 'package:taxi_go_user_version/Core/app_constants.dart';
 
 abstract class SecureToken {
- static SecureStorageHelper secureStorageHelper = SecureStorageHelper();
-static  addToken(String token) async {
-    await secureStorageHelper.writeValue(AppConstants.kToken, token);
+  static SecureStorageHelper secureStorageHelper = SecureStorageHelper();
+  static addToken(String token) async {
+    var ktoken =
+        await secureStorageHelper.writeValue(AppConstants.kToken, token);
   }
 
- static Future<String?> getToken() async {
- return   await secureStorageHelper.readValue(AppConstants.kToken);
+  static Future<String?> getToken() async {
+    var token = await secureStorageHelper.readValue(AppConstants.kToken);
+    return token;
   }
 
-static   deleteToken() async {
-    await secureStorageHelper.deleteValue(AppConstants.kToken);
-
+  static deleteToken() async {
+    await secureStorageHelper.deleteValue(Constants.kToken);
   }
 }

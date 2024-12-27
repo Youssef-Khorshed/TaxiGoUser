@@ -1,24 +1,47 @@
-import 'package:auto_size_text/auto_size_text.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import '../../../../Core/Utils/Text/text_style.dart';
-import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import 'change_address_buttom_sheet.dart';
-import 'custom_select_address_text_form_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AddressBottomSheet extends StatelessWidget {
-  const AddressBottomSheet({super.key});
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_addAdress_buttonAdd_sheet.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_searchlist.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+
+import '../../../../Core/Utils/Text/text_style.dart';
+import 'customAppFormField.dart';
+
+// ignore: must_be_immutable
+class AddressBottomSheet extends StatefulWidget {
+  String originTitle;
+  AddressBottomSheet({super.key, required this.originTitle});
+
+  @override
+  State<AddressBottomSheet> createState() => _AddressBottomSheetState();
+}
+
+class _AddressBottomSheetState extends State<AddressBottomSheet> {
+  TextEditingController sourceController = TextEditingController();
+
+  TextEditingController destinationController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final mapsCubit = context.read<MapsCubit>();
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16.0),
-      decoration: const BoxDecoration(
-        color: AppColors.ligterBlueColor,
+      padding: EdgeInsets.all(16.0.r),
+      decoration: BoxDecoration(
+        color: AppColors.whiteColor,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16.0),
-          topRight: Radius.circular(16.0),
+          topLeft: Radius.circular(16.0.r),
+          topRight: Radius.circular(16.0.r),
         ),
       ),
       child: Column(
@@ -34,48 +57,22 @@ class AddressBottomSheet extends StatelessWidget {
               icon: const Icon(Icons.close, color: Colors.grey),
             ),
           ),
-          AutoSizeText(
-            'Select address',
+          Text(
+            AppLocalizations.of(context)!.select_address,
             style: AppTextStyles.style18BlueBold,
           ),
-          const SelectAddressTextFormField(
-            labelText: "From",
-            icon: Icon(Icons.location_searching_outlined),
-            suffixIcon:
-                Icon(Icons.my_location_sharp, color: AppColors.redColor),
-            isFrom: true,
+          CustomTextFormFiled(
+            textStyle: AppTextStyles.style16DarkgrayW500,
+            hinttextStyle: AppTextStyles.style16DarkgrayW500,
+            onChanged: (value) {},
+            controller: sourceController,
+            hintText: widget.originTitle,
+            prefixicon: const Icon(Icons.location_searching_outlined),
           ),
-          const SelectAddressTextFormField(
-            labelText: "To",
-            icon: Icon(
-              Icons.location_on_outlined,
-            ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: CustomAppBottom(
-              buttonColor: AppColors.blueColor,
-              textColor: AppColors.whiteColor,
-              buttonText: 'Continue',
-              onPressed: () {
-                Navigator.of(context).pop();
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.0),
-                      topRight: Radius.circular(16.0),
-                    ),
-                  ),
-                  builder: (context) {
-                    return const ChangeAddressButtomSheet();
-                  },
-                );
-              },
-              hasIcon: false,
-            ),
-          )
+          verticalSpace(20.h),
+          const CustomSearchlist(),
+          verticalSpace(20.h),
+          const Custom_addAdress_buttonAdd_sheet()
         ],
       ),
     );

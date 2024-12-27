@@ -1,0 +1,70 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
+import 'package:taxi_go_user_version/Features/Map/map_widget/trip_details_map.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+class CustomTripadressrow extends StatelessWidget {
+  const CustomTripadressrow({
+    super.key,
+    required this.address,
+    required this.iconmap,
+  });
+  final String address;
+  final String iconmap;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Map<String, String>>(
+      future: MapStringMaipulation.parseAddress(
+        address,
+      ),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return ListTile(
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: TripDetailsMap(
+                    address: address,
+                    location: " ",
+                    icon: AppIcons.mapRedIcon,
+                  ),
+                ),
+                Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: TripDetailsMap(
+                    address: address,
+                    location: " ",
+                    icon: AppIcons.mapBlueIcon,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+
+        if (snapshot.hasError || !snapshot.hasData) {
+          return ListTile(
+            title: AutoSizeText(
+                AppLocalizations.of(context)!.something_went_wrong),
+          );
+        }
+
+        return TripDetailsMap(
+          address: address,
+          location:
+              "${snapshot.data!['street_number']} ${snapshot.data!['city']} ",
+          icon: iconmap,
+        );
+      },
+    );
+  }
+}

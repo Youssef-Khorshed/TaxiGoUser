@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_profile.dart';
 
 import '../../enums/localization.dart';
 
@@ -8,13 +9,14 @@ part 'local_state.dart';
 
 class LocalCubit extends Cubit<LocalState> {
   LocalCubit() : super(LocalInitial(const Locale('ar')));
+
   static LocalCubit get(context) => BlocProvider.of(context);
   LocalizationThemeState localizationThemeState = LocalizationThemeState.ar;
   Locale localization = const Locale("ar");
 
   Connectivity connectivity = Connectivity();
 
-  void changeLocale() {
+  Future<void> changeLocale() async {
     emit(LocaleLoading());
 
     if (localizationThemeState == LocalizationThemeState.ar) {
@@ -28,6 +30,8 @@ class LocalCubit extends Cubit<LocalState> {
 
       emit(LocaleSuccess());
     }
+
+    await SecureProfile.addLanguage(localizationThemeState.name.toString());
   }
 
   bool checkLanguage(BuildContext context) =>
@@ -45,5 +49,18 @@ class LocalCubit extends Cubit<LocalState> {
     );
 
     emit(InternetSuccess());
+  }
+
+  void getLanguage() async {
+    emit(LocaleLoading());
+    String? language = await SecureProfile.getLanguage();
+    if (language == "en") {
+      localizationThemeState = LocalizationThemeState.en;
+      localization = const Locale("en");
+    } else {
+      localizationThemeState = LocalizationThemeState.ar;
+      localization = const Locale("ar");
+    }
+    emit(LocaleSuccess());
   }
 }

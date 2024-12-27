@@ -1,109 +1,91 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_EnableDilaog.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/custom_map.dart';
-import '../../../Core/Utils/Colors/app_colors.dart';
-import '../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import '../../Home/screens/home_widgets/custom_address_buttom_sheet.dart';
-import '../../Home/screens/home_widgets/custom_enable_location_dialog.dart';
 
-class MapScreen extends StatelessWidget {
+class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
   @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  @override
+  void initState() {
+    _initializeMapRenderer();
+    super.initState();
+  }
+
+  void _initializeMapRenderer() {
+    final GoogleMapsFlutterPlatform mapsImplementation =
+        GoogleMapsFlutterPlatform.instance;
+    if (mapsImplementation is GoogleMapsFlutterAndroid) {
+      mapsImplementation.useAndroidViewSurface = true;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final mapcubit = context.read<MapsCubit>();
     return Scaffold(
-        body: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+        body: ClipRRect(
+            borderRadius: BorderRadius.circular(20.r),
             child: Stack(children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Stack(children: [
-                  const CustomMap(),
-                  Positioned(
-                    top: 60,
-                    //  right: 300,
-                    left: 20,
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: AppColors.transparentColor.withAlpha(
-                        100,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 3.0),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, AppRoutes.generalScreen);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back_ios,
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
+              const CustomMap(),
+              Positioned(
+                top: 60.h,
+                right: 20.w,
+                child: CircleAvatar(
+                  radius: 20.r,
+                  backgroundColor: AppColors.transparentColor.withAlpha(
+                    100,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 3.0.w),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, AppRoutes.generalScreen);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.whiteColor,
                       ),
                     ),
                   ),
-                ]),
+                ),
               ),
               Positioned(
-                bottom: 30,
-                right: 15,
-                left: 15,
+                bottom: 30.h,
+                right: 15.w,
+                left: 15.w,
                 child: SizedBox(
-                  height: 54,
+                  height: 54.h,
                   child: Row(
                     children: [
-                      Expanded(
-                        child: CustomAppBottom(
-                          borderCornerRadius: 54,
-                          iconColor: AppColors.whiteColor,
-                          borderColor: AppColors.blueColor,
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (context) => EnableLocationDialog(
-                                onUseMyLocationPressed: () {
-                                  Navigator.of(context).pop();
-                                  showModalBottomSheet(
-                                    context: context,
-                                    isScrollControlled: true,
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(16.0),
-                                        topRight: Radius.circular(16.0),
-                                      ),
-                                    ),
-                                    builder: (context) {
-                                      return const AddressBottomSheet();
-                                    },
-                                  );
-                                },
-                                onSkipPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            );
-                          },
-                          buttonText: 'Select Your Location',
-                          textColor: AppColors.whiteColor,
-                        ),
-                      ),
+                      CustomEnableDilaog(mounted: mounted, mapcubit: mapcubit),
                       Padding(
-                        padding: const EdgeInsets.only(right: 16),
+                        padding: EdgeInsets.only(right: 10.h),
                         child: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: const BoxDecoration(
+                          height: 50.h,
+                          width: 50.w,
+                          decoration: BoxDecoration(
                               color: AppColors.whiteColor,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: const Icon(
-                            Icons.my_location_outlined,
-                            size: 30,
-                          ),
+                                  BorderRadius.all(Radius.circular(10.r))),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.my_location_outlined,
+                                size: 30.sp,
+                              )),
                         ),
                       ),
                     ],
@@ -112,10 +94,4 @@ class MapScreen extends StatelessWidget {
               ),
             ])));
   }
-// zoom Levlel
-// world -> 0 - 3
-// country  -> 4 - 6
-// city     -> 10 - 12
-// street   -> 13 - 17
-// building -> 18 - 20
 }
