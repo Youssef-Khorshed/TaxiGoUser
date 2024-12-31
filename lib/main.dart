@@ -10,10 +10,8 @@ import 'Core/Utils/Network/Services/services_locator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ConnectivityService.startConnectionNotifier();
-
   await setup();
   await getIt<CacheHelper>().cacheInit();
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
