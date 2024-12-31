@@ -15,60 +15,57 @@ class CustomEnableDilaog extends StatelessWidget {
   const CustomEnableDilaog({
     super.key,
     required this.mounted,
-    required this.mapcubit,
+    required this.mapCubit,
   });
 
   final bool mounted;
-  final MapsCubit mapcubit;
+  final MapsCubit mapCubit;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: CustomAppBottom(
-        borderCornerRadius: 54,
-        iconColor: AppColors.whiteColor,
-        borderColor: AppColors.blueColor,
-        onPressed: () {
-          showDialog(
-            context: context,
-            barrierDismissible: true,
-            builder: (context) => EnableLocationDialog(
-              onUseMyLocationPressed: () async {
-                if (mounted) {
-                  await mapcubit.getUserLocation(title: 'origin');
-                  mapcubit.clearMarkerPolyines();
-                  if (mapcubit.state is OpenLoacationFailed) {
-                  } else {
-                    await mapcubit.emitPlaceAddress(
-                      isorigin: true,
-                      placeLatLng: LatLng(
-                        mapcubit.orginPosition!.lat!,
-                        mapcubit.orginPosition!.lng!,
-                      ),
-                      sessionToken: const Uuid().v4(),
-                      context: context,
-                    );
-                    Navigator.of(context).pop();
-
-                    customBottomSheet(
-                        context: context,
-                        widget: AddressBottomSheet(
-                          originTitle: mapcubit.originAddress.formattedAddress!,
-                        ));
-                  }
+    return CustomAppBottom(
+      borderCornerRadius: 54,
+      iconColor: AppColors.whiteColor,
+      borderColor: AppColors.blueColor,
+      onPressed: () {
+        showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (context) => EnableLocationDialog(
+            onUseMyLocationPressed: () async {
+              if (mounted) {
+                await mapCubit.getUserLocation(title: 'origin');
+                mapCubit.clearMarkerPolyines();
+                if (mapCubit.state is OpenLoacationFailed) {
                 } else {
-                  Fluttertoast.showToast(msg: 'No intetnet Connection');
+                  await mapCubit.emitPlaceAddress(
+                    isorigin: true,
+                    placeLatLng: LatLng(
+                      mapCubit.orginPosition!.lat!,
+                      mapCubit.orginPosition!.lng!,
+                    ),
+                    sessionToken: const Uuid().v4(),
+                    context: context,
+                  );
+                  Navigator.of(context).pop();
+                  customBottomSheet(
+                      context: context,
+                      widget: AddressBottomSheet(
+                        originTitle: mapCubit.originAddress.formattedAddress!,
+                      ));
                 }
-              },
-              onSkipPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          );
-        },
-        buttonText: AppLocalizations.of(context)!.select_your_location,
-        textColor: AppColors.whiteColor,
-      ),
+              } else {
+                Fluttertoast.showToast(msg: 'No internet Connection');
+              }
+            },
+            onSkipPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        );
+      },
+      buttonText: AppLocalizations.of(context)!.select_your_location,
+      textColor: AppColors.whiteColor,
     );
   }
 }

@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
-import 'package:uuid/uuid.dart';
-
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_changeAddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
@@ -38,9 +37,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
           child: CustomAppBottom(
             buttonColor: AppColors.blueColor,
             textColor: AppColors.whiteColor,
-            buttonText: state is PlaceDirectionsLading
-                ? AppLocalizations.of(context)!.loading
-                : AppLocalizations.of(context)!.go,
+            buttonText: AppLocalizations.of(context)!.go,
             onPressed: () async {
               await mapsCubit.getUserLocation(title: 'origin');
               await mapsCubit.emitPlaceDirections(
@@ -52,9 +49,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
                   ),
                   sessionToken: const Uuid().v4(),
                   context: context);
-
               Navigator.of(context).pop();
-
               customBottomSheet(
                   context: context,
                   widget: CustomChangeaddressSheet(

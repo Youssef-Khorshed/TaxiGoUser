@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:uuid/uuid.dart';
 
 class CustomSearchlist extends StatefulWidget {
@@ -27,6 +28,10 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
     return Column(
       children: [
         CustomTextFormFiled(
+          enabledborder: true,
+          borderRadius: 12.r,
+          bordercolor: AppColors.grayColor,
+          focusedbordercolor: AppColors.blackColor,
           suffixicon: destinationController.text.isNotEmpty
               ? IconButton(
                   onPressed: () {

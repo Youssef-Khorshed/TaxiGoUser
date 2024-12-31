@@ -13,7 +13,7 @@ class CustomTextFormFiled extends StatefulWidget {
   Color bordercolor;
   Color errorbordercolor;
   Color focusedbordercolor;
-  int borderRadius;
+  double borderRadius;
   int maxlines;
   TextStyle? textStyle;
   TextStyle? hinttextStyle;
