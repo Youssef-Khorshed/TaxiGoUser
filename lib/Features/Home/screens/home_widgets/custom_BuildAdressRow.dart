@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -42,36 +40,42 @@ class BuildAddressRow extends StatelessWidget {
             location: toLocation,
             icon: AppIcons.iconsMapBlue,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                AppImages.timeImage,
-                width: 15,
-                height: 15,
-              ),
-              horizontalSpace(5.w),
-              Text(
-                distance!.split('km')[0],
-                style: AppTextStyles.style12BlackW700,
-              ),
-              horizontalSpace(5.w),
-              Text(
-                AppLocalizations.of(context)!.km,
-                style: AppTextStyles.style10DarkgrayW700,
-              ),
-              horizontalSpace(5.w),
-              Text(
-                ' ${time!.split('mins')[0]}',
-                style: AppTextStyles.style12BlackW700,
-              ),
-              horizontalSpace(5.w),
-              Text(
-                AppLocalizations.of(context)!.min,
-                style: AppTextStyles.style10DarkgrayW700,
-              ),
-            ],
-          ),
+          distance == null
+              ? const SizedBox()
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      AppImages.timeImage,
+                      width: 15,
+                      height: 15,
+                    ),
+                    horizontalSpace(5.w),
+                    distance == null
+                        ? const SizedBox()
+                        : Text(
+                            distance!.split('km')[0],
+                            style: AppTextStyles.style12BlackW700,
+                          ),
+                    horizontalSpace(5.w),
+                    Text(
+                      AppLocalizations.of(context)!.km,
+                      style: AppTextStyles.style10DarkgrayW700,
+                    ),
+                    horizontalSpace(5.w),
+                    time == null
+                        ? const SizedBox()
+                        : Text(
+                            ' ${time!.split('mins')[0]}',
+                            style: AppTextStyles.style12BlackW700,
+                          ),
+                    horizontalSpace(5.w),
+                    Text(
+                      AppLocalizations.of(context)!.min,
+                      style: AppTextStyles.style10DarkgrayW700,
+                    ),
+                  ],
+                ),
         ],
       ),
     );

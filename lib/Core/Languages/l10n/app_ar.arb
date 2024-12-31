@@ -276,9 +276,9 @@
    "balance": "المحفظة",
    "address": "العنوان",
    "empty_message": "لا توجد اى رحلات",
-    "empty_notification": "لا توجد اى اشعارات",
-    "amount_must_be_at_least_1001_IQD": "المبلغ يجب ان يكون على الاقل 1001 دينار",
-    "field_required": "حقل مطلوب",
-    "profile": "الملف الشخصي"
-
+   "empty_notification": "لا توجد اى اشعارات",
+   "amount_must_be_at_least_1001_IQD": "المبلغ يجب ان يكون على الاقل 1001 دينار",
+   "field_required": "حقل مطلوب",
+   "profile": "الملف الشخصي",
+   "empty_transactions": "لا توجد اى معاملات"
 }
