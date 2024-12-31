@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
-import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
+import 'package:taxi_go_user_version/Features/App/app_widgets/custom_empty_data_view.dart';
 import 'package:taxi_go_user_version/Features/Chat/data/model/message_data.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/custom_message_input_bar_chat.dart';
 import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/custom_user_message_chat.dart';
@@ -60,7 +60,8 @@ class ChatScreen extends StatelessWidget {
               buildWhen: (previous, current) => current is Chatupdate,
               builder: (context, state) {
                 if (state is ChatLoad) {
-                  return const Center(child: CustomLoading());
+                  return const Expanded(
+                      child: CustomEmptyDataView(message: "No messages yet"));
                 }
 
                 if (state is Chaterror) {

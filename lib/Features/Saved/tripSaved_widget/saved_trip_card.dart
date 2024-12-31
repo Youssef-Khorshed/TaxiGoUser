@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/saved_build_trip_details.dart';
@@ -20,7 +21,7 @@ class SavedTripCard extends StatelessWidget {
       alignment: Alignment.topRight,
       children: [
         Card(
-          elevation: 8,
+          elevation: 4,
           shadowColor: AppColors.grayColor,
           color: AppColors.whiteColor,
           shape:
@@ -35,12 +36,12 @@ class SavedTripCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 5,
-          right: 1,
+          top: 5.h,
+          left: 1.h,
           child: IconButton(
             onPressed: onSavedPressed,
             icon: const Icon(
-              size: 30,
+              size: 20,
               Icons.bookmark,
               color: AppColors.blueColor,
             ),

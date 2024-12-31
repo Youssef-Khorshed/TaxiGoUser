@@ -80,7 +80,7 @@ class PaymentButton extends StatelessWidget {
             },
           ),
         ),
-        verticalSpace(10.h),
+        horizontalSpace(10.h),
         Expanded(
           child: CustomAppBottom(
             buttonColor: AppColors.whiteColor,

@@ -2,14 +2,14 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Firebase/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:taxi_go_user_version/taxi_go_user_edition_app.dart';
-
+import 'package:connectivity_monitor/connectivity_monitor.dart';
 import 'Core/Utils/Network/Services/cach_helper.dart';
 import 'Core/Utils/Network/Services/services_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  ConnectivityService.startConnectionNotifier();
 
   await setup();
   await getIt<CacheHelper>().cacheInit();

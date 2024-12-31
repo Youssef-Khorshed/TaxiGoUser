@@ -18,18 +18,15 @@ class WalletCubit extends Cubit<WalletState> {
   Future<void> getWallet(
       {required String amount, required BuildContext context}) async {
     emit(WalletLoading());
-    print("Fetching wallet data for amount: $amount");
 
     final response =
         await walletRepo.getWallet(amount: amount, context: context);
 
     response.fold(
       (onError) {
-        print("Error occurred: $onError");
         emit(WalletError());
       },
       (onSuccess) {
-        print("Wallet data fetched successfully.");
         walletModel = onSuccess;
         emit(WalletSuccess(walletModel: walletModel!));
       },
@@ -59,7 +56,6 @@ class WalletCubit extends Cubit<WalletState> {
         await launchUrl(url, mode: LaunchMode.externalApplication);
         return true;
       } catch (e) {
-        print("Error launching URL: $e");
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Error launching URL: $e")),
         );

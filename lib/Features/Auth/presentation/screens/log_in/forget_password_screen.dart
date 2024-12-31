@@ -39,6 +39,10 @@ class ForgetPasswordScreen extends StatelessWidget {
             const CustomSmsMessageBox(),
             const Spacer(),
             CustomAppBottom(
+              width: MediaQuery.of(context).size.width * 0.9,
+              textColor: AppColors.blueColor2,
+              buttonColor: AppColors.whiteColor,
+              borderCornerRadius: 10.r,
               onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.forgetPasswordSendOtp);
               },

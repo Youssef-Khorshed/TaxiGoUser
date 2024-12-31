@@ -18,9 +18,6 @@ class TransactionCubit extends Cubit<TransactionState> {
     required BuildContext context,
   }) async {
     emit(TransactionLoading());
-    print('Fetching transactions with parameters:');
-    print('paymentMethod: ${paymentMethod ?? "null"}');
-    print('transactionType: ${transactionType ?? "null"}');
 
     final response = await walletRepo.getAllTransactions(
       paymentMethod: paymentMethod ?? '',
@@ -30,11 +27,9 @@ class TransactionCubit extends Cubit<TransactionState> {
 
     response.fold(
       (onError) {
-        print("Error occurred: $onError");
         emit(TransactionError());
       },
       (onSuccess) {
-        print("Wallet data fetched successfully.");
         getAllTransactionsModel = onSuccess;
         emit(TransactionSuccess(transactionModel: getAllTransactionsModel!));
       },

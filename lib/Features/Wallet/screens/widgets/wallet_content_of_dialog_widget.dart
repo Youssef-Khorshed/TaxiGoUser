@@ -26,7 +26,9 @@ class WalletContentOfDialogWidget extends StatelessWidget {
                 style: AppTextStyles.style14DarkgrayW500),
           ),
           isNumbers: true,
-          validator: (value) => WalletFormFieldValidator.numbers(value),
+          hintStyle: AppTextStyles.style14DarkgrayW500,
+          validator: (value) =>
+              WalletFormFieldValidator.numbers(value, context),
           controller: amountController,
           hintText: AppLocalizations.of(context)!.enter_amount,
           prefixIcon: Image.asset(

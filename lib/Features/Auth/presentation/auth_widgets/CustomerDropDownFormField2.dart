@@ -66,7 +66,6 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField2> {
               value: gender, child: AutoSizeText(gender.district!)))
           .toList(),
       onChanged: (value) {
-        print("R");
         widget.onChanged!(value);
 
         setState(() {

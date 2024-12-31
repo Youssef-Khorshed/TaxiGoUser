@@ -10,6 +10,6 @@ final class LoginInLoading extends LoginInitial {}
 final class LoginInSuccess extends LoginInitial {}
 
 final class LoginInError extends LoginInitial {
-  String errorMessage;
+  final String errorMessage;
   LoginInError({required this.errorMessage});
 }

@@ -1,6 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
@@ -22,11 +22,13 @@ class WithdrawalDepositTextWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         isDeposit
-            ? AutoSizeText(
+            ? Text(
                 deposit ?? AppLocalizations.of(context)!.deposit_processing,
-                style: AppTextStyles.style16BlackW600,
+                style: AppTextStyles.style16BlackW600.copyWith(
+                  fontSize: 18.sp,
+                ),
               )
-            : AutoSizeText(
+            : Text(
                 withdrawal ??
                     AppLocalizations.of(context)!.withdrawal_processing,
                 style: AppTextStyles.style18BlackW600,
@@ -34,12 +36,12 @@ class WithdrawalDepositTextWidget extends StatelessWidget {
         verticalSpace(5),
         Row(
           children: [
-            AutoSizeText(
+            Text(
               amount ?? "1001",
               style: AppTextStyles.style18BlueBold,
             ),
             horizontalSpace(5),
-            AutoSizeText(
+            Text(
               AppLocalizations.of(context)!.currency_iqd,
               style: AppTextStyles.style12DarkgrayW400,
             ),

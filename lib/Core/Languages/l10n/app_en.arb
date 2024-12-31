@@ -42,7 +42,7 @@
     "back": "Back",
     "km": "KM",
     "min": "Min",
-    "change_address": "Change Address",
+    "detalis_address": "Details Address",
     "book_now": "Book Now",
     "trips_history": "Trips History",
     "trip_favorites": "Favorite Trips",
@@ -281,6 +281,11 @@
    "english": "English",
    "balance": "Balance",
    "address": "Address",
-      "empty_message": "There are no trips"
+      "empty_message": "There are no trips",
+    "empty_notification": "There are no notifications",
+    "empty_transactions": "There are no transactions",
+    "amount_must_be_at_least_1001_IQD": "Amount must be at least 1001 IQD",
+    "field_required": "Field Required",
+    "profile": "Profile"
 
 }

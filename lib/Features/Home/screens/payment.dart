@@ -19,8 +19,6 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return const Scaffold(
       backgroundColor: AppColors.whiteColor,
       body: PaymentsDetailsBlockBuilder(),
@@ -41,7 +39,6 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
         if (state is RideCompleteDetailsInitial) {
           cubit.getRideCompleteDetails(context);
         }
-        print("Current state: $state");
         return state is RideCompleteDetailsLoading
             ? const CustomLoading()
             : state is RideCompleteDetailsFailure

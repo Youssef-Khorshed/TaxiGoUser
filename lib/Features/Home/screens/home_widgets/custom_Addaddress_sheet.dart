@@ -33,7 +33,6 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final mapsCubit = context.read<MapsCubit>();
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.0.r),

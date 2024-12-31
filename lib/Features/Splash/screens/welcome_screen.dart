@@ -55,15 +55,21 @@ class WelcomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CustomAppBottom(
-                    textColor: AppColors.blueColor,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    textColor: AppColors.blueColor2,
                     buttonColor: AppColors.whiteColor,
+                    borderCornerRadius: 10.r,
+                    borderColor: AppColors.whiteColor,
                     buttonText: AppLocalizations.of(context)!.create_an_account,
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.signUp);
                     },
                   ),
-                  verticalSpace(10),
+                  verticalSpace(10.h),
                   CustomAppBottom(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    borderCornerRadius: 12.r,
+                    borderColor: AppColors.whiteColor,
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.logIn);
                     },

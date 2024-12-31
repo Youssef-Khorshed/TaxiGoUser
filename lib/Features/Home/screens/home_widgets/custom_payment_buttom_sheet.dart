@@ -37,7 +37,7 @@ class PaymentButtomSheet extends StatelessWidget {
             ),
           ),
           AutoSizeText(
-            AppLocalizations.of(context)!.change_address,
+            AppLocalizations.of(context)!.detalis_address,
             style: AppTextStyles.style18BlueBold,
           ),
           Padding(

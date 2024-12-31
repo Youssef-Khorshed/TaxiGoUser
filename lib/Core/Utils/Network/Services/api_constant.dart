@@ -108,7 +108,7 @@ class Constants {
   static String depositURL({
     required String amount,
   }) =>
-      '$baseUrl$walletDeposit?amount=$amount';
+      '$baseUrl/$walletDeposit?amount=$amount';
 
   static String transactionsURL({
     String? transactionType,
@@ -125,9 +125,9 @@ class Constants {
     return url;
   }
 
-  static String getProfileURL() => '$baseUrl$walleGetProfileData';
+  static String getProfileURL() => '$baseUrl/$walleGetProfileData';
 
-  static String getAllNotificationURL() => '$baseUrl$getAllNotification';
+  static String getAllNotificationURL() => '$baseUrl/$getAllNotification';
 
   static const String getName = '';
   static const String postName = '';

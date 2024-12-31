@@ -4,7 +4,6 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_BuildAdressRow%5B1%5D.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_driver_details_history.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomBuildTripDetails extends StatelessWidget {
   final HistoryData historyData;
@@ -34,7 +33,7 @@ class TripDetails extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(bottom: 5.h, right: 10.w, left: 10.w),
-          color: AppColors.whiteColor2,
+          color: AppColors.whiteColor,
           child: BuildAddressRow(
             historyData: historyData,
           ),

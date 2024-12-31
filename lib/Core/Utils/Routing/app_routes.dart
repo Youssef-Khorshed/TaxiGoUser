@@ -206,7 +206,8 @@ class AppRoutes {
           builder: (context) {
             return Center(
               child: BlocProvider(
-                create: (context) => getIt<MapsCubit>(),
+                create: (context) =>
+                    getIt<MapsCubit>()..getUserLocation(title: 'Origin'),
                 child: const MapScreen(),
               ),
             );

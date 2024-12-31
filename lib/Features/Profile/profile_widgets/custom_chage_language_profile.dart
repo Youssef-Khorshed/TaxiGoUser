@@ -9,11 +9,11 @@ class CustomChagelanguageProfile extends StatefulWidget {
   });
 
   @override
-  _CustomChagelanguageProfileState createState() =>
-      _CustomChagelanguageProfileState();
+  CustomChagelanguageProfileState createState() =>
+      CustomChagelanguageProfileState();
 }
 
-class _CustomChagelanguageProfileState
+class CustomChagelanguageProfileState
     extends State<CustomChagelanguageProfile> {
   @override
   Widget build(BuildContext context) {

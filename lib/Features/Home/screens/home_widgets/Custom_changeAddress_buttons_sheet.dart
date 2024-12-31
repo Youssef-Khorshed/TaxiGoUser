@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Core/Utils/convertTime_Distance/custom_covertMethods.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_PaymentMethodSelector.dart';
@@ -80,9 +81,10 @@ class _Custom_changeAddress_buttons_sheetState
             },
           ),
         ),
+        horizontalSpace(10.w),
         Expanded(
           child: CustomAppBottom(
-            buttonColor: AppColors.whiteColor,
+            buttonColor: AppColors.redColor.withOpacity(0.03),
             borderColor: AppColors.redLight,
             borderCornerRadius: 40.r,
             buttonText: AppLocalizations.of(context)!.cancel_k,
@@ -90,7 +92,7 @@ class _Custom_changeAddress_buttons_sheetState
             onPressed: () {
               if (mounted) {
                 context.read<MapsCubit>().clearMarkerPolyines();
-                setState(() {});
+                //  setState(() {});
 
                 Navigator.of(context).pop();
               }

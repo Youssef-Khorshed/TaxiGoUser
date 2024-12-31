@@ -9,4 +9,5 @@ class AppImages {
   static const String user = 'assets/images/a-user.png';
   static const String emptyData = 'assets/images/Task-amico 1.svg';
   static const String failureData = 'assets/images/Car crash-amico.svg';
+  static const String timeImage = 'assets/images/time.png';
 }

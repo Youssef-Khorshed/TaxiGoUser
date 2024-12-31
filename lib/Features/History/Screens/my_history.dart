@@ -20,8 +20,10 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteColor,
       body: BlocBuilder<HistoryViewModel, HistoryStates>(
         bloc: HistoryViewModel.get(context)..getHistoryData(context),
+        buildWhen: (previous, current) => current != previous,
         builder: (context, state) {
           if (state is HistorySuccessStates ||
               state is AddToSaveToFavSuccessStates) {
@@ -32,9 +34,8 @@ class HistoryScreen extends StatelessWidget {
               child: Container(
                 padding:
                     EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
-                decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.circular(20.r)),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20.r)),
                 child: historyData.isEmpty
                     ? CustomEmptyDataView(
                         message: AppLocalizations.of(context)!.empty_message)

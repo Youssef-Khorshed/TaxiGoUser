@@ -50,7 +50,9 @@ class _CustomRidetypeselectorState extends State<CustomRidetypeselector> {
             });
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),
+            width: 80.w,
+            height: 80.h,
+            padding: EdgeInsets.symmetric(horizontal: 8.h, vertical: 8.w),
             decoration: BoxDecoration(
               color: isSelected ? AppColors.blueColor : AppColors.whiteColor,
               borderRadius: BorderRadius.circular(8.r),

@@ -17,8 +17,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
 
-import '../../Auth/presentation/screens/log_in/log_in_screen.dart';
-
 class GeneralScreen extends StatefulWidget {
   const GeneralScreen({super.key});
 
@@ -55,7 +53,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
       AppLocalizations.of(context)!.trip_favorites,
       AppLocalizations.of(context)!.saved_Trips,
       AppLocalizations.of(context)!.wallet,
-      AppLocalizations.of(context)!.log_out,
+      AppLocalizations.of(context)!.notifications,
     ];
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
@@ -83,7 +81,9 @@ class _GeneralScreenState extends State<GeneralScreen> {
                         ));
                   }),
                   AutoSizeText(screensName[selctedIndex],
-                      style: AppTextStyles.style24WhiteW500),
+                      style: AppTextStyles.style28BlackW400.copyWith(
+                        fontSize: 22.sp,
+                      )),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, AppRoutes.profile);
@@ -92,7 +92,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
                       radius: 18.r,
                       backgroundImage: const AssetImage(AppImages.appImage),
                     ),
-                  )
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(3.0),
+                  //   child: Image.asset(
+                  //     AppIcons.logo, width: 100.w, height: 30.h,
+                  //
+                  //   ),)
                 ],
               ),
             ),

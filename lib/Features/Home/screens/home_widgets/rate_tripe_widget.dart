@@ -23,7 +23,6 @@ class RateTripeWidget extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<RateCancelCubit>();
         if (state is RideCompleteDetailsInitial) {}
-        print("Current state: $state");
         return Center(
           child: Column(
             children: [
@@ -45,7 +44,6 @@ class RateTripeWidget extends StatelessWidget {
                 ),
                 onRatingUpdate: (rating) {
                   cubit.rateBtn(rating);
-                  print("Current rate in cubit: ${cubit.rate}");
                 },
               ),
               verticalSpace(10.h),

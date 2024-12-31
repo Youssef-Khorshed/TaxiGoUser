@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_user_version/Features/notification/data/model/get_all_notification_model.dart';

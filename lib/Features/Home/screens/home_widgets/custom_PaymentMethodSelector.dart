@@ -61,6 +61,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               decoration: BoxDecoration(
@@ -88,6 +89,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                       },
                       buttonText: AppLocalizations.of(context)!.apply,
                     )),
+                horizontalSpace(10.h),
                 Expanded(
                   flex: 2,
                   child: CustomTextFormFiled(

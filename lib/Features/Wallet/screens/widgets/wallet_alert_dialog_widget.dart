@@ -30,7 +30,8 @@ class WalletAlertDialogWidget extends StatelessWidget {
           return Form(
             key: walletCubit.formKey,
             child: AlertDialog(
-              title: Text(AppLocalizations.of(context)!.zain_Cash),
+              title:
+                  Center(child: Text(AppLocalizations.of(context)!.zain_Cash)),
               titleTextStyle: AppTextStyles.style18BlackW500,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.r)),

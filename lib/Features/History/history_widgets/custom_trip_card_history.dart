@@ -20,7 +20,7 @@ class HistoryTripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 8,
+      elevation: 3,
       shadowColor: AppColors.grayColor,
       color: AppColors.whiteColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
@@ -28,7 +28,7 @@ class HistoryTripCard extends StatelessWidget {
         children: [
           Container(
             decoration: const BoxDecoration(
-              color: AppColors.whiteColor2,
+              color: AppColors.whiteColor,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -49,41 +49,57 @@ class TripScreenState extends State<TripScreen> {
   }
 
   void handleMapCases(MapsState state, BuildContext context) async {
-    if (state is GetActiveRideRequestSuccess) {
+    final mapcubit = context.read<MapsCubit>();
+
+    /// check if the trip completed or Cancelled
+    if (state is GetLastRideSuccess) {
+      if (context
+              .read<MapsCubit>()
+              .getActiveRide!
+              .data!
+              .ride!
+              .first
+              .rideRequestId ==
+          state.getLastRideSuccess.data!.id) {
+        Fluttertoast.showToast(msg: 'Trip completed');
+        mapcubit.arrivedtoCustomer = false;
+        mapcubit.onTrip = false;
+        mapcubit.isAccepted = false;
+        Navigator.of(context).pushReplacementNamed(AppRoutes.payment);
+      }
+    } else if (state is GetActiveRideRequestSuccess) {
       final captin = state.activeRide.data!.ride!.first.captain!;
+
       final captinLatLng =
           LatLng(double.parse(captin.lat!), double.parse(captin.lng!));
-      context.read<MapsCubit>().buildmarker(
+      mapcubit.buildmarker(
           title: 'Car', destinationInfo: 'Car', postion: captinLatLng);
 
       /// check for going to customer
       if (state.activeRide.data!.ride!.first.status == 'to_customer' &&
-          !context.read<MapsCubit>().arrivedtoCustomer) {
+          !mapcubit.arrivedtoCustomer) {
         Fluttertoast.showToast(msg: 'Captin on Way');
-        context.read<MapsCubit>().arrivedToCustomer();
+        mapcubit.arrivedToCustomer();
       }
 
       /// check if rider accept customer and start trip
       else if (state.activeRide.data!.ride!.first.status == 'on_trip' &&
-          !context.read<MapsCubit>().onTrip) {
+          !mapcubit.onTrip) {
         Fluttertoast.showToast(msg: 'Trip Strated');
-        context.read<MapsCubit>().startTrip();
-        context.read<MapsCubit>().accept();
+        mapcubit.startTrip();
+        mapcubit.accept();
       }
     }
 
     /// check if the trip cancelled in Failure Case
     else if (state is GetActiveRideRequestFail) {
-      await context.read<MapsCubit>().getLastRidetrip(context: context);
+      await mapcubit.getLastRidetrip(context: context);
 
-      /// check if the trip completed or Cancelled
-      if (state is GetLastRideSuccess) {
-        Fluttertoast.showToast(msg: 'Trip completed');
-        Navigator.of(context).pushReplacementNamed(AppRoutes.payment);
-      } else {
-        Fluttertoast.showToast(msg: 'Trip Cancelled');
-        Navigator.of(context).pushReplacementNamed(AppRoutes.generalScreen);
-      }
+      Fluttertoast.showToast(msg: 'Trip Cancelled');
+      mapcubit.arrivedtoCustomer = false;
+      mapcubit.onTrip = false;
+      mapcubit.isAccepted = false;
+      Navigator.of(context).pushReplacementNamed(AppRoutes.generalScreen);
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_last_ride/get_last_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/prediction.dart';
@@ -127,7 +128,10 @@ class TripFinished extends MapsState {}
 
 class GetLastRideLoading extends MapsState {}
 
-class GetLastRideSuccess extends MapsState {}
+class GetLastRideSuccess extends MapsState {
+  GetLastRide getLastRideSuccess;
+  GetLastRideSuccess({required this.getLastRideSuccess});
+}
 
 class GetLastRideFailure extends MapsState {
   String message;

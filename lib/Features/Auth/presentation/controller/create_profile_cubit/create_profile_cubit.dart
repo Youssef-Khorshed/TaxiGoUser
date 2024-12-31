@@ -33,7 +33,6 @@ class CreateProfileCubit extends Cubit<CreateProfileState> {
     result.fold((failure) => emit(GetCitiesFailure(error: failure.message)),
         (response) {
       getCitiesModel = response;
-      print("WWWWWWWWWW${getCitiesModel!.data!.cities?.length}");
       emit(GetCitiesSuccess(getCitiesModel: response));
     });
   }
@@ -45,7 +44,6 @@ class CreateProfileCubit extends Cubit<CreateProfileState> {
         (response) {
       directionModel = response;
       selectedCityId = cityId.toString();
-      print("WWWWWWWWWW${directionModel!.data!.districts?.length}");
       emit(GetDistrictsSuccess(districts: response));
     });
   }
@@ -57,8 +55,6 @@ class CreateProfileCubit extends Cubit<CreateProfileState> {
         (response) async {
       await SecureProfile.addProfileImage(response.data?.user?.picture ?? "");
       await SecureProfile.addProfileName(response.data!.user!.name!);
-      print("images${await SecureProfile.getProfileImage()}");
-      print("names${await SecureProfile.getProfileName()}");
       emit(CreateProfileSuccess(response: response));
     });
   }

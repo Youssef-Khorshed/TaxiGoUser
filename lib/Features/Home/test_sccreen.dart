@@ -33,6 +33,22 @@ class TestSccreen extends StatelessWidget {
         Center(
           child: GestureDetector(
             onTap: () {
+              Navigator.pushReplacementNamed(context, AppRoutes.generalScreen);
+            },
+            child: Container(
+              height: 100,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Center(child: Text("home")),
+            ),
+          ),
+        ),
+        Center(
+          child: GestureDetector(
+            onTap: () {
               Navigator.pushNamed(context, AppRoutes.wallet);
             },
             child: Container(

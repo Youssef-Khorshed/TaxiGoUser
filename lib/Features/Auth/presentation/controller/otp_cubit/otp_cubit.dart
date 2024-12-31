@@ -20,7 +20,6 @@ class OtpCubit extends Cubit<OtpState> {
     var result = await auth.sendVerificationCode(context);
     result.fold(
       (error) {
-        print("Error ${error.message}");
         emit(SendVerificationFailure(error.message));
       },
       (data) {
@@ -39,11 +38,9 @@ class OtpCubit extends Cubit<OtpState> {
     var result = await auth.verifyAccount(context, otp);
     result.fold(
       (error) {
-        print("ddddd ${error.message}");
         emit(VerifyAccountFailure(error.message));
       },
       (data) {
-        print("HACJ}K${data.status}");
         if (data.status ?? false) {
           emit(VerifyAccountSuccess(data));
         } else {
@@ -55,16 +52,13 @@ class OtpCubit extends Cubit<OtpState> {
 
   Future<void> forgetPassword(BuildContext context, String phone) async {
     emit(ForgetPassLoading());
-    print("SSSS${controller?.text.toString()}");
 
     var result = await auth.forgetPassword(context, phone);
     result.fold(
       (error) {
-        print("Error ${error.message}");
         emit(ForgetPassFailure(error.message));
       },
       (data) {
-        print("HACJ}K${data.status}");
         if (data.status ?? false) {
           emit(ForgetPassSuccess(data));
         } else {
@@ -76,12 +70,9 @@ class OtpCubit extends Cubit<OtpState> {
 
   Future<void> validateForgetPassword(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      print("object");
       formKey.currentState!.save();
 
       await forgetPassword(context, controller!.text.toString());
-
-      print("valid");
     } else {
       autovalidateMode = AutovalidateMode.always;
     }
@@ -94,7 +85,6 @@ class OtpCubit extends Cubit<OtpState> {
         await auth.forgotPasswordCheckCode(context, otp: code, phone: phone);
     result.fold(
       (error) {
-        print("Error ${error.message}");
         emit(SendVerificationFailure(error.message));
       },
       (data) {

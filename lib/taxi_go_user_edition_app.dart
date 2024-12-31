@@ -1,25 +1,26 @@
+import 'package:connectivity_monitor/connectivity_monitor.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locator.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
+import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
+import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo/ride_complete.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/tare_repo/rate_repo.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
-import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
-import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/controller/profile_view_model.dart';
 import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo_impl.dart';
-import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
-import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo_impl.dart';
 
 import 'Core/Utils/localization/cubit/local_cubit.dart';
 
@@ -32,16 +33,20 @@ class TaxiGoUserEditionApp extends StatefulWidget {
 
 class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
   String? token;
+  bool? firstCheckInternet;
   @override
   void initState() {
     getToken();
+    getfirstCheck();
     super.initState();
   }
 
   getToken() async {
     token = await SecureToken.getToken();
+  }
 
-    print("LOL$token");
+  getfirstCheck() async {
+    firstCheckInternet = await ConnectivityService.validateInternetConnection();
   }
 
   @override
@@ -87,7 +92,7 @@ class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
                     profileRepo: getIt.get<ProfileRepoImpl>())),
             BlocProvider(
                 create: (context) => FavouriteViewModel(
-                    favoriteRepo: getIt.get<FavoriteRepoImpl>()))
+                    favoriteRepo: getIt.get<FavoriteRepoImpl>())),
           ],
           child: BlocBuilder<LocalCubit, LocalState>(
             builder: (context, state) {

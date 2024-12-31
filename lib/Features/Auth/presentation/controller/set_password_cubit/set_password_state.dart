@@ -9,8 +9,8 @@ final class SetPasswordLoading extends SetPasswordState {}
 
 final class SetPasswordSuccess extends SetPasswordState {}
 
-final class SetPasswordError extends SetPasswordState {
-  String errorMessage;
+class SetPasswordError extends SetPasswordState {
+  final String errorMessage;
   SetPasswordError({required this.errorMessage});
 }
 

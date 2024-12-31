@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
+import 'package:taxi_go_user_version/Core/Utils/enums/gender.dart';
+import 'package:taxi_go_user_version/Features/Auth/data/models/sign_up_model/Data.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/repo/auth_repo.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../../../Core/Utils/enums/gender.dart';
-import '../../data/models/sign_up_model/Data.dart';
-
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -56,8 +54,6 @@ class SignUpCubit extends Cubit<SignUpState> {
           phone: phoneController.text,
           gender: selectedGender.name.toString(),
           context: context);
-
-      print("valid");
     } else {
       autoValidateMode = AutovalidateMode.always;
     }

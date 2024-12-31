@@ -42,7 +42,7 @@ class ServerFailure extends Failure {
 
   static String fromResponse(Response<dynamic>? response) {
     if (response != null) {
-      return response.data['error'];
+      return response.data['message'];
     } else {
       switch (response?.statusCode) {
         case 200 || 201:

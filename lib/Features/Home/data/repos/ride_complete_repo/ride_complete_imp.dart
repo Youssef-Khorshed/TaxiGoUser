@@ -18,8 +18,6 @@ class RideCompleteRepoImpl implements RideCompleteRepo {
           await apiService.getRequest(context: context, Constants.completeRide);
       RideCompleteDetailsModel rideDetails =
           RideCompleteDetailsModel.fromJson(response["data"]);
-      print("response");
-      print(rideDetails.toJson());
       return Right(
         RideCompleteDetailsModel.fromJson(rideDetails.toJson()),
       );

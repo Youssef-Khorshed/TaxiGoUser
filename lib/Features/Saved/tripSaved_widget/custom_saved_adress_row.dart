@@ -8,6 +8,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/saved_trip_details_map.dart';
 
+import '../../Favourite/trip_favourite_widget/custom_favorite_adress_row.dart';
+
 class CustomSavedBuildAddressRow extends StatelessWidget {
   const CustomSavedBuildAddressRow({
     super.key,
@@ -43,21 +45,13 @@ class CustomSavedBuildAddressRow extends StatelessWidget {
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: const SavedTripDetailsMap(
-                    address: " ",
-                    location: " ",
-                    icon: AppIcons.iconsMapRed,
-                  ),
+                  child: simmerWidget(context),
                 ),
                 verticalSpace(10.h),
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: const SavedTripDetailsMap(
-                    address: " ",
-                    location: " ",
-                    icon: AppIcons.iconsMapBlue,
-                  ),
+                  child: simmerWidget(context),
                 ),
               ],
             ),

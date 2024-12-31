@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -9,27 +8,24 @@ import 'package:taxi_go_user_version/Features/Profile/controller/profile_states.
 import 'package:taxi_go_user_version/Features/Profile/controller/profile_view_model.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/dummy_profile_body.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile_widgets/profile_info_body.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _ProfileScreenState createState() => _ProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.whiteColor2,
         centerTitle: true,
-        title: AutoSizeText(
-          'My Profile',
-          style: AppTextStyles.style20BlackW500
-              .copyWith(fontWeight: FontWeight.w700),
-        ),
+        title: Text(AppLocalizations.of(context)!.profile,
+            style: AppTextStyles.style16BlackW600),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

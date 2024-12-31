@@ -41,26 +41,26 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Container(
+              height: 5.h,
+              width: MediaQuery.of(context).size.width / 3.w,
+              decoration: BoxDecoration(
+                color: AppColors.darkgrayColor,
+                borderRadius: BorderRadius.circular(8.r),
+              )),
+          verticalSpace(10.h),
           AutoSizeText(
-            AppLocalizations.of(context)!.change_address,
+            AppLocalizations.of(context)!.detalis_address,
             style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
           ),
-          verticalSpace(16.h),
+          verticalSpace(10.h),
           BuildAddressRow(
-            title: widget.originTitle,
-            traling: false,
-            icon: const Icon(Icons.location_on, color: AppColors.redColor),
-            subtitle: widget.originSubTitle,
-          ),
-          verticalSpace(12.h),
-          BuildAddressRow(
-            traling: true,
-            title: widget.destinationTitle,
-            icon: const Icon(Icons.location_on, color: AppColors.blueColor),
-            subtitle: widget.destinationSubTitle,
-            distance: widget.distance,
-            time: widget.time,
-          ),
+              fromAddress: widget.originSubTitle,
+              fromLoccation: widget.originTitle,
+              toAddress: widget.destinationSubTitle,
+              distance: widget.distance,
+              time: widget.time,
+              toLocation: widget.destinationTitle),
           verticalSpace(16.h),
           CustomRidetypeselector(
             onRideTypeSelected: (index) {

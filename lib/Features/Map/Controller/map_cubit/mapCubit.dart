@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,6 +9,7 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.da
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/Repo/mapRepo.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_last_ride/get_last_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/geocode_adress/result.dart';
@@ -32,18 +32,20 @@ class MapsCubit extends Cubit<MapsState> {
   GeocodeResult originAddress = GeocodeResult();
   GeocodeResult destinationAddress = GeocodeResult();
   GetLastRide? getLastRide;
+  GetActiveRide? getActiveRide;
   Leg distanceTime = Leg();
   late Marker orignMarker;
   late Marker destinationMarker;
   late CameraPosition placeCameraPosition;
   bool arrivedtoCustomer = false;
   bool onTrip = false;
+  bool isAccepted = false;
+
   LocationPosition? orginPosition;
   LocationPosition? destinationostion;
   Timer? _debounce;
   Timer? timer;
   LocationService locationService = LocationService();
-  bool isAccepted = false;
 
   late String destinationInfo;
 
@@ -238,6 +240,7 @@ class MapsCubit extends Cubit<MapsState> {
     );
   }
 
+  /// to chage card for user after accepting the ride request
   void accept() {
     isAccepted = !isAccepted;
     emit(Accepted());
@@ -312,7 +315,7 @@ class MapsCubit extends Cubit<MapsState> {
         emit(GetLastRideFailure(message: 'Can`t get Last Ride '));
       } else {
         getLastRide = ifRight;
-        emit(GetLastRideSuccess());
+        emit(GetLastRideSuccess(getLastRideSuccess: getLastRide!));
       }
     });
   }
@@ -386,18 +389,21 @@ class MapsCubit extends Cubit<MapsState> {
     });
   }
 
+  /// check the ride active status (to customer - on trip - cancelled - completed )
   Future<void> getRideRequest({required BuildContext context}) async {
     emit(GetActiveRideRequestLoading());
     final response = await mapsRepository.getActiveRide(context: context);
     response.fold(
         (onError) => emit(GetActiveRideRequestFail(message: onError.message)),
         (onSuccess) {
+      getActiveRide = onSuccess;
       emit(GetActiveRideRequestSuccess(activeRide: onSuccess));
     });
   }
 
+  /// check active ride using stream
   Stream<void> getRideRequestStream({required BuildContext context}) {
-    return Stream.periodic(const Duration(seconds: 3), (_) async {
+    return Stream.periodic(const Duration(seconds: 5), (_) async {
       final response = await mapsRepository.getActiveRide(context: context);
       return response.fold(
           (onError) => emit(GetActiveRideRequestFail(message: onError.message)),
@@ -410,12 +416,14 @@ class MapsCubit extends Cubit<MapsState> {
     emit(GetActiveRideRequestNoTrips());
   }
 
+  /// check if the captin arrived to start the trip
   void arrivedToCustomer() {
     arrivedtoCustomer = true;
 
     emit(ArrivedToCustomer(arrivedtoCustomer: arrivedtoCustomer));
   }
 
+  /// Check if the user still  on trip
   void startTrip() {
     onTrip = true;
     emit(TripStarted(tripStarted: onTrip));

@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
+import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepoimp.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo_imp.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo/ride_complete.dart';
@@ -57,6 +58,7 @@ Future<void> setup() async {
       ProfileRepoImpl(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<FavoriteRepoImpl>(
       FavoriteRepoImpl(apiService: getIt.get<ApiService>()));
+  getIt.registerSingleton<Chatrepo>(Chatrepoimp(getIt.get<ApiService>()));
 
   getIt.registerFactory<CreateProfileCubit>(
       () => CreateProfileCubit(getIt.get<AuthRepo>()));

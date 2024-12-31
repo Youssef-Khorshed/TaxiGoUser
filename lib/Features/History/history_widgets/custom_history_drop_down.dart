@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -37,6 +38,7 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
       isExpanded: true,
       iconStyleData: IconStyleData(iconEnabledColor: widget.iconEnabledColor),
       buttonStyleData: ButtonStyleData(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
             gradient: widget.gradient,
             color: widget.backgroundcolor,

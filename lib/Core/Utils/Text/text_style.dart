@@ -188,9 +188,17 @@ abstract class AppTextStyles {
   );
 
   static TextStyle style12DarkgrayW400 = TextStyle(
-    fontSize: 10.sp,
+    fontSize: 12.sp,
     color: AppColors.darkgrayColor,
     fontWeight: FontWeight.w400,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
+
+  static TextStyle style10DarkgrayW700 = TextStyle(
+    fontSize: 10.sp,
+    color: AppColors.darkgrayColor,
+    fontWeight: FontWeight.w700,
     fontFamily: GoogleFonts.cairo().fontFamily,
     height: 0,
   );
@@ -203,6 +211,13 @@ abstract class AppTextStyles {
     height: 0,
   );
 
+  static TextStyle style12BlackW700 = TextStyle(
+    fontSize: 12.sp,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.w700,
+    fontFamily: GoogleFonts.cairo().fontFamily,
+    height: 0,
+  );
   static TextStyle style12GrayW400 = TextStyle(
     fontSize: 12.sp,
     color: AppColors.grayColor,

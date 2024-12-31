@@ -18,7 +18,6 @@ class CancelBookingScreen extends StatefulWidget {
 
 class _CancelBookingScreenState extends State<CancelBookingScreen> {
   void _handleCancellation(String selectedReason) {
-    print("Cancellation Reason: $selectedReason");
     Fluttertoast.showToast(msg: AppLocalizations.of(context)!.canceled);
 
     Future.delayed(const Duration(seconds: 2), () {

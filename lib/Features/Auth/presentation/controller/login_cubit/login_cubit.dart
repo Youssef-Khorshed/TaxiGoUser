@@ -8,8 +8,8 @@ import '../../../data/repo/auth_repo.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this.LoginInRepo) : super(LoginInitial());
-  AuthRepo LoginInRepo;
+  LoginCubit(this.loginInRepo) : super(LoginInitial());
+  AuthRepo loginInRepo;
   static LoginCubit get(context) => BlocProvider.of(context);
 
   TextEditingController loginPhoneController = TextEditingController();
@@ -21,20 +21,16 @@ class LoginCubit extends Cubit<LoginState> {
       required String password,
       required BuildContext context}) async {
     emit(LoginInLoading());
-    var result = await LoginInRepo.signIn(
+    var result = await loginInRepo.signIn(
         phone: phone, password: password, context: context);
     result.fold((error) {
       emit(LoginInError(errorMessage: error.message));
     }, (data) async {
       if (data.status == true) {
-        //  if (data.data?.token != null) {
         await SecureToken.addToken(data.data!.token!);
         await SecureProfile.addProfileImage(data.data!.user!.picture!);
         await SecureProfile.addProfileName(data.data!.user!.name!);
-        print("EEEEEeeeE${await SecureToken.getToken()}");
 
-        // print("token${await SecureToken.getToken()}");
-        //  }
         emit(LoginInSuccess());
       } else {
         emit(LoginInError(errorMessage: data.message ?? "error"));
@@ -50,8 +46,6 @@ class LoginCubit extends Cubit<LoginState> {
           password: loginPassController.text,
           phone: loginPhoneController.text,
           context: context);
-
-      print("valid");
     } else {
       loginAutoValidateMode = AutovalidateMode.always;
     }

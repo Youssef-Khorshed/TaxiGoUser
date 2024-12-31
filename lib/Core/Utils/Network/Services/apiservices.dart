@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
-
 import '../../enums/localization.dart';
 import '../../localization/cubit/local_cubit.dart';
 import '../Error/exception.dart';
@@ -17,7 +16,6 @@ class ApiService {
   // Singleton Dio instance
   Future<Dio> getDio(context) async {
     String? token = await SecureToken.getToken();
-    print("EEEEEEEEEWWWWWWW$token");
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
@@ -35,8 +33,6 @@ class ApiService {
         ? "ar"
         : "en";
 
-    print("EEEEEE$token");
-
     _addDioHeaders(language: language, token: token);
 
     return _dio!;
@@ -48,7 +44,7 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization':
-          'Bearer 280|Pm3dBSJwZ0P0QIlu4gzLU2B18YRk1vIuIUpKCFWE371697c7', //'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
+          'Bearer $token', //'Bearer your_token_here', // You can add a token dynamically if needed
       'X-Locale': language
     };
   }
@@ -77,7 +73,7 @@ class ApiService {
           data: queryParameters,
         );
         if (response.statusCode != null) {
-          if (response.statusCode == 200) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
             return response.data;
           } else {
             throw ServerException(
@@ -89,8 +85,8 @@ class ApiService {
         throw NoInternetException(message: 'No internet Connection');
       }
       throw UnExpectedException(message: 'Un Expected error occurs');
-    } on DioException catch (e) {
-      throw ServerException(message: ServerFailure.fromDioError(e));
+    } on DioException catch (dioE) {
+      throw ServerException(message: ServerFailure.fromDioError(dioE));
     }
   }
 
@@ -103,12 +99,8 @@ class ApiService {
 
         final response = await _dio!.post(url, data: body);
         if (response.statusCode != null) {
-          if (response.statusCode == 200) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
             return response.data;
-          }
-          if (response.statusCode == 302) {
-            var redirectedUrl = response.headers['location'];
-            print('Redirected to: $redirectedUrl');
           } else {
             throw ServerException(
               message: response.toString(),
@@ -119,9 +111,8 @@ class ApiService {
         throw NoInternetException(message: 'No internet Connection');
       }
       throw UnExpectedException(message: 'Un Expected error occurs');
-      // ignore: empty_catches
-    } on DioException catch (e) {
-      throw ServerException(message: ServerFailure.fromDioError(e));
+    } on DioException catch (dioE) {
+      throw ServerException(message: ServerFailure.fromDioError(dioE));
     }
   }
 

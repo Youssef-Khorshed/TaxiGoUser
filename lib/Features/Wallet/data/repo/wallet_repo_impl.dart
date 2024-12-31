@@ -2,13 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/model/get_all_transactions_model.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/model/get_profile_model.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/model/wallet_model.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/repo/wallet_repo.dart';
-
 import '../../../../Core/Utils/Network/Error/exception.dart';
-import '../../../../Core/Utils/Network/Services/apiservices.dart';
 
 class WalletRepoImpl extends WalletRepo {
   ApiService apiService;
@@ -41,20 +40,15 @@ class WalletRepoImpl extends WalletRepo {
         paymentMethod: paymentMethod,
         transactionType: transactionType,
       );
-      print('Constructed URL: $url');
 
       final response = await apiService.getRequest(url, context: context);
-      print('Raw API response: $response');
 
       return Right(GetAllTransactionsModel.fromJson(response));
     } on NoInternetException {
-      print('Error: No internet connection');
       return Left(InternetConnectionFailure(message: 'No internet connection'));
     } on ServerException catch (e) {
-      print('Error: ServerException - ${e.message}');
       return Left(ServerFailure(message: e.message.toString()));
     } catch (e) {
-      print('Error: Unexpected exception - $e');
       return Left(ServerFailure(message: 'Unexpected error: $e'));
     }
   }
@@ -64,19 +58,14 @@ class WalletRepoImpl extends WalletRepo {
       {required BuildContext context}) async {
     try {
       final url = Constants.getProfileURL();
-      print('Constructed URL: $url');
 
       final response = await apiService.getRequest(url, context: context);
-      print('Raw API response: $response');
       return Right(GetProfileModel.fromJson(response));
     } on NoInternetException {
-      print('Error: No internet connection');
       return Left(InternetConnectionFailure(message: 'No internet connection'));
     } on ServerException catch (e) {
-      print('Error: ServerException - ${e.message}');
       return Left(ServerFailure(message: e.message.toString()));
     } catch (e) {
-      print('Error: Unexpected exception - $e');
       return Left(ServerFailure(message: 'Unexpected error: $e'));
     }
   }

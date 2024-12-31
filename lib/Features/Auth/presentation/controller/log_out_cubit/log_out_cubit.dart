@@ -19,7 +19,6 @@ class LogOutCubit extends Cubit<LogOutState> {
     var result = await authRepo.logout(context);
     result.fold(
       (error) {
-        print("Error ${error.message}");
         emit(LogOutError(message: error.message));
       },
       (data) async {

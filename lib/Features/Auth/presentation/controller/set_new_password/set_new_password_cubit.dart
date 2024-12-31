@@ -43,7 +43,6 @@ class SetNewPasswordCubit extends Cubit<SetNewPasswordState> {
 
   Future<void> setPasswordValidate(BuildContext context, String phone) async {
     emit(SetNewPasswordValidateLoading());
-    print("object");
     if (setNewPasswordFormKey.currentState!.validate()) {
       setNewPasswordFormKey.currentState!.save();
 
@@ -52,12 +51,9 @@ class SetNewPasswordCubit extends Cubit<SetNewPasswordState> {
           password: setPasswordController.text,
           passwordConfirmation: setPasswordConfirmationController.text,
           context: context);
-
-      print("valid");
     } else {
       emit(SetNewPasswordValidateError());
 
-      print("ww");
       setNewPasswordAutoValidateMode = AutovalidateMode.always;
     }
   }

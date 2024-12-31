@@ -57,19 +57,19 @@ class _CustomAppFormFieldState extends State<CustomAppFormField> {
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.blueColor, width: 1),
           borderRadius: BorderRadius.all(
-            Radius.circular(8.r),
+            Radius.circular(12.r),
           ),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.redColor, width: 1),
           borderRadius: BorderRadius.all(
-            Radius.circular(8.r),
+            Radius.circular(12.r),
           ),
         ),
         border: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.grayColor, width: 1),
           borderRadius: BorderRadius.all(
-            Radius.circular(8.r),
+            Radius.circular(12.r),
           ),
         ),
         errorMaxLines: 1,

@@ -8,23 +8,27 @@ final class OtpInitial extends OtpState {}
 //send verification loading
 final class SendVerificationLoading extends OtpState {}
 
-final class SendVerificationSuccess extends OtpState {
-  List<int>? data;
+// ignore: must_be_immutable
+class SendVerificationSuccess extends OtpState {
+  final List<int>? data;
+
   SendVerificationSuccess(this.data);
 }
 
-final class SendVerificationFailure extends OtpState {
-  String error;
+class SendVerificationFailure extends OtpState {
+  final String error;
   SendVerificationFailure(this.error);
 }
 
-final class VerifyAccountLoading extends OtpState {}
+class VerifyAccountLoading extends OtpState {}
 
+// ignore: must_be_immutable
 final class VerifyAccountSuccess extends OtpState {
   VerifyAccount? data;
   VerifyAccountSuccess(this.data);
 }
 
+// ignore: must_be_immutable
 final class VerifyAccountFailure extends OtpState {
   String? error;
   VerifyAccountFailure(this.error);
@@ -32,12 +36,12 @@ final class VerifyAccountFailure extends OtpState {
 
 final class ForgetPassLoading extends OtpState {}
 
-final class ForgetPassSuccess extends OtpState {
-  ForgetPasswordModel? data;
+class ForgetPassSuccess extends OtpState {
+  final ForgetPasswordModel? data;
   ForgetPassSuccess(this.data);
 }
 
-final class ForgetPassFailure extends OtpState {
-  String? error;
+class ForgetPassFailure extends OtpState {
+  final String? error;
   ForgetPassFailure(this.error);
 }

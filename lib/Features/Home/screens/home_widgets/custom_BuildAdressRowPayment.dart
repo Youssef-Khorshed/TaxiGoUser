@@ -120,10 +120,6 @@ class BuildAddressRowUpdated extends StatelessWidget {
       double latitude, double longitude) async {
     final address = await GeoCode()
         .reverseGeocoding(latitude: latitude, longitude: longitude);
-
-    if (address == null) {
-      throw Exception("عنوان غير موجود");
-    }
     String getCity(String city) {
       if (city.isEmpty) return '';
 

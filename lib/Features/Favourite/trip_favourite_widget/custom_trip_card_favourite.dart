@@ -19,7 +19,7 @@ class FavouriteCard extends StatelessWidget {
       alignment: Alignment.topRight,
       children: [
         Card(
-          elevation: 8,
+          elevation: 4,
           shadowColor: AppColors.grayColor,
           color: AppColors.whiteColor,
           shape:
@@ -35,7 +35,7 @@ class FavouriteCard extends StatelessWidget {
         ),
         Positioned(
           top: 5.h,
-          right: 1.w,
+          left: 1.w,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             child: IconButton(
