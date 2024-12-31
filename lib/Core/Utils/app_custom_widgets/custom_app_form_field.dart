@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
-
 import '../Colors/app_colors.dart';
 import '../Text/text_style.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

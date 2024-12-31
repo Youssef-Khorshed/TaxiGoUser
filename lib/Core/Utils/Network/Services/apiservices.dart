@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -35,7 +36,7 @@ class ApiService {
         : "en";
 
     _addDioHeaders(language: language, token: token);
-
+    log(token.toString());
     return _dio!;
   }
 

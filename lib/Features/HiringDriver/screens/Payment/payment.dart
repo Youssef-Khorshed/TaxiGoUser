@@ -77,6 +77,7 @@ class PaymentScreen extends StatelessWidget {
                         toAddress: getLastRide.data!.addressFrom!,
                         toLocation: '',
                       ),
+
                       //    verticalSpace(size.height * 0.02.h),
                       // AutoSizeText(
                       //   AppLocalizations.of(context)!.office,
