@@ -73,7 +73,7 @@ class _VerificationPhoneAndPasswordScreenState
                   },
                   isPassword: false,
                   obscureText: false,
-                  hintText: AppLocalizations.of(context)!.password_required,
+                  hintText: AppLocalizations.of(context)!.your_mobile_number,
                   isPhone: true,
                   isNumbers: true,
                 ),
