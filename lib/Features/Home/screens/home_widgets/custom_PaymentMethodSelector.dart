@@ -63,13 +63,14 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            verticalSpace(20.h),
             Center(
               child: Text(
                 'ادخال تفاصيل دفع رحلتك',
-                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
+                style: AppTextStyles.style18BlackBold,
               ),
             ),
-            verticalSpace(15.h),
+            verticalSpace(25.h),
             Row(
               children: [
                 Expanded(
@@ -82,7 +83,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                     borderRadius: 15.r,
                   ),
                 ),
-                horizontalSpace(10.h),
+                horizontalSpace(15.h),
                 Expanded(
                     flex: 1,
                     child: CustomAppBottom(
@@ -97,24 +98,24 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                     )),
               ],
             ),
-            verticalSpace(15.h),
+            verticalSpace(20.h),
             Text(AppLocalizations.of(context)!.select_payment_method,
                 style: AppTextStyles.style16BlackW600),
-            verticalSpace(15.h),
+            verticalSpace(20.h),
             paymentOption(
               context,
               method: AppLocalizations.of(context)!.wallet,
               icon: Icons.account_balance_wallet,
               subtitle: ' 349 ${AppLocalizations.of(context)!.currency_iqd}',
             ),
-            verticalSpace(15.h),
+            verticalSpace(20.h),
             paymentOption(
               context,
               method: AppLocalizations.of(context)!.cash,
               icon: Icons.attach_money,
               subtitle: ' 349 ${AppLocalizations.of(context)!.currency_iqd}',
             ),
-            verticalSpace(15.h),
+            verticalSpace(40.h),
             PaymentButton(
               originSubTitle: widget.addressFrom,
               originTitle: widget.originTitle,

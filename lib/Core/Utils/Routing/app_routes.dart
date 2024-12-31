@@ -5,21 +5,18 @@ import 'package:taxi_go_user_version/Features/Auth/presentation/screens/log_in/f
 import 'package:taxi_go_user_version/Features/Auth/presentation/screens/log_in/forget_password_send_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/presentation/screens/log_in/login_otp_screen.dart';
 import 'package:taxi_go_user_version/Features/Auth/presentation/screens/sign_up/sign_up_screen.dart';
-
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/cancelbooking.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/rate.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
-
 import '../../../Features/Auth/presentation/controller/create_profile_cubit/create_profile_cubit.dart';
 import '../../../Features/Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
 import '../../../Features/Auth/presentation/controller/login_cubit/login_cubit.dart';
@@ -175,12 +172,12 @@ class AppRoutes {
           },
         );
 
-      case rate:
-        return CupertinoPageRoute(
-          builder: (context) {
-            return const RateScreen();
-          },
-        );
+      // case rate:
+      //   return CupertinoPageRoute(
+      //     builder: (context) {
+      //       return const RateScreen();
+      //     },
+      //   );
 
       case cancelbooing:
         return CupertinoPageRoute(

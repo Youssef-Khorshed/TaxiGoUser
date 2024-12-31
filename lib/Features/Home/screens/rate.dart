@@ -6,9 +6,11 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/rate_details_block_builder.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/rate_tripe_widget.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_last_ride/get_last_ride.dart';
 
 class RateScreen extends StatelessWidget {
-  const RateScreen({super.key});
+  GetLastRide getLastRide;
+  RateScreen({super.key, required this.getLastRide});
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ class Constants {
           {required String searchQuery,
           required String sessionToken,
           String language = 'en'}) =>
-      'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=-$searchQuery&sessiontoken=$sessionToken&language=$language&key=$mapToken';
+      'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$searchQuery&sessiontoken=$sessionToken&language=$language&components=country:IQ&key=$mapToken';
 
   static String placeDetails({
     required String placeId,

@@ -65,7 +65,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     verticalSpace(40.h),
                     CircleAvatar(
                       radius: 40,
-                      backgroundImage: image != null
+                      backgroundImage: image != null && image == ''
                           ? NetworkImage(image!)
                           : const AssetImage(AppImages.appImage),
                     ),

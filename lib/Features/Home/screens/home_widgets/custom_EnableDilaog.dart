@@ -1,8 +1,10 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_Addaddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
@@ -28,12 +30,12 @@ class CustomEnableDilaog extends StatelessWidget {
       iconColor: AppColors.whiteColor,
       borderColor: AppColors.blueColor,
       onPressed: () {
-        showDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (context) => EnableLocationDialog(
-            onUseMyLocationPressed: () async {
-              if (mounted) {
+        mapCubit.getUserLocation(title: 'origin').then((onValue) {
+          showDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (context) => EnableLocationDialog(
+              onUseMyLocationPressed: () async {
                 await mapCubit.getUserLocation(title: 'origin');
                 mapCubit.clearMarkerPolyines();
                 if (mapCubit.state is OpenLoacationFailed) {
@@ -54,15 +56,13 @@ class CustomEnableDilaog extends StatelessWidget {
                         originTitle: mapCubit.originAddress.formattedAddress!,
                       ));
                 }
-              } else {
-                Fluttertoast.showToast(msg: 'No internet Connection');
-              }
-            },
-            onSkipPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        );
+              },
+              onSkipPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          );
+        });
       },
       buttonText: AppLocalizations.of(context)!.select_your_location,
       textColor: AppColors.whiteColor,

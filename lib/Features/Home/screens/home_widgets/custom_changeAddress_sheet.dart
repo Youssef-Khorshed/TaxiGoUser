@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/Custom_changeAddress_buttons_sheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_RideTypeSelector.dart';
@@ -40,17 +41,17 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AutoSizeText(
+          Text(
             AppLocalizations.of(context)!.detalis_address,
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+            style: AppTextStyles.style18BlackBold,
           ),
           verticalSpace(10.h),
           BuildAddressRow(
               fromAddress: widget.originSubTitle,
               fromLoccation: widget.originTitle,
               toAddress: widget.destinationSubTitle,
-              distance: widget.distance,
-              time: widget.time,
+              //  distance: widget.distance,
+              //    time: widget.time,
               toLocation: widget.destinationTitle),
           verticalSpace(16.h),
           CustomRidetypeselector(

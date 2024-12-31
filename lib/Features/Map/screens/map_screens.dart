@@ -41,14 +41,14 @@ class _MapScreenState extends State<MapScreen> {
               const CustomMap(),
               Positioned(
                 top: 60.h,
-                right: 20.w,
+                right: 15.w,
                 child: CircleAvatar(
-                  radius: 20.r,
+                  radius: 22.r,
                   backgroundColor: AppColors.transparentColor.withAlpha(
                     100,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(right: 5.0.w),
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(

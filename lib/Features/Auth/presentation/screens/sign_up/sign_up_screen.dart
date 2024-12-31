@@ -138,6 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     BlocConsumer<SignUpCubit, SignUpState>(
                       listener: (context, state) {
                         if (state is SignUpSuccess) {
+//                          Navigator.pushNamed(context, AppRoutes.otp);
                           Navigator.pushNamed(context, AppRoutes.setPassword);
                         } else if (state is SignUpFailure) {
                           Fluttertoast.showToast(

@@ -278,7 +278,7 @@ class MapsCubit extends Cubit<MapsState> {
 
   /// update place camera position for a place
   void updatePlaceCameraPosition(
-      {required LatLng place, double zoom = 13}) async {
+      {required LatLng place, double zoom = 18}) async {
     placeCameraPosition = CameraPosition(
       bearing: 0.0,
       target: LatLng(place.latitude, place.longitude),
@@ -301,7 +301,7 @@ class MapsCubit extends Cubit<MapsState> {
         position: postion,
         infoWindow: InfoWindow(title: title),
         icon: customicon ??
-            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed)));
+            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)));
     emit(UpdateMarkers());
   }
 

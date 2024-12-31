@@ -5,6 +5,7 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_addAdress_buttonAdd_sheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_searchlist.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../Core/Utils/Text/text_style.dart';
 import 'customAppFormField.dart';
@@ -47,7 +48,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
           Center(
             child: Text(
               'اختار وجهتك',
-              style: AppTextStyles.style18BlueBold,
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
             ),
           ),
           verticalSpace(20.h),
@@ -74,8 +75,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
             style: AppTextStyles.style16BlackW600,
           ),
           verticalSpace(10.h),
-          const CustomSearchlist(),
-          const Spacer(),
+          const Expanded(child: CustomSearchlist()),
           const Custom_addAdress_buttonAdd_sheet()
         ],
       ),

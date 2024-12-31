@@ -59,6 +59,7 @@ Future<void> setup() async {
   getIt.registerSingleton<FavoriteRepoImpl>(
       FavoriteRepoImpl(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<Chatrepo>(Chatrepoimp(getIt.get<ApiService>()));
+  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
 
   getIt.registerFactory<CreateProfileCubit>(
       () => CreateProfileCubit(getIt.get<AuthRepo>()));
@@ -82,7 +83,6 @@ Future<void> setup() async {
       () => NotificationRepoImpl(apiService: getIt.get<ApiService>()));
 
   getIt.registerSingleton<EventBindingManager>(EventBindingManager());
-  getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
 
   getIt
       .registerFactory<WalletCubit>(() => WalletCubit(getIt.get<WalletRepo>()));

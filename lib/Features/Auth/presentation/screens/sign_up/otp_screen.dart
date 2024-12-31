@@ -52,16 +52,16 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   void deactivate() {
-    OtpCubit.get(context).controller?.dispose();
-
-    _timer.cancel();
+    if (mounted && OtpCubit.get(context).controller != null) {
+      //    OtpCubit.get(context).controller?.dispose();
+      _timer.cancel();
+    }
     super.deactivate();
   }
 
   @override
   void dispose() {
     OtpCubit.get(context).controller?.dispose();
-
     _timer.cancel();
     super.dispose();
   }
@@ -172,7 +172,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           context, AppRoutes.setPassword);
                     } else {
                       Navigator.pushReplacementNamed(
-                          context, AppRoutes.setNewPassword,
+                          context, AppRoutes.setPassword,
                           arguments: widget.phone);
                     }
                   } else if (state is VerifyAccountFailure) {
@@ -189,22 +189,24 @@ class _OtpScreenState extends State<OtpScreen> {
                     textColor: AppColors.whiteColor,
                     buttonText: AppLocalizations.of(context)!.verify,
                     onPressed: () async {
+                      OtpCubit.get(context).controller?.dispose();
+                      _timer.cancel();
                       Navigator.pushReplacementNamed(
-                          context, AppRoutes.setNewPassword,
+                          context, AppRoutes.setPassword,
                           arguments: widget.phone);
-                      // Navigator.pushNamed(context, AppRoutes.setPassword,arguments: widget.phone);
-                      _seconds = 0;
-                      setState(() {});
-                      if (widget.phone == "" || widget.phone == null) {
-                        await OtpCubit.get(context)
-                            .verifyAccount(context, int.parse(code ?? "0"));
-                      } else {
-                        await OtpCubit.get(context).forgotPasswordCheckCode(
-                            context,
-                            code: int.parse(code ?? "0"),
-                            phone: widget.phone ?? "");
-                      }
-                      setState(() {});
+                      // // Navigator.pushNamed(context, AppRoutes.setPassword,arguments: widget.phone);
+                      // _seconds = 0;
+                      // setState(() {});
+                      // if (widget.phone == "" || widget.phone == null) {
+                      //   await OtpCubit.get(context)
+                      //       .verifyAccount(context, int.parse(code ?? "0"));
+                      // } else {
+                      //   await OtpCubit.get(context).forgotPasswordCheckCode(
+                      //       context,
+                      //       code: int.parse(code ?? "0"),
+                      //       phone: widget.phone ?? "");
+                      // }
+                      // setState(() {});
                     },
                   );
                 },

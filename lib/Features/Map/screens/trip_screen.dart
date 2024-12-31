@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
@@ -65,7 +66,10 @@ class TripScreenState extends State<TripScreen> {
         mapcubit.arrivedtoCustomer = false;
         mapcubit.onTrip = false;
         mapcubit.isAccepted = false;
-        Navigator.of(context).pushReplacementNamed(AppRoutes.payment);
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (_) => PaymentScreen(
+                  getLastRide: state.getLastRideSuccess,
+                )));
       }
     } else if (state is GetActiveRideRequestSuccess) {
       final captin = state.activeRide.data!.ride!.first.captain!;
@@ -95,7 +99,7 @@ class TripScreenState extends State<TripScreen> {
     else if (state is GetActiveRideRequestFail) {
       await mapcubit.getLastRidetrip(context: context);
 
-      Fluttertoast.showToast(msg: 'Trip Cancelled');
+      // Fluttertoast.showToast(msg: 'Trip Cancelled');
       mapcubit.arrivedtoCustomer = false;
       mapcubit.onTrip = false;
       mapcubit.isAccepted = false;

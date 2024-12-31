@@ -133,6 +133,8 @@ class GetLastRideSuccess extends MapsState {
   GetLastRideSuccess({required this.getLastRideSuccess});
 }
 
+class PlacesSearchLoading extends MapsState {}
+
 class GetLastRideFailure extends MapsState {
   String message;
   GetLastRideFailure({required this.message});

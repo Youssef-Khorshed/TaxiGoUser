@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Features/Favourite/trip_favourite_widget/custom_favorite_adress_row.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
@@ -61,12 +64,31 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
         ),
         BlocBuilder<MapsCubit, MapsState>(
           builder: (context, state) {
-            return SizedBox(
-              height: 100.h,
+            return Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: mapsCubit.predictions.length,
                 itemBuilder: (context, index) {
+                  if (state is PlacesLoading) {
+                    return ListTile(
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: simmerWidget(context),
+                          ),
+                          verticalSpace(10.h),
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: simmerWidget(context),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
                   return ListTile(
                     title: Text(mapsCubit.predictions[index].description!),
                     onTap: () async {
