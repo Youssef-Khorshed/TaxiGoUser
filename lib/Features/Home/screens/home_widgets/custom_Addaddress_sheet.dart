@@ -1,14 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_addAdress_buttonAdd_sheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_searchlist.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../Core/Utils/Text/text_style.dart';
 import 'customAppFormField.dart';
@@ -35,6 +32,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      height: MediaQuery.of(context).size.height * .75,
       padding: EdgeInsets.all(16.0.r),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
@@ -44,28 +42,26 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: IconButton(
-              onPressed: () {
-                if (mounted) {
-                  context.read<MapsCubit>().clearMarkerPolyines();
-                  setState(() {});
-                  Navigator.of(context).pop();
-                }
-              },
-              icon: const Icon(Icons.close, color: Colors.grey),
+          Center(
+            child: Text(
+              'اختار وجهتك',
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
             ),
           ),
+          verticalSpace(20.h),
           Text(
-            AppLocalizations.of(context)!.select_address,
-            style: AppTextStyles.style18BlueBold,
+            'تبدا رحتلك من :',
+            style: AppTextStyles.style16BlackW600,
           ),
-          verticalSpace(15.h),
+          verticalSpace(10.h),
           CustomTextFormFiled(
+            enabledborder: true,
+            borderRadius: 12.r,
+            bordercolor: AppColors.grayColor,
+            focusedbordercolor: AppColors.blackColor,
             textStyle: AppTextStyles.style16DarkgrayW500,
             hinttextStyle: AppTextStyles.style16DarkgrayW500,
             onChanged: (value) {},
@@ -73,9 +69,13 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
             hintText: widget.originTitle,
             prefixicon: const Icon(Icons.location_searching_outlined),
           ),
-          verticalSpace(20.h),
-          const CustomSearchlist(),
-          verticalSpace(20.h),
+          verticalSpace(10.h),
+          Text(
+            'تتجهة رحلتك الي :',
+            style: AppTextStyles.style16BlackW600,
+          ),
+          verticalSpace(10.h),
+          const Expanded(child: CustomSearchlist()),
           const Custom_addAdress_buttonAdd_sheet()
         ],
       ),

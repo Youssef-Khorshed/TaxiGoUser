@@ -1,13 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/Custom_changeAddress_buttons_sheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_RideTypeSelector.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class CustomChangeaddressSheet extends StatefulWidget {
@@ -41,25 +41,17 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-              height: 5.h,
-              width: MediaQuery.of(context).size.width / 3.w,
-              decoration: BoxDecoration(
-                color: AppColors.darkgrayColor,
-                borderRadius: BorderRadius.circular(8.r),
-              )),
-          verticalSpace(10.h),
-          AutoSizeText(
+          Text(
             AppLocalizations.of(context)!.detalis_address,
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+            style: AppTextStyles.style18BlackBold,
           ),
           verticalSpace(10.h),
           BuildAddressRow(
               fromAddress: widget.originSubTitle,
               fromLoccation: widget.originTitle,
               toAddress: widget.destinationSubTitle,
-              distance: widget.distance,
-              time: widget.time,
+              //  distance: widget.distance,
+              //    time: widget.time,
               toLocation: widget.destinationTitle),
           verticalSpace(16.h),
           CustomRidetypeselector(

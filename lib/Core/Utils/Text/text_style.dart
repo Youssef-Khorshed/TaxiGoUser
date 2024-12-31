@@ -12,6 +12,12 @@ abstract class AppTextStyles {
     height: 0,
   );
 
+  static TextStyle style18BlackBold = TextStyle(
+    fontSize: 18.sp,
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle style25BlackW400 = TextStyle(
     fontSize: 25.sp,
     color: AppColors.blackColor,

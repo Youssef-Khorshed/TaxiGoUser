@@ -41,15 +41,15 @@ class EnableLocationDialog extends StatelessWidget {
               ),
               verticalSpace(10.h),
               Text(
-                AppLocalizations.of(context)!.enable_location,
+                'تم تحديد موقعك',
                 style: AppTextStyles.style18BlackW600,
                 textAlign: TextAlign.center,
               ),
-              Text(
-                AppLocalizations.of(context)!.chose_your_location_to_start,
-                style: AppTextStyles.style14DarkgrayW500,
-                textAlign: TextAlign.center,
-              )
+              // Text(
+              //   'الان يمكنك الاستمتاع برحلتك',
+              //   style: AppTextStyles.style14DarkgrayW500,
+              //   textAlign: TextAlign.center,
+              // )
             ],
           ),
           actionsOverflowAlignment: OverflowBarAlignment.center,
@@ -66,7 +66,7 @@ class EnableLocationDialog extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      AppLocalizations.of(context)!.use_my_location,
+                      'ابدأ رحلتك ',
                       style: AppTextStyles.style16WhiteW500,
                     ),
                   ),

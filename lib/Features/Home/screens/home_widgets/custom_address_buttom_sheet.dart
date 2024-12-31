@@ -67,7 +67,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
           ),
           verticalSpace(20.h),
           const CustomSearchlist(),
-          verticalSpace(20.h),
+          verticalSpace(10.h),
           const Custom_addAdress_buttonAdd_sheet()
         ],
       ),

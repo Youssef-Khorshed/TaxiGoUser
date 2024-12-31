@@ -33,7 +33,7 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final mapcubit = context.read<MapsCubit>();
+    final mapCubit = context.read<MapsCubit>();
     return Scaffold(
         body: ClipRRect(
             borderRadius: BorderRadius.circular(20.r),
@@ -41,14 +41,14 @@ class _MapScreenState extends State<MapScreen> {
               const CustomMap(),
               Positioned(
                 top: 60.h,
-                right: 20.w,
+                right: 15.w,
                 child: CircleAvatar(
-                  radius: 20.r,
+                  radius: 22.r,
                   backgroundColor: AppColors.transparentColor.withAlpha(
                     100,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(right: 3.0.w),
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(
@@ -68,28 +68,8 @@ class _MapScreenState extends State<MapScreen> {
                 left: 15.w,
                 child: SizedBox(
                   height: 54.h,
-                  child: Row(
-                    children: [
-                      CustomEnableDilaog(mounted: mounted, mapcubit: mapcubit),
-                      Padding(
-                        padding: EdgeInsets.only(right: 10.h),
-                        child: Container(
-                          height: 50.h,
-                          width: 50.w,
-                          decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.r))),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.my_location_outlined,
-                                size: 30.sp,
-                              )),
-                        ),
-                      ),
-                    ],
-                  ),
+                  child:
+                      CustomEnableDilaog(mounted: mounted, mapCubit: mapCubit),
                 ),
               ),
             ])));

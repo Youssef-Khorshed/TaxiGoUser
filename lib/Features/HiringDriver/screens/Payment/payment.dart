@@ -129,7 +129,7 @@ class PaymentScreen extends StatelessWidget {
                     label: 'Promo Code',
                     value: ' ${getLastRide.data!.ride!.first.discount ?? 0}'),
                 Buildrowdetail(
-                  label: 'Total ',
+                  label: 'Total',
                   value: ' ${getLastRide.data!.ride!.first.total}',
                   isBold: true,
                 ),
