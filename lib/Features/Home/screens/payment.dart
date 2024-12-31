@@ -53,14 +53,14 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                             horizontal:
                                 MediaQuery.of(context).size.width * 0.05),
                         children: [
-                          verticalSpace(50),
+                          verticalSpace(50.h),
                           Center(
                             child: AutoSizeText(
                               AppLocalizations.of(context)!.payment,
                               style: AppTextStyles.style18BlackW500,
                             ),
                           ),
-                          verticalSpace(10),
+                          verticalSpace(10.h),
                           Divider(color: AppColors.grayColor, height: .7.h),
                           TripeCompleteDate(
                             rideCompleteDetailsModel:

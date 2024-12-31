@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
 
 class RateButton extends StatelessWidget {
   final VoidCallback onValidRateWithFeedback;
@@ -41,7 +43,10 @@ class RateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => _handleButtonPress(context),
+      onPressed: () {
+        _handleButtonPress(context);
+        BlocProvider.of<RateCancelCubit>(context).feedBackController.clear();
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         padding: padding,

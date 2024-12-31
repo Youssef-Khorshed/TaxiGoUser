@@ -16,6 +16,7 @@ class ApiService {
   // Singleton Dio instance
   Future<Dio> getDio(context) async {
     String? token = await SecureToken.getToken();
+
     Duration timeOut = const Duration(seconds: 30);
 
     if (_dio == null) {
