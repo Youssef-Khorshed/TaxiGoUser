@@ -175,12 +175,12 @@ class AppRoutes {
           },
         );
 
-      case rate:
-        return CupertinoPageRoute(
-          builder: (context) {
-            return const RateScreen();
-          },
-        );
+      // case rate:
+      //   return CupertinoPageRoute(
+      //     builder: (context) {
+      //       return const RateScreen();
+      //     },
+      //   );
 
       case cancelbooing:
         return CupertinoPageRoute(

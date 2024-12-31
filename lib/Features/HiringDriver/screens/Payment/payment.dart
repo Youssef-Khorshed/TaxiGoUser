@@ -8,9 +8,11 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bo
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_buildrowdetail_hiring.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payment_method_list_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/get_last_ride/get_last_ride.dart';
 
 class PaymentScreen extends StatelessWidget {
-  const PaymentScreen({super.key});
+  GetLastRide getLastRide;
+  PaymentScreen({super.key, required this.getLastRide});
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +61,11 @@ class PaymentScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AutoSizeText(
-                        'Current location',
+                        '',
                         style: AppTextStyles.style16DarkgrayW500,
                       ),
                       AutoSizeText(
-                        '2972 Westheimer Rd. Santa Ana, Illinois 85486',
+                        'Egypt سيدي جابر قسم سيدى جابر محافظة الإسكندرية 5434011',
                         style: AppTextStyles.style14GrayW500,
                       ),
                       verticalSpace(size.height * 0.02.h),
@@ -74,12 +76,12 @@ class PaymentScreen extends StatelessWidget {
                       Row(
                         children: [
                           AutoSizeText(
-                            '1901 Thornridge Cir. Shiloh, Hawaii 81063',
+                            '201 El-Gaish Road ',
                             style: AppTextStyles.style14GrayW500,
                           ),
                           const Spacer(),
                           AutoSizeText(
-                            '1.1km',
+                            getLastRide.data!.ride!.first.distance.toString(),
                             style: AppTextStyles.style14GrayW500,
                           ),
                         ],
