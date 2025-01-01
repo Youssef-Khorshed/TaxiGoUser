@@ -11,11 +11,11 @@ class ServerFailure extends Failure {
   ServerFailure({required super.message});
   static String fromDioError(DioException dioError) {
     if (dioError.response != null) {
-      if (dioError.response?.data['error'] != null) {
-        return dioError.response?.data['error'];
+      if (dioError.response!.data['error'] != null) {
+        return dioError.response!.data['error'];
       }
 
-      return dioError.response?.data['message'];
+      return dioError.response!.data['message'];
     } else {
       switch (dioError.type) {
         case DioExceptionType.connectionTimeout:
@@ -38,6 +38,29 @@ class ServerFailure extends Failure {
           return 'Opps Something went wrong';
       }
     }
+  }
+
+  static String handle(DioException error) {
+    switch (error.type) {
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
+        return 'Connection timeout';
+      case DioExceptionType.badResponse:
+        return handleResponse(error.response!);
+      case DioExceptionType.connectionError:
+        return 'No internet connection';
+      default:
+        return error.message ?? 'Unexpected error occurred';
+    }
+  }
+
+  static String handleResponse(Response response) {
+    final data = response.data;
+    if (data is Map) {
+      return data['message'] ?? data['error'] ?? 'Unknown error';
+    }
+    return 'Error: ${response.statusCode}';
   }
 
   static String fromResponse(Response<dynamic>? response) {

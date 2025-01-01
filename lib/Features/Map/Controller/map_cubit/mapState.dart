@@ -90,7 +90,10 @@ class CheckPromocodeLoading extends MapsState {}
 
 class RideRequestLoading extends MapsState {}
 
-class RideRequestFail extends MapsState {}
+class RideRequestFail extends MapsState {
+  String message;
+  RideRequestFail({required this.message});
+}
 
 class RideRequestSuccess extends MapsState {
   RideRequest request;

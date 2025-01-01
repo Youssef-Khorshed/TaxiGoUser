@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -8,8 +9,10 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSearchingDriverSheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/rideRequestModel/ride/rideRequest.dart';
 
+// ignore: must_be_immutable
 class CustomSearchAgain extends StatefulWidget {
   String originTitle;
   String originSubTitle;
@@ -53,17 +56,33 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
                   borderCornerRadius: 40.r,
                   onPressed: () {
                     if (mounted) {
-                      customBottomSheet(
-                          context: context,
-                          widget: CustomSearchingDriverSheet(
-                            originTitle: widget.originTitle,
-                            originSubTitle: widget.originSubTitle,
-                            destinationTitle: widget.destinationTitle,
-                            destinationSubTitle: widget.destinationSubTitle,
-                            distance: widget.distance,
-                            time: widget.time,
-                            request: widget.request,
-                          ));
+                      context
+                          .read<MapsCubit>()
+                          .riderequest(
+                              context: context,
+                              addressFrom: widget.request.data!.addressFrom!,
+                              latFrom: widget.request.data!.latFrom!,
+                              lngFrom: widget.request.data!.lngFrom!,
+                              addressTo: widget.request.data!.addressTo!,
+                              latTo: widget.request.data!.latTo!,
+                              lngTo: widget.request.data!.lngTo!,
+                              tripType: widget.request.data!.tripType!,
+                              paymentMethod:
+                                  widget.request.data!.paymentMethod!)
+                          .then((onValue) {
+                        Navigator.pop(context);
+                        customBottomSheet(
+                            context: context,
+                            widget: CustomSearchingDriverSheet(
+                              originTitle: widget.originTitle,
+                              originSubTitle: widget.originSubTitle,
+                              destinationTitle: widget.destinationTitle,
+                              destinationSubTitle: widget.destinationSubTitle,
+                              distance: widget.distance,
+                              time: widget.time,
+                              request: widget.request,
+                            ));
+                      });
                     }
                   },
                   buttonText: AppLocalizations.of(context)?.search,

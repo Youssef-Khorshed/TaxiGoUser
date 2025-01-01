@@ -80,9 +80,9 @@ class _CustomCountdowntimerState extends State<CustomCountdowntimer> {
         },
         onComplete: () {
           if (mounted) {
-            Navigator.pop(context);
             context.read<MapsCubit>().getNoRideRequestTrip();
             _timer?.cancel();
+            Navigator.pop(context);
             customBottomSheet(
                 context: context,
                 widget: CustomSearchAgain(

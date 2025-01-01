@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
+import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepoimp.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo_imp.dart';
@@ -76,6 +77,8 @@ Future<void> setup() async {
       () => Maprepoimp(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<MapsCubit>(
       MapsCubit(mapsRepository: getIt.get<MapRepo>()));
+
+  getIt.registerSingleton<LocalCubit>(LocalCubit());
 
   getIt.registerLazySingleton<WalletRepo>(
       () => WalletRepoImpl(apiService: getIt.get<ApiService>()));

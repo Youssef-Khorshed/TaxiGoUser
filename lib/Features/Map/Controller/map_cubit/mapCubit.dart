@@ -352,7 +352,8 @@ class MapsCubit extends Cubit<MapsState> {
         lngTo: lngTo,
         tripType: tripType,
         paymentMethod: paymentMethod);
-    response.fold((onError) => emit(RideRequestFail()), (onSuccess) {
+    response.fold((onError) => emit(RideRequestFail(message: onError.message)),
+        (onSuccess) {
       emit(RideRequestSuccess(request: onSuccess));
     });
   }

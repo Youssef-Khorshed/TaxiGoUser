@@ -94,7 +94,7 @@ class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
           child: BlocBuilder<LocalCubit, LocalState>(
             builder: (context, state) {
               return MaterialApp(
-                locale: LocalCubit.get(context).localization,
+                locale: getIt.get<LocalCubit>().localization,
                 builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
                 initialRoute:

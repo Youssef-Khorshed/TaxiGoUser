@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
@@ -40,7 +42,8 @@ class SignUpCubit extends Cubit<SignUpState> {
     var result = await authRepo.signUp(
         name: name, phone: phone, gender: gender, context: context);
     result.fold((l) => emit(SignUpFailure(l.message)), (r) async {
-      await SecureToken.addToken(r.token!);
+      log('');
+      // await SecureToken.addToken(r.token!);
       emit(SignUpSuccess(r));
     });
   }

@@ -8,7 +8,6 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
-import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customAppFormField.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_paymentsheetButton.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
@@ -59,7 +58,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
         }
         if (state is RideRequestFail) {
           Fluttertoast.showToast(
-              msg: AppLocalizations.of(context)!.signInErrorMessage,
+              msg: state.message,
               toastLength: Toast.LENGTH_SHORT,
               gravity: ToastGravity.BOTTOM,
               timeInSecForIosWeb: 1,
