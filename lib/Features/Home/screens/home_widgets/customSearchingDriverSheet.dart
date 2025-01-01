@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_countDownTimer.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/rideRequestModel/ride/rideRequest.dart';
 import 'package:taxi_go_user_version/Features/Map/screens/trip_screen.dart';
 
 // ignore: must_be_immutable
@@ -19,6 +21,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
   String destinationSubTitle;
   String distance;
   String time;
+  RideRequest request;
   CustomSearchingDriverSheet({
     super.key,
     required this.originTitle,
@@ -27,6 +30,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
     required this.destinationSubTitle,
     required this.distance,
     required this.time,
+    required this.request,
   });
 
   @override
@@ -58,6 +62,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           verticalSpace(40.h),
           CustomCountdowntimer(
+            request: request,
             originTitle: originTitle,
             originSubTitle: originSubTitle,
             destinationTitle: destinationTitle,

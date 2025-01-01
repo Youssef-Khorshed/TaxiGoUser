@@ -27,23 +27,19 @@ class AuthRepoImpl extends AuthRepo {
       {required String phone,
       required String password,
       required BuildContext context}) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.login,
-          body: {"identifier": phone, "password": password},
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.login,
+        body: {"identifier": phone, "password": password},
+        context: context);
+    return response.fold((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }, (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Right(LoginModel.fromJson(response));
+        return Right(LoginModel.fromJson(ifRight.data));
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
-      } else {
-        return Left(ServerFailure(message: e.toString()));
-      }
-    }
+    });
   }
 
   @override
@@ -51,135 +47,95 @@ class AuthRepoImpl extends AuthRepo {
       {required String password,
       required String passwordConfirmation,
       required BuildContext context}) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.setPassword,
-          body: {
-            "password": password,
-            "password_confirmation": passwordConfirmation
-          },
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.setPassword,
+        body: {
+          "password": password,
+          "password_confirmation": passwordConfirmation
+        },
+        context: context);
+    return response.fold((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }, (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Right(SetPasswordModel.fromJson(response));
+        return Right(SetPasswordModel.fromJson(ifRight.data));
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
-      } else {
-        return Left(ServerFailure(message: e.toString()));
-      }
-    }
+    });
   }
 
   @override
   Future<Either<Failure, SendVerificationCodeModel>> sendVerificationCode(
       BuildContext context) async {
-    try {
-      await apiService.getDio(context);
-      var response = await apiService.getRequest(
-          Constants.baseUrl + Constants.sendVerification,
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.getRequest(
+        Constants.baseUrl + Constants.sendVerification,
+        context: context);
+    return response.fold((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }, (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        SendVerificationCodeModel data =
-            SendVerificationCodeModel.fromJson(response);
-        return Right(data);
+        return Right(SendVerificationCodeModel.fromJson(ifRight.data));
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(
-          message: e.response!.data["message"],
-        ));
-      } else {
-        return Left(ServerFailure(
-          message: e.toString(),
-        ));
-      }
-    }
+    });
   }
 
   @override
   Future<Either<Failure, VerifyAccount>> verifyAccount(
       BuildContext context, int otp) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.verifyAccount,
-          body: {"code": otp},
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.verifyAccount,
+        body: {"code": otp},
+        context: context);
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        VerifyAccount data = VerifyAccount.fromJson(response);
-        return Right(data);
+        return Right(VerifyAccount.fromJson(ifRight.data));
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(
-          message: e.response!.data["message"],
-        ));
-      } else {
-        return Left(ServerFailure(
-          message: e.toString(),
-        ));
-      }
-    }
+    });
   }
 
   @override
   Future<Either<Failure, SendPasswordModel>> setRegisterPassword(
       BuildContext context, Map<String, dynamic> body) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.verifyAccount,
-          body: body,
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.verifyAccount,
+        body: body,
+        context: context);
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        SendPasswordModel data = SendPasswordModel.fromJson(response);
-        return Right(data);
+        return Right(SendPasswordModel.fromJson(ifRight.data));
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(
-          message: e.response!.data["message"],
-        ));
-      } else {
-        return Left(ServerFailure(
-          message: e.toString(),
-        ));
-      }
-    }
+    });
   }
 
   @override
   Future<Either<Failure, ForgetPasswordModel>> forgetPassword(
       BuildContext context, String phone) async {
-    try {
-      var response = await apiService.getRequest(
-          Constants.baseUrl + Constants.forgotPassword,
-          queryParameters: {"identifier": phone},
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.getRequest(
+        Constants.baseUrl + Constants.forgotPassword,
+        queryParameters: {"identifier": phone},
+        context: context);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        ForgetPasswordModel data = ForgetPasswordModel.fromJson(response);
-        return Right(data);
+        return Right(ForgetPasswordModel.fromJson(ifRight.data));
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(
-          message: e.response!.data.toString(),
-        ));
-      } else {
-        return Left(ServerFailure(
-          message: e.toString(),
-        ));
-      }
-    }
+    });
   }
 
   @override
@@ -187,29 +143,20 @@ class AuthRepoImpl extends AuthRepo {
       BuildContext context,
       {int? otp,
       String? phone}) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.forgotPasswordCheckCode,
-          body: {"identifier": phone, "code": otp},
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.forgotPasswordCheckCode,
+        body: {"identifier": phone, "code": otp},
+        context: context);
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        SendVerificationCodeModel data =
-            SendVerificationCodeModel.fromJson(response);
-        return Right(data);
+        return Right(SendVerificationCodeModel.fromJson(ifRight.data));
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(
-          message: e.response!.data["message"],
-        ));
-      } else {
-        return Left(ServerFailure(
-          message: e.toString(),
-        ));
-      }
-    }
+    });
   }
 
   @override
@@ -218,86 +165,82 @@ class AuthRepoImpl extends AuthRepo {
       required String phone,
       required String gender,
       required BuildContext context}) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.register,
-          body: {"name": name, "phone": phone, "gender": gender},
-          context: context);
-      if (response["status"] == false) {
-        return Left(ServerFailure(message: response["message"]));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.register,
+        body: {"name": name, "phone": phone, "gender": gender},
+        context: context);
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        RegisterModel dataModel = RegisterModel.fromJson(response);
-        if (dataModel.data?.token != null) {}
-        await SecureToken.addToken(dataModel.data!.token!);
-        return Right(dataModel.data ?? RegisterDataModel());
+        RegisterModel dataModel = RegisterModel.fromJson(ifRight.data);
+        if (dataModel.data?.token != null) {
+          return SecureToken.addToken(dataModel.data!.token!).then((onValue) {
+            return Right(RegisterDataModel.fromJson(ifRight.data));
+          });
+        } else {
+          return Left(ServerFailure(message: 'Token not Found'));
+        }
       }
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(
-          message: e.response!.data["message"],
-        ));
-      } else {
-        return Left(ServerFailure(
-          message: e.toString(),
-        ));
-      }
-    }
+    });
   }
 
 //Create Profile
   @override
   Future<Either<Failure, GetCitiesModel>> getCities(
       BuildContext context) async {
-    try {
-      var response = await apiService
-          .getRequest(Constants.baseUrl + Constants.cities, context: context);
-      GetCitiesModel data = GetCitiesModel.fromJson(response);
-      return Right(data);
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(message: e.response!.data["message"]));
+    var response = await apiService
+        .getRequest(Constants.baseUrl + Constants.cities, context: context);
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Left(ServerFailure(message: e.toString()));
+        return Right(GetCitiesModel.fromJson(ifRight.data));
       }
-    }
+    });
   }
 
   @override
   Future<Either<Failure, GetDistrictsModel>> getDistricts(
       BuildContext context, int cityId) async {
-    try {
-      var response = await apiService.getRequest(
-          Constants.baseUrl + Constants.districts,
-          context: context,
-          queryParameters: {"city_id": cityId});
-      GetDistrictsModel data = GetDistrictsModel.fromJson(response);
-      return Right(data);
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(message: e.response!.data["message"]));
+    var response = await apiService.getRequest(
+        Constants.baseUrl + Constants.districts,
+        context: context,
+        queryParameters: {"city_id": cityId});
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Left(ServerFailure(message: e.toString()));
+        return Right(GetDistrictsModel.fromJson(ifRight.data));
       }
-    }
+    });
   }
 
   @override
   Future<Either<Failure, CreateProfileModel>> createProfile(
       BuildContext context, FormData formData) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.createProfile,
-          context: context,
-          body: formData);
-      CreateProfileModel data = CreateProfileModel.fromJson(response);
-      return Right(data);
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(message: e.response?.data["message"]));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.createProfile,
+        context: context,
+        body: formData);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Left(ServerFailure(message: e.toString()));
+        return Right(CreateProfileModel.fromJson(ifRight.data));
       }
-    }
+    });
   }
 
   @override
@@ -306,37 +249,37 @@ class AuthRepoImpl extends AuthRepo {
       required String password,
       required String phone,
       required BuildContext context}) async {
-    try {
-      var response = await apiService.postRequest(
-          Constants.baseUrl + Constants.forgotPasswordSet,
-          body: {
-            "password": password,
-            "password_confirmation": passwordConfirmation,
-            "identifier": phone
-          },
-          context: context);
-      return Right(SetPasswordModel.fromJson(response));
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.forgotPasswordSet,
+        body: {
+          "password": password,
+          "password_confirmation": passwordConfirmation,
+          "identifier": phone
+        },
+        context: context);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Left(ServerFailure(message: e.toString()));
+        return Right(SetPasswordModel.fromJson(ifRight.data));
       }
-    }
+    });
   }
 
   @override
   Future<Either<Failure, LogOutModel>> logout(BuildContext context) async {
-    try {
-      var response = await apiService
-          .postRequest(Constants.baseUrl + Constants.logout, context: context);
-      return Right(LogOutModel.fromJson(response));
-    } catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure(message: ServerFailure.fromDioError(e)));
+    var response = await apiService
+        .postRequest(Constants.baseUrl + Constants.logout, context: context);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Left(ServerFailure(message: e.toString()));
+        return Right(LogOutModel.fromJson(ifRight.data));
       }
-    }
+    });
   }
 }

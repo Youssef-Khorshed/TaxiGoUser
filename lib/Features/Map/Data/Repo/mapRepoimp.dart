@@ -24,18 +24,20 @@ class Maprepoimp extends MapRepo {
       {required String searchQuery,
       required String sessionToken,
       required BuildContext context}) async {
-    try {
-      final res = await apiService.getRequest(
-          Constants.searchplace(
-              searchQuery: searchQuery, sessionToken: sessionToken),
-          context: context);
+    final response = await apiService.getRequest(
+        Constants.searchplace(
+            searchQuery: searchQuery, sessionToken: sessionToken),
+        context: context);
 
-      return Right(SearchPlace.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(InternetConnectionFailure(message: e.message.toString()));
-    }
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(SearchPlace.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
@@ -44,16 +46,19 @@ class Maprepoimp extends MapRepo {
     required String sessionToken,
     required BuildContext context,
   }) async {
-    try {
-      final res = await apiService.getRequest(
-          context: context,
-          Constants.placeDetails(placeId: placeId, sessionToken: sessionToken));
-      return Right(PlaceDetails.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(InternetConnectionFailure(message: e.message.toString()));
-    }
+    final response = await apiService.getRequest(
+        context: context,
+        Constants.placeDetails(placeId: placeId, sessionToken: sessionToken));
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(PlaceDetails.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
@@ -64,57 +69,62 @@ class Maprepoimp extends MapRepo {
       required int triptype,
       required LatLng origin,
       required LatLng destination}) async {
-    try {
-      final res = await apiService.getRequest(
-          context: context,
-          Constants.calculatePrice,
-          queryParameters: Constants.calculatePriceBody(
-            latFrom: origin.latitude.toString(),
-            lngFrom: origin.longitude.toString(),
-            latTo: destination.latitude.toString(),
-            lngTo: destination.longitude.toString(),
-            tripType: triptype,
-            durationMinutes: time,
-          ));
-      return Right(CalculateAverage.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    } on UnExpectedException catch (e) {
-      return Left(UnExpectedFailure(message: e.message));
-    }
+    final response = await apiService.getRequest(
+        context: context,
+        Constants.calculatePrice,
+        queryParameters: Constants.calculatePriceBody(
+          latFrom: origin.latitude.toString(),
+          lngFrom: origin.longitude.toString(),
+          latTo: destination.latitude.toString(),
+          lngTo: destination.longitude.toString(),
+          tripType: triptype,
+          durationMinutes: time,
+        ));
+
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(CalculateAverage.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
   Future<Either<Failure, CancelRideRequest>> canelRideRequest({
     required BuildContext context,
   }) async {
-    try {
-      final res = await apiService.postRequest(
-          context: context, Constants.cancelRideRequest);
-      return Right(CancelRideRequest.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message));
-    }
+    final response = await apiService.postRequest(
+        context: context, Constants.cancelRideRequest);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(CancelRideRequest.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
   Future<Either<Failure, Unit>> checkPromocode(
       {required BuildContext context, required String code}) async {
-    try {
-      await apiService.getRequest(
-          context: context,
-          Constants.checkPromocode,
-          queryParameters: Constants.checkPromocodeBody(code: code));
-      return const Right(unit);
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response = await apiService.getRequest(
+        context: context,
+        Constants.checkPromocode,
+        queryParameters: Constants.checkPromocodeBody(code: code));
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return const Right(unit);
+      }
+    });
   }
 
   @override
@@ -130,25 +140,27 @@ class Maprepoimp extends MapRepo {
     required String paymentMethod,
     String? promocode,
   }) async {
-    try {
-      final res = await apiService.postRequest(
-          context: context,
-          Constants.rideRequest,
-          body: Constants.rideRequestBody(
-              addressFrom: addressFrom,
-              latFrom: latFrom,
-              lngFrom: lngFrom,
-              addressTo: addressTo,
-              latTo: latTo,
-              lngTo: lngTo,
-              tripType: tripType,
-              paymentMethod: paymentMethod));
-      return Right(RideRequest.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response = await apiService.postRequest(
+        context: context,
+        Constants.rideRequest,
+        body: Constants.rideRequestBody(
+            addressFrom: addressFrom,
+            latFrom: latFrom,
+            lngFrom: lngFrom,
+            addressTo: addressTo,
+            latTo: latTo,
+            lngTo: lngTo,
+            tripType: tripType,
+            paymentMethod: paymentMethod));
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(RideRequest.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
@@ -157,19 +169,23 @@ class Maprepoimp extends MapRepo {
       required LatLng destination,
       required String sessionToken,
       required BuildContext context}) async {
-    try {
-      final res = await apiService.getRequest(
-          context: context,
-          Constants.directions(
-              origin: origin,
-              destination: destination,
-              sessionToken: sessionToken));
-      return Right(Directions.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response = await apiService.getRequest(
+        context: context,
+        Constants.directions(
+            origin: origin,
+            destination: destination,
+            sessionToken: sessionToken));
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == "ZERO_RESULTS") {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else if (ifRight.data["status"] == "ZERO_RESULTS") {
+        return Left(ServerFailure(message: "No Routes Found"));
+      } else {
+        return Right(Directions.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
@@ -177,44 +193,50 @@ class Maprepoimp extends MapRepo {
       {required LatLng placeLatLng,
       required String sessionToken,
       required BuildContext context}) async {
-    try {
-      final res = await apiService.getRequest(
-          context: context,
-          Constants.geolcatorAddress(
-              sessionToken: sessionToken, placeLatLng: placeLatLng));
-      return Right(GeocodeAdress.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response = await apiService.getRequest(
+        context: context,
+        Constants.geolcatorAddress(
+            sessionToken: sessionToken, placeLatLng: placeLatLng));
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(GeocodeAdress.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
   Future<Either<Failure, GetActiveRide>> getActiveRide(
       {required BuildContext context}) async {
-    try {
-      final res = await apiService.getRequest(
-          context: context, Constants.getactiveRide);
-      return Right(GetActiveRide.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response =
+        await apiService.getRequest(context: context, Constants.getactiveRide);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(GetActiveRide.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
   Future<Either<Failure, GetLastRide>> getLastRide(
       {required BuildContext context}) async {
-    try {
-      final res =
-          await apiService.getRequest(context: context, Constants.getLastRide);
-      return Right(GetLastRide.fromJson(res));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response =
+        await apiService.getRequest(context: context, Constants.getLastRide);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(GetLastRide.fromJson(ifRight.data));
+      }
+    });
   }
 }

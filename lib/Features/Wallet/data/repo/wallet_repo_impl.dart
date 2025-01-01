@@ -7,7 +7,6 @@ import 'package:taxi_go_user_version/Features/Wallet/data/model/get_all_transact
 import 'package:taxi_go_user_version/Features/Wallet/data/model/get_profile_model.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/model/wallet_model.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/repo/wallet_repo.dart';
-import '../../../../Core/Utils/Network/Error/exception.dart';
 
 class WalletRepoImpl extends WalletRepo {
   ApiService apiService;
@@ -16,17 +15,19 @@ class WalletRepoImpl extends WalletRepo {
   @override
   Future<Either<Failure, WalletModel>> getWallet(
       {required String amount, required dynamic context}) async {
-    try {
-      final response = await apiService.postRequest(
-        context: context,
-        Constants.depositURL(amount: amount),
-      );
-      return Right(WalletModel.fromJson(response));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response = await apiService.postRequest(
+      context: context,
+      Constants.depositURL(amount: amount),
+    );
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(WalletModel.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
@@ -35,38 +36,38 @@ class WalletRepoImpl extends WalletRepo {
     String? transactionType,
     required BuildContext context,
   }) async {
-    try {
-      final url = Constants.transactionsURL(
-        paymentMethod: paymentMethod,
-        transactionType: transactionType,
-      );
+    final url = Constants.transactionsURL(
+      paymentMethod: paymentMethod,
+      transactionType: transactionType,
+    );
 
-      final response = await apiService.getRequest(url, context: context);
+    final response = await apiService.getRequest(url, context: context);
 
-      return Right(GetAllTransactionsModel.fromJson(response));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    } catch (e) {
-      return Left(ServerFailure(message: 'Unexpected error: $e'));
-    }
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(GetAllTransactionsModel.fromJson(ifRight.data));
+      }
+    });
   }
 
   @override
   Future<Either<Failure, GetProfileModel>> getProfile(
       {required BuildContext context}) async {
-    try {
-      final url = Constants.getProfileURL();
+    final url = Constants.getProfileURL();
+    final response = await apiService.getRequest(url, context: context);
 
-      final response = await apiService.getRequest(url, context: context);
-      return Right(GetProfileModel.fromJson(response));
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    } catch (e) {
-      return Left(ServerFailure(message: 'Unexpected error: $e'));
-    }
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(GetProfileModel.fromJson(ifRight.data));
+      }
+    });
   }
 }

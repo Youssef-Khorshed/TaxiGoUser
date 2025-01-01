@@ -11,6 +11,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSe
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_PaymentMethodSelector.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 
 // ignore: must_be_immutable
 class PaymentButton extends StatelessWidget {
@@ -39,61 +40,68 @@ class PaymentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: CustomAppBottom(
-            buttonColor: AppColors.blueColor,
-            borderColor: Colors.white,
-            borderCornerRadius: 40.r,
-            buttonText: AppLocalizations.of(context)!.go,
-            textColor: Colors.white,
-            onPressed: () async {
-              final cubit = context.read<MapsCubit>();
-              await cubit.riderequest(
-                context: context,
-                promocode: controller.text,
-                addressFrom: MapStringMaipulation.concatenateLongNames(
-                    cubit.originAddress.addressComponents),
-                addressTo: MapStringMaipulation.concatenateLongNames(
-                    cubit.destinationAddress.addressComponents),
-                latFrom: cubit.orginPosition!.lat!.toString(),
-                lngFrom: cubit.orginPosition!.lng!.toString(),
-                latTo: cubit.destinationostion!.lat!.toString(),
-                lngTo: cubit.destinationostion!.lng!.toString(),
-                tripType: widget.tripType,
-                paymentMethod: selectedMethod,
-              );
-              Navigator.pop(context);
-              customBottomSheet(
+    return BlocListener<MapsCubit, MapsState>(
+      listener: (context, state) {
+        if (state is RideRequestSuccess) {
+          Navigator.pop(context);
+          customBottomSheet(
+              context: context,
+              widget: CustomSearchingDriverSheet(
+                request: state.request,
+                originTitle: originTitle,
+                originSubTitle: originSubTitle,
+                destinationTitle: destinationTitle,
+                destinationSubTitle: destinationSubTitle,
+                distance: distance,
+                time: time,
+              ));
+        }
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: CustomAppBottom(
+              buttonColor: AppColors.blueColor,
+              borderColor: Colors.white,
+              borderCornerRadius: 40.r,
+              buttonText: AppLocalizations.of(context)!.go,
+              textColor: Colors.white,
+              onPressed: () async {
+                final cubit = context.read<MapsCubit>();
+                await cubit.riderequest(
                   context: context,
-                  widget: CustomSearchingDriverSheet(
-                    originTitle: originTitle,
-                    originSubTitle: originSubTitle,
-                    destinationTitle: destinationTitle,
-                    destinationSubTitle: destinationSubTitle,
-                    distance: distance,
-                    time: time,
-                  ));
-            },
+                  promocode: controller.text,
+                  addressFrom: MapStringMaipulation.concatenateLongNames(
+                      cubit.originAddress.addressComponents),
+                  addressTo: MapStringMaipulation.concatenateLongNames(
+                      cubit.destinationAddress.addressComponents),
+                  latFrom: cubit.orginPosition!.lat!.toString(),
+                  lngFrom: cubit.orginPosition!.lng!.toString(),
+                  latTo: cubit.destinationostion!.lat!.toString(),
+                  lngTo: cubit.destinationostion!.lng!.toString(),
+                  tripType: widget.tripType,
+                  paymentMethod: selectedMethod,
+                );
+              },
+            ),
           ),
-        ),
-        horizontalSpace(15.h),
-        Expanded(
-          child: CustomAppBottom(
-            buttonColor: AppColors.whiteColor,
-            borderColor: AppColors.redColor,
-            borderCornerRadius: 40.r,
-            buttonText: AppLocalizations.of(context)!.cancel_k,
-            textColor: AppColors.redColor,
-            onPressed: () {
-              context.read<MapsCubit>().clearMarkerPolyines();
-              Navigator.pop(context);
-            },
-          ),
-        )
-      ],
+          horizontalSpace(15.h),
+          Expanded(
+            child: CustomAppBottom(
+              buttonColor: AppColors.whiteColor,
+              borderColor: AppColors.redColor,
+              borderCornerRadius: 40.r,
+              buttonText: AppLocalizations.of(context)!.cancel_k,
+              textColor: AppColors.redColor,
+              onPressed: () {
+                context.read<MapsCubit>().clearMarkerPolyines();
+                Navigator.pop(context);
+              },
+            ),
+          )
+        ],
+      ),
     );
   }
 }

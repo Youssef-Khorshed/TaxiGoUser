@@ -4,6 +4,7 @@ import 'package:taxi_go_user_version/Features/Map/Data/model/get_last_ride/get_l
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/directions/leg.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_details/location.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/placesModel/place_search/prediction.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/rideRequestModel/ride/rideRequest.dart';
 
 abstract class MapsState {}
 
@@ -86,7 +87,10 @@ class RideRequestLoading extends MapsState {}
 
 class RideRequestFail extends MapsState {}
 
-class RideRequestSuccess extends MapsState {}
+class RideRequestSuccess extends MapsState {
+  RideRequest request;
+  RideRequestSuccess({required this.request});
+}
 
 class PlacesFailLoaded extends MapsState {
   String message;
@@ -148,6 +152,8 @@ class ArrivedToCustomer extends MapsState {
 class GetAddressSuccess extends MapsState {}
 
 class PlaceAddressLoading extends MapsState {}
+
+class GetUserLocationLoadingLoading extends MapsState {}
 
 class GetAddressFail extends MapsState {
   String message;

@@ -20,6 +20,26 @@ class NoInternetException implements Exception {
   NoInternetException({required this.message});
 }
 
+class BadRequestException implements Exception {
+  final String message;
+  BadRequestException({required this.message});
+}
+
+class UnauthorizedException implements Exception {
+  final String message;
+  UnauthorizedException({required this.message});
+}
+
+class ForbiddenException implements Exception {
+  final String message;
+  ForbiddenException({required this.message});
+}
+
+class NotFoundException implements Exception {
+  final String message;
+  NotFoundException({required this.message});
+}
+
 class ServiceException implements Exception {
   final String message;
   ServiceException({required this.message});

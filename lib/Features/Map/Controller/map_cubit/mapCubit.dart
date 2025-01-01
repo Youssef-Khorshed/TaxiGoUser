@@ -33,6 +33,7 @@ class MapsCubit extends Cubit<MapsState> {
   GeocodeResult destinationAddress = GeocodeResult();
   GetLastRide? getLastRide;
   GetActiveRide? getActiveRide;
+
   Leg distanceTime = Leg();
   late Marker orignMarker;
   late Marker destinationMarker;
@@ -59,7 +60,7 @@ class MapsCubit extends Cubit<MapsState> {
   /// get user location
   Future<void> getUserLocation({required String title}) async {
     try {
-      emit(PlaceAddressLoading());
+      emit(GetUserLocationLoadingLoading());
       final userLocation = await locationService.getuserLocation();
       orginPosition = LocationPosition(
         lat: userLocation.latitude,
@@ -182,31 +183,27 @@ class MapsCubit extends Cubit<MapsState> {
     required String sessionToken,
     required BuildContext context,
   }) async {
-    try {
-      emit(PlaceDirectionsLading());
-      final response = await mapsRepository.getDrirection(
-          origin: origin,
-          destination: destination,
-          sessionToken: sessionToken,
-          context: context);
-      response.fold((onError) {}, (onSuccess) {
-        distanceTime = onSuccess.routes!.first.legs!.first;
-        emit(LegsLoaded(leg: distanceTime));
-        buildmarker(
-          title: 'des',
-          destinationInfo: 'des',
-          postion: LatLng(destination.latitude, destination.longitude),
-        );
-        // updatePlaceCameraPosition(place: destination, zoom: 10);
-        updateLatLngBoundPosition(
-            origin: origin, destination: destination, zoom: 12);
-        drawPolyline(origin: origin, destination: destination);
-        emit(DirectionsLoaded(polyLines));
-      });
-    } catch (error) {
-      Fluttertoast.showToast(msg: 'Cant find Destination');
-      emit(PlaceDirectionsFaild());
-    }
+    emit(PlaceDirectionsLading());
+    final response = await mapsRepository.getDrirection(
+        origin: origin,
+        destination: destination,
+        sessionToken: sessionToken,
+        context: context);
+    response.fold((onError) {
+      Fluttertoast.showToast(msg: 'Cant find Destination ${onError.message}');
+    }, (onSuccess) {
+      distanceTime = onSuccess.routes!.first.legs!.first;
+      emit(LegsLoaded(leg: distanceTime));
+      buildmarker(
+        title: 'des',
+        destinationInfo: 'des',
+        postion: LatLng(destination.latitude, destination.longitude),
+      );
+      updateLatLngBoundPosition(
+          origin: origin, destination: destination, zoom: 12);
+      drawPolyline(origin: origin, destination: destination);
+      emit(DirectionsLoaded(polyLines));
+    });
   }
 
   void updateLatLngBoundPosition(
@@ -352,8 +349,9 @@ class MapsCubit extends Cubit<MapsState> {
         lngTo: lngTo,
         tripType: tripType,
         paymentMethod: paymentMethod);
-    response.fold((onError) => emit(RideRequestFail()),
-        (onSuccess) => emit(RideRequestSuccess()));
+    response.fold((onError) => emit(RideRequestFail()), (onSuccess) {
+      emit(RideRequestSuccess(request: onSuccess));
+    });
   }
 
   /// check promocode

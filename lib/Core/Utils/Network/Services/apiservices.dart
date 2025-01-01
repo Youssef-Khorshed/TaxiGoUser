@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
@@ -34,8 +36,9 @@ class ApiService {
             LocalizationThemeState.ar
         ? "ar"
         : "en";
-
-    _addDioHeaders(language: language, token: token);
+    SecureToken.getToken().then((onValue) {
+      _addDioHeaders(language: language, token: onValue);
+    });
     log(token.toString());
     return _dio!;
   }
@@ -64,7 +67,7 @@ class ApiService {
   }
 
   // Function to make GET requests
-  Future<T> getRequest<T>(String url,
+  Future<Either<String, Response>> getRequest(String url,
       {Map<String, dynamic>? queryParameters,
       required BuildContext context}) async {
     try {
@@ -76,24 +79,24 @@ class ApiService {
         );
         if (response.statusCode != null) {
           if (response.statusCode == 200 || response.statusCode == 201) {
-            return response.data;
+            return Right(response);
           } else {
-            throw ServerException(
-              message: response.toString(),
+            return Left(
+              ServerFailure.fromResponse(response),
             );
           }
         }
       } else {
-        throw NoInternetException(message: 'No internet Connection');
+        return const Left('No internet Connection');
       }
-      throw UnExpectedException(message: 'Un Expected error occurs');
-    } on DioException catch (dioE) {
-      throw ServerException(message: ServerFailure.fromDioError(dioE));
+      return const Left('Un Expected error occurs');
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
     }
   }
 
   // Function to make POST requests
-  Future<T> postRequest<T>(String url,
+  Future<Either<String, Response>> postRequest(String url,
       {dynamic body, required BuildContext context}) async {
     try {
       if (await internetConnectivity.isConnected) {
@@ -102,19 +105,19 @@ class ApiService {
         final response = await _dio!.post(url, data: body);
         if (response.statusCode != null) {
           if (response.statusCode == 200 || response.statusCode == 201) {
-            return response.data;
+            return Right(response);
           } else {
-            throw ServerException(
-              message: response.toString(),
-            );
+            Left(ServerException(
+              message: ServerFailure.fromResponse(response),
+            ));
           }
         }
       } else {
-        throw NoInternetException(message: 'No internet Connection');
+        return const Left('No internet Connection');
       }
-      throw UnExpectedException(message: 'Un Expected error occurs');
-    } on DioException catch (dioE) {
-      throw ServerException(message: ServerFailure.fromDioError(dioE));
+      return const Left('Un Expected error occurs');
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioError(e));
     }
   }
 
@@ -145,23 +148,23 @@ class ApiService {
   }
 
   // Function to make DELETE requests
-  Future<T> deleteRequest<T>(String url,
+  Future<Either<String, Response>> deleteRequest(String url,
       {required BuildContext context}) async {
     if (await internetConnectivity.isConnected) {
       await getDio(context);
       final response = await _dio!.delete(url);
       if (response.statusCode != null) {
-        if (response.statusCode == 200) {
-          return response.data;
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          return Right(response);
         } else {
-          throw ServerException(
-            message: response.toString(),
-          );
+          Left(ServerException(
+            message: ServerFailure.fromResponse(response),
+          ));
         }
       }
     } else {
-      throw NoInternetException(message: 'No internet Connection');
+      return const Left('No internet Connection');
     }
-    throw UnExpectedException(message: 'Un Expected error occurs');
+    return const Left('Un Expected error occurs');
   }
 }

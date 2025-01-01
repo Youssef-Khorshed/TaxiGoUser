@@ -16,14 +16,14 @@ class ProfileRepoImpl extends ProfileRepo {
     var response = await apiService.getRequest(
         Constants.baseUrl + Constants.profileEndPoint,
         context: context);
-    try {
-      ProfielModel profielModel = ProfielModel.fromJson(response);
-
-      return Right(profielModel);
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(InternetConnectionFailure(message: e.message.toString()));
-    }
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(ProfielModel.fromJson(ifRight.data));
+      }
+    });
   }
 }

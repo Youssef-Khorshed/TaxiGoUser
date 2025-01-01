@@ -15,20 +15,19 @@ class CancelRepoImp implements CancelRepo {
   @override
   Future<Either<Failure, RateModel>> cancel(
       BuildContext context, String reason) async {
-    try {
-      final ratStatus = await apiService.postRequest(
-        Constants.cancelRideAfter,
-        context: context,
-        body: {"reason": reason},
-      );
-
-      return Right(
-        RateModel.fromJson(ratStatus),
-      );
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response = await apiService.postRequest(
+      Constants.cancelRideAfter,
+      context: context,
+      body: {"reason": reason},
+    );
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        return Right(RateModel.fromJson(ifRight.data));
+      }
+    });
   }
 }

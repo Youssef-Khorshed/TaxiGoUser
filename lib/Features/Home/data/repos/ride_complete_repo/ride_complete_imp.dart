@@ -13,18 +13,20 @@ class RideCompleteRepoImpl implements RideCompleteRepo {
   @override
   Future<Either<Failure, RideCompleteDetailsModel>> getRideCompleteDetails(
       context) async {
-    try {
-      final response =
-          await apiService.getRequest(context: context, Constants.completeRide);
-      RideCompleteDetailsModel rideDetails =
-          RideCompleteDetailsModel.fromJson(response["data"]);
-      return Right(
-        RideCompleteDetailsModel.fromJson(rideDetails.toJson()),
-      );
-    } on NoInternetException {
-      return Left(InternetConnectionFailure(message: 'No internet Connection'));
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message.toString()));
-    }
+    final response =
+        await apiService.getRequest(context: context, Constants.completeRide);
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        RideCompleteDetailsModel rideDetails =
+            RideCompleteDetailsModel.fromJson(ifRight.data["data"]);
+        return Right(
+          RideCompleteDetailsModel.fromJson(rideDetails.toJson()),
+        );
+      }
+    });
   }
 }

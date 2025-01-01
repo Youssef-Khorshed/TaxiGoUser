@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,8 +8,11 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
+import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSearchingDriverSheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+import 'package:taxi_go_user_version/Features/Map/Data/model/rideRequestModel/ride/rideRequest.dart';
 
 class CustomSearchagain extends StatefulWidget {
   String originTitle;
@@ -17,6 +21,7 @@ class CustomSearchagain extends StatefulWidget {
   String destinationSubTitle;
   String distance;
   String time;
+  RideRequest request;
   CustomSearchagain({
     super.key,
     required this.originTitle,
@@ -25,6 +30,7 @@ class CustomSearchagain extends StatefulWidget {
     required this.destinationSubTitle,
     required this.distance,
     required this.time,
+    required this.request,
   });
 
   @override
@@ -51,7 +57,6 @@ class _CustomSearchagainState extends State<CustomSearchagain> {
                   borderCornerRadius: 40.r,
                   onPressed: () {
                     if (mounted) {
-                      Navigator.pop(context);
                       customBottomSheet(
                           context: context,
                           widget: CustomSearchingDriverSheet(
@@ -61,6 +66,7 @@ class _CustomSearchagainState extends State<CustomSearchagain> {
                             destinationSubTitle: widget.destinationSubTitle,
                             distance: widget.distance,
                             time: widget.time,
+                            request: widget.request,
                           ));
                     }
                   },
