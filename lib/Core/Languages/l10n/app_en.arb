@@ -101,7 +101,6 @@
     "new_password" : "New Password",
     "set_password" : "Set Password",
     "old_password" : "Old Password",
-    "current_password" : "Current Password",
     "enter_your_name" : "Enter Your Name",
     "enter_your_email" : "Enter Your Email",
     "enter_your_password" : "Enter Your Password",
@@ -161,7 +160,8 @@
     "apply" :"Apply",
     "apply_promo_code" :"Apply Promo Code",
     "data" :"Data",
-    "online_payment":"Online Payment", "payment_method":"Payment Method",
+    "online_payment":"Online Payment",
+    "payment_method":"Payment Method",
     "noPromoCode": "No Promo Code",
     "please_rate_the_trip": "Please rate the trip",
     "thank_you_for_your_review": "\"Thank you for your review! Your opinion matters to us and helps us improve your experience with us. We hope your trip was enjoyable and we look forward to serving you again soon!\""
@@ -281,11 +281,12 @@
    "english": "English",
    "balance": "Balance",
    "address": "Address",
-      "empty_message": "There are no trips",
-    "empty_notification": "There are no notifications",
-    "empty_transactions": "There are no transactions",
-    "amount_must_be_at_least_1001_IQD": "Amount must be at least 1001 IQD",
-    "field_required": "Field Required",
-    "profile": "Profile"
-
+   "empty_message": "There are no trips",
+   "empty_notification": "There are no notifications",
+   "empty_transactions": "There are no transactions",
+   "amount_must_be_at_least_1001_IQD": "Amount must be at least 1001 IQD",
+   "field_required": "Field Required",
+   "profile": "Profile",
+   "search_again": "Do You Want to Search Again",
+   "search":"Search"
 }

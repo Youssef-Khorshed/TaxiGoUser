@@ -16,7 +16,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(DevicePreview(
-    enabled: false,
+    enabled: true,
     builder: (context) => const TaxiGoUserEditionApp(),
   ));
 }

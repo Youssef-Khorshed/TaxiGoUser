@@ -43,12 +43,12 @@ class _MapScreenState extends State<MapScreen> {
                 top: 60.h,
                 right: 15.w,
                 child: CircleAvatar(
-                  radius: 22.r,
+                  radius: 25.r,
                   backgroundColor: AppColors.transparentColor.withAlpha(
                     100,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3.0.w),
+                    padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(

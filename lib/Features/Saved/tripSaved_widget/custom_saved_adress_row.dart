@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/tripSaved_widget/saved_trip_details_map.dart';
 
@@ -86,7 +86,9 @@ class CustomSavedBuildAddressRow extends StatelessWidget {
             ],
           ),
           trailing: Text(
-            '${savedRide.distance} ${AppLocalizations.of(context)!.km}',
+            savedRide.distance != null
+                ? '${savedRide.distance} ${AppLocalizations.of(context)!.km}'
+                : "",
             style: TextStyle(fontSize: 15.sp),
           ),
         );

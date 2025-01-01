@@ -25,7 +25,7 @@ class CustomFavoriteBuildTripDetails extends StatelessWidget {
           color: AppColors.whiteColor,
           child: CustomFavBuildAddressRow(
               rideDetails: favoriteRide.rideRequest!,
-              distance: favoriteRide.distance!),
+              distance: favoriteRide.distance ?? 0),
         ),
         Container(
           width: double.infinity,

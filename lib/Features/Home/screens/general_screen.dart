@@ -1,19 +1,20 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_profile.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
-import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
 
@@ -25,8 +26,8 @@ class GeneralScreen extends StatefulWidget {
 }
 
 class _GeneralScreenState extends State<GeneralScreen> {
-  int selctedIndex = 0;
-  // Updated list with the correct number of screens
+  int selectedIndex = 0;
+
   List<Widget> screens = [
     const HomeScreen(),
     const HistoryScreen(),
@@ -40,9 +41,21 @@ class _GeneralScreenState extends State<GeneralScreen> {
 
   void onItemTap(int index) {
     setState(() {
-      selctedIndex = index;
+      selectedIndex = index;
     });
     Navigator.pop(context);
+  }
+
+  String? image;
+  Future<void> userImage() async {
+    image = await SecureProfile.getProfileImage();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    userImage();
+    super.initState();
   }
 
   @override
@@ -59,7 +72,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
       backgroundColor: AppColors.whiteColor,
       drawer: CustomAppDrawer(
         onItemTap: (index) => onItemTap(index),
-        selectedIndex: selctedIndex,
+        selectedIndex: selectedIndex,
       ),
       body: SafeArea(
         child: Column(
@@ -80,7 +93,7 @@ class _GeneralScreenState extends State<GeneralScreen> {
                               AppColors.blackColor, BlendMode.srcIn),
                         ));
                   }),
-                  AutoSizeText(screensName[selctedIndex],
+                  AutoSizeText(screensName[selectedIndex],
                       style: AppTextStyles.style28BlackW400.copyWith(
                         fontSize: 22.sp,
                       )),
@@ -90,19 +103,15 @@ class _GeneralScreenState extends State<GeneralScreen> {
                     },
                     child: CircleAvatar(
                       radius: 18.r,
-                      backgroundImage: const AssetImage(AppImages.appImage),
+                      backgroundImage: image != null && image != ''
+                          ? NetworkImage(image!)
+                          : const AssetImage(AppImages.appImage),
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(3.0),
-                  //   child: Image.asset(
-                  //     AppIcons.logo, width: 100.w, height: 30.h,
-                  //
-                  //   ),)
                 ],
               ),
             ),
-            Expanded(child: screens[selctedIndex])
+            Expanded(child: screens[selectedIndex])
           ],
         ),
       ),

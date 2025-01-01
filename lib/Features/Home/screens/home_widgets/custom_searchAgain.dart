@@ -2,22 +2,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSearchingDriverSheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 
-class CustomSearchagain extends StatefulWidget {
+class CustomSearchAgain extends StatefulWidget {
   String originTitle;
   String originSubTitle;
   String destinationTitle;
   String destinationSubTitle;
   String distance;
   String time;
-  CustomSearchagain({
+  CustomSearchAgain({
     super.key,
     required this.originTitle,
     required this.originSubTitle,
@@ -28,10 +28,10 @@ class CustomSearchagain extends StatefulWidget {
   });
 
   @override
-  State<CustomSearchagain> createState() => _CustomSearchagainState();
+  State<CustomSearchAgain> createState() => _CustomSearchAgainState();
 }
 
-class _CustomSearchagainState extends State<CustomSearchagain> {
+class _CustomSearchAgainState extends State<CustomSearchAgain> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,8 +40,8 @@ class _CustomSearchagainState extends State<CustomSearchagain> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Do You Want to Search Again',
-            style: AppTextStyles.style14DarkgrayW500,
+            AppLocalizations.of(context)!.search_again,
+            style: AppTextStyles.style18BlackW500,
           ),
           verticalSpace(20.h),
           Row(
@@ -64,14 +64,15 @@ class _CustomSearchagainState extends State<CustomSearchagain> {
                           ));
                     }
                   },
-                  buttonText: 'Search',
+                  buttonText: AppLocalizations.of(context)?.search,
                 ),
               ),
               horizontalSpace(10.w),
               Expanded(
                 child: CustomAppBottom(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(
+                        context, AppRoutes.generalScreen);
                   },
                   buttonColor: AppColors.whiteColor,
                   borderColor: AppColors.redColor,

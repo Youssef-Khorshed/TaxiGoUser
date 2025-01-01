@@ -54,14 +54,12 @@ abstract class Validation {
     if (value == null || value.trim().isEmpty) {
       return AppLocalizations.of(context)!.password_required;
     }
-    var regex = RegExp(
-      r"(?=^.{8,}$)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$",
-    );
-
-    if (!regex.hasMatch(value)) {
-      return 'Password must be atleast A-Z, a-z, @-#-&.. , 1-9';
-    }
-
+    // var regex = RegExp(
+    //   r"(?=^.{8,}$)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$",
+    // );
+    // if (!regex.hasMatch(value)) {
+    //   return 'Password must be include A-Z | a-z | @-#-&.. | 1-9';
+    // }
     return null;
   }
 }
