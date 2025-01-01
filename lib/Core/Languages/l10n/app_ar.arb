@@ -108,6 +108,7 @@
     "oM_university" : " جامعة OM",
     "today" : "اليوم",
     "tomorrow" : "غدا",
+        "sign_up" : "انشاء حساب",
     "last_7_days" : "اخر 7 ايام",
     "last_30_days" : "اخر 30 يوم",
     "this_month"    :"هذا الشهر",
@@ -275,10 +276,16 @@
    "english": "الانجليزية",
    "balance": "المحفظة",
    "address": "العنوان",
+    "tripDetails" :"ادخال تفاصيل دفع رحلتك",
+   "signInErrorMessage":"برجاء تسجيل الدخول قبل بدء الرحلة",
    "empty_message": "لا توجد اى رحلات",
    "empty_notification": "لا توجد اى اشعارات",
    "amount_must_be_at_least_1001_IQD": "المبلغ يجب ان يكون على الاقل 1001 دينار",
    "field_required": "حقل مطلوب",
    "profile": "الملف الشخصي",
-   "empty_transactions": "لا توجد اى معاملات"
+   "empty_transactions": "لا توجد اى معاملات",
+   "old_password" : "كلمة المرور القديمة",
+   "apply_promo_code" :"تطبيق كود الخصم",
+   "search_again": "هل تريد البحث مجددا",
+      "search":"ابحث"
 }

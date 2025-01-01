@@ -25,7 +25,23 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
     return BlocConsumer<MapsCubit, MapsState>(
       listener: (context, state) {
         if (state is PlaceDirectionsFaild) {
-          Navigator.pop(context);
+        } else if (state is DirectionsLoaded) {
+          final mapsCubit = context.read<MapsCubit>();
+          Navigator.of(context).pop();
+          customBottomSheet(
+              context: context,
+              widget: CustomChangeaddressSheet(
+                  originSubTitle: MapStringMaipulation.concatenateShortNames(
+                      mapsCubit.originAddress.addressComponents),
+                  destinationTitle: mapsCubit
+                      .destinationAddress.addressComponents![3].longName!,
+                  destinationSubTitle:
+                      MapStringMaipulation.concatenateShortNames(
+                          mapsCubit.destinationAddress.addressComponents),
+                  originTitle:
+                      mapsCubit.originAddress.addressComponents![3].longName!,
+                  distance: mapsCubit.distanceTime.distance!.text!,
+                  time: mapsCubit.distanceTime.duration!.text!));
         }
       },
       builder: (context, state) {
@@ -40,35 +56,16 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
             buttonColor: AppColors.blueColor,
             textColor: AppColors.whiteColor,
             buttonText: AppLocalizations.of(context)!.go,
-            onPressed: () {
-              mapsCubit
-                  .emitPlaceDirections(
-                      origin: LatLng(mapsCubit.orginPosition!.lat!,
-                          mapsCubit.orginPosition!.lng!),
-                      destination: LatLng(
-                        mapsCubit.destinationostion!.lat!,
-                        mapsCubit.destinationostion!.lng!,
-                      ),
-                      sessionToken: const Uuid().v4(),
-                      context: context)
-                  .then((onValue) {
-                Navigator.of(context).pop();
-                customBottomSheet(
-                    context: context,
-                    widget: CustomChangeaddressSheet(
-                        originSubTitle:
-                            MapStringMaipulation.concatenateShortNames(
-                                mapsCubit.originAddress.addressComponents),
-                        destinationTitle: mapsCubit
-                            .destinationAddress.addressComponents![3].longName!,
-                        destinationSubTitle:
-                            MapStringMaipulation.concatenateShortNames(
-                                mapsCubit.destinationAddress.addressComponents),
-                        originTitle: mapsCubit
-                            .originAddress.addressComponents![3].longName!,
-                        distance: mapsCubit.distanceTime.distance!.text!,
-                        time: mapsCubit.distanceTime.duration!.text!));
-              });
+            onPressed: () async {
+              await mapsCubit.emitPlaceDirections(
+                  origin: LatLng(mapsCubit.orginPosition!.lat!,
+                      mapsCubit.orginPosition!.lng!),
+                  destination: LatLng(
+                    mapsCubit.destinationostion!.lat!,
+                    mapsCubit.destinationostion!.lng!,
+                  ),
+                  sessionToken: const Uuid().v4(),
+                  context: context);
             },
           ),
         );

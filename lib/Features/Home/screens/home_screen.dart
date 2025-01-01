@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 iconColor: AppColors.blackColor,
                 buttonColor: AppColors.blueColor,
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, AppRoutes.mapScreen);
+                  Navigator.pushNamed(context, AppRoutes.mapScreen);
                 },
                 buttonText: AppLocalizations.of(context)!.where_are_you_going,
                 textColor: AppColors.whiteColor,

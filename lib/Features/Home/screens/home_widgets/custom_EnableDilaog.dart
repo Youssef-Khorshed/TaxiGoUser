@@ -1,11 +1,8 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/internetconnection.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_Addaddress_sheet.dart';
@@ -15,18 +12,17 @@ import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:uuid/uuid.dart';
 
-class CustomEnableDilaog extends StatelessWidget {
-  const CustomEnableDilaog({
-    super.key,
-    required this.mounted,
-    required this.mapCubit,
-  });
-
-  final bool mounted;
-  final MapsCubit mapCubit;
+class CustomEnableDilaog extends StatefulWidget {
+  const CustomEnableDilaog({super.key});
 
   @override
+  State<CustomEnableDilaog> createState() => _CustomEnableDilaogState();
+}
+
+class _CustomEnableDilaogState extends State<CustomEnableDilaog> {
+  @override
   Widget build(BuildContext context) {
+    final mapCubit = context.read<MapsCubit>();
     return context.watch<MapsCubit>().state is GetUserLocationLoadingLoading
         ? const CustomLoading()
         : CustomAppBottom(

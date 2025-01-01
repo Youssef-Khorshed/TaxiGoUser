@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -98,7 +99,6 @@ class MapsCubit extends Cubit<MapsState> {
           lat: userlocation.latitude,
           lng: userlocation.longitude,
         );
-        emit(UpdateOriginLocatoin());
         buildmarker(
           title: title,
           destinationInfo: title,
@@ -111,6 +111,7 @@ class MapsCubit extends Cubit<MapsState> {
             userlocation.longitude!,
           ),
         );
+        emit(UpdateOriginLocatoin());
       } on PermissionException catch (error) {
         Fluttertoast.showToast(msg: error.message);
         emit(OpenLoacationFailed());
@@ -293,13 +294,15 @@ class MapsCubit extends Cubit<MapsState> {
       required String destinationInfo,
       required LatLng postion,
       BitmapDescriptor? customicon}) {
+    emit(MarkersLoading());
+
     markers.add(Marker(
         markerId: MarkerId(title),
         position: postion,
         infoWindow: InfoWindow(title: title),
         icon: customicon ??
             BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)));
-    emit(UpdateMarkers());
+    emit(UpdateMarkers(markers: markers));
   }
 
   /// Get Last Ride

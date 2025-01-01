@@ -179,7 +179,7 @@ class Maprepoimp extends MapRepo {
       return Left(ServerFailure(message: ifLeft));
     }), (ifRight) {
       if (ifRight.data["status"] == "ZERO_RESULTS") {
-        return Left(ServerFailure(message: ifRight.data["message"]));
+        return Left(ServerFailure(message: "Can`t find Directions"));
       } else if (ifRight.data["status"] == "ZERO_RESULTS") {
         return Left(ServerFailure(message: "No Routes Found"));
       } else {

@@ -1,8 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/enums/localization.dart';
@@ -34,21 +33,6 @@ class ProfileInfoBody extends StatelessWidget {
                 userInfo.name ?? 'name',
                 style: AppTextStyles.style20BlackW500
                     .copyWith(fontWeight: FontWeight.bold),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.star,
-                    color: AppColors.amberColor,
-                    size: 20,
-                  ),
-                  AutoSizeText(
-                    userInfo.rate ?? '2.5',
-                    style: AppTextStyles.style16DarkgrayW500.copyWith(
-                        color: AppColors.darkgrayColor.withAlpha(180)),
-                  ),
-                ],
               ),
             ],
           ),

@@ -1,16 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_profile.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Features/Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
+
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomAppDrawer extends StatefulWidget {
   final int selectedIndex;
@@ -43,7 +44,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      width: width * 0.9.w,
+      width: width * 0.75.w,
       decoration: BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: BorderRadius.only(
@@ -65,7 +66,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     verticalSpace(40.h),
                     CircleAvatar(
                       radius: 40,
-                      backgroundImage: image != null && image == ''
+                      backgroundImage: image != null && image != ''
                           ? NetworkImage(image!)
                           : const AssetImage(AppImages.appImage),
                     ),
@@ -79,7 +80,7 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     )
                   ],
                 ),
-                verticalSpace(10.h),
+                verticalSpace(15.h),
                 ListTile(
                   leading: const Icon(
                     FontAwesomeIcons.houseChimney,

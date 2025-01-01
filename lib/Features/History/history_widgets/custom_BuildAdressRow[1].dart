@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocode/geocode.dart';
@@ -8,7 +9,6 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/trip_details%5B1%5D.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BuildAddressRow extends StatelessWidget {
   const BuildAddressRow({
@@ -83,7 +83,9 @@ class BuildAddressRow extends StatelessWidget {
             ],
           ),
           trailing: Text(
-            '${historyData.ride![0].distance} ${AppLocalizations.of(context)!.km}',
+            historyData.ride![0].distance != null
+                ? '${historyData.ride![0].distance} ${AppLocalizations.of(context)!.km} '
+                : "",
             style: TextStyle(fontSize: 15.sp),
           ),
         );

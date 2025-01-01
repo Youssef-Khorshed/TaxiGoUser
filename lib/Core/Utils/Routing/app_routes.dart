@@ -204,13 +204,7 @@ class AppRoutes {
       case mapScreen:
         return CupertinoPageRoute(
           builder: (context) {
-            return Center(
-              child: BlocProvider(
-                create: (context) =>
-                    getIt<MapsCubit>()..getUserLocation(title: 'Origin'),
-                child: const MapScreen(),
-              ),
-            );
+            return const MapScreen();
           },
         );
 
