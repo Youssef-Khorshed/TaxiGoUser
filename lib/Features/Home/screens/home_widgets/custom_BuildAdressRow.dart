@@ -6,6 +6,7 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/Core/trip_details_map.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_parseAddress.dart';
 
 // ignore: must_be_immutable
 class BuildAddressRow extends StatelessWidget {
@@ -33,11 +34,11 @@ class BuildAddressRow extends StatelessWidget {
         children: [
           TripDetailsMap(
               address: fromAddress,
-              location: fromLoccation,
+              location: parseAddress(fromAddress)['street_number'] ?? '',
               icon: AppIcons.iconsMapRed),
           TripDetailsMap(
             address: toAddress,
-            location: toLocation,
+            location: parseAddress(toAddress)['street_number'] ?? '',
             icon: AppIcons.iconsMapBlue,
           ),
           distance == null
@@ -79,33 +80,5 @@ class BuildAddressRow extends StatelessWidget {
         ],
       ),
     );
-
-    // Row(
-    //   children: [
-    //     traling ?? true
-    //         ? Row(
-    //             children: [
-    //               Text(distance!, style: AppTextStyles.style12DarkgrayW400),
-    //             ],
-    //           )
-    //         : const SizedBox(),
-    //     const Spacer(),
-    //     Column(
-    //       crossAxisAlignment: CrossAxisAlignment.end,
-    //       children: [
-    //         Text(title,
-    //             textAlign: TextAlign.start,
-    //             style: AppTextStyles.style16BlackW600),
-    //         SizedBox(
-    //             height: 20.h,
-    //             width: 270.w,
-    //             child: Text(subtitle,
-    //                 textAlign: TextAlign.end,
-    //                 style: AppTextStyles.style14GrayW500)),
-    //       ],
-    //     ),
-    //     icon
-    //   ],
-    // );
   }
 }

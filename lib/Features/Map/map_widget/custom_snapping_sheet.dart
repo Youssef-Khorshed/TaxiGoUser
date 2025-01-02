@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:snapping_sheet/snapping_sheet.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
-import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/custom_mapTrip.dart';
 import 'package:taxi_go_user_version/Features/Map/map_widget/requset_dialog_body.dart';
@@ -33,74 +32,69 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-
-    return BlocBuilder<MapsCubit, MapsState>(
-      builder: (context, state) {
-        var cubit = context.read<MapsCubit>();
-        return SnappingSheet(
-          lockOverflowDrag: false,
-          snappingPositions: const [
-            SnappingPosition.pixels(
-              positionPixels: 400,
-              snappingCurve: Curves.elasticOut,
-              snappingDuration: Duration(milliseconds: 1750),
-            ),
-            SnappingPosition.factor(
-              positionFactor: 0.0,
-              snappingCurve: Curves.easeOutExpo,
-              snappingDuration: Duration(seconds: 1),
-              grabbingContentOffset: GrabbingContentOffset.top,
-            ),
-            SnappingPosition.factor(
-              positionFactor: 0.65,
-              snappingCurve: Curves.bounceOut,
-              snappingDuration: Duration(seconds: 1),
-              grabbingContentOffset: GrabbingContentOffset.bottom,
-            ),
-          ], // Your main screen content goes here
-          grabbingHeight: 110.h,
-          // Start fully closed
-          grabbing: Container(
-            color: AppColors.kBackgroundColor,
-            child: Visibility(
-              visible: cubit.isAccepted,
-              replacement: SnappingSheetTitleAccepted(
-                captinName:
-                    widget.nearbyRideRequest.data!.ride!.first.captain!.name!,
-                captinPhoneNumber:
-                    widget.nearbyRideRequest.data!.ride!.first.captain!.phone!,
-                width: width,
-              ),
-              child: SnappingSheetTitleRequest(width: width),
-            ),
+    final cubit = context.read<MapsCubit>();
+    return SnappingSheet(
+      lockOverflowDrag: false,
+      snappingPositions: const [
+        SnappingPosition.pixels(
+          positionPixels: 400,
+          snappingCurve: Curves.elasticOut,
+          snappingDuration: Duration(milliseconds: 1750),
+        ),
+        SnappingPosition.factor(
+          positionFactor: 0.0,
+          snappingCurve: Curves.easeOutExpo,
+          snappingDuration: Duration(seconds: 1),
+          grabbingContentOffset: GrabbingContentOffset.top,
+        ),
+        SnappingPosition.factor(
+          positionFactor: 0.65,
+          snappingCurve: Curves.bounceOut,
+          snappingDuration: Duration(seconds: 1),
+          grabbingContentOffset: GrabbingContentOffset.bottom,
+        ),
+      ], // Your main screen content goes here
+      grabbingHeight: 110.h,
+      // Start fully closed
+      grabbing: Container(
+        color: AppColors.kBackgroundColor,
+        child: Visibility(
+          visible: cubit.isAccepted,
+          replacement: SnappingSheetTitleAccepted(
+            captinName:
+                widget.nearbyRideRequest.data!.ride!.first.captain!.name!,
+            captinPhoneNumber:
+                widget.nearbyRideRequest.data!.ride!.first.captain!.phone!,
+            width: width,
           ),
-          sheetBelow: SnappingSheetContent(
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
-              color: AppColors.kBackgroundColor,
-              child: RequestDialogBody(
+          child: SnappingSheetTitleRequest(width: width),
+        ),
+      ),
+      sheetBelow: SnappingSheetContent(
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          color: AppColors.kBackgroundColor,
+          child: RequestDialogBody(
+            nearbyRideRequest: widget.nearbyRideRequest,
+            width: width,
+          ),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.9.h,
+              width: MediaQuery.of(context).size.width,
+              child: CustomMaptrip(
                 nearbyRideRequest: widget.nearbyRideRequest,
-                width: width,
               ),
             ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.9.h,
-                  width: MediaQuery.of(context).size.width,
-                  child: CustomMaptrip(
-                    nearbyRideRequest: widget.nearbyRideRequest,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

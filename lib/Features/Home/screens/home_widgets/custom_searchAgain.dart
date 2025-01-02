@@ -92,6 +92,7 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
               Expanded(
                 child: CustomAppBottom(
                   onPressed: () {
+                    context.read<MapsCubit>().clearMarkerPolyines();
                     Navigator.pushReplacementNamed(
                         context, AppRoutes.generalScreen);
                   },

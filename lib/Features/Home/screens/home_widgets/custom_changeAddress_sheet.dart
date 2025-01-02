@@ -51,7 +51,7 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               fromLoccation: widget.originTitle,
               toAddress: widget.destinationSubTitle,
               //  distance: widget.distance,
-              //    time: widget.time,
+              // time: widget.time,
               toLocation: widget.destinationTitle),
           verticalSpace(16.h),
           CustomRidetypeselector(

@@ -54,6 +54,7 @@ class _MapScreenState extends State<MapScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                         child: IconButton(
                           onPressed: () {
+                            context.read<MapsCubit>().clearMarkerPolyines();
                             Navigator.pushNamed(
                                 context, AppRoutes.generalScreen);
                           },
