@@ -10,4 +10,5 @@ class AppImages {
   static const String emptyData = 'assets/images/Task-amico 1.svg';
   static const String failureData = 'assets/images/Car crash-amico.svg';
   static const String timeImage = 'assets/images/time.png';
+  static const String userLocationImage = 'assets/images/userlocation.png';
 }

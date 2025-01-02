@@ -8,7 +8,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/rate_det
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/rate_tripe_widget.dart';
 
 class RateScreen extends StatelessWidget {
-  RateScreen({super.key});
+  const RateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

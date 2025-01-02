@@ -1,6 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -8,12 +11,14 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bo
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_buildrowdetail_hiring.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payment_method_list_card.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_last_ride/get_last_ride.dart';
 
 class PaymentScreen extends StatelessWidget {
-  GetLastRide getLastRide;
-  PaymentScreen({super.key, required this.getLastRide});
+  final GetLastRide getLastRide;
+  const PaymentScreen({
+    super.key,
+    required this.getLastRide,
+  });
 
   @override
   Widget build(BuildContext context) {

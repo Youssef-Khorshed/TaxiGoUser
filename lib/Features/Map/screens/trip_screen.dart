@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
-import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
-import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
@@ -50,36 +46,40 @@ class TripScreenState extends State<TripScreen> {
               nearbyRideRequest: widget.activeRide,
               isAccepted: true,
             ),
-            Positioned(
-              top: MediaQuery.of(context).size.height / 8,
-              right: 50,
-              left: 50,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.h),
-                decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.blueColor),
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: AppColors.whiteColor),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Image.asset(
-                      AppImages.timeImage,
-                      width: 20.w,
-                      height: 20.h,
+            context.watch<MapsCubit>().onTrip
+                ? Positioned(
+                    top: MediaQuery.of(context).size.height / 8,
+                    right: 50,
+                    left: 50,
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.h),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.blueColor),
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: AppColors.whiteColor),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            AppImages.timeImage,
+                            width: 20.w,
+                            height: 20.h,
+                          ),
+                          const Text('Time'),
+                          Container(
+                            width: 2,
+                            color: AppColors.blueColor,
+                            height: 50.h,
+                          ),
+                          Text(AppLocalizations.of(context)!.km),
+                          Text(widget.activeRide.data!.ride!.first.arivalTime ??
+                              ''),
+                        ],
+                      ),
                     ),
-                    const Text('Time'),
-                    Container(
-                      width: 2,
-                      color: AppColors.blueColor,
-                      height: 50.h,
-                    ),
-                    Text(AppLocalizations.of(context)!.km),
-                    Text(widget.activeRide.data!.ride!.first.arivalTime),
-                  ],
-                ),
-              ),
-            ),
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

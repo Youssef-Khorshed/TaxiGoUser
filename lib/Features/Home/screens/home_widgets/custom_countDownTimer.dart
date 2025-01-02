@@ -13,14 +13,14 @@ import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.
 import 'package:taxi_go_user_version/Features/Map/Data/model/rideRequestModel/ride/rideRequest.dart';
 
 class CustomCountdowntimer extends StatefulWidget {
-  String originTitle;
-  String originSubTitle;
-  String destinationTitle;
-  String destinationSubTitle;
-  String distance;
-  String time;
-  RideRequest request;
-  CustomCountdowntimer({
+  final String originTitle;
+  final String originSubTitle;
+  final String destinationTitle;
+  final String destinationSubTitle;
+  final String distance;
+  final String time;
+  final RideRequest request;
+  const CustomCountdowntimer({
     super.key,
     required this.originTitle,
     required this.originSubTitle,
