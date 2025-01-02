@@ -80,11 +80,11 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
       case 'الامس':
         return 'yesterday';
       case 'Last 7 days':
-      case 'اخر ٧ أيام':
-        return 'last_7_days';
+      case 'اخر ٧ ايام':
+        return 'week';
       case 'This month':
       case 'هذا الشهر':
-        return 'this_month';
+        return 'month';
       default:
         return value; // Default case if no match
     }

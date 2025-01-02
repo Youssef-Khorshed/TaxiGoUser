@@ -13,11 +13,11 @@ class HistoryTripCard extends StatefulWidget {
   final HistoryData historyData;
 
   const HistoryTripCard({
-    Key? key,
+    super.key,
     required this.onStarPressed,
     required this.onSavedPressed,
     required this.historyData,
-  }) : super(key: key);
+  });
 
   @override
   State<HistoryTripCard> createState() => _HistoryTripCardState();

@@ -24,7 +24,7 @@ class SavedViewModel extends Cubit<SavedStates> {
     );
   }
 
-  unSaveTrip(BuildContext context, int tripId) async {
+  Future<void> unSaveTrip(BuildContext context, int tripId) async {
     emit(SavedLoadingStates());
     var either = await savedRepo.unSaveTrip(context, tripId);
     either.fold(

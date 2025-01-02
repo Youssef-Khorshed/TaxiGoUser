@@ -8,6 +8,7 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_empty_data_view.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_failure_view.dart';
+import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_states.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_states.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
@@ -15,6 +16,8 @@ import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_imp
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_details_filter_dropdown.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Features/Saved/controller/saved_states.dart';
+import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -72,9 +75,15 @@ class HistoryScreen extends StatelessWidget {
                                             .getHistoryData(context);
                                       }
                                     },
-                                    onSavedPressed: () {
+                                    onSavedPressed: () async {
                                       if (historyData[index].isSaved == true) {
-                                        return;
+                                        await context
+                                            .read<SavedViewModel>()
+                                            .unSaveTrip(
+                                                context,
+                                                historyData[index]
+                                                    .ride![0]
+                                                    .id!);
                                       } else {
                                         HistoryViewModel.get(context).saveTrip(
                                             context,
@@ -92,10 +101,14 @@ class HistoryScreen extends StatelessWidget {
                         ),
                 ),
               );
-            }
-            if (state is HistoryFailureStates) {
+            } else if (state is HistoryFailureStates) {
               return CustomFailureView(message: state.errMessage);
             }
+
+            // else  if (state is SavedFailureStates) {
+            //     return CustomFailureView(message: state.);
+            //   }
+
             return Padding(
                 padding:
                     EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),

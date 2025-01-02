@@ -26,7 +26,7 @@ class HistoryViewModel extends Cubit<HistoryStates> {
     );
   }
 
-  saveTrip(BuildContext context, int rideId) async {
+  Future<void> saveTrip(BuildContext context, int rideId) async {
     emit(AddToSaveToFavTripLoadingStates());
     var either = await historyRepo.saveTrip(context, rideId);
     either.fold(

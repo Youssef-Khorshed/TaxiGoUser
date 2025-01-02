@@ -17,29 +17,26 @@ class ApiService {
   ApiService({required this.internetConnectivity});
   static Dio? _dio;
   Future<Dio> getDio() async {
-    String? token = await SecureToken.getToken();
+    return SecureToken.getToken().then((onValue) {
+      Duration timeOut = const Duration(seconds: 30);
 
-    Duration timeOut = const Duration(seconds: 30);
+      if (_dio == null) {
+        _dio = Dio();
 
-    if (_dio == null) {
-      _dio = Dio();
+        _dio!
+          ..options.connectTimeout = timeOut
+          ..options.receiveTimeout = timeOut;
 
-      _dio!
-        ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut;
+        _addDioInterceptor();
+      }
 
-      _addDioInterceptor();
-    }
-
-    String language = getIt.get<LocalCubit>().localizationThemeState ==
-            LocalizationThemeState.ar
-        ? "ar"
-        : "en";
-    SecureToken.getToken().then((onValue) {
+      String language = getIt.get<LocalCubit>().localizationThemeState ==
+              LocalizationThemeState.ar
+          ? "ar"
+          : "en";
       _addDioHeaders(language: language, token: onValue);
+      return _dio!;
     });
-    log(token.toString());
-    return _dio!;
   }
 
   static void _addDioHeaders({String? token, String language = 'ar'}) {
@@ -95,9 +92,8 @@ class ApiService {
       {dynamic body, required BuildContext context}) async {
     try {
       if (await internetConnectivity.isConnected) {
-        await getDio();
-
-        final response = await _dio!.post(url, data: body);
+        final dio = await getDio();
+        final response = await dio.post(url, data: body);
         if (response.statusCode != null) {
           if (response.statusCode == 200 || response.statusCode == 201) {
             return Right(response);
@@ -118,47 +114,55 @@ class ApiService {
 
   Future<Either<String, Response>> putRequest(String url,
       {dynamic body, required BuildContext context}) async {
-    if (await internetConnectivity.isConnected) {
-      await getDio();
+    try {
+      if (await internetConnectivity.isConnected) {
+        final dio = await getDio();
 
-      final response = await _dio!.put(
-        url,
-        data: json.encode(body),
-      );
+        final response = await dio.put(
+          url,
+          data: json.encode(body),
+        );
 
-      if (response.statusCode != null) {
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          return Right(response);
-        } else {
-          Left(ServerException(
-            message: ServerFailure.handleResponse(response),
-          ));
+        if (response.statusCode != null) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            return Right(response);
+          } else {
+            Left(ServerException(
+              message: ServerFailure.handleResponse(response),
+            ));
+          }
         }
+      } else {
+        return const Left('No internet Connection');
       }
-    } else {
-      return const Left('No internet Connection');
+      return const Left('Un Expected error occurs');
+    } on DioException catch (e) {
+      return Left(ServerFailure.handle(e));
     }
-    return const Left('Un Expected error occurs');
   }
 
   // Function to make DELETE requests
   Future<Either<String, Response>> deleteRequest(String url,
       {required BuildContext context}) async {
-    if (await internetConnectivity.isConnected) {
-      await getDio();
-      final response = await _dio!.delete(url);
-      if (response.statusCode != null) {
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          return Right(response);
-        } else {
-          Left(ServerException(
-            message: ServerFailure.handleResponse(response),
-          ));
+    try {
+      if (await internetConnectivity.isConnected) {
+        final dio = await getDio();
+        final response = await dio.delete(url);
+        if (response.statusCode != null) {
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            return Right(response);
+          } else {
+            Left(ServerException(
+              message: ServerFailure.handleResponse(response),
+            ));
+          }
         }
+      } else {
+        return const Left('No internet Connection');
       }
-    } else {
-      return const Left('No internet Connection');
+      return const Left('Un Expected error occurs');
+    } on DioException catch (e) {
+      return Left(ServerFailure.handle(e));
     }
-    return const Left('Un Expected error occurs');
   }
 }
