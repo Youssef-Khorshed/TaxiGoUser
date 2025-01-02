@@ -15,6 +15,7 @@
     "notification_details": "Notification Details",
     "system_notification": "System Notification",
     "enter_amount": "Enter Amount",
+    "chooseYourTrip":"Choose Your Trip",
     "add_money": "Add Money",
     "tripDetails":"Add Trip Details",
     "signInErrorMessage":"Please Sign in Before Start a trip",

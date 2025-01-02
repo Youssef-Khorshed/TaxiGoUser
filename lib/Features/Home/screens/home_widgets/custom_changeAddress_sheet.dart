@@ -36,15 +36,11 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            AppLocalizations.of(context)!.detalis_address,
-            style: AppTextStyles.style18BlackBold,
-          ),
-          verticalSpace(10.h),
+          //  verticalSpace(10.h),
           BuildAddressRow(
               fromAddress: widget.originSubTitle,
               fromLoccation: widget.originTitle,
@@ -52,7 +48,7 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               //  distance: widget.distance,
               // time: widget.time,
               toLocation: widget.destinationTitle),
-          verticalSpace(16.h),
+          // verticalSpace(16.h),
           CustomRidetypeselector(
             onRideTypeSelected: (index) {
               _selectedtriptype = index;
@@ -66,7 +62,8 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               distance: widget.distance,
               time: widget.time,
               widget: widget,
-              selectedtriptype: _selectedtriptype)
+              selectedtriptype: _selectedtriptype),
+          verticalSpace(20.h),
         ],
       ),
     );

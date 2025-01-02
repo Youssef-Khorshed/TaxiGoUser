@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
@@ -26,6 +28,7 @@ class HistoryRepoImpl extends HistoryRepo {
       } else {
         HistoryDataModel historyDataModel =
             HistoryDataModel.fromJson(ifRight.data);
+        log(historyDataModel.data!.length.toString());
 
         return Right(historyDataModel);
       }

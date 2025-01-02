@@ -46,6 +46,7 @@ class PaymentButton extends StatelessWidget {
           Navigator.pop(context);
           customBottomSheet(
               context: context,
+              title: AppLocalizations.of(context)!.searching_for_a_driver,
               widget: CustomSearchingDriverSheet(
                 request: state.request,
                 originTitle: originTitle,

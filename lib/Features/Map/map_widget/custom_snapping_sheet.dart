@@ -37,7 +37,7 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
       lockOverflowDrag: false,
       snappingPositions: const [
         SnappingPosition.pixels(
-          positionPixels: 400,
+          positionPixels: 300,
           snappingCurve: Curves.elasticOut,
           snappingDuration: Duration(milliseconds: 1750),
         ),
@@ -48,19 +48,21 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
           grabbingContentOffset: GrabbingContentOffset.top,
         ),
         SnappingPosition.factor(
-          positionFactor: 0.65,
+          positionFactor: 300,
           snappingCurve: Curves.bounceOut,
           snappingDuration: Duration(seconds: 1),
           grabbingContentOffset: GrabbingContentOffset.bottom,
         ),
       ], // Your main screen content goes here
-      grabbingHeight: 110.h,
+      grabbingHeight: 80.h,
       // Start fully closed
       grabbing: Container(
         color: AppColors.kBackgroundColor,
         child: Visibility(
           visible: cubit.isAccepted,
           replacement: SnappingSheetTitleAccepted(
+            captinImage:
+                widget.nearbyRideRequest.data!.ride!.first.captain!.picture,
             captinName:
                 widget.nearbyRideRequest.data!.ride!.first.captain!.name!,
             captinPhoneNumber:

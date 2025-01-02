@@ -53,6 +53,7 @@ class TestCustomEnableDilaog extends StatelessWidget {
 
                     customBottomSheet(
                         context: context,
+                        title: AppLocalizations.of(context)!.chooseYourTrip,
                         widget: AddressBottomSheet(
                           originTitle: mapcubit.originAddress.formattedAddress!,
                         ));

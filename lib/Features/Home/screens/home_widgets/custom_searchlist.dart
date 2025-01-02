@@ -28,101 +28,105 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
   @override
   Widget build(BuildContext context) {
     final mapsCubit = context.read<MapsCubit>();
-    return Column(
-      children: [
-        CustomTextFormFiled(
-          enabledborder: true,
-          borderRadius: 12.r,
-          bordercolor: AppColors.grayColor,
-          focusedbordercolor: AppColors.blackColor,
-          suffixicon: destinationController.text.isNotEmpty
-              ? IconButton(
-                  onPressed: () {
-                    destinationController.clear();
-                    setState(() {});
-                  },
-                  icon: const Icon(Icons.close),
-                )
-              : null,
-          hintText: AppLocalizations.of(context)!.to,
-          focusNode: _focusNode,
-          hinttextStyle: AppTextStyles.style16DarkgrayW500,
-          onChanged: (value) {
-            if (_focusNode.hasFocus && destinationController.text.isEmpty) {
-              return;
-            }
-            mapsCubit.emitPlaceSuggestions(
-                searchQuery: value,
-                sessionToken: const Uuid().v4(),
-                context: context);
-          },
-          prefixicon: const Icon(
-            Icons.location_on_outlined,
-          ),
-          controller: destinationController,
-          textStyle: AppTextStyles.style16DarkgrayW500,
-        ),
-        BlocBuilder<MapsCubit, MapsState>(
-          builder: (context, state) {
-            return Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: mapsCubit.predictions.length,
-                itemBuilder: (context, index) {
-                  if (state is PlacesLoading) {
-                    return ListTile(
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: simmerWidget(context),
-                          ),
-                          verticalSpace(10.h),
-                          Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: simmerWidget(context),
-                          ),
-                        ],
-                      ),
-                    );
+    return BlocBuilder<MapsCubit, MapsState>(
+      builder: (context, state) {
+        return SizedBox(
+          height: context.watch<MapsCubit>().predictions.isEmpty ? 100 : 200,
+          child: Column(
+            children: [
+              CustomTextFormFiled(
+                enabledborder: true,
+                borderRadius: 12.r,
+                bordercolor: AppColors.grayColor,
+                focusedbordercolor: AppColors.blackColor,
+                suffixicon: destinationController.text.isNotEmpty
+                    ? IconButton(
+                        onPressed: () {
+                          destinationController.clear();
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.close),
+                      )
+                    : null,
+                hintText: AppLocalizations.of(context)!.to,
+                focusNode: _focusNode,
+                hinttextStyle: AppTextStyles.style16DarkgrayW500,
+                onChanged: (value) {
+                  if (_focusNode.hasFocus &&
+                      destinationController.text.isEmpty) {
+                    return;
                   }
-                  return ListTile(
-                    title: Text(mapsCubit.predictions[index].description!),
-                    onTap: () async {
-                      if (mounted) {
-                        final destination = mapsCubit.predictions[index];
-                        mapsCubit.predictions.clear();
-                        await mapsCubit.emitPlaceLocation(
-                            placeId: destination.placeId!,
-                            sessionToken: const Uuid().v4(),
-                            context: context);
-                        await mapsCubit.emitPlaceAddress(
-                          isorigin: false,
-                          placeLatLng: LatLng(
-                            mapsCubit.destinationostion!.lat!,
-                            mapsCubit.destinationostion!.lng!,
-                          ),
-                          sessionToken: const Uuid().v4(),
-                          // ignore: use_build_context_synchronously
-                          context: context,
-                        );
-
-                        destinationController.text =
-                            mapsCubit.destinationAddress.formattedAddress!;
-
-                        setState(() {});
-                      }
-                    },
-                  );
+                  mapsCubit.emitPlaceSuggestions(
+                      searchQuery: value,
+                      sessionToken: const Uuid().v4(),
+                      context: context);
                 },
+                prefixicon: const Icon(
+                  Icons.location_on_outlined,
+                ),
+                controller: destinationController,
+                textStyle: AppTextStyles.style16DarkgrayW500,
               ),
-            );
-          },
-        ),
-      ],
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: mapsCubit.predictions.length,
+                  itemBuilder: (context, index) {
+                    if (state is PlacesLoading) {
+                      return ListTile(
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: simmerWidget(context),
+                            ),
+                            verticalSpace(10.h),
+                            Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: simmerWidget(context),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    return ListTile(
+                      title: Text(mapsCubit.predictions[index].description!),
+                      onTap: () async {
+                        if (mounted) {
+                          final destination = mapsCubit.predictions[index];
+                          mapsCubit.predictions.clear();
+                          await mapsCubit.emitPlaceLocation(
+                              placeId: destination.placeId!,
+                              sessionToken: const Uuid().v4(),
+                              context: context);
+                          await mapsCubit.emitPlaceAddress(
+                            isorigin: false,
+                            placeLatLng: LatLng(
+                              mapsCubit.destinationostion!.lat!,
+                              mapsCubit.destinationostion!.lng!,
+                            ),
+                            sessionToken: const Uuid().v4(),
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                          );
+
+                          destinationController.text =
+                              mapsCubit.destinationAddress.formattedAddress!;
+
+                          setState(() {});
+                        }
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +52,7 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
         useSafeArea: true,
       ),
       hint: AutoSizeText(
-        selectedValue ?? AppLocalizations.of(context)!.this_month,
+        selectedValue ?? AppLocalizations.of(context)!.today,
         style: widget.nameTextStyle,
         textAlign: TextAlign.center,
       ),
@@ -61,10 +63,30 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
       onChanged: (value) {
         setState(() {
           selectedValue = value!;
+          log('message ${convert(selectedValue!)}');
           HistoryViewModel.get(context)
-              .getHistoryData(context, tripHistory: value);
+              .getHistoryData(context, tripHistory: convert(selectedValue!));
         });
       },
     );
+  }
+
+  String convert(String value) {
+    switch (value) {
+      case 'Today':
+      case 'اليوم':
+        return 'today';
+      case 'Yesterday':
+      case 'الامس':
+        return 'yesterday';
+      case 'Last 7 days':
+      case 'اخر ٧ أيام':
+        return 'last_7_days';
+      case 'This month':
+      case 'هذا الشهر':
+        return 'this_month';
+      default:
+        return value; // Default case if no match
+    }
   }
 }

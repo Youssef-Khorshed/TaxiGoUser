@@ -11,6 +11,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_b
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_searchAgain.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/rideRequestModel/ride/rideRequest.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomCountdowntimer extends StatefulWidget {
   final String originTitle;
@@ -84,6 +85,7 @@ class _CustomCountdowntimerState extends State<CustomCountdowntimer> {
             _timer?.cancel();
             Navigator.pop(context);
             customBottomSheet(
+                title: AppLocalizations.of(context)!.search_again,
                 context: context,
                 widget: CustomSearchAgain(
                   request: widget.request,

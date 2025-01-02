@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
@@ -58,9 +59,9 @@ class CustomSearchingDriverSheet extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.0.h),
+        padding:
+            EdgeInsets.only(right: 10.0.w, left: 10.w, top: 5.h, bottom: 15.h),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          verticalSpace(40.h),
           CustomCountdowntimer(
             request: request,
             originTitle: originTitle,
@@ -70,18 +71,18 @@ class CustomSearchingDriverSheet extends StatelessWidget {
             distance: distance,
             time: time,
           ),
-          verticalSpace(20.h),
-          Row(
-            children: [
-              const Spacer(),
-              Text(
-                AppLocalizations.of(context)!.searching_for_a_driver,
-                style: AppTextStyles.style18BlueBold,
-              ),
-              const Spacer(),
-            ],
-          ),
-          verticalSpace(20.h),
+
+          // Row(
+          //   children: [
+          //     const Spacer(),
+          //     Text(
+          //       AppLocalizations.of(context)!.searching_for_a_driver,
+          //       style: AppTextStyles.style18BlueBold,
+          //     ),
+          //     const Spacer(),
+          //   ],
+          // ),
+          // verticalSpace(20.h),
         ]),
       ),
     );

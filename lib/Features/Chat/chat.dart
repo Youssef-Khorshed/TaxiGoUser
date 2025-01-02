@@ -12,7 +12,13 @@ import 'package:taxi_go_user_version/Features/Chat/model_view/chat_widgets/user_
 import 'package:taxi_go_user_version/Features/Chat/model_view/manger/chat/chat_cubit.dart';
 
 class ChatScreen extends StatelessWidget {
-  ChatScreen({super.key});
+  final String? captinName;
+  final String? captinImage;
+  ChatScreen({
+    super.key,
+    this.captinImage,
+    this.captinName,
+  });
 
   final ScrollController _scrollController = ScrollController();
 
@@ -42,12 +48,12 @@ class ChatScreen extends StatelessWidget {
         body: Column(
           children: [
             verticalSpace(40.h),
-            const Padding(
-              padding: EdgeInsets.all(12.0),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
               child: UserNameContainer(
-                image:
+                image: captinImage ??
                     "https://firebasestorage.googleapis.com/v0/b/alexu-a9210.appspot.com/o/Vector%20(1).png?alt=media&token=e4d896a0-ec30-4944-b798-8ce0845d0bdb",
-                name: "Ahmed Saaid",
+                name: captinName ?? "Ahmed Saaid",
               ),
             ),
             BlocConsumer<ChatCubit, ChatState>(

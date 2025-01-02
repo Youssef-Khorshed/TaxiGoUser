@@ -276,6 +276,7 @@
    "english": "الانجليزية",
    "balance": "المحفظة",
    "address": "العنوان",
+   "ChooseYourTrip":"أختار وجهتك",
     "tripDetails" :"ادخال تفاصيل دفع رحلتك",
    "signInErrorMessage":"برجاء تسجيل الدخول قبل بدء الرحلة",
    "empty_message": "لا توجد اى رحلات",

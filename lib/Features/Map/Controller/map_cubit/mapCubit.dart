@@ -196,16 +196,18 @@ class MapsCubit extends Cubit<MapsState> {
       distanceTime = onSuccess.routes!.first.legs!.first;
       emit(LegsLoaded(leg: distanceTime));
       buildmarker(
-        title: 'des',
-        destinationInfo: 'des',
+        title: 'Destination',
+        destinationInfo: 'Destination',
         postion: LatLng(destination.latitude, destination.longitude),
       );
-      final onValue = await BitmapDescriptor.asset(
-          const ImageConfiguration(), AppImages.userLocationImage);
+      // final onValue = await BitmapDescriptor.asset(
+      //     const ImageConfiguration(), AppImages.userLocationImage);
+
       buildmarker(
-        title: 'origin',
-        destinationInfo: 'origin',
-        customicon: onValue,
+        title: 'User',
+        destinationInfo: 'User',
+        customicon:
+            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
         postion: LatLng(origin.latitude, origin.longitude),
       );
 

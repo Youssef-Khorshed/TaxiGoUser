@@ -32,25 +32,26 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * .75,
-      padding: EdgeInsets.all(16.0.r),
+      padding: EdgeInsets.symmetric(horizontal: 16.0.r),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16.0.r),
-          topRight: Radius.circular(16.0.r),
-        ),
+        //  borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(16.0.r),
+        //    topRight: Radius.circular(16.0.r),
+        //  ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Center(
-            child: Text(
-              'اختار وجهتك',
-              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-            ),
-          ),
-          verticalSpace(20.h),
+          // Center(
+          //   child: Text(
+          //     'اختار وجهتك',
+          //     style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          //   ),
+          // ),
+
+          // verticalSpace(20.h),
           Text(
             'تبدا رحتلك من :',
             style: AppTextStyles.style16BlackW600,
@@ -74,7 +75,8 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
             style: AppTextStyles.style16BlackW600,
           ),
           verticalSpace(10.h),
-          const Expanded(child: CustomSearchlist()),
+          const CustomSearchlist(),
+
           const Custom_addAdress_buttonAdd_sheet()
         ],
       ),

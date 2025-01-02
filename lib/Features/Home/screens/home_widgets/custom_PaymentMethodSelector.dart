@@ -73,14 +73,16 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            verticalSpace(20.h),
-            Center(
-              child: Text(
-                AppLocalizations.of(context)!.tripDetails,
-                style: AppTextStyles.style18BlackBold,
-              ),
-            ),
-            verticalSpace(25.h),
+//            verticalSpace(20.h),
+            // Center(
+            //   child: Text(
+            //     AppLocalizations.of(context)!.tripDetails,
+            //     style: AppTextStyles.style18BlackBold,
+            //   ),
+            // ),
+
+            // verticalSpace(25.h),
+
             Row(
               children: [
                 Expanded(
@@ -108,24 +110,24 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                     )),
               ],
             ),
-            verticalSpace(20.h),
+            verticalSpace(15.h),
             Text(AppLocalizations.of(context)!.select_payment_method,
                 style: AppTextStyles.style16BlackW600),
-            verticalSpace(20.h),
+            verticalSpace(15.h),
             paymentOption(
               context,
               method: AppLocalizations.of(context)!.wallet,
               icon: Icons.account_balance_wallet,
               subtitle: ' 349 ${AppLocalizations.of(context)!.currency_iqd}',
             ),
-            verticalSpace(20.h),
+            verticalSpace(15.h),
             paymentOption(
               context,
               method: AppLocalizations.of(context)!.cash,
               icon: Icons.attach_money,
               subtitle: ' 349 ${AppLocalizations.of(context)!.currency_iqd}',
             ),
-            verticalSpace(40.h),
+            verticalSpace(15.h),
             PaymentButton(
               originSubTitle: widget.addressFrom,
               originTitle: widget.originTitle,
@@ -136,7 +138,8 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
               controller: controller,
               widget: widget,
               selectedMethod: selectedMethod == "المحفظه" ? "wallet" : "cash",
-            )
+            ),
+            verticalSpace(20.h),
           ],
         ),
       ),

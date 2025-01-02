@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_token.dart';
 import 'package:taxi_go_user_version/Core/Utils/enums/gender.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/models/sign_up_model/Data.dart';
 import 'package:taxi_go_user_version/Features/Auth/data/repo/auth_repo.dart';

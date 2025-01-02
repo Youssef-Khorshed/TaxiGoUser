@@ -1,24 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 
 //import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 // ignore: must_be_immutable
 class SnappingSheetTitleAccepted extends StatelessWidget {
   String captinPhoneNumber;
-  String captinName;
+  String? captinName;
+  String? captinImage;
   ImageProvider<Object>? backgroundImage;
   SnappingSheetTitleAccepted({
     super.key,
-    this.backgroundImage,
     required this.captinPhoneNumber,
     required this.captinName,
+    required this.captinImage,
+    this.backgroundImage,
     required this.width,
   });
 
@@ -54,7 +60,7 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                 children: [
                   verticalSpace(10),
                   Text(
-                    captinName,
+                    captinName ?? "Ahmed Said",
                     style: AppTextStyles.style20BlackW500,
                   ),
                 ],
@@ -75,7 +81,13 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.chat);
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (_) => ChatScreen(
+                                      captinImage: captinImage,
+                                      captinName: captinName,
+                                    )));
                       },
                       icon: SvgPicture.asset(
                         AppIcons.messageIcon,

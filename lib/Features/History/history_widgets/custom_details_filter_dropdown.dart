@@ -23,7 +23,6 @@ class _CustomDetailsfilterdropdownState
       AppLocalizations.of(context)!.today,
       AppLocalizations.of(context)!.yesterday,
       AppLocalizations.of(context)!.last_7_days,
-      AppLocalizations.of(context)!.last_30_days,
       AppLocalizations.of(context)!.this_month,
     ];
 

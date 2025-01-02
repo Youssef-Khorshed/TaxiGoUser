@@ -73,8 +73,11 @@ class TripScreenState extends State<TripScreen> {
                             height: 50.h,
                           ),
                           Text(AppLocalizations.of(context)!.km),
-                          Text(widget.activeRide.data!.ride!.first.arivalTime ??
-                              ''),
+                          Text(context
+                              .read<MapsCubit>()
+                              .distanceTime
+                              .distance!
+                              .text!),
                         ],
                       ),
                     ),
@@ -113,8 +116,14 @@ class TripScreenState extends State<TripScreen> {
 
       final captinLatLng =
           LatLng(double.parse(captin.lat!), double.parse(captin.lng!));
+      final captinMarker = await BitmapDescriptor.asset(
+          const ImageConfiguration(), AppImages.captinLocationImage);
+
       mapcubit.buildmarker(
-          title: 'Car', destinationInfo: 'Car', postion: captinLatLng);
+          customicon: captinMarker,
+          title: 'Car',
+          destinationInfo: 'Car',
+          postion: captinLatLng);
 
       /// check for going to customer
       if (state.activeRide.data!.ride!.first.status == 'to_customer' &&

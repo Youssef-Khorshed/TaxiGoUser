@@ -69,6 +69,7 @@ class _Custom_changeAddress_buttons_sheetState
               Navigator.pop(context);
               customBottomSheet(
                   context: context,
+                  title: AppLocalizations.of(context)!.tripDetails,
                   widget: PaymentMethodSelector(
                     originTitle: widget.widget.originTitle,
                     destinationTitle: widget.widget.destinationTitle,
@@ -102,3 +103,53 @@ class _Custom_changeAddress_buttons_sheetState
     );
   }
 }
+
+/**
+ * 
+ *    Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: CustomAppBottom(
+              buttonColor: AppColors.blueColor,
+              borderColor: Colors.white,
+              borderCornerRadius: 40.r,
+              buttonText: AppLocalizations.of(context)!.go,
+              textColor: Colors.white,
+              onPressed: () async {
+                final cubit = context.read<MapsCubit>();
+                await cubit.riderequest(
+                  context: context,
+                  promocode: controller.text,
+                  addressFrom: MapStringMaipulation.concatenateLongNames(
+                      cubit.originAddress.addressComponents),
+                  addressTo: MapStringMaipulation.concatenateLongNames(
+                      cubit.destinationAddress.addressComponents),
+                  latFrom: cubit.orginPosition!.lat!.toString(),
+                  lngFrom: cubit.orginPosition!.lng!.toString(),
+                  latTo: cubit.destinationostion!.lat!.toString(),
+                  lngTo: cubit.destinationostion!.lng!.toString(),
+                  tripType: widget.tripType,
+                  paymentMethod: selectedMethod,
+                );
+              },
+            ),
+          ),
+          horizontalSpace(15.h),
+          Expanded(
+            child: CustomAppBottom(
+              buttonColor: AppColors.whiteColor,
+              borderColor: AppColors.redColor,
+              borderCornerRadius: 40.r,
+              buttonText: AppLocalizations.of(context)!.cancel_k,
+              textColor: AppColors.redColor,
+              onPressed: () {
+                context.read<MapsCubit>().clearMarkerPolyines();
+                Navigator.pop(context);
+              },
+            ),
+          )
+        ],
+      ),
+   
+ */

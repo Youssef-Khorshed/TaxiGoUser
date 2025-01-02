@@ -22,7 +22,6 @@ import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo_imp
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo_impl.dart';
 import 'Core/Utils/localization/cubit/local_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaxiGoUserEditionApp extends StatefulWidget {
   const TaxiGoUserEditionApp({super.key});
@@ -78,9 +77,10 @@ class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
             BlocProvider(
               create: (context) => LocalCubit()..isConnection(),
             ),
-            BlocProvider(
-                create: (context) => HistoryViewModel(
-                    historyRepo: getIt.get<HistoryRepoImpl>())),
+            // BlocProvider(
+            //     create: (context) => HistoryViewModel(
+            //         historyRepo: getIt.get<HistoryRepoImpl>())),
+
             BlocProvider(
                 create: (context) =>
                     SavedViewModel(savedRepo: getIt.get<SavedRepoImpl>())),

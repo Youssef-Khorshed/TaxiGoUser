@@ -51,6 +51,7 @@ class _CustomEnableDilaogState extends State<CustomEnableDilaog> {
                         );
                         Navigator.of(context).pop();
                         customBottomSheet(
+                            title: AppLocalizations.of(context)!.chooseYourTrip,
                             context: context,
                             widget: AddressBottomSheet(
                               originTitle:

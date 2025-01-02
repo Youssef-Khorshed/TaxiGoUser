@@ -11,4 +11,5 @@ class AppImages {
   static const String failureData = 'assets/images/Car crash-amico.svg';
   static const String timeImage = 'assets/images/time.png';
   static const String userLocationImage = 'assets/images/userlocation.png';
+  static const String captinLocationImage = 'assets/images/captinlocation.png';
 }

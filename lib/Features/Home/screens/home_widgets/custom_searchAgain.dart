@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSearchingDriverSheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
@@ -44,11 +43,12 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            AppLocalizations.of(context)!.search_again,
-            style: AppTextStyles.style18BlackW500,
-          ),
-          verticalSpace(20.h),
+          // Text(
+          //  AppLocalizations.of(context)!.search_again,
+          //   style: AppTextStyles.style18BlackW500,
+          // ),
+          // verticalSpace(20.h),
+
           Row(
             children: [
               Expanded(
@@ -73,6 +73,8 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
                         Navigator.pop(context);
                         customBottomSheet(
                             context: context,
+                            title: AppLocalizations.of(context)!
+                                .searching_for_a_driver,
                             widget: CustomSearchingDriverSheet(
                               originTitle: widget.originTitle,
                               originSubTitle: widget.originSubTitle,
@@ -104,7 +106,8 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
                 ),
               )
             ],
-          )
+          ),
+          verticalSpace(20.h),
         ],
       ),
     );

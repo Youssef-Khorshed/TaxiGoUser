@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_changeAddress_sheet.dart';
@@ -29,6 +30,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
           final mapsCubit = context.read<MapsCubit>();
           Navigator.of(context).pop();
           customBottomSheet(
+              title: AppLocalizations.of(context)!.detalis_address,
               context: context,
               widget: CustomChangeaddressSheet(
                   originSubTitle: MapStringMaipulation.concatenateShortNames(
@@ -49,25 +51,42 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
         if (state is PlaceDirectionsLading) {
           return const CustomLoading();
         }
-        return Container(
-          padding: EdgeInsets.only(top: 15.h),
-          width: double.infinity,
-          child: CustomAppBottom(
-            buttonColor: AppColors.blueColor,
-            textColor: AppColors.whiteColor,
-            buttonText: AppLocalizations.of(context)!.go,
-            onPressed: () async {
-              await mapsCubit.emitPlaceDirections(
-                  origin: LatLng(mapsCubit.orginPosition!.lat!,
-                      mapsCubit.orginPosition!.lng!),
-                  destination: LatLng(
-                    mapsCubit.destinationostion!.lat!,
-                    mapsCubit.destinationostion!.lng!,
-                  ),
-                  sessionToken: const Uuid().v4(),
-                  context: context);
-            },
-          ),
+        return Row(
+          children: [
+            Expanded(
+              child: CustomAppBottom(
+                buttonColor: AppColors.blueColor,
+                textColor: AppColors.grayColor,
+                borderCornerRadius: 10.r,
+                buttonText: AppLocalizations.of(context)!.go,
+                onPressed: () async {
+                  await mapsCubit.emitPlaceDirections(
+                      origin: LatLng(mapsCubit.orginPosition!.lat!,
+                          mapsCubit.orginPosition!.lng!),
+                      destination: LatLng(
+                        mapsCubit.destinationostion!.lat!,
+                        mapsCubit.destinationostion!.lng!,
+                      ),
+                      sessionToken: const Uuid().v4(),
+                      context: context);
+                },
+              ),
+            ),
+            horizontalSpace(15.h),
+            Expanded(
+              child: CustomAppBottom(
+                buttonColor: AppColors.whiteColor,
+                borderColor: AppColors.redColor,
+                borderCornerRadius: 10.r,
+                buttonText: AppLocalizations.of(context)!.cancel_k,
+                textColor: AppColors.redColor,
+                onPressed: () {
+                  context.read<MapsCubit>().clearMarkerPolyines();
+                  Navigator.pop(context);
+                },
+              ),
+            )
+          ],
         );
       },
     );
