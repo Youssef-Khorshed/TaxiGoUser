@@ -12,7 +12,6 @@ import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view
 import 'package:taxi_go_user_version/Features/History/controller/history_states.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
-import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_history_drop_down.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -26,10 +25,10 @@ class HistoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       body: BlocProvider(
-        create: (context) =>
-            HistoryViewModel(historyRepo: getIt.get<HistoryRepoImpl>())
-              ..getHistoryData(context, tripHistory: "day"),
+        create: (context) => getIt.get<HistoryViewModel>()
+          ..getHistoryData(context, tripHistory: "day"),
         child: BlocBuilder<HistoryViewModel, HistoryStates>(
+          buildWhen: (previous, current) => previous != current,
           builder: (context, state) {
             if (state is HistorySuccessStates) {
               List<HistoryData> historyData =

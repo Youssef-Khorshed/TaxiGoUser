@@ -2,6 +2,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_user_version/Features/Chat/data/repo/chatrepoimp.dart';
+import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
+import 'package:taxi_go_user_version/Features/History/data/repo/history_repo.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo_imp.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/ride_complete_repo/ride_complete.dart';
@@ -50,9 +52,6 @@ Future<void> setup() async {
   getIt.registerSingleton<ApiService>(
       ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
 
-  // getIt.registerFactory<ApiService>(
-  //     ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
-
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<HistoryRepoImpl>(
       HistoryRepoImpl(apiService: getIt.get<ApiService>()));
@@ -63,6 +62,10 @@ Future<void> setup() async {
   getIt.registerSingleton<FavoriteRepoImpl>(
       FavoriteRepoImpl(apiService: getIt.get<ApiService>()));
   getIt.registerSingleton<Chatrepo>(Chatrepoimp(getIt.get<ApiService>()));
+
+  getIt.registerLazySingleton<HistoryRepo>(
+      () => HistoryRepoImpl(apiService: getIt.get()));
+
   getIt.registerFactory<ChatCubit>(() => ChatCubit(getIt.get<Chatrepo>()));
 
   getIt.registerFactory<CreateProfileCubit>(
@@ -75,6 +78,8 @@ Future<void> setup() async {
   getIt.registerFactory<SetNewPasswordCubit>(
       () => SetNewPasswordCubit(getIt.get<AuthRepo>()));
   getIt.registerFactory<LogOutCubit>(() => LogOutCubit(getIt.get<AuthRepo>()));
+  getIt.registerFactory<HistoryViewModel>(
+      () => HistoryViewModel(historyRepo: getIt.get<HistoryRepo>()));
 
   getIt.registerLazySingleton<MapRepo>(
       () => Maprepoimp(apiService: getIt.get<ApiService>()));

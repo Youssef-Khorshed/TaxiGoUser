@@ -3,10 +3,11 @@ import 'dart:developer';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
-import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Core/Utils/localization/cubit/local_cubit.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,25 +21,21 @@ class CustomDetailsfilterdropdown extends StatefulWidget {
       _CustomDetailsfilterdropdownState();
 }
 
-String? selectedValue = "Today";
-
 class _CustomDetailsfilterdropdownState
     extends State<CustomDetailsfilterdropdown> {
   @override
   void initState() {
-    selectedValue = "Today";
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<String> items = [
+    List<String> items = [
       AppLocalizations.of(context)!.today,
       AppLocalizations.of(context)!.yesterday,
       AppLocalizations.of(context)!.last_7_days,
       AppLocalizations.of(context)!.this_month,
     ];
-
     return DropdownButton2(
       underline: const SizedBox(),
       isExpanded: true,
@@ -58,7 +55,7 @@ class _CustomDetailsfilterdropdownState
         useSafeArea: true,
       ),
       hint: AutoSizeText(
-        selectedValue ?? AppLocalizations.of(context)!.today,
+        context.read<HistoryViewModel>().selectedValue ?? items.first,
         style: AppTextStyles.style16WhiteW500,
         textAlign: TextAlign.center,
       ),
@@ -66,13 +63,10 @@ class _CustomDetailsfilterdropdownState
           .map((gender) => DropdownMenuItem(value: gender, child: Text(gender)))
           .toList(),
       onChanged: (value) {
-        setState(() {
-          selectedValue = value!;
-          debugPrint(
-              '-----------------${selectedValue}-----------------------');
-        });
+        HistoryViewModel.get(context).changeDropDownItem(value!);
+
         HistoryViewModel.get(context)
-            .getHistoryData(context, tripHistory: convert(selectedValue!));
+            .getHistoryData(context, tripHistory: convert(value));
       },
     );
   }

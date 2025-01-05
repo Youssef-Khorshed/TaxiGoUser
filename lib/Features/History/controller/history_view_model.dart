@@ -7,11 +7,12 @@ import 'package:taxi_go_user_version/Features/History/data/repo/history_repo.dar
 class HistoryViewModel extends Cubit<HistoryStates> {
   HistoryViewModel({required this.historyRepo}) : super(HistoryLoadingStates());
   HistoryRepo historyRepo;
-
+  String? selectedValue;
   List<HistoryData> historyData = [];
 
   static HistoryViewModel get(context) => BlocProvider.of(context);
-  getHistoryData(BuildContext context, {String? tripHistory}) async {
+  Future<void> getHistoryData(BuildContext context,
+      {String? tripHistory}) async {
     emit(HistoryLoadingStates());
     var either = await historyRepo.getData(context, tripHistory: tripHistory);
     either.fold(
@@ -23,5 +24,10 @@ class HistoryViewModel extends Cubit<HistoryStates> {
         emit(HistorySuccessStates(historyDataModel: historyResponse));
       },
     );
+  }
+
+  void changeDropDownItem(String item) {
+    selectedValue = item;
+    emit(ChangeItemDropDown(item: selectedValue!));
   }
 }

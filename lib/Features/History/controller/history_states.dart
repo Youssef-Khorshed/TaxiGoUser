@@ -9,6 +9,11 @@ class HistoryFailureStates extends HistoryStates {
   HistoryFailureStates({required this.errMessage});
 }
 
+class HistoryInitalizeSelectedValue extends HistoryStates {
+  String selected;
+  HistoryInitalizeSelectedValue({required this.selected});
+}
+
 class HistorySuccessStates extends HistoryStates {
   final HistoryDataModel historyDataModel;
   HistorySuccessStates({required this.historyDataModel});
@@ -19,4 +24,9 @@ class AddToSaveToFavTripLoadingStates extends HistoryStates {}
 class AddToSaveToFavFailureStates extends HistoryStates {
   final String errMessage;
   AddToSaveToFavFailureStates({required this.errMessage});
+}
+
+class ChangeItemDropDown extends HistoryStates {
+  final String item;
+  ChangeItemDropDown({required this.item});
 }
