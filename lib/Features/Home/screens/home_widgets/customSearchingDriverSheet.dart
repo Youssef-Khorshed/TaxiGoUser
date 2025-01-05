@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_countDownTimer.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
@@ -58,6 +59,8 @@ class CustomSearchingDriverSheet extends StatelessWidget {
         padding:
             EdgeInsets.only(right: 10.0.w, left: 10.w, top: 5.h, bottom: 15.h),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
+          verticalSpace(20.h),
+
           CustomCountdowntimer(
             request: request,
             originTitle: originTitle,
@@ -78,7 +81,7 @@ class CustomSearchingDriverSheet extends StatelessWidget {
           //     const Spacer(),
           //   ],
           // ),
-          // verticalSpace(20.h),
+          verticalSpace(20.h),
         ]),
       ),
     );

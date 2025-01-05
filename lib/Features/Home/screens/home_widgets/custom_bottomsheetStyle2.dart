@@ -6,7 +6,7 @@ import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/customSearchingDriverSheet.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_searchAgain.dart';
 
-void customBottomSheet({
+void customBottomSheet2({
   required BuildContext context,
   required Widget widget,
   required String title,
@@ -15,18 +15,18 @@ void customBottomSheet({
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) => _SnappingBottomSheet(
+    builder: (context) => _SnappingBottomSheet2(
       widget: widget,
       title: title,
     ),
   );
 }
 
-class _SnappingBottomSheet extends StatelessWidget {
+class _SnappingBottomSheet2 extends StatelessWidget {
   final Widget widget;
   final String title;
 
-  const _SnappingBottomSheet({
+  const _SnappingBottomSheet2({
     required this.widget,
     required this.title,
   });
@@ -34,7 +34,7 @@ class _SnappingBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
-      initialChildSize: 0.8,
+      initialChildSize: 0.7,
       minChildSize: 0.2,
       maxChildSize: 0.9,
       builder: (_, controller) => SnappingSheet(
@@ -44,7 +44,7 @@ class _SnappingBottomSheet extends StatelessWidget {
             positionPixels: widget is CustomSearchingDriverSheet ||
                     widget is CustomSearchAgain
                 ? 150
-                : MediaQuery.of(context).size.height * 0.7,
+                : MediaQuery.of(context).size.height * 0.54,
             snappingCurve: Curves.elasticOut,
             snappingDuration: const Duration(milliseconds: 1750),
           ),
@@ -58,7 +58,7 @@ class _SnappingBottomSheet extends StatelessWidget {
             positionFactor: widget is CustomSearchingDriverSheet ||
                     widget is CustomSearchAgain
                 ? 150
-                : MediaQuery.of(context).size.height * 0.7,
+                : MediaQuery.of(context).size.height * 0.54,
             snappingCurve: Curves.bounceOut,
             snappingDuration: const Duration(seconds: 1),
             grabbingContentOffset: GrabbingContentOffset.bottom,

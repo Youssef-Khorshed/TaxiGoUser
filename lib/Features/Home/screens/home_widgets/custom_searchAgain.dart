@@ -47,7 +47,7 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
           //  AppLocalizations.of(context)!.search_again,
           //   style: AppTextStyles.style18BlackW500,
           // ),
-          // verticalSpace(20.h),
+          verticalSpace(20.h),
 
           Row(
             children: [

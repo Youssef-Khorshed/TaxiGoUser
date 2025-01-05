@@ -31,7 +31,7 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
     return BlocBuilder<MapsCubit, MapsState>(
       builder: (context, state) {
         return SizedBox(
-          height: context.watch<MapsCubit>().predictions.isEmpty ? 100 : 200,
+          height: context.watch<MapsCubit>().predictions.isEmpty ? 80 : 400,
           child: Column(
             children: [
               CustomTextFormFiled(
@@ -67,6 +67,7 @@ class _CustomSearchlistState extends State<CustomSearchlist> {
                 controller: destinationController,
                 textStyle: AppTextStyles.style16DarkgrayW500,
               ),
+              verticalSpace(10.h),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,

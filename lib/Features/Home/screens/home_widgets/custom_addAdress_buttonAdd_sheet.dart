@@ -7,12 +7,11 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/map_string_maipulation.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_bottomsheetStyle2.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_changeAddress_sheet.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:uuid/uuid.dart';
-
 import '../../../../Core/Utils/app_custom_widgets/custom_app_bottom.dart';
 
 // ignore: camel_case_types
@@ -29,7 +28,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
         } else if (state is DirectionsLoaded) {
           final mapsCubit = context.read<MapsCubit>();
           Navigator.of(context).pop();
-          customBottomSheet(
+          customBottomSheet2(
               title: AppLocalizations.of(context)!.detalis_address,
               context: context,
               widget: CustomChangeaddressSheet(
@@ -57,7 +56,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
               child: CustomAppBottom(
                 buttonColor: AppColors.blueColor,
                 textColor: AppColors.grayColor,
-                borderCornerRadius: 10.r,
+                borderCornerRadius: 15.r,
                 buttonText: AppLocalizations.of(context)!.go,
                 onPressed: () async {
                   await mapsCubit.emitPlaceDirections(
@@ -77,7 +76,7 @@ class Custom_addAdress_buttonAdd_sheet extends StatelessWidget {
               child: CustomAppBottom(
                 buttonColor: AppColors.whiteColor,
                 borderColor: AppColors.redColor,
-                borderCornerRadius: 10.r,
+                borderCornerRadius: 15.r,
                 buttonText: AppLocalizations.of(context)!.cancel_k,
                 textColor: AppColors.redColor,
                 onPressed: () {

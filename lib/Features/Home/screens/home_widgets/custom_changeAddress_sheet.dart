@@ -34,7 +34,7 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.h),
+      padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.h, top: 0.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -53,7 +53,7 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               setState(() {});
             },
           ),
-          verticalSpace(20.h),
+          verticalSpace(40.h),
           Custom_changeAddress_buttons_sheet(
               originTitle: widget.originTitle,
               destinationTitle: widget.destinationTitle,

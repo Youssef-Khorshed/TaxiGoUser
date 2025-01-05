@@ -31,7 +31,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * .75,
+      height: MediaQuery.of(context).size.height * 0.8,
       padding: EdgeInsets.symmetric(horizontal: 16.0.r),
       decoration: const BoxDecoration(
         color: AppColors.whiteColor,
@@ -64,6 +64,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
           ),
           verticalSpace(10.h),
           const CustomSearchlist(),
+          verticalSpace(MediaQuery.of(context).size.width * 0.4),
           const Custom_addAdress_buttonAdd_sheet()
         ],
       ),
