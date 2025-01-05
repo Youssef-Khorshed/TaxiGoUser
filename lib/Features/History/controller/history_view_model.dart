@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_states.dart';
@@ -22,32 +21,6 @@ class HistoryViewModel extends Cubit<HistoryStates> {
       (historyResponse) {
         historyData = historyResponse.data!;
         emit(HistorySuccessStates(historyDataModel: historyResponse));
-      },
-    );
-  }
-
-  Future<void> saveTrip(BuildContext context, int rideId) async {
-    emit(AddToSaveToFavTripLoadingStates());
-    var either = await historyRepo.saveTrip(context, rideId);
-    either.fold(
-      (savedFailure) {
-        emit(AddToSaveToFavFailureStates(errMessage: savedFailure.message));
-      },
-      (savedResponse) {
-        emit(AddToSaveToFavSuccessStates(favAndsaveTripModel: savedResponse));
-      },
-    );
-  }
-
-  addToFavTrip(BuildContext context, int rideId) async {
-    emit(AddToSaveToFavTripLoadingStates());
-    var either = await historyRepo.addToFavTrip(context, rideId);
-    either.fold(
-      (favFailure) {
-        emit(AddToSaveToFavFailureStates(errMessage: favFailure.message));
-      },
-      (faveResponse) {
-        emit(AddToSaveToFavSuccessStates(favAndsaveTripModel: faveResponse));
       },
     );
   }

@@ -41,7 +41,9 @@ class _HistoryTripCardState extends State<HistoryTripCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  onPressed: widget.onStarPressed,
+                  onPressed: () {
+                    widget.onStarPressed;
+                  },
                   icon: Icon(
                     widget.historyData.isFavorite == true
                         ? Icons.star

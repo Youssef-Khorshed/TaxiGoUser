@@ -5,46 +5,52 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class CustomHistoryDropDown extends StatefulWidget {
-  final List<String> items;
-  final Color? backgroundcolor;
-  final Color bordercolor;
-  final Color? iconEnabledColor;
-  final Gradient? gradient;
-  final TextStyle? nameTextStyle;
-
-  const CustomHistoryDropDown({
+class CustomDetailsfilterdropdown extends StatefulWidget {
+  const CustomDetailsfilterdropdown({
     super.key,
-    required this.items,
-    this.gradient,
-    this.iconEnabledColor,
-    this.nameTextStyle,
-    this.bordercolor = AppColors.blackColor,
-    this.backgroundcolor,
   });
 
   @override
-  State<CustomHistoryDropDown> createState() => _CustomHistoryDropDownState();
+  State<CustomDetailsfilterdropdown> createState() =>
+      _CustomDetailsfilterdropdownState();
 }
 
-String? selectedValue;
+String? selectedValue = "Today";
 
-class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
+class _CustomDetailsfilterdropdownState
+    extends State<CustomDetailsfilterdropdown> {
+  @override
+  void initState() {
+    selectedValue = "Today";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<String> items = [
+      AppLocalizations.of(context)!.today,
+      AppLocalizations.of(context)!.yesterday,
+      AppLocalizations.of(context)!.last_7_days,
+      AppLocalizations.of(context)!.this_month,
+    ];
+
     return DropdownButton2(
       underline: const SizedBox(),
       isExpanded: true,
-      iconStyleData: IconStyleData(iconEnabledColor: widget.iconEnabledColor),
+      iconStyleData:
+          const IconStyleData(iconEnabledColor: AppColors.whiteColor),
       buttonStyleData: ButtonStyleData(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
-            gradient: widget.gradient,
-            color: widget.backgroundcolor,
-            border: Border.all(color: widget.bordercolor, width: 1),
+            gradient: const LinearGradient(
+                colors: [AppColors.blueColor, AppColors.blueColor2]),
+            color: AppColors.whiteColor,
+            border: Border.all(color: AppColors.whiteColor, width: 1),
             borderRadius: BorderRadius.circular(10)),
       ),
       dropdownStyleData: DropdownStyleData(
@@ -53,20 +59,20 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
       ),
       hint: AutoSizeText(
         selectedValue ?? AppLocalizations.of(context)!.today,
-        style: widget.nameTextStyle,
+        style: AppTextStyles.style16WhiteW500,
         textAlign: TextAlign.center,
       ),
-      items: widget.items
-          .map((gender) =>
-              DropdownMenuItem(value: gender, child: AutoSizeText(gender)))
+      items: items
+          .map((gender) => DropdownMenuItem(value: gender, child: Text(gender)))
           .toList(),
       onChanged: (value) {
         setState(() {
           selectedValue = value!;
-          log('message ${convert(selectedValue!)}');
-          HistoryViewModel.get(context)
-              .getHistoryData(context, tripHistory: convert(selectedValue!));
+          debugPrint(
+              '-----------------${selectedValue}-----------------------');
         });
+        HistoryViewModel.get(context)
+            .getHistoryData(context, tripHistory: convert(selectedValue!));
       },
     );
   }
@@ -75,7 +81,7 @@ class _CustomHistoryDropDownState extends State<CustomHistoryDropDown> {
     switch (value) {
       case 'Today':
       case 'اليوم':
-        return 'today';
+        return 'day';
       case 'Yesterday':
       case 'الامس':
         return 'yesterday';

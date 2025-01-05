@@ -1,3 +1,4 @@
+import 'package:taxi_go_user_version/Features/History/data/save_trip_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/un_save_model.dart';
 
@@ -23,4 +24,9 @@ class UnSaveTripFailureStates extends SavedStates {
 class UnSaveTripSuccessStates extends SavedStates {
   final UnSaveModel unSaveModel;
   UnSaveTripSuccessStates({required this.unSaveModel});
+}
+
+class SaveTripSuccessStates extends SavedStates {
+  AddToSaveToFavTripModel saveModel;
+  SaveTripSuccessStates({required this.saveModel});
 }

@@ -6,6 +6,7 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dar
 import 'package:taxi_go_user_version/Features/Favourite/data/favorite_data_model.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/rmove_favorite_model.dart';
+import 'package:taxi_go_user_version/Features/History/data/save_trip_model.dart';
 
 class FavoriteRepoImpl extends FavouriteRepo {
   ApiService apiService;
@@ -48,6 +49,28 @@ class FavoriteRepoImpl extends FavouriteRepo {
         RemoveFavoriteModel unSaveModel =
             RemoveFavoriteModel.fromJson(ifRight.data);
         return Right(unSaveModel);
+      }
+    });
+  }
+
+  @override
+  Future<Either<Failure, AddToSaveToFavTripModel>> addToFavTrip(
+      BuildContext context, int rideId) async {
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.addFavTripEndPoint,
+        context: context,
+        body: {
+          "ride_id": rideId,
+        });
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        AddToSaveToFavTripModel favTripModel =
+            AddToSaveToFavTripModel.fromJson(ifRight.data);
+        return Right(favTripModel);
       }
     });
   }

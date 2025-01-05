@@ -1,5 +1,4 @@
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
-import 'package:taxi_go_user_version/Features/History/data/save_trip_model.dart';
 
 abstract class HistoryStates {}
 
@@ -20,9 +19,4 @@ class AddToSaveToFavTripLoadingStates extends HistoryStates {}
 class AddToSaveToFavFailureStates extends HistoryStates {
   final String errMessage;
   AddToSaveToFavFailureStates({required this.errMessage});
-}
-
-class AddToSaveToFavSuccessStates extends HistoryStates {
-  final AddToSaveToFavTripModel favAndsaveTripModel;
-  AddToSaveToFavSuccessStates({required this.favAndsaveTripModel});
 }

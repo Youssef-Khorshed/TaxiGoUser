@@ -10,7 +10,7 @@ class SavedViewModel extends Cubit<SavedStates> {
   List<SavedData> savedDataList = [];
 
   static SavedViewModel get(context) => BlocProvider.of(context);
-  getSavedData(BuildContext context, {String? tripHistory}) async {
+  Future<void> getSavedData(BuildContext context, {String? tripHistory}) async {
     emit(SavedLoadingStates());
     var either = await savedRepo.getAllSavedData(context);
     either.fold(
@@ -20,6 +20,19 @@ class SavedViewModel extends Cubit<SavedStates> {
       (savedResponse) {
         savedDataList = savedResponse.data!;
         emit(SavedSuccessStates(savedDataModel: savedResponse));
+      },
+    );
+  }
+
+  Future<void> saveTrip(BuildContext context, int rideId) async {
+    emit(SavedLoadingStates());
+    var either = await savedRepo.saveTrip(context, rideId);
+    either.fold(
+      (savedFailure) {
+        emit(SavedFailureStates(errMessage: savedFailure.message));
+      },
+      (savedResponse) {
+        emit(SaveTripSuccessStates(saveModel: savedResponse));
       },
     );
   }

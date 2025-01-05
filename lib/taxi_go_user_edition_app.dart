@@ -9,8 +9,6 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locato
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
 import 'package:taxi_go_user_version/Features/Favourite/data/repo/favorite_repo_impl.dart';
-import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
-import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/data/repos/cancle_repo/cancel_repo.dart';

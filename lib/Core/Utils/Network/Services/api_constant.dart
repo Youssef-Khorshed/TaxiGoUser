@@ -143,7 +143,6 @@ class Constants {
   static String districts = "/districts-by-city";
   static String createProfile = "/profile/update";
   static String forgotPasswordSet = "/forgot-password-set";
-
   static String logout = "/logout";
   static const String savedEndPoint = '/customer/saved';
   static const String saveTripEndPoint = '/customer/saved/store';

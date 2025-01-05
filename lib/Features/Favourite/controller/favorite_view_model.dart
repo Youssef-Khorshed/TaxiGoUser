@@ -11,7 +11,7 @@ class FavouriteViewModel extends Cubit<FavouriteStates> {
   List<FavoriteData> favoriteData = [];
 
   static FavouriteViewModel get(context) => BlocProvider.of(context);
-  getFavouriteDate(BuildContext context) async {
+  Future<void> getFavouriteDate(BuildContext context) async {
     emit(FavoriteLoadingStates());
     var either = await favoriteRepo.getData(context);
     either.fold(
@@ -25,8 +25,8 @@ class FavouriteViewModel extends Cubit<FavouriteStates> {
     );
   }
 
-  rmvFavTrip(BuildContext context, int tripId) async {
-    emit(RmvFavoriteLoadingStates());
+  Future<void> rmvFavTrip(BuildContext context, int tripId) async {
+    emit(FavoriteLoadingStates());
     var either = await favoriteRepo.removeFavTrip(context, tripId);
     either.fold(
       (rmvFavFailure) {
@@ -34,6 +34,19 @@ class FavouriteViewModel extends Cubit<FavouriteStates> {
       },
       (rmvFavResponse) {
         emit(RmvFavoriteSuccessStates(rmvFavModel: rmvFavResponse));
+      },
+    );
+  }
+
+  Future<void> addToFavTrip(BuildContext context, int rideId) async {
+    emit(FavoriteLoadingStates());
+    var either = await favoriteRepo.addToFavTrip(context, rideId);
+    either.fold(
+      (favFailure) {
+        emit(FavoriteFailureStates(errMessage: favFailure.message));
+      },
+      (faveResponse) {
+        emit(AddTofavSuccessStates(addToSaveToFavTripModel: faveResponse));
       },
     );
   }

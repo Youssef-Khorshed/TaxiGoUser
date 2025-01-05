@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/api_constant.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
+import 'package:taxi_go_user_version/Features/History/data/save_trip_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/saved_data_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/un_save_model.dart';
@@ -47,6 +48,29 @@ class SavedRepoImpl extends SavedRepo {
         UnSaveModel unSaveModel = UnSaveModel.fromJson(ifRight.data);
 
         return Right(unSaveModel);
+      }
+    });
+  }
+
+  @override
+  Future<Either<Failure, AddToSaveToFavTripModel>> saveTrip(
+      BuildContext context, int rideId) async {
+    var response = await apiService.postRequest(
+        Constants.baseUrl + Constants.saveTripEndPoint,
+        context: context,
+        body: {
+          "ride_id": rideId,
+        });
+    return response.fold(((ifLeft) {
+      return Left(ServerFailure(message: ifLeft));
+    }), (ifRight) {
+      if (ifRight.data["status"] == false) {
+        return Left(ServerFailure(message: ifRight.data["message"]));
+      } else {
+        AddToSaveToFavTripModel saveTripModel =
+            AddToSaveToFavTripModel.fromJson(ifRight.data);
+
+        return Right(saveTripModel);
       }
     });
   }

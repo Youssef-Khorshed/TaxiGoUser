@@ -8,15 +8,14 @@ import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_dummy_widget.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_empty_data_view.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_failure_view.dart';
-import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_states.dart';
+import 'package:taxi_go_user_version/Features/Favourite/controller/favorite_view_model.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_states.dart';
 import 'package:taxi_go_user_version/Features/History/controller/history_view_model.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/data/repo/history_repo_impl.dart';
-import 'package:taxi_go_user_version/Features/History/history_widgets/custom_details_filter_dropdown.dart';
+import 'package:taxi_go_user_version/Features/History/history_widgets/custom_history_drop_down.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:taxi_go_user_version/Features/Saved/controller/saved_states.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -29,11 +28,10 @@ class HistoryScreen extends StatelessWidget {
       body: BlocProvider(
         create: (context) =>
             HistoryViewModel(historyRepo: getIt.get<HistoryRepoImpl>())
-              ..getHistoryData(context, tripHistory: "today"),
+              ..getHistoryData(context, tripHistory: "day"),
         child: BlocBuilder<HistoryViewModel, HistoryStates>(
           builder: (context, state) {
-            if (state is HistorySuccessStates ||
-                state is AddToSaveToFavSuccessStates) {
+            if (state is HistorySuccessStates) {
               List<HistoryData> historyData =
                   HistoryViewModel.get(context).historyData;
               return Padding(
@@ -44,70 +42,44 @@ class HistoryScreen extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 10.h),
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20.r)),
-                  child: historyData.isEmpty
-                      ? CustomEmptyDataView(
-                          message: AppLocalizations.of(context)!.empty_message)
-                      : Column(
-                          children: [
-                            const Row(
-                              children: [
-                                Expanded(child: CustomDetailsfilterdropdown()),
-                              ],
-                            ),
-                            verticalSpace(16.h),
-                            Expanded(
+                  child: Column(
+                    children: [
+                      const Row(
+                        children: [
+                          Expanded(child: CustomDetailsfilterdropdown()),
+                        ],
+                      ),
+                      historyData.isEmpty
+                          ? verticalSpace(
+                              MediaQuery.of(context).size.height / 5)
+                          : verticalSpace(16.h),
+                      historyData.isEmpty
+                          ? CustomEmptyDataView(
+                              message:
+                                  AppLocalizations.of(context)!.empty_message)
+                          : Expanded(
                               child: ListView.builder(
                                 itemCount: historyData.length,
                                 itemBuilder: (context, index) {
                                   return HistoryTripCard(
                                     onStarPressed: () {
-                                      if (historyData[index].isFavorite ==
-                                          true) {
-                                        return;
-                                      } else {
-                                        HistoryViewModel.get(context)
-                                            .addToFavTrip(
-                                                context,
-                                                historyData[index]
-                                                    .ride![0]
-                                                    .id!);
-                                        HistoryViewModel.get(context)
-                                            .getHistoryData(context);
-                                      }
+                                      favmethod(historyData, index, context);
                                     },
-                                    onSavedPressed: () async {
-                                      if (historyData[index].isSaved == true) {
-                                        await context
-                                            .read<SavedViewModel>()
-                                            .unSaveTrip(
-                                                context,
-                                                historyData[index]
-                                                    .ride![0]
-                                                    .id!);
-                                      } else {
-                                        HistoryViewModel.get(context).saveTrip(
-                                            context,
-                                            historyData[index].ride![0].id!);
-                                        HistoryViewModel.get(context)
-                                            .getHistoryData(context);
-                                      }
+                                    onSavedPressed: () {
+                                      saveMethod(historyData, index, context);
                                     },
                                     historyData: historyData[index],
                                   );
                                 },
                               ),
                             ),
-                          ],
-                        ),
+                    ],
+                  ),
                 ),
               );
             } else if (state is HistoryFailureStates) {
               return CustomFailureView(message: state.errMessage);
             }
-
-            // else  if (state is SavedFailureStates) {
-            //     return CustomFailureView(message: state.);
-            //   }
 
             return Padding(
                 padding:
@@ -139,5 +111,31 @@ class HistoryScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> saveMethod(
+      List<HistoryData> historyData, int index, BuildContext context) async {
+    if (historyData[index].isSaved == true) {
+      await SavedViewModel.get(context)
+          .unSaveTrip(context, historyData[index].ride![0].id!);
+    } else {
+      SavedViewModel.get(context)
+          .saveTrip(context, historyData[index].ride![0].id!);
+    }
+    // HistoryViewModel.get(context).getHistoryData(context);
+  }
+
+  Future<void> favmethod(
+      List<HistoryData> historyData, int index, BuildContext context) async {
+    if (historyData[index].isFavorite == true) {
+      context
+          .read<FavouriteViewModel>()
+          .rmvFavTrip(context, historyData[index].ride![0].id!);
+    } else {
+      context
+          .read<FavouriteViewModel>()
+          .addToFavTrip(context, historyData[index].ride![0].id!);
+    }
+    //  HistoryViewModel.get(context).getHistoryData(context);
   }
 }

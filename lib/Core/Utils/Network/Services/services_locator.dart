@@ -50,6 +50,9 @@ Future<void> setup() async {
   getIt.registerSingleton<ApiService>(
       ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
 
+  // getIt.registerFactory<ApiService>(
+  //     ApiService(internetConnectivity: getIt.get<InternetConnectivity>()));
+
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<HistoryRepoImpl>(
       HistoryRepoImpl(apiService: getIt.get<ApiService>()));
