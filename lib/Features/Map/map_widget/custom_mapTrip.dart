@@ -26,7 +26,6 @@ class CustomMaptrip extends StatefulWidget {
 class _CustomMaptripState extends State<CustomMaptrip> {
   Timer? _timer;
   String? mapStyle;
-  GetActiveRide? nearbyRideRequests;
   StreamSubscription<void>? _subscription;
 
   @override

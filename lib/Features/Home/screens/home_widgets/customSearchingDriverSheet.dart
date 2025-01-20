@@ -59,8 +59,6 @@ class CustomSearchingDriverSheet extends StatelessWidget {
         padding:
             EdgeInsets.only(right: 10.0.w, left: 10.w, top: 5.h, bottom: 15.h),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          verticalSpace(20.h),
-
           CustomCountdowntimer(
             request: request,
             originTitle: originTitle,

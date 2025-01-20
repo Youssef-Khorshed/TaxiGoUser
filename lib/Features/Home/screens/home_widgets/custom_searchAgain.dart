@@ -43,12 +43,7 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Text(
-          //  AppLocalizations.of(context)!.search_again,
-          //   style: AppTextStyles.style18BlackW500,
-          // ),
-          verticalSpace(20.h),
-
+          verticalSpace(10.h),
           Row(
             children: [
               Expanded(
@@ -107,7 +102,7 @@ class CustomSearchAgainState extends State<CustomSearchAgain> {
               )
             ],
           ),
-          verticalSpace(20.h),
+          verticalSpace(10.h),
         ],
       ),
     );
