@@ -68,17 +68,6 @@ class CustomSearchingDriverSheet extends StatelessWidget {
             distance: distance,
             time: time,
           ),
-
-          // Row(
-          //   children: [
-          //     const Spacer(),
-          //     Text(
-          //       AppLocalizations.of(context)!.searching_for_a_driver,
-          //       style: AppTextStyles.style18BlueBold,
-          //     ),
-          //     const Spacer(),
-          //   ],
-          // ),
           verticalSpace(20.h),
         ]),
       ),
