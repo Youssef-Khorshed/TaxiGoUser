@@ -23,3 +23,5 @@ void main() async {
     builder: (context) => const TaxiGoUserEditionApp(),
   ));
 }
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

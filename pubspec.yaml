@@ -55,9 +55,12 @@ dependencies:
   snapping_sheet: ^3.1.0
   redacted:
   skeletonizer: ^1.4.2
+  connectivity_monitor: ^1.0.2
   internet_connection_checker:
-  connectivity_monitor: ^1.0.3
   http: ^1.2.2
+  awesome_notifications: ^0.10.0
+  firebase_messaging: ^15.2.1
+  flutter_local_notifications: ^18.0.1
 dev_dependencies:
   flutter_launcher_icons: null
   flutter_lints: null

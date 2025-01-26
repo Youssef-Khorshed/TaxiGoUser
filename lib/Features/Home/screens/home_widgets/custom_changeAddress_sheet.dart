@@ -53,7 +53,7 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               setState(() {});
             },
           ),
-          verticalSpace(40.h),
+          verticalSpace(20.h),
           Custom_changeAddress_buttons_sheet(
               originTitle: widget.originTitle,
               destinationTitle: widget.destinationTitle,
@@ -61,7 +61,6 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               time: widget.time,
               widget: widget,
               selectedtriptype: _selectedtriptype),
-          verticalSpace(20.h),
         ],
       ),
     );

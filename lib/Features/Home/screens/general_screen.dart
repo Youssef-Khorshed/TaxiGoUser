@@ -16,6 +16,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/home_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_app_drawer.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
+import 'package:taxi_go_user_version/Features/notification/data/model/firebase_notification.dart';
 import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
 
 class GeneralScreen extends StatefulWidget {
@@ -49,11 +50,13 @@ class _GeneralScreenState extends State<GeneralScreen> {
   String? image;
   Future<void> userImage() async {
     image = await SecureProfile.getProfileImage();
-    setState(() {});
+    // setState(() {});
   }
 
   @override
   void initState() {
+    FirebaseNotification.init(context);
+    FirebaseNotification.initNotifications();
     userImage();
     super.initState();
   }
