@@ -48,7 +48,7 @@ class UserData {
   final String lastOtp;
   final DateTime lastOtpExpire;
   final DateTime? emailVerifiedAt;
-  final double balance;
+  final dynamic balance;
   final DateTime createdAt;
   final DateTime updatedAt;
 

@@ -1,6 +1,6 @@
 class RateModel {
-  final bool status;
-  final String message;
+  final dynamic status;
+  final dynamic message;
 
   RateModel({required this.status, required this.message});
 

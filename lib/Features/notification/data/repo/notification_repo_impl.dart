@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Error/failure.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/apiservices.dart';
-import 'package:taxi_go_user_version/Features/notification/data/model/get_all_notification_model.dart';
+import 'package:taxi_go_user_version/Features/notification/data/model/notification_model/notification_model.dart';
 import '../../../../Core/Utils/Network/Services/api_constant.dart';
 import 'notification_repo.dart';
 
@@ -13,7 +13,7 @@ class NotificationRepoImpl extends NotificationRepo {
   NotificationRepoImpl({required this.apiService});
 
   @override
-  Future<Either<Failure, GetAllNotificationModel>> getAllNotification(
+  Future<Either<Failure, NotificationModelData>> getAllNotification(
       {required BuildContext context}) async {
     final response = await apiService.getRequest(
       context: context,
@@ -25,7 +25,7 @@ class NotificationRepoImpl extends NotificationRepo {
       if (ifRight.data["status"] == false) {
         return Left(ServerFailure(message: ifRight.data["message"]));
       } else {
-        return Right(GetAllNotificationModel.fromJson(ifRight.data));
+        return Right(NotificationModelData.fromJson(ifRight.data));
       }
     });
   }

@@ -24,17 +24,17 @@ class NotificationListWidget extends StatelessWidget {
           } else if (state is GetAllNotificationSuccess) {
             var notificationData =
                 getAllNotificationCubit.getAllNotificationModel!.data;
-            return notificationData.isEmpty
+            return notificationData!.isEmpty
                 ? CustomEmptyDataView(
                     message: AppLocalizations.of(context)!.empty_notification)
                 : ListView.builder(
                     itemBuilder: (context, index) {
                       return NotificationItemWidget(
                           index: getAllNotificationCubit
-                              .getAllNotificationModel!.data[index]);
+                              .getAllNotificationModel!.data![index]);
                     },
                     itemCount: getAllNotificationCubit
-                        .getAllNotificationModel!.data.length,
+                        .getAllNotificationModel!.data!.length,
                   );
           }
           return const Center(child: AutoSizeText('No notification found'));

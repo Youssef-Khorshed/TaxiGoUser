@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taxi_go_user_version/Features/Wallet/controller/wallet_deposit_cubit/webpage.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/repo/wallet_repo.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../data/model/wallet_model.dart';
 
 part 'deposit_state.dart';
@@ -50,20 +50,25 @@ class WalletCubit extends Cubit<WalletState> {
   }
 
   Future<bool> tryLaunchUrl(BuildContext context) async {
-    final Uri url = Uri.parse(walletModel!.data);
-    if (await canLaunchUrl(url)) {
-      try {
-        await launchUrl(url, mode: LaunchMode.externalApplication);
-        return true;
-      } catch (e) {
+    try {
+      final Uri url = Uri.parse(walletModel!.data);
+      if (url.hasScheme) {
+        final result = await Navigator.push<bool>(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WebViewPage(url: url.toString()),
+          ),
+        );
+        return result ?? false;
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error launching URL: $e")),
+          SnackBar(content: Text("Invalid URL: ${walletModel!.data}")),
         );
         return false;
       }
-    } else {
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Invalid URL: ${walletModel!.data}")),
+        SnackBar(content: Text("Error: $e")),
       );
       return false;
     }

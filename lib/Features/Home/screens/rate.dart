@@ -16,24 +16,27 @@ class RateScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.blueColor,
       appBar: AppBar(
-          title: // Page Title
-              AutoSizeText(
-            AppLocalizations.of(context)!.rate_your_trip,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20.sp,
-              fontWeight: FontWeight.bold,
-            ),
+        title: // Page Title
+            AutoSizeText(
+          AppLocalizations.of(context)!.rate_your_trip,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.bold,
           ),
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: AppColors.blueColor,
-          leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ))),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: AppColors.blueColor,
+        automaticallyImplyLeading: false,
+        // leading: IconButton(
+        //     onPressed: () => Navigator.pop(context),
+        //     icon: const Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.white,
+
+        //     ))
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

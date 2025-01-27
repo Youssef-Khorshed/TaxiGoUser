@@ -86,19 +86,17 @@ class _SnappingBottomSheet extends StatelessWidget {
   }
 }
 
-    // showModalBottomSheet(
-    //   backgroundColor: AppColors.whiteColor,
-    //   context: context,
-    //   isScrollControlled: true,
-    //   shape: const RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.only(
-    //       topLeft: Radius.circular(16.0),
-    //       topRight: Radius.circular(16.0),
-    //     ),
-    //   ),
-    //   builder: (context) {
-    //     return widget;
-    //   },
-    // );
-
-
+// showModalBottomSheet(
+//   backgroundColor: AppColors.whiteColor,
+//   context: context,
+//   isScrollControlled: true,
+//   shape: const RoundedRectangleBorder(
+//     borderRadius: BorderRadius.only(
+//       topLeft: Radius.circular(16.0),
+//       topRight: Radius.circular(16.0),
+//     ),
+//   ),
+//   builder: (context) {
+//     return widget;
+//   },
+// );

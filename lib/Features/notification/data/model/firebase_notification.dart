@@ -14,159 +14,115 @@ import 'package:taxi_go_user_version/Core/Utils/Network/Services/services_locato
 import 'package:taxi_go_user_version/main.dart';
 
 class FirebaseNotification {
-  static ApiService apiServices =
+  static final ApiService apiServices =
       ApiService(internetConnectivity: getIt.get<InternetConnectivity>());
-  static FirebaseMessaging fcm = FirebaseMessaging.instance;
-  static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  static final FirebaseMessaging fcm = FirebaseMessaging.instance;
+  static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  static StreamController<NotificationResponse> streamController =
+  static final StreamController<NotificationResponse> streamController =
       StreamController();
 
-  static onTap(NotificationResponse notificationResponse) {
+  static void onTap(NotificationResponse notificationResponse) {
     streamController.add(notificationResponse);
   }
 
   static Future<void> initNotifications() async {
-    AwesomeNotifications().initialize(
+    try {
+      await AwesomeNotifications().initialize(
         null,
         [
           NotificationChannel(
-              enableVibration: true,
-              importance: NotificationImportance.High,
-              channelGroupKey: 'basic_channel_group',
-              channelKey: 'basic_channel',
-              channelName: 'Basic notifications',
-              channelDescription: 'Notification channel for basic tests',
-              defaultColor: const Color(0xFF9D50DD),
-              ledColor: Colors.white)
+            enableVibration: true,
+            importance: NotificationImportance.High,
+            channelGroupKey: 'basic_channel_group',
+            channelKey: 'basic_channel',
+            channelName: 'Basic notifications',
+            channelDescription: 'Notification channel for basic tests',
+            defaultColor: const Color(0xFF9D50DD),
+            ledColor: Colors.white,
+          )
         ],
         channelGroups: [
           NotificationChannelGroup(
-              channelGroupKey: 'basic_channel_group',
-              channelGroupName: 'Basic group')
+            channelGroupKey: 'basic_channel_group',
+            channelGroupName: 'Basic group',
+          )
         ],
-        debug: true);
-    AwesomeNotifications().setListeners(
+        debug: true,
+      );
+
+      AwesomeNotifications().setListeners(
         onActionReceivedMethod: NotificationController.onActionReceivedMethod,
         onNotificationCreatedMethod:
             NotificationController.onNotificationCreatedMethod,
         onNotificationDisplayedMethod:
             NotificationController.onNotificationDisplayedMethod,
         onDismissActionReceivedMethod:
-            NotificationController.onDismissActionReceivedMethod);
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod: (ReceivedAction receivedAction) {
-        return NotificationController.onActionReceivedMethod(receivedAction);
-      },
-      onNotificationCreatedMethod: (ReceivedNotification receivedNotification) {
-        return NotificationController.onNotificationCreatedMethod(
-            receivedNotification);
-      },
-      onNotificationDisplayedMethod:
-          (ReceivedNotification receivedNotification) {
-        return NotificationController.onNotificationDisplayedMethod(
-            receivedNotification);
-      },
-      onDismissActionReceivedMethod: (ReceivedAction receivedAction) {
-        return NotificationController.onDismissActionReceivedMethod(
-            receivedAction);
-      },
-    );
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+            NotificationController.onDismissActionReceivedMethod,
+      );
+
+      final bool isAllowed =
+          await AwesomeNotifications().isNotificationAllowed();
       if (!isAllowed) {
-        AwesomeNotifications().requestPermissionToSendNotifications();
+        await AwesomeNotifications().requestPermissionToSendNotifications();
       }
-    });
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error initializing notifications: $e');
+      }
+    }
   }
 
   static Future<void> removeToken(BuildContext context) async {
-    await sendToken(firebaseToken: '', context: context);
-    if (kDebugMode) {
-      print("removed");
+    try {
+      await sendToken(firebaseToken: '', context: context);
+      if (kDebugMode) {
+        print("Token removed successfully");
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error removing token: $e');
+      }
     }
   }
 
   static Future<void> init(BuildContext context) async {
-    await fcm.requestPermission();
-    String? token = await fcm.getToken();
-    if (kDebugMode) {
-      log(token ?? 'No token found');
-    }
-    if (token != null) {
-      await sendToken(
-        context: context,
-        firebaseToken: token,
-      );
-    }
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+    try {
+      await fcm.requestPermission();
+      final String? token = await fcm.getToken();
       if (kDebugMode) {
-        log('test notification');
+        log(token ?? 'No token found');
       }
-      // try {
-      //   UserNotification userData = UserNotification.fromJson(message.data);
-      //   await CacheHelper().init();
-      //   var title = userData.title;
-      //   var body = userData.body;
-
-      //   AwesomeNotifications().createNotification(
-      //     content: NotificationContent(
-      //       id: UniqueKey().hashCode,
-      //       channelKey: "basic_channel",
-      //       title: title,
-      //       body: body,
-      //       payload: {},
-      //       roundedLargeIcon: true,
-      //       notificationLayout: NotificationLayout.Messaging,
-      //     ),
-      //   );
-      // } catch (e) {
-      //   if (kDebugMode) {
-      //     print(e.toString());
-      //   }
-      // }
-
-      try {
-        UserNotification userData = UserNotification.fromJson(message.data);
-        await CacheHelper().cacheInit();
-        var title = userData.title;
-        var body = userData.body;
-
-        AwesomeNotifications().createNotification(
-          content: NotificationContent(
-            id: UniqueKey().hashCode,
-            channelKey: "basic_channel",
-            title: title,
-            body: body,
-            payload: {},
-            roundedLargeIcon: true,
-            notificationLayout: NotificationLayout.Messaging,
-          ),
+      if (token != null) {
+        await sendToken(
+          context: context,
+          firebaseToken: token,
         );
-      } catch (e) {
-        if (kDebugMode) {
-          print(e.toString());
-        }
       }
-    });
-    FirebaseMessaging.onBackgroundMessage(handleBackGroundMessages);
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+        if (kDebugMode) {
+          log('Received foreground message');
+        }
+        await _handleMessage(message);
+      });
+
+      FirebaseMessaging.onBackgroundMessage(handleBackGroundMessages);
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error initializing Firebase: $e');
+      }
+    }
   }
 
-  @pragma('vm:entry-point')
-  static Future<void> handleBackGroundMessages(
-    RemoteMessage message,
-  ) async {
-    await Firebase.initializeApp();
-    if (kDebugMode) {
-      print('test background notification');
-    }
-
+  static Future<void> _handleMessage(RemoteMessage message) async {
     try {
-      UserNotification userData = UserNotification.fromJson(message.data);
+      final UserNotification userData = UserNotification.fromJson(message.data);
       await CacheHelper().cacheInit();
-      var title = userData.title;
-      var body = userData.body;
+      final String title = userData.title;
+      final String body = userData.body;
 
-      AwesomeNotifications().createNotification(
+      await AwesomeNotifications().createNotification(
         content: NotificationContent(
           id: UniqueKey().hashCode,
           channelKey: "basic_channel",
@@ -179,7 +135,22 @@ class FirebaseNotification {
       );
     } catch (e) {
       if (kDebugMode) {
-        print(e.toString());
+        print('Error handling message: $e');
+      }
+    }
+  }
+
+  @pragma('vm:entry-point')
+  static Future<void> handleBackGroundMessages(RemoteMessage message) async {
+    try {
+      await Firebase.initializeApp();
+      if (kDebugMode) {
+        print('Handling background message');
+      }
+      await _handleMessage(message);
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error handling background message: $e');
       }
     }
   }
@@ -189,7 +160,7 @@ class FirebaseNotification {
     required BuildContext context,
   }) async {
     try {
-      String sendTokenUrl =
+      final String sendTokenUrl =
           "${Constants.baseUrl}/notifications?fcm_token=${firebaseToken ?? ''}";
 
       await apiServices.getRequest(
@@ -198,7 +169,7 @@ class FirebaseNotification {
       );
     } catch (e) {
       if (kDebugMode) {
-        print('Error: $e');
+        print('Error sending token: $e');
       }
     }
   }
@@ -208,11 +179,15 @@ class UserNotification {
   final String title;
   final String body;
 
-  UserNotification({required this.title, required this.body});
+  const UserNotification({
+    required this.title,
+    required this.body,
+  });
+
   factory UserNotification.fromJson(Map<String, dynamic> json) {
     return UserNotification(
-      title: json['title'],
-      body: json['body'],
+      title: json['title'] as String,
+      body: json['body'] as String,
     );
   }
 }
@@ -220,21 +195,29 @@ class UserNotification {
 class NotificationController {
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
-      ReceivedNotification receivedNotification) async {}
+      ReceivedNotification receivedNotification) async {
+    // Handle notification creation
+  }
+
   @pragma("vm:entry-point")
   static Future<void> onNotificationDisplayedMethod(
-      ReceivedNotification receivedNotification) async {}
+      ReceivedNotification receivedNotification) async {
+    // Handle notification display
+  }
 
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
+      ReceivedAction receivedAction) async {
+    // Handle notification dismissal
+  }
+
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
     navigatorKey.currentState?.pushNamedAndRemoveUntil(
-        '/notification-page',
-        (route) =>
-            (route.settings.name != '/notification-page') || route.isFirst,
-        arguments: receivedAction);
+      '/notification-page',
+      (route) => (route.settings.name != '/notification-page') || route.isFirst,
+      arguments: receivedAction,
+    );
   }
 }
