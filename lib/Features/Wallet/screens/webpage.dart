@@ -2,11 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../Core/Utils/Text/text_style.dart';
 
 class WebViewPage extends StatefulWidget {
   final String url;
 
-  const WebViewPage({Key? key, required this.url}) : super(key: key);
+  const WebViewPage({super.key, required this.url});
 
   @override
   State<WebViewPage> createState() => _WebViewPageState();
@@ -91,9 +94,13 @@ class _WebViewPageState extends State<WebViewPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Payment'),
+          centerTitle: true,
+          title: Text(
+            AppLocalizations.of(context)!.zain_Cash,
+            style: AppTextStyles.style16BlackW600,
+          ),
           leading: IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(false),
           ),
         ),

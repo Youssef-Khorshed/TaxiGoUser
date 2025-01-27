@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taxi_go_user_version/Features/Wallet/controller/wallet_deposit_cubit/webpage.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/webpage.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/repo/wallet_repo.dart';
 import '../../data/model/wallet_model.dart';
 
