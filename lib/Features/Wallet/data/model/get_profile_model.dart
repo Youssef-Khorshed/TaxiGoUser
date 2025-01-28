@@ -109,7 +109,7 @@ class UserData {
       emailVerifiedAt: json['email_verified_at'] != null
           ? DateTime.parse(json['email_verified_at'])
           : null,
-      balance: double.parse(json['balance'] ?? ""),
+      balance: num.parse(json['balance'] ?? ""),
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taxi_go_user_version/Features/Wallet/controller/wallet_deposit_cubit/webpage.dart';
 import 'package:taxi_go_user_version/Features/Wallet/data/repo/wallet_repo.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/webpage.dart';
+
 import '../../data/model/wallet_model.dart';
 
 part 'deposit_state.dart';
@@ -38,7 +39,6 @@ class WalletCubit extends Cubit<WalletState> {
     required String amount,
   }) async {
     await getWallet(amount: amount, context: context);
-
     if (walletModel != null) {
       final bool success = await tryLaunchUrl(context);
       if (!success) {

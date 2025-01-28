@@ -291,5 +291,9 @@
    "field_required": "Field Required",
    "profile": "Profile",
    "search_again": "Do You Want to Search Again",
-   "search":"Search"
+   "search":"Search",
+   "sure_exit":"Sure Exit",
+   "are_you_want_exit":"Are you want to exit our app",
+   "yes":"yes",
+   "no":"no"
 }

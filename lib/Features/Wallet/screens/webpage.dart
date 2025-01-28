@@ -1,7 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../../Core/Utils/Text/text_style.dart';
 
 class WebViewPage extends StatefulWidget {
   final String url;
@@ -91,10 +95,15 @@ class _WebViewPageState extends State<WebViewPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Payment'),
+          centerTitle: true,
+          title: Text(
+            AppLocalizations.of(context)!.zain_Cash,
+            style: AppTextStyles.style16BlackW600,
+          ),
           leading: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => Navigator.of(context).pop(false),
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pushReplacementNamed(
+                context, AppRoutes.generalScreen),
           ),
         ),
         body: Stack(

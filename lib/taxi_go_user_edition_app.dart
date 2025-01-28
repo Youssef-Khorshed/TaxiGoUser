@@ -19,6 +19,7 @@ import 'package:taxi_go_user_version/Features/Profile/controller/profile_view_mo
 import 'package:taxi_go_user_version/Features/Profile/data/repo/profile_repo_impl.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 import 'package:taxi_go_user_version/Features/Saved/data/repo/saved_repo_impl.dart';
+
 import 'Core/Utils/localization/cubit/local_cubit.dart';
 
 class TaxiGoUserEditionApp extends StatefulWidget {
@@ -92,7 +93,7 @@ class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
           child: BlocBuilder<LocalCubit, LocalState>(
             builder: (context, state) {
               return MaterialApp(
-                locale: getIt.get<LocalCubit>().localization,
+                locale: LocalCubit.get(context).localization,
                 builder: DevicePreview.appBuilder,
                 debugShowCheckedModeBanner: false,
                 initialRoute:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
@@ -14,7 +15,6 @@ import 'package:taxi_go_user_version/Features/History/controller/history_view_mo
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_history_drop_down.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_trip_card_history.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Saved/controller/saved_view_model.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -68,6 +68,7 @@ class HistoryScreen extends StatelessWidget {
                                       saveMethod(historyData, index, context);
                                     },
                                     historyData: historyData[index],
+                                    index: index,
                                   );
                                 },
                               ),

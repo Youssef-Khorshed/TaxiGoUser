@@ -15,6 +15,7 @@ import 'package:taxi_go_user_version/Features/Home/screens/rate.dart';
 import 'package:taxi_go_user_version/Features/Profile/profile.dart';
 import 'package:taxi_go_user_version/Features/Saved/Screens/trip_saved.dart';
 import 'package:taxi_go_user_version/Features/Splash/screens/welcome_screen.dart';
+import 'package:taxi_go_user_version/Features/Wallet/screens/webpage.dart';
 import 'package:taxi_go_user_version/Features/Wallet/screens/wallet_screen.dart';
 import 'package:taxi_go_user_version/Features/notification/screens/notification_screen.dart';
 import '../../../Features/Auth/presentation/controller/create_profile_cubit/create_profile_cubit.dart';
@@ -59,6 +60,7 @@ class AppRoutes {
   static const String chat = '/chat';
   static const String profile = '/profile';
   static const String loginOtpScreen = '/loginOtpScreen';
+  static const String webViewWalletScreen = '/webViewWalletScreen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -72,6 +74,13 @@ class AppRoutes {
         return CupertinoPageRoute(
           builder: (context) {
             return const WelcomeScreen();
+          },
+        );
+      case webViewWalletScreen:
+      String url=  settings.arguments as String;
+        return CupertinoPageRoute(
+          builder: (context) {
+            return  WebViewPage(url: url,);
           },
         );
       case signUp:

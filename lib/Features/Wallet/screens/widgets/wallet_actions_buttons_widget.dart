@@ -64,7 +64,10 @@ class _WalletActionsButtonsWidgetState
             borderColor: AppColors.redColor,
             buttonColor: AppColors.redColor.withAlpha(10),
             textColor: AppColors.redColor,
-            onPressed: _isLoading ? () {} : () => Navigator.of(context).pop(),
+            onPressed: _isLoading ? () {
+
+
+            } : () => Navigator.of(context).pop(),
           ),
         ),
       ],

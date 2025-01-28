@@ -8,6 +8,7 @@ import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Network/Services/secure_profile.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Features/Auth/presentation/controller/log_out_cubit/log_out_cubit.dart';
+import 'package:taxi_go_user_version/Features/notification/data/model/firebase_notification.dart';
 
 import '../../../../Core/Utils/Colors/app_colors.dart';
 import '../../../../Core/Utils/Spacing/app_spacing.dart';
@@ -173,39 +174,55 @@ class _CustomAppDrawerState extends State<CustomAppDrawer> {
                     },
                     builder: (context, state) {
                       final parentContext = context;
-
                       return GestureDetector(
                         onTap: () {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: const Text('تأكيد الخروج'),
-                                content:
-                                    const Text('هل تريد الخروج من التطبيق؟'),
+                                title: Text(
+                                  AppLocalizations.of(context)!.sure_exit,
+                                  style: AppTextStyles.style18BlackBold,
+                                  textAlign: TextAlign.center,
+                                ),
+                                content: Text(
+                                    AppLocalizations.of(context)!
+                                        .are_you_want_exit,
+                                    textAlign: TextAlign.center,
+                                    style: AppTextStyles.style10DarkgrayW700
+                                        .copyWith(
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w500)),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.of(context)
-                                          .pop(); // إغلاق الحوار
+                                      Navigator.of(context).pop();
                                     },
-                                    child: const Text('لا'),
+                                    child: Text(
+                                      AppLocalizations.of(context)!.no,
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.style12BlackW700
+                                          .copyWith(color: AppColors.redColor),
+                                    ),
                                   ),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                       LogOutCubit.get(parentContext)
                                           .logOut(parentContext);
+                                      FirebaseNotification.removeToken(context);
                                     },
-                                    child: const Text('نعم'),
+                                    child: Text(
+                                      AppLocalizations.of(context)!.yes,
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.style12BlackW700
+                                          .copyWith(color: AppColors.blueColor),
+                                    ),
                                   ),
                                 ],
                               );
                             },
                           );
-
-                          debugPrint("object");
-                          // LogOutCubit.get(context).logOut(context);
                         },
                         child: Text(
                           AppLocalizations.of(context)!.logout,

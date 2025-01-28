@@ -26,7 +26,8 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: ListView(
+          resizeToAvoidBottomInset: false,
+          body: Column(
         children: [
           Form(
             autovalidateMode: LoginCubit.get(context).loginAutoValidateMode,
@@ -114,7 +115,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
             ),
           ),
-          //   const Spacer(),
+            const Spacer(),
           BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginInSuccess) {

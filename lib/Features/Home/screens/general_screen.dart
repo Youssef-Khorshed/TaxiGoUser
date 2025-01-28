@@ -71,51 +71,53 @@ class _GeneralScreenState extends State<GeneralScreen> {
       AppLocalizations.of(context)!.wallet,
       AppLocalizations.of(context)!.notifications,
     ];
-    return Scaffold(
-      backgroundColor: AppColors.whiteColor,
-      drawer: CustomAppDrawer(
-        onItemTap: (index) => onItemTap(index),
-        selectedIndex: selectedIndex,
-      ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            verticalSpace(10.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Builder(builder: (context) {
-                    return InkWell(
-                        onTap: () => Scaffold.of(context).openDrawer(),
-                        child: SvgPicture.asset(
-                          AppIcons.menuIcon,
-                          colorFilter: const ColorFilter.mode(
-                              AppColors.blackColor, BlendMode.srcIn),
-                        ));
-                  }),
-                  AutoSizeText(screensName[selectedIndex],
-                      style: AppTextStyles.style28BlackW400.copyWith(
-                        fontSize: 22.sp,
-                      )),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.profile);
-                    },
-                    child: CircleAvatar(
-                      radius: 18.r,
-                      backgroundImage: image != null && image != ''
-                          ? NetworkImage(image!)
-                          : const AssetImage(AppImages.appImage),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
+        drawer: CustomAppDrawer(
+          onItemTap: (index) => onItemTap(index),
+          selectedIndex: selectedIndex,
+        ),
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              verticalSpace(10.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Builder(builder: (context) {
+                      return InkWell(
+                          onTap: () => Scaffold.of(context).openDrawer(),
+                          child: SvgPicture.asset(
+                            AppIcons.menuIcon,
+                            colorFilter: const ColorFilter.mode(
+                                AppColors.blackColor, BlendMode.srcIn),
+                          ));
+                    }),
+                    AutoSizeText(screensName[selectedIndex],
+                        style: AppTextStyles.style28BlackW400.copyWith(
+                          fontSize: 22.sp,
+                        )),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.profile);
+                      },
+                      child: CircleAvatar(
+                        radius: 18.r,
+                        backgroundImage: image != null && image != ''
+                            ? NetworkImage(image!)
+                            : const AssetImage(AppImages.appImage),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Expanded(child: screens[selectedIndex])
-          ],
+              Expanded(child: screens[selectedIndex])
+            ],
+          ),
         ),
       ),
     );
