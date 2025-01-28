@@ -38,7 +38,7 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          //  verticalSpace(10.h),
+          verticalSpace(20.h),
           BuildAddressRow(
               fromAddress: widget.originSubTitle,
               fromLoccation: widget.originTitle,
@@ -46,14 +46,14 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               //  distance: widget.distance,
               // time: widget.time,
               toLocation: widget.destinationTitle),
-          // verticalSpace(16.h),
+          verticalSpace(25.h),
           CustomRidetypeselector(
             onRideTypeSelected: (index) {
               _selectedtriptype = index;
               setState(() {});
             },
           ),
-          verticalSpace(20.h),
+          verticalSpace(30.h),
           Custom_changeAddress_buttons_sheet(
               originTitle: widget.originTitle,
               destinationTitle: widget.destinationTitle,
@@ -61,6 +61,7 @@ class _CustomChangeaddressSheetState extends State<CustomChangeaddressSheet> {
               time: widget.time,
               widget: widget,
               selectedtriptype: _selectedtriptype),
+          verticalSpace(10.h),
         ],
       ),
     );

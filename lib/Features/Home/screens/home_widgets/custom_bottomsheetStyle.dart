@@ -43,8 +43,8 @@ class _SnappingBottomSheet extends StatelessWidget {
           SnappingPosition.pixels(
             positionPixels: widget is CustomSearchingDriverSheet ||
                     widget is CustomSearchAgain
-                ? 150
-                : MediaQuery.of(context).size.height * 0.7,
+                ? MediaQuery.of(context).size.height * 0.18
+                : MediaQuery.of(context).size.height * 0.58,
             snappingCurve: Curves.elasticOut,
             snappingDuration: const Duration(milliseconds: 1750),
           ),
@@ -58,7 +58,7 @@ class _SnappingBottomSheet extends StatelessWidget {
             positionFactor: widget is CustomSearchingDriverSheet ||
                     widget is CustomSearchAgain
                 ? MediaQuery.of(context).size.height * 0.4
-                : MediaQuery.of(context).size.height * 0.7,
+                : MediaQuery.of(context).size.height * 0.5,
             snappingCurve: Curves.bounceOut,
             snappingDuration: const Duration(seconds: 1),
             grabbingContentOffset: GrabbingContentOffset.bottom,

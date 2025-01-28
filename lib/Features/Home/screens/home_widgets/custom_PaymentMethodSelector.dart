@@ -81,7 +81,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
             //   ),
             // ),
 
-            // verticalSpace(25.h),
+            verticalSpace(25.h),
 
             Row(
               children: [
@@ -95,7 +95,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                     borderRadius: 15.r,
                   ),
                 ),
-                horizontalSpace(15.h),
+                horizontalSpace(20.h),
                 Expanded(
                     flex: 1,
                     child: CustomAppBottom(
@@ -110,10 +110,10 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                     )),
               ],
             ),
-            verticalSpace(20.h),
+            verticalSpace(25.h),
             Text(AppLocalizations.of(context)!.select_payment_method,
                 style: AppTextStyles.style16BlackW600),
-            verticalSpace(20.h),
+            verticalSpace(25.h),
             paymentOption(
               context,
               method: AppLocalizations.of(context)!.wallet,

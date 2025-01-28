@@ -67,7 +67,6 @@ class _HistoryTripCardState extends State<HistoryTripCard> {
                 IconButton(
                     onPressed: () {
                       saveMethod(widget.historyData, context);
-
                       issaved = !issaved;
                       setState(() {});
                     },

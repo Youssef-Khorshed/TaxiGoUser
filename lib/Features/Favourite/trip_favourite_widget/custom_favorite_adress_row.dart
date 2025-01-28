@@ -80,7 +80,7 @@ class CustomFavBuildAddressRow extends StatelessWidget {
               ),
               Text(
                 distance != 0
-                    ? '$distance ${AppLocalizations.of(context)!.km}'
+                    ? '${distance.toStringAsFixed(1)} ${AppLocalizations.of(context)!.km}'
                     : "",
                 style: TextStyle(fontSize: 15.sp),
               ),

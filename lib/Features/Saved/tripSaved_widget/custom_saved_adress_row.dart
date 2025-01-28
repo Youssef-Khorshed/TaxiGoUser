@@ -82,7 +82,7 @@ class CustomSavedBuildAddressRow extends StatelessWidget {
               savedRide.distance != null
                   ? Text(
                       savedRide.distance != null
-                          ? '${savedRide.distance} ${AppLocalizations.of(context)!.km}'
+                          ? '${savedRide.distance.toStringAsFixed(1)} ${AppLocalizations.of(context)!.km}'
                           : "",
                       style: TextStyle(fontSize: 15.sp),
                     )
