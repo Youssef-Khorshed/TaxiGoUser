@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_user_version/Features/Wallet/controller/wallet_deposit_cubit/deposit_cubit.dart';
+
 import '../../../../Core/Utils/Network/Services/services_locator.dart';
-import '../../../../Core/Utils/Routing/app_routes.dart';
 import '../../../../Core/Utils/Text/text_style.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'wallet_actions_buttons_widget.dart';
 import 'wallet_content_of_dialog_widget.dart';
 
@@ -23,8 +24,8 @@ class WalletAlertDialogWidget extends StatelessWidget {
       child: BlocConsumer<WalletCubit, WalletState>(
         listener: (context, state) {
           if (state is WalletSuccess) {
-            Navigator.of(context).popAndPushNamed(AppRoutes.webViewWalletScreen,arguments: state.walletModel.data);
-
+            Navigator.of(context).popAndPushNamed(AppRoutes.webViewWalletScreen,
+                arguments: state.walletModel.data);
           }
         },
         builder: (context, state) {

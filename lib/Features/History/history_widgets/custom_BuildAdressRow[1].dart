@@ -14,8 +14,10 @@ class BuildAddressRow extends StatelessWidget {
   const BuildAddressRow({
     super.key,
     required this.historyData,
+    required this.index,
   });
   final HistoryData historyData;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -66,27 +68,30 @@ class BuildAddressRow extends StatelessWidget {
         final toAddress = snapshot.data!['toAddress']!;
         final toCity = snapshot.data!['toCity']!;
 
-        return ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return Padding(
+          padding: EdgeInsets.all(15.0.sp),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TripDetailsMap(
                 address: fromAddress,
                 location: fromCity,
                 icon: AppIcons.iconsMapRed,
               ),
+              historyData.ride![0].distance != null
+                  ? Text(
+                      historyData.ride![0].distance == null
+                          ? ""
+                          : '${historyData.ride![0].distance!.toStringAsFixed(1)} ${AppLocalizations.of(context)!.km}',
+                      style: TextStyle(fontSize: 15.sp),
+                    )
+                  : const SizedBox(),
               TripDetailsMap(
                 address: toAddress,
                 location: toCity,
                 icon: AppIcons.iconsMapBlue,
               ),
             ],
-          ),
-          trailing: Text(
-            historyData.ride![0].distance != null
-                ? '${historyData.ride![0].distance} ${AppLocalizations.of(context)!.km} '
-                : "",
-            style: TextStyle(fontSize: 15.sp),
           ),
         );
       },

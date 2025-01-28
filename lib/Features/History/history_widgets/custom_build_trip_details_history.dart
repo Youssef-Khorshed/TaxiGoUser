@@ -7,13 +7,16 @@ import 'package:taxi_go_user_version/Features/History/history_widgets/custom_dri
 
 class CustomBuildTripDetails extends StatelessWidget {
   final HistoryData historyData;
+  final int index;
 
-  const CustomBuildTripDetails({super.key, required this.historyData});
+  const CustomBuildTripDetails(
+      {super.key, required this.historyData, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return TripDetails(
       historyData: historyData,
+      index: index,
     );
   }
 }
@@ -23,8 +26,10 @@ class TripDetails extends StatelessWidget {
   const TripDetails({
     super.key,
     required this.historyData,
+    required this.index,
   });
   final HistoryData historyData;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,7 @@ class TripDetails extends StatelessWidget {
           color: AppColors.whiteColor,
           child: BuildAddressRow(
             historyData: historyData,
+            index: index,
           ),
         ),
         Container(

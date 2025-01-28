@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Features/History/data/history_data_model.dart';
 import 'package:taxi_go_user_version/Features/History/history_widgets/custom_build_trip_details_history.dart';
@@ -11,12 +10,14 @@ class HistoryTripCard extends StatefulWidget {
   final void Function() onStarPressed;
   final void Function() onSavedPressed;
   final HistoryData historyData;
+  final int index;
 
   const HistoryTripCard({
     super.key,
     required this.onStarPressed,
     required this.onSavedPressed,
     required this.historyData,
+    required this.index,
   });
 
   @override
@@ -64,6 +65,7 @@ class _HistoryTripCardState extends State<HistoryTripCard> {
           ),
           CustomBuildTripDetails(
             historyData: widget.historyData,
+            index: widget.index,
           ),
         ],
       ),

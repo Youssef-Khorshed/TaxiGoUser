@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../Core/Utils/Text/text_style.dart';
 
@@ -101,7 +102,8 @@ class _WebViewPageState extends State<WebViewPage> {
           ),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () => Navigator.of(context).pop(false),
+            onPressed: () => Navigator.pushReplacementNamed(
+                context, AppRoutes.generalScreen),
           ),
         ),
         body: Stack(

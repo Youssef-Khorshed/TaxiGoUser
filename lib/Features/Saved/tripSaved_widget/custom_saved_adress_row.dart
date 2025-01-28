@@ -69,27 +69,30 @@ class CustomSavedBuildAddressRow extends StatelessWidget {
         final toAddress = snapshot.data!['toAddress']!;
         final toCity = snapshot.data!['toCity']!;
 
-        return ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return Padding(
+          padding: EdgeInsets.all(15.0.sp),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SavedTripDetailsMap(
                 address: fromAddress,
                 location: fromCity,
                 icon: AppIcons.iconsMapRed,
               ),
+              savedRide.distance != null
+                  ? Text(
+                      savedRide.distance != null
+                          ? '${savedRide.distance} ${AppLocalizations.of(context)!.km}'
+                          : "",
+                      style: TextStyle(fontSize: 15.sp),
+                    )
+                  : const SizedBox(),
               SavedTripDetailsMap(
                 address: toAddress,
                 location: toCity,
                 icon: AppIcons.iconsMapBlue,
               ),
             ],
-          ),
-          trailing: Text(
-            savedRide.distance != null
-                ? '${savedRide.distance} ${AppLocalizations.of(context)!.km}'
-                : "",
-            style: TextStyle(fontSize: 15.sp),
           ),
         );
       },

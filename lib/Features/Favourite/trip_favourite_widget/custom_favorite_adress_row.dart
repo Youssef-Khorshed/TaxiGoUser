@@ -68,14 +68,21 @@ class CustomFavBuildAddressRow extends StatelessWidget {
         final toAddress = snapshot.data!['toAddress']!;
         final toCity = snapshot.data!['toCity']!;
 
-        return ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return Padding(
+          padding: EdgeInsets.all(15.0.sp),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               FavoriteTripDetailsMap(
                 address: fromAddress,
                 location: fromCity,
                 icon: AppIcons.iconsMapRed,
+              ),
+              Text(
+                distance != 0
+                    ? '$distance ${AppLocalizations.of(context)!.km}'
+                    : "",
+                style: TextStyle(fontSize: 15.sp),
               ),
               FavoriteTripDetailsMap(
                 address: toAddress,
@@ -83,12 +90,6 @@ class CustomFavBuildAddressRow extends StatelessWidget {
                 icon: AppIcons.iconsMapBlue,
               ),
             ],
-          ),
-          trailing: Text(
-            distance != 0
-                ? '$distance ${AppLocalizations.of(context)!.km}'
-                : "",
-            style: TextStyle(fontSize: 15.sp),
           ),
         );
       },
