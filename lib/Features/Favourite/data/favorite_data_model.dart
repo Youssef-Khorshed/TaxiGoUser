@@ -30,7 +30,7 @@ class FavoriteData {
 }
 
 class FavoriteRide {
-  int? distance;
+  dynamic? distance;
   String? total;
   String? rate;
   RideRequestData? rideRequest;

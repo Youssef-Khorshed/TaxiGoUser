@@ -33,7 +33,7 @@ class SavedData {
 }
 
 class SavedRide {
-  int? distance;
+  dynamic? distance;
   String? total;
   String? rate;
   SavedRideRequest? rideRequest;

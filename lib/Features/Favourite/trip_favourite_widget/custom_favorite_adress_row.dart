@@ -17,7 +17,7 @@ class CustomFavBuildAddressRow extends StatelessWidget {
     required this.distance,
   });
   final RideRequestData rideDetails;
-  final int distance;
+  final dynamic distance;
 
   @override
   Widget build(BuildContext context) {

@@ -139,7 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       listener: (context, state) {
                         if (state is SignUpSuccess) {
 //                          Navigator.pushNamed(context, AppRoutes.otp);
-                          Navigator.pushNamed(context, AppRoutes.setPassword);
+                          Navigator.pushNamed(context, AppRoutes.otp);
                         } else if (state is SignUpFailure) {
                           Fluttertoast.showToast(
                             msg: state.message,

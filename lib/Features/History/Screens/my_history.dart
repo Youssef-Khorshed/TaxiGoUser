@@ -62,10 +62,10 @@ class HistoryScreen extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return HistoryTripCard(
                                     onStarPressed: () {
-                                      favmethod(historyData, index, context);
+                                      //    favmethod(historyData, index, context);
                                     },
                                     onSavedPressed: () {
-                                      saveMethod(historyData, index, context);
+                                      //    saveMethod(historyData, index, context);
                                     },
                                     historyData: historyData[index],
                                     index: index,
@@ -111,31 +111,5 @@ class HistoryScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> saveMethod(
-      List<HistoryData> historyData, int index, BuildContext context) async {
-    if (historyData[index].isSaved == true) {
-      await SavedViewModel.get(context)
-          .unSaveTrip(context, historyData[index].ride![0].id!);
-    } else {
-      SavedViewModel.get(context)
-          .saveTrip(context, historyData[index].ride![0].id!);
-    }
-    // HistoryViewModel.get(context).getHistoryData(context);
-  }
-
-  Future<void> favmethod(
-      List<HistoryData> historyData, int index, BuildContext context) async {
-    if (historyData[index].isFavorite == true) {
-      context
-          .read<FavouriteViewModel>()
-          .rmvFavTrip(context, historyData[index].ride![0].id!);
-    } else {
-      context
-          .read<FavouriteViewModel>()
-          .addToFavTrip(context, historyData[index].ride![0].id!);
-    }
-    //  HistoryViewModel.get(context).getHistoryData(context);
   }
 }
