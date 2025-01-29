@@ -44,23 +44,16 @@ class _MapScreenState extends State<MapScreen> {
                   Positioned(
                     top: 60.h,
                     right: 15.w,
-                    child: CircleAvatar(
-                      radius: 25.r,
-                      backgroundColor: AppColors.transparentColor.withAlpha(
-                        100,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-                        child: IconButton(
-                          onPressed: () {
-                            context.read<MapsCubit>().clearMarkerPolyines();
-                            Navigator.pushNamed(
-                                context, AppRoutes.generalScreen);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back_ios,
-                            color: AppColors.whiteColor,
-                          ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+                      child: IconButton(
+                        onPressed: () {
+                          context.read<MapsCubit>().clearMarkerPolyines();
+                          Navigator.pushNamed(context, AppRoutes.generalScreen);
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back_ios,
+                          color: AppColors.blueColor,
                         ),
                       ),
                     ),

@@ -211,7 +211,7 @@ class MapsCubit extends Cubit<MapsState> {
       );
 
       updateLatLngBoundPosition(
-          origin: origin, destination: destination, zoom: 12);
+          origin: origin, destination: destination, zoom: 17);
       drawPolyline(origin: origin, destination: destination);
       emit(DirectionsLoaded(polyLines));
     });
@@ -220,7 +220,7 @@ class MapsCubit extends Cubit<MapsState> {
   void updateLatLngBoundPosition(
       {required LatLng origin,
       required LatLng destination,
-      double zoom = 13}) async {
+      double zoom = 17}) async {
     LatLngBounds bounds = _calculateBounds(origin, destination);
     CameraUpdate cameraUpdate = CameraUpdate.newLatLngBounds(bounds, 50);
     await mapController.animateCamera(cameraUpdate);

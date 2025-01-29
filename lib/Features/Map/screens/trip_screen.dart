@@ -6,7 +6,10 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
+import 'package:taxi_go_user_version/Core/Utils/convertTime_Distance/custom_covertMethods.dart';
 import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
@@ -49,35 +52,71 @@ class TripScreenState extends State<TripScreen> {
             context.watch<MapsCubit>().onTrip
                 ? Positioned(
                     top: MediaQuery.of(context).size.height / 8,
-                    right: 50,
-                    left: 50,
+                    right: 20,
+                    left: 20,
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 5.w, vertical: 0.h),
                       decoration: BoxDecoration(
                           border: Border.all(color: AppColors.blueColor),
                           borderRadius: BorderRadius.circular(10.r),
                           color: AppColors.whiteColor),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            AppImages.timeImage,
-                            width: 20.w,
-                            height: 20.h,
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.timer_outlined,
+                                color: AppColors.blueColor,
+                              ),
+                              horizontalSpace(10.w),
+                              Text(convertToTimeString(
+                                  context
+                                      .read<MapsCubit>()
+                                      .distanceTime
+                                      .duration!
+                                      .text!,
+                                  AppLocalizations.of(context)!.hours,
+                                  AppLocalizations.of(context)!.mins)),
+                              horizontalSpace(20.w),
+                              Container(
+                                width: 2,
+                                color: AppColors.blueColor.withAlpha(100),
+                                height: 50.h,
+                              ),
+                            ],
                           ),
-                          const Text('Time'),
-                          Container(
-                            width: 2,
-                            color: AppColors.blueColor,
-                            height: 50.h,
+                          horizontalSpace(20.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                AppImages.userLocationImage,
+                                width: 20.w,
+                                height: 20.h,
+                              ),
+                              horizontalSpace(10),
+                              Text(
+                                convertMetersToKilometers(
+                                    context
+                                        .read<MapsCubit>()
+                                        .distanceTime
+                                        .distance!
+                                        .value!
+                                        .toDouble(),
+                                    AppLocalizations.of(context)!.km,
+                                    AppLocalizations.of(context)!.meter),
+
+                                // convertMilesToKilometerString(
+                                //   context
+                                //   .read<MapsCubit>()
+                                //   .distanceTime
+                                //   .distance!
+                                //   .value!
+                                //   .toDouble()
+                                //   )
+                              ),
+                            ],
                           ),
-                          Text(AppLocalizations.of(context)!.km),
-                          Text(context
-                              .read<MapsCubit>()
-                              .distanceTime
-                              .distance!
-                              .text!),
                         ],
                       ),
                     ),
@@ -106,10 +145,8 @@ class TripScreenState extends State<TripScreen> {
         mapcubit.arrivedtoCustomer = false;
         mapcubit.onTrip = false;
         mapcubit.isAccepted = false;
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (_) => PaymentScreen(
-                  getLastRide: state.getLastRideSuccess,
-                )));
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const PaymentScreen()));
       }
     } else if (state is GetActiveRideRequestSuccess) {
       final captin = state.activeRide.data!.ride!.first.captain!;

@@ -15,7 +15,9 @@ import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dar
 import 'package:taxi_go_user_version/Features/Home/controller/rate_%20cancel_cubit/rete_cancel_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/rate_btn.dart';
-import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/tripe_complete_date.dart';
+import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
+
+import 'tripe_complete_date.dart';
 
 class RateDetailsBlockBuilder extends StatelessWidget {
   const RateDetailsBlockBuilder({
@@ -102,6 +104,7 @@ class RateDetailsBlockBuilder extends StatelessWidget {
                       msg: AppLocalizations.of(context)!.please_rate_the_trip);
                 },
                 onInvalidRateWithoutFeedback: () {
+                  context.read<MapsCubit>().clearMarkerPolyines();
                   Navigator.pushReplacementNamed(
                       context, AppRoutes.generalScreen);
                 },

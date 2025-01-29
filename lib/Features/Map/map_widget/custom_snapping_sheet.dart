@@ -35,22 +35,22 @@ class _CustomSnappingSheetState extends State<CustomSnappingSheet> {
     final cubit = context.read<MapsCubit>();
     return SnappingSheet(
       lockOverflowDrag: false,
-      snappingPositions: const [
+      snappingPositions: [
         SnappingPosition.pixels(
-          positionPixels: 300,
+          positionPixels: cubit.isAccepted ? 250 : 320,
           snappingCurve: Curves.elasticOut,
-          snappingDuration: Duration(milliseconds: 1750),
+          snappingDuration: const Duration(milliseconds: 1750),
         ),
-        SnappingPosition.factor(
+        const SnappingPosition.factor(
           positionFactor: 0.0,
           snappingCurve: Curves.easeOutExpo,
           snappingDuration: Duration(seconds: 1),
           grabbingContentOffset: GrabbingContentOffset.top,
         ),
         SnappingPosition.factor(
-          positionFactor: 300,
+          positionFactor: cubit.isAccepted ? 250 : 320,
           snappingCurve: Curves.bounceOut,
-          snappingDuration: Duration(seconds: 1),
+          snappingDuration: const Duration(seconds: 1),
           grabbingContentOffset: GrabbingContentOffset.bottom,
         ),
       ], // Your main screen content goes here

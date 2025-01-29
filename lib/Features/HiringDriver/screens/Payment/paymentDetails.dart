@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/images/app_images.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_buildrowdetail_hiring.dart';
 
 class PaymentsDetails extends StatelessWidget {
@@ -38,7 +39,7 @@ class PaymentsDetails extends StatelessWidget {
                 const Spacer(),
                 Row(children: [
                   Text(
-                    rideDetails.paymentMethod!,
+                    rideDetails.ride!.total!,
                     style: AppTextStyles.style14DarkgrayW500,
                   ),
                   horizontalSpace(5.w),
@@ -53,7 +54,7 @@ class PaymentsDetails extends StatelessWidget {
             Buildrowdetail(
                 label: "${AppLocalizations.of(context)!.time} :",
                 value:
-                    '${rideDetails.ride!.time!.round()} ${AppLocalizations.of(context)!.min} '),
+                    '${rideDetails.ride!.time} ${AppLocalizations.of(context)!.min} '),
             Buildrowdetail(
                 label: "${AppLocalizations.of(context)!.promo_code} :",
                 value:

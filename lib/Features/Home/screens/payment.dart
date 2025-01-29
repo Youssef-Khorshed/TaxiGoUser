@@ -12,6 +12,7 @@ import 'package:taxi_go_user_version/Core/Utils/app_custom_widgets/custom_app_bo
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_ErrorAnimation.dart';
 import 'package:taxi_go_user_version/Features/App/app_widgets/custom_loading.dart';
 import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/payments_details.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/tripe_complete_date.dart';
 
 class PaymentScreen extends StatelessWidget {
@@ -66,8 +67,11 @@ class PaymentsDetailsBlockBuilder extends StatelessWidget {
                             rideCompleteDetailsModel:
                                 state.rideCompleteDetailsModel,
                           ),
+                          PaymentsDetails(
+                              size: MediaQuery.of(context).size,
+                              rideDetails: state.rideCompleteDetailsModel),
                           verticalSpace(
-                              MediaQuery.of(context).size.height * .30),
+                              MediaQuery.of(context).size.height * .2),
                           CustomAppBottom(
                             buttonText: AppLocalizations.of(context)!.confirm,
                             borderCornerRadius: 8,

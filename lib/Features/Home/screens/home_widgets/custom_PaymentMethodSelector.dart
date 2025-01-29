@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -34,12 +33,12 @@ class PaymentMethodSelector extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
   _PaymentMethodSelectorState createState() => _PaymentMethodSelectorState();
 }
 
 class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
-  String selectedMethod = "";
+  String selectedMethod = "wallet"; // Default selection
+  List<bool> isSelected = [true, false]; // Wallet is selected by default
   TextEditingController controller = TextEditingController();
 
   @override
@@ -73,16 +72,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-//            verticalSpace(20.h),
-            // Center(
-            //   child: Text(
-            //     AppLocalizations.of(context)!.tripDetails,
-            //     style: AppTextStyles.style18BlackBold,
-            //   ),
-            // ),
-
             verticalSpace(25.h),
-
             Row(
               children: [
                 Expanded(
@@ -115,17 +105,31 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
                 style: AppTextStyles.style16BlackW600),
             verticalSpace(25.h),
             paymentOption(
+              index: 0,
+              onTap: () {
+                setState(() {
+                  selectedMethod = "wallet";
+                  isSelected[0] = true;
+                  isSelected[1] = false;
+                });
+              },
               context,
               method: AppLocalizations.of(context)!.wallet,
               icon: Icons.account_balance_wallet,
-              subtitle: ' 349 ${AppLocalizations.of(context)!.currency_iqd}',
             ),
             verticalSpace(20.h),
             paymentOption(
+              index: 1,
+              onTap: () {
+                setState(() {
+                  selectedMethod = "cash";
+                  isSelected[1] = true;
+                  isSelected[0] = false;
+                });
+              },
               context,
               method: AppLocalizations.of(context)!.cash,
               icon: Icons.attach_money,
-              subtitle: ' 349 ${AppLocalizations.of(context)!.currency_iqd}',
             ),
             verticalSpace(30.h),
             PaymentButton(
@@ -137,7 +141,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
               time: widget.time,
               controller: controller,
               widget: widget,
-              selectedMethod: selectedMethod == "المحفظه" ? "wallet" : "cash",
+              selectedMethod: selectedMethod == "wallet" ? "wallet" : "cash",
             ),
             verticalSpace(20.h),
           ],
@@ -147,13 +151,18 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
   }
 
   Widget paymentOption(BuildContext context,
-      {required String method, required IconData icon, String? subtitle}) {
-    final isSelected = selectedMethod == method;
+      {required String method,
+      required IconData icon,
+      required int index,
+      String? subtitle,
+      required void Function()? onTap}) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.transparent,
         border: Border.all(
-            color: isSelected ? AppColors.blueColor : AppColors.darkgrayColor,
+            color: isSelected[index]
+                ? AppColors.blueColor
+                : AppColors.darkgrayColor,
             width: 1),
         borderRadius: BorderRadius.circular(15.r),
       ),
@@ -167,11 +176,7 @@ class _PaymentMethodSelectorState extends State<PaymentMethodSelector> {
             ? Text(subtitle,
                 style: const TextStyle(color: AppColors.darkgrayColor))
             : null,
-        onTap: () {
-          setState(() {
-            selectedMethod = method;
-          });
-        },
+        onTap: onTap,
       ),
     );
   }

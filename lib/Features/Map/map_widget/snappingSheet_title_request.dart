@@ -14,10 +14,8 @@ class SnappingSheetTitleRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        verticalSpace(10.h),
         Text(
           AppLocalizations.of(context)!.trip_started,
           style: TextStyle(

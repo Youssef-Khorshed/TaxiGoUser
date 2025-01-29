@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_BuildAdressRow.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Data/model/get_active_ride/get_active_ride.dart';
@@ -31,6 +33,9 @@ class _RequestDialogBodyState extends State<RequestDialogBody> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          const Divider(
+            height: 10,
+          ),
           BuildAddressRow(
             fromAddress: data.addressFrom!,
             toAddress: data.addressTo!,

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
@@ -45,11 +46,15 @@ class SnappingSheetTitleAccepted extends StatelessWidget {
           ),
           width: 100.w,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundImage: backgroundImage,
-                radius: 35.r,
+                backgroundColor: AppColors.blueColor.withAlpha(200),
+                radius: 35,
+                child: Text(
+                  captinName![0].toUpperCase(),
+                  style: AppTextStyles.style24WhiteW500,
+                ),
               ),
               horizontalSpace(15.w),
               Column(

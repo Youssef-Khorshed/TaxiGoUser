@@ -6,7 +6,7 @@ class RateModel {
 
   factory RateModel.fromJson(Map<String, dynamic> json) {
     return RateModel(
-      status: json["status"],
+      status: json["success"] ?? json["status"] ?? true,
       message: json["message"],
     );
   }

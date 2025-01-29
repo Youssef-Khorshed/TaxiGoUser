@@ -3,40 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geocode/geocode.dart';
 import 'package:shimmer/shimmer.dart';
-
 import 'package:taxi_go_user_version/Core/Utils/Assets/icons/app_icons.dart';
 import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
-import 'package:taxi_go_user_version/Core/Utils/Text/text_style.dart';
+import 'package:taxi_go_user_version/Features/Home/data/models/ride_complete_model/ride_complete_details_model.dart';
+import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/custom_parseAddress.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/trip_details.dart';
 
 class BuildAddressRowUpdated extends StatelessWidget {
   const BuildAddressRowUpdated({
     super.key,
-    required this.lateFrom,
-    required this.langFrom,
-    required this.lateTo,
-    required this.langTo,
-    required this.distance,
+    required this.rideDetails,
   });
-
-  final String lateFrom;
-  final String langFrom;
-  final String lateTo;
-  final String langTo;
-  final double distance;
+  final RideCompleteDetailsModel rideDetails;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Map<String, String>>(
-      future: _getFormattedAddresses(
-        fromLatitude: double.parse(lateFrom),
-        fromLongitude: double.parse(langFrom),
-        toLatitude: double.parse(lateTo),
-        toLongitude: double.parse(langTo),
-      ),
+    return FutureBuilder<RideCompleteDetailsModel>(
+      future: Future.value(rideDetails),
+      // _getFormattedAddresses(
+      //   fromLatitude: double.parse(rideDetails.rideRequest.latFrom),
+      //   fromLongitude: double.parse(rideDetails.rideRequest.lngFrom),
+      //   toLatitude: double.parse(rideDetails.rideRequest.latTo),
+      //   toLongitude: double.parse(rideDetails.rideRequest.lngTo),
+      // )
+
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return ListTile(
@@ -48,7 +40,7 @@ class BuildAddressRowUpdated extends StatelessWidget {
                   highlightColor: Colors.grey[100]!,
                   child: simmerWidget(context),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
@@ -60,82 +52,131 @@ class BuildAddressRowUpdated extends StatelessWidget {
         }
 
         if (snapshot.hasError || !snapshot.hasData) {
-          return const ListTile(
+          return ListTile(
             title: Text("حدث خطأ أثناء جلب البيانات"),
           );
         }
 
-        final fromAddress = snapshot.data!['fromAddress']!;
-        final fromCity = snapshot.data!['fromCity']!;
-        final toAddress = snapshot.data!['toAddress']!;
-        final toCity = snapshot.data!['toCity']!;
+        final fromAddress = snapshot.data!.addressFrom;
+        final fromCity =
+            "${parseAddress(fromAddress!)['street_number']} ${parseAddress(fromAddress)['street_name']} ${parseAddress(fromAddress)['state']}";
+        final toAddress = snapshot.data!.addressTo;
+        final toCity =
+            "${parseAddress(toAddress!)['street_number']} ${parseAddress(fromAddress)['street_name']} ${parseAddress(fromAddress)['state']}";
+        ;
 
-        return ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0.sp),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TripDetailsMap(
                 address: fromAddress,
                 location: fromCity,
                 icon: AppIcons.iconsMapRed,
               ),
+              Text(
+                '${rideDetails.ride!.distance!.toStringAsFixed(1)} ${AppLocalizations.of(context)!.km}',
+                style: TextStyle(fontSize: 15.sp),
+              ),
               TripDetailsMap(
                 address: toAddress,
                 location: toCity,
-                icon: AppIcons.mapBlueIcon,
+                icon: AppIcons.iconsMapBlue,
               ),
             ],
           ),
-          trailing: Text(
-            "$distance ${AppLocalizations.of(context)!.km}",
-            style: AppTextStyles.style12DarkgrayW400,
-          ),
         );
+
+        //  ListTile(
+        //   title: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       TripDetailsMap(
+        //         address: fromAddress,
+        //         location: fromCity,
+        //         icon: Assets.iconsMapRed,
+        //       ),
+        //       TripDetailsMap(
+        //         address: toAddress,
+        //         location: toCity,
+        //         icon: Assets.iconsMapBlue,
+        //       ),
+        //     ],
+        //   ),
+        //   trailing: RichText(
+        //     text: TextSpan(
+        //       children: [
+        //         TextSpan(
+        //           text: "${rideDetails.distance} ",
+        //           style: TextStyle(
+        //             fontSize: 15.sp,
+        //             color: Colors.black, // اللون الأسود للمسافة
+        //           ),
+        //         ),
+        //         TextSpan(
+        //           text: AppLocalizations.of(context)!.km,
+        //           style: TextStyle(
+        //             fontSize: 15.sp,
+        //             color: Colors.grey, // اللون الرمادي لـ "km"
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // );
       },
     );
   }
 
-  Future<Map<String, String>> _getFormattedAddresses({
-    required double fromLatitude,
-    required double fromLongitude,
-    required double toLatitude,
-    required double toLongitude,
-  }) async {
-    try {
-      final fromAddress = await _getAddress(fromLatitude, fromLongitude);
-      final toAddress = await _getAddress(toLatitude, toLongitude);
+  // Future<Map<String, String>> _getFormattedAddresses({
+  //   required double fromLatitude,
+  //   required double fromLongitude,
+  //   required double toLatitude,
+  //   required double toLongitude,
+  // }) async {
+  //   try {
+  //     final fromAddress =
+  //         await  rideDetails.rideRequest.addressFrom;
+  //     final toAddress =
+  //         await rideDetails.rideRequest.addressFrom;
 
-      return {
-        'fromAddress': fromAddress['address']!,
-        'fromCity': fromAddress['city']!,
-        'toAddress': toAddress['address']!,
-        'toCity': toAddress['city']!,
-      };
-    } catch (e) {
-      throw Exception("فشل في جلب العناوين: $e");
-    }
-  }
+  //     return {
+  //       'fromAddress': fromAddress['address']!,
+  //       'fromCity': fromAddress['city']!,
+  //       'toAddress': toAddress['address']!,
+  //       'toCity': toAddress['city']!,
+  //     };
 
-  Future<Map<String, String>> _getAddress(
-      double latitude, double longitude) async {
-    final address = await GeoCode()
-        .reverseGeocoding(latitude: latitude, longitude: longitude);
-    String getCity(String city) {
-      if (city.isEmpty) return '';
+  //   } catch (e) {
+  //     throw Exception("فشل في جلب العناوين: $e");
+  //   }
+  // }
 
-      List<String> parts = city.split(' ');
-      if (parts.length > 2) {
-        return '${parts[0]} ${parts[1]}';
-      }
+  // Future<Map<String, String>> _getAddress(
+  //     double latitude, double longitude) async {
+  //   final address = await GeoCode()
+  //       .reverseGeocoding(latitude: latitude, longitude: longitude);
+  //   String _getCity(String city) {
+  //     if (city.isEmpty) return '';
 
-      return city;
-    }
+  //     List<String> parts = city.split(' ');
+  //     if (parts.length > 2) {
+  //       return '${parts[0]} ${parts[1]}';
+  //     }
 
-    return {
-      'address': address.streetAddress ?? '',
-      'city': getCity(address.city ?? ''),
-    };
-  }
+  //     return city;
+  //   }
+
+  //   return {
+  //     'address': address.streetAddress ?? 'streetAddress',
+  //     'city': _getCity(address.city ?? 'city'),
+  //   };
+  // }
+}
+
+Future<Ride> getRideRequest({required RideCompleteDetailsModel ride}) {
+  return Future.value(ride.ride);
 }
 
 Widget simmerWidget(context) {
@@ -146,14 +187,14 @@ Widget simmerWidget(context) {
           height: 15.h,
           width: 20.w,
           decoration: BoxDecoration(
-              color: AppColors.grayColor,
+              color: AppColors.kgrey,
               borderRadius: BorderRadius.circular(12.r)),
         ),
         subtitle: Container(
           height: 15.h,
           width: 50.w,
           decoration: BoxDecoration(
-              color: AppColors.grayColor,
+              color: AppColors.kgrey,
               borderRadius: BorderRadius.circular(12.r)),
         ),
         leading: Column(
@@ -164,13 +205,13 @@ Widget simmerWidget(context) {
               height: MediaQuery.of(context).size.height * .02,
               width: MediaQuery.of(context).size.width * .05,
               child: SvgPicture.asset(
-                AppIcons.mapBlueIcon,
+                AppIcons.iconsMapBlue,
               ),
             ),
           ],
         ),
       ),
-      horizontalSpace(5),
+      horizontalSpace(5.w),
     ],
   );
 }
