@@ -60,10 +60,6 @@ class _TaxiGoUserEditionAppState extends State<TaxiGoUserEditionApp> {
         minTextAdapt: true,
         builder: (context, child) => MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (context) =>
-                  RideCompleteDetailsCubit(getIt<RideCompleteRepo>()),
-            ),
             BlocProvider(create: (context) => getIt.get<MapsCubit>()),
             BlocProvider(
               create: (context) =>

@@ -8,7 +8,6 @@ import 'package:taxi_go_user_version/Core/Utils/Colors/app_colors.dart';
 import 'package:taxi_go_user_version/Core/Utils/Routing/app_routes.dart';
 import 'package:taxi_go_user_version/Core/Utils/Spacing/app_spacing.dart';
 import 'package:taxi_go_user_version/Core/Utils/convertTime_Distance/custom_covertMethods.dart';
-import 'package:taxi_go_user_version/Features/HiringDriver/screens/Payment/payment.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapCubit.dart';
 import 'package:taxi_go_user_version/Features/Map/Controller/map_cubit/mapState.dart';
@@ -133,21 +132,15 @@ class TripScreenState extends State<TripScreen> {
 
     /// check if the trip completed or Cancelled
     if (state is GetLastRideSuccess) {
-      if (context
-              .read<MapsCubit>()
-              .getActiveRide!
-              .data!
-              .ride!
-              .first
-              .rideRequestId ==
-          state.getLastRideSuccess.data!.id) {
-        Fluttertoast.showToast(msg: 'Trip completed');
-        mapcubit.arrivedtoCustomer = false;
-        mapcubit.onTrip = false;
-        mapcubit.isAccepted = false;
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const PaymentScreen()));
-      }
+      Fluttertoast.showToast(
+          msg: 'Trip completed ${state.getLastRideSuccess.data!.id}');
+      Fluttertoast.showToast(
+          msg: 'Trip completed ${state.getLastRideSuccess.data!.id}');
+      mapcubit.arrivedtoCustomer = false;
+      mapcubit.onTrip = false;
+      mapcubit.isAccepted = false;
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const PaymentScreen()));
     } else if (state is GetActiveRideRequestSuccess) {
       final captin = state.activeRide.data!.ride!.first.captain!;
 

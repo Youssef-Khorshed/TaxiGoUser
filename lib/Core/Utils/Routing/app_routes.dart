@@ -8,6 +8,7 @@ import 'package:taxi_go_user_version/Features/Auth/presentation/screens/sign_up/
 import 'package:taxi_go_user_version/Features/Chat/chat.dart';
 import 'package:taxi_go_user_version/Features/Favourite/Screens/trip_favourite.dart';
 import 'package:taxi_go_user_version/Features/History/Screens/my_history.dart';
+import 'package:taxi_go_user_version/Features/Home/controller/ride_complete_cubit/ride_complete_details_cubit.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/general_screen.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/home_widgets/cancelbooking.dart';
 import 'package:taxi_go_user_version/Features/Home/screens/payment.dart';
@@ -77,10 +78,12 @@ class AppRoutes {
           },
         );
       case webViewWalletScreen:
-      String url=  settings.arguments as String;
+        String url = settings.arguments as String;
         return CupertinoPageRoute(
           builder: (context) {
-            return  WebViewPage(url: url,);
+            return WebViewPage(
+              url: url,
+            );
           },
         );
       case signUp:
@@ -178,7 +181,10 @@ class AppRoutes {
       case payment:
         return CupertinoPageRoute(
           builder: (context) {
-            return const PaymentScreen();
+            return BlocProvider(
+              create: (context) => getIt.get<RideCompleteDetailsCubit>(),
+              child: const PaymentScreen(),
+            );
           },
         );
 
