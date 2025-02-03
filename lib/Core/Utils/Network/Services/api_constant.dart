@@ -1,10 +1,10 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Constants {
-  static const String baseUrl = 'https://go-taxi.codecraft1.com/api';
+  static const String baseUrl = '';
   static const String userToken =
-      '280|Pm3dBSJwZ0P0QIlu4gzLU2B18YRk1vIuIUpKCFWE371697c7';
-  static const String mapToken = 'AIzaSyB3SWKn_1sA3pDumna7B9no7LAo21qC8OQ';
+      '';
+  static const String mapToken = '';
   static String kToken = "kToken";
 
   /// Routes
